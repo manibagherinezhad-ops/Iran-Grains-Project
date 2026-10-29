@@ -401,6 +401,19 @@
     }
 
     /* ============================================
+       ۱۰) تاریخ روز در باکس نرخ ارز
+       ============================================ */
+    const exDateEl = $('#exchangeDate');
+    if (exDateEl) {
+        const formatter = new Intl.DateTimeFormat('fa-IR-u-ca-persian', {
+            timeZone: 'Asia/Tehran', year: 'numeric', month: '2-digit', day: '2-digit'
+        });
+        const updateExchangeDate = () => { exDateEl.textContent = 'مورخ ' + formatter.format(new Date()); };
+        updateExchangeDate();
+        setInterval(updateExchangeDate, 60 * 1000);
+    }
+
+    /* ============================================
        ۱۱) آکاردئون اهداف — باز/بسته با کلیک (برای لمسی)
        (hover هم از طریق CSS فعاله)
        ============================================ */

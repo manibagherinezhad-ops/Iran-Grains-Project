@@ -2635,5 +2635,16 @@ input, textarea, select { font-family: 'Yekan Bakh', sans-serif; font-weight: 70
 })();
 
     </script>
+    <script>
+        const exchangeDate = document.getElementById('exchangeDate');
+        if (exchangeDate) {
+            const formatter = new Intl.DateTimeFormat('fa-IR-u-ca-persian', {
+                timeZone: 'Asia/Tehran', year: 'numeric', month: '2-digit', day: '2-digit'
+            });
+            const updateExchangeDate = () => { exchangeDate.textContent = 'مورخ ' + formatter.format(new Date()); };
+            updateExchangeDate();
+            setInterval(updateExchangeDate, 60 * 1000);
+        }
+    </script>
 </body>
 </html>

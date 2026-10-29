@@ -1,4 +1,4 @@
-"""Update the five static exchange rates from TGJU's exchange-center page."""
+"""Update the five static exchange rates from the ICE homepage."""
 
 from datetime import datetime
 from pathlib import Path
@@ -9,7 +9,7 @@ from zoneinfo import ZoneInfo
 from playwright.sync_api import sync_playwright
 
 
-SOURCE = "https://www.tgju.org/مرکز-مبادله-ارز-و-طلای-ایران"
+SOURCE = "https://ice.ir/"
 ROOT = Path(__file__).resolve().parents[1]
 CURRENCIES = {
     "دلار آمریکا": ("دلار آمریکا", "دلار امريکا", "دلار امریکا"),
@@ -53,8 +53,8 @@ def extract_rates(rows):
                 rates[name] = price
     missing = set(CURRENCIES) - set(rates)
     if missing:
-        raise ValueError(f"TGJU did not provide all five rates; missing: {', '.join(sorted(missing))}")
-    # The site displays rial. If TGJU's table is in toman, convert all five together.
+        raise ValueError(f"ICE did not provide all five rates; missing: {', '.join(sorted(missing))}")
+    # The site displays rial. If the source is in toman, convert all five together.
     if rates["دلار آمریکا"] < 500_000:
         rates = {name: value * 10 for name, value in rates.items()}
     if not 500_000 <= rates["دلار آمریکا"] <= 10_000_000:
@@ -67,7 +67,7 @@ def extract_rates(rows):
         (dollar / rates["روبل روسیه"], 25, 250),
     )
     if any(not low <= ratio <= high for ratio, low, high in ratios):
-        raise ValueError("TGJU rates failed cross-currency validation; refusing to publish")
+        raise ValueError("ICE rates failed cross-currency validation; refusing to publish")
     return rates
 
 
@@ -111,9 +111,17 @@ def main():
         page = browser.new_page(locale="fa-IR")
         response = page.goto(SOURCE, wait_until="domcontentloaded", timeout=60000)
         if not response or response.status >= 400:
-            raise RuntimeError(f"TGJU returned HTTP {response.status if response else 'no response'}")
-        page.locator("tr").first.wait_for(timeout=30000)
+            raise RuntimeError(f"ICE returned HTTP {response.status if response else 'no response'}")
+        page.wait_for_timeout(5000)
         rows = page.locator("tr").evaluate_all("rows => rows.map(row => [...row.querySelectorAll('th, td')].map(cell => cell.textContent.trim()))")
+        rows += page.evaluate("""() => [...document.querySelectorAll('body *')]
+            .filter(el => el.children.length === 0 && /دلار|یورو|درهم|یوآن|یوان|روبل/.test(el.textContent))
+            .map(el => {
+                let group = el.parentElement;
+                for (let i = 0; i < 3 && group && !/(?:[۰-۹٠-٩0-9]{1,3}[,٬،][۰-۹٠-٩0-9]{3}|[۰-۹٠-٩0-9]{4,})/.test(group.textContent); i++) group = group.parentElement;
+                return group ? [...group.querySelectorAll('*')].filter(child => child.children.length === 0)
+                    .map(child => child.textContent.trim()).filter(Boolean) : [];
+            }).filter(group => group.length > 1)""")
         browser.close()
     rates = extract_rates(rows)
     date = jalali_date(datetime.now(ZoneInfo("Asia/Tehran")))
