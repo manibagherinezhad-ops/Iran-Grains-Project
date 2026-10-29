@@ -178,6 +178,8 @@
 /* باکس شیشه‌ای اصلی */
 .ig-glass-box {
     position: relative;
+    translate: var(--ig-move-x, 0px) var(--ig-move-y, 0px);
+    transition: translate 0.22s ease-out;
     width: 420px;
     height: 420px;
     background: rgba(255, 255, 255, 0.04);
@@ -196,6 +198,9 @@
 @keyframes igFloat {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-14px); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .ig-glass-box { animation: none; transition: none; }
 }
 
 /* الگوی پس‌زمینه‌ی شیشه */
@@ -766,14 +771,7 @@
             <nav class="nav-menu" id="navMenu" aria-label="منوی اصلی">
                 <a href="index.html" class="nav-link">خانه</a>
 
-                <div class="nav-item-has-children">
-                    <a href="about.html" class="nav-link">درباره ما <span class="caret" aria-hidden="true">▾</span></a>
-                    <ul class="dropdown">
-                        <li><a href="about.html">آشنایی با انجمن</a></li>
-                        <li><a href="statute.html">اساسنامه</a></li>
-                        <li><a href="board.html">اعضای هیأت مدیره</a></li>
-                    </ul>
-                </div>
+
 
                 <div class="nav-item-has-children">
                     <a href="meetings.html" class="nav-link active">رویدادها <span class="caret" aria-hidden="true">▾</span></a>
@@ -795,6 +793,14 @@
                 </div>
 
                 <a href="index.html#contact" class="nav-link">تماس با ما</a>
+
+                <div class="nav-item-has-children">
+                    <a href="about.html" class="nav-link">درباره ما <span class="caret" aria-hidden="true">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="about.html">آشنایی با انجمن</a></li>
+                        <li><a href="board.html">اعضای هیأت مدیره</a></li>
+                    </ul>
+                </div>
             </nav>
 
             <div class="nav-actions">
@@ -1130,5 +1136,21 @@
     </button>
 
     <script src="assets/js/main.js"></script>
+    <script>
+        const igGlassBox = document.querySelector('.ig-glass-box');
+        if (igGlassBox && matchMedia('(hover: hover) and (pointer: fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            igGlassBox.addEventListener('pointermove', (event) => {
+                const bounds = igGlassBox.getBoundingClientRect();
+                const x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 20;
+                const y = ((event.clientY - bounds.top) / bounds.height - 0.5) * 20;
+                igGlassBox.style.setProperty('--ig-move-x', `${x.toFixed(1)}px`);
+                igGlassBox.style.setProperty('--ig-move-y', `${y.toFixed(1)}px`);
+            });
+            igGlassBox.addEventListener('pointerleave', () => {
+                igGlassBox.style.removeProperty('--ig-move-x');
+                igGlassBox.style.removeProperty('--ig-move-y');
+            });
+        }
+    </script>
 </body>
 </html>

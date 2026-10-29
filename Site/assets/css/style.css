@@ -675,11 +675,11 @@ input, textarea { font-family: inherit; }
 
 .about-content { text-align: right; }
 .about-content .section-tag {
-    display: block;
+    display: inline-block;
     width: fit-content;
     margin-bottom: 14px;
-    background: transparent;
-    padding: 0;
+    background: var(--gold-soft);
+    padding: 6px 18px;
     color: var(--gold-dark);
 }
 .about-content .section-title {
