@@ -971,6 +971,8 @@ input, textarea { font-family: inherit; }
 .footer-col li { color: #aabdaf; font-size: 0.8rem; }
 .footer-col a { font-size: 0.8rem; color: #aabdaf; transition: all var(--transition); }
 .footer-col a:hover { color: var(--gold); }
+.footer-col ul a { display: inline-block; }
+.footer-col ul a:hover { transform: translateX(6px); }
 
 .social-links { display: flex; gap: 12px; }
 .social-links a {
