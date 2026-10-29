@@ -1692,6 +1692,27 @@ input, textarea, select { font-family: var(--font); font-weight: 700 !important;
 .stats .stat-label { font-family: var(--font); font-weight: 600; }
 .cta-content p { font-family: var(--font); font-weight: 400; }
 
+/* Contact section and footer typography */
+.contact-info > p,
+.contact-list p,
+.contact-list p a,
+.footer-brand > p,
+.footer-col ul a {
+    font-family: var(--font);
+    font-weight: 400;
+}
+.contact-form input,
+.contact-form textarea,
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    font-family: var(--font);
+    font-weight: 400 !important;
+}
+.footer-brand .logo { font-size: 23px; }
+.footer-brand .logo-text { font-family: var(--font); font-weight: 700; }
+.footer-brand .logo-mark { font-size: 32px; }
+.footer-brand .logo-img { height: 110px; }
+
 /* Navigation and introductory hero text */
 .nav-menu .nav-link { font-family: 'Yekan Bakh', sans-serif !important; font-weight: 700 !important; }
 .nav-menu .dropdown a { font-family: 'Yekan Bakh', sans-serif !important; font-weight: 400 !important; }
