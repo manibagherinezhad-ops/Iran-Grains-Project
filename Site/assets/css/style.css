@@ -4,13 +4,10 @@
    ============================================ */
 
 /* ---------- فونت‌ها ---------- */
-@font-face {
-    font-family: 'Anjoman';
-    src: url('../fonts/Anjoman-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
+@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-ExtraBold.ttf') format('truetype'); font-weight: 800; font-display: swap; }
+@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-Black.ttf') format('truetype'); font-weight: 900; font-display: swap; }
 
 /* ---------- متغیرهای رنگ و طراحی ---------- */
 :root {
@@ -44,8 +41,8 @@
     --container: 1200px;
     --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-    --font: 'Vazirmatn', system-ui, -apple-system, 'Segoe UI', Tahoma, sans-serif;
-    --font-head: 'Anjoman', 'Vazirmatn', system-ui, sans-serif;
+    --font: 'Yekan Bakh', system-ui, sans-serif;
+    --font-head: 'Yekan Bakh', system-ui, sans-serif;
 }
 
 /* ---------- ریست پایه ---------- */
@@ -1665,3 +1662,13 @@ input, textarea { font-family: inherit; }
     .meet-img { height: 170px; }
     .meet-row { flex-direction: column; gap: 14px; }
 }
+
+/* Site typography */
+body { font-weight: 400; }
+p, .lead, .section-desc, .hero-subtitle, .bbio { font-weight: 400; }
+:is(h1, h2, h3, h4, h5, h6), .section-title, .slide-title, .hero-title, .acc-title, .bname { font-family: var(--font-head) !important; font-weight: 800 !important; }
+.nav-menu > .nav-link, .nav-item-has-children > .nav-link { font-weight: 700; }
+.dropdown a, .footer a { font-weight: 400 !important; }
+button, .btn, .section-tag, .chip, .slide-title-kicker, .doc-format { font-family: var(--font); font-weight: 900 !important; }
+input, textarea, select { font-family: var(--font); font-weight: 700 !important; }
+.intro-facts b, .tl-year, .ex-value, .meet-date b, .stat-number, .about-badge-num, .acc-num { font-family: var(--font); font-weight: 700 !important; }

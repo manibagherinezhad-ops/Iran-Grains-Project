@@ -5,6 +5,10 @@
    ============================================ */
 
 /* ---------- Design Tokens ---------- */
+@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-ExtraBold.ttf') format('truetype'); font-weight: 800; font-display: swap; }
+@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-Black.ttf') format('truetype'); font-weight: 900; font-display: swap; }
 :root {
     /* === رنگ‌های برند (از لوگو) === */
     --green: #4CAF50;            /* سبز برگ - اصلی */
@@ -54,8 +58,8 @@
     --s-12: 48px; --s-16: 64px; --s-20: 80px; --s-24: 96px;
 
     /* === تایپوگرافی === */
-    --f-head: 'Vazirmatn', system-ui, sans-serif;  /* headline */
-    --f-body: 'Vazirmatn', system-ui, sans-serif;  /* body */
+    --f-head: 'Yekan Bakh', system-ui, sans-serif;  /* headline */
+    --f-body: 'Yekan Bakh', system-ui, sans-serif;  /* body */
     --f-mono: ui-monospace, 'Cascadia Code', monospace;
 
     --container: 1200px;
@@ -787,3 +791,12 @@ input, textarea, select { font-family: inherit; }
     .about-media img { height: 360px; }
     .hero-meta { flex-direction: column; gap: var(--s-4); }
 }
+
+/* Site typography */
+body, p, .section-desc { font-weight: 400; }
+:is(h1, h2, h3, h4, h5, h6), .section-title { font-family: var(--f-head) !important; font-weight: 800 !important; }
+.nav-menu > .nav-link, .nav-item-has-children > .nav-link { font-weight: 700; }
+.dropdown a, .footer a { font-weight: 400 !important; }
+button, .btn, .overline { font-family: var(--f-body); font-weight: 900 !important; }
+input, textarea, select { font-family: var(--f-body); font-weight: 700 !important; }
+.hero-meta-item .num, .about-media-card .num, .stat-number { font-family: var(--f-body); font-weight: 700 !important; }
