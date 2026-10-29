@@ -1672,3 +1672,25 @@ p, .lead, .section-desc, .hero-subtitle, .bbio { font-weight: 400; }
 button, .btn, .section-tag, .chip, .slide-title-kicker, .doc-format { font-family: var(--font); font-weight: 900 !important; }
 input, textarea, select { font-family: var(--font); font-weight: 700 !important; }
 .intro-facts b, .tl-year, .ex-value, .meet-date b, .stat-number, .about-badge-num, .acc-num { font-family: var(--font); font-weight: 700 !important; }
+
+/* Contact text and navigation */
+.contact-form, .contact-form * {
+    font-family: var(--font) !important;
+    font-weight: 400 !important;
+}
+.contact-form input::placeholder, .contact-form textarea::placeholder {
+    font-family: var(--font);
+    font-weight: 400;
+}
+.contact-list p, .contact-list p a {
+    font-family: var(--font) !important;
+    font-weight: 400 !important;
+}
+.nav-menu .nav-link {
+    font-family: var(--font) !important;
+    font-weight: 700 !important;
+}
+.nav-menu .dropdown a {
+    font-family: var(--font) !important;
+    font-weight: 400 !important;
+}
