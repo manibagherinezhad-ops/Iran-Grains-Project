@@ -5,6 +5,7 @@
 
 /* ---------- فونت‌ها ---------- */
 @font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-SemiBold.ttf') format('truetype'); font-weight: 600; font-display: swap; }
 @font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
 @font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-ExtraBold.ttf') format('truetype'); font-weight: 800; font-display: swap; }
 @font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-Black.ttf') format('truetype'); font-weight: 900; font-display: swap; }
@@ -1672,3 +1673,12 @@ p, .lead, .section-desc, .hero-subtitle, .bbio { font-weight: 400; }
 button, .btn, .section-tag, .chip, .slide-title-kicker, .doc-format { font-family: var(--font); font-weight: 900 !important; }
 input, textarea, select { font-family: var(--font); font-weight: 700 !important; }
 .intro-facts b, .tl-year, .ex-value, .meet-date b, .stat-number, .about-badge-num, .acc-num { font-family: var(--font); font-weight: 700 !important; }
+
+/* Home page: exchange rates, news and services */
+.exchange-date { font-family: var(--font); font-weight: 700; }
+.ex-value { font-family: var(--font); font-weight: 600 !important; }
+.ex-unit { font-family: var(--font); font-weight: 400; }
+.news-cat { font-family: var(--font); font-weight: 600; }
+.news-date, .news-link { font-family: var(--font); font-weight: 700; }
+.news-body p, .service-card p { font-family: var(--font); font-weight: 400; }
+.service-link { font-family: var(--font); font-weight: 700; }
