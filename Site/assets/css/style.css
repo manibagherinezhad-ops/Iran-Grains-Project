@@ -1682,3 +1682,8 @@ input, textarea, select { font-family: var(--font); font-weight: 700 !important;
 .news-date, .news-link { font-family: var(--font); font-weight: 700; }
 .news-body p, .service-card p { font-family: var(--font); font-weight: 400; }
 .service-link { font-family: var(--font); font-weight: 700; }
+
+/* Navigation and introductory hero text */
+.nav-menu .nav-link { font-family: 'Yekan Bakh', sans-serif !important; font-weight: 700 !important; }
+.nav-menu .dropdown a { font-family: 'Yekan Bakh', sans-serif !important; font-weight: 400 !important; }
+.slide-intro .hero-subtitle { font-family: 'Yekan Bakh', sans-serif !important; font-weight: 400 !important; }
