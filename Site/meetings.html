@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جلسات | انجمن غلات ایران</title>
+    <meta name="description" content="جلسات، مجامع و نشست‌های انجمن غلات ایران؛ گزارش و اطلاعیه‌ی جلسات برگزارشده و در پیش رو.">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌾</text></svg>">
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="subpage">
+
+    <!-- کرسر سفارشی -->
+    <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+    <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+    <!-- ===== Navbar ===== -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo" aria-label="انجمن غلات ایران">
+                <img src="assets/img/logo.png" alt="لوگوی انجمن غلات ایران" class="logo-img">
+            </a>
+
+            <nav class="nav-menu" id="navMenu" aria-label="منوی اصلی">
+                <a href="index.html" class="nav-link">خانه</a>
+
+                <div class="nav-item-has-children">
+                    <a href="about.html" class="nav-link">درباره ما <span class="caret" aria-hidden="true">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="about.html">آشنایی با انجمن</a></li>
+                        <li><a href="statute.html">اساسنامه</a></li>
+                        <li><a href="board.html">اعضای هیأت مدیره</a></li>
+                    </ul>
+                </div>
+
+                <div class="nav-item-has-children">
+                    <a href="meetings.html" class="nav-link active">رویدادها <span class="caret" aria-hidden="true">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="meetings.html">جلسات</a></li>
+                        <li><a href="iran-green.html">ایران گرین</a></li>
+                    </ul>
+                </div>
+
+                <a href="index.html#services" class="nav-link">بخشنامه‌ها</a>
+                <a href="index.html#stats" class="nav-link">قیمت‌های مصوب</a>
+
+                <div class="nav-item-has-children">
+                    <a href="index.html#contact" class="nav-link">اعضا <span class="caret" aria-hidden="true">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="#">شرکت‌های عضو</a></li>
+                        <li><a href="#">شرایط عضویت</a></li>
+                    </ul>
+                </div>
+
+                <a href="index.html#contact" class="nav-link">تماس با ما</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="index.html#contact" class="btn btn-primary btn-sm">درخواست عضویت</a>
+                <button class="nav-toggle" id="navToggle" aria-label="باز و بسته کردن منو" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== هدر صفحه ===== -->
+    <section class="page-hero">
+        <div class="container">
+            <nav class="breadcrumb" aria-label="مسیر">
+                <a href="index.html">خانه</a>
+                <span class="sep" aria-hidden="true">❯</span>
+                <span>رویدادها</span>
+                <span class="sep" aria-hidden="true">❯</span>
+                <span>جلسات</span>
+            </nav>
+            <h1>جلسات انجمن</h1>
+            <p class="lead">
+                گزارش و اطلاعیه‌ی جلسات، مجامع و نشست‌های تخصصی انجمن غلات ایران.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== جلسات ===== -->
+    <section class="section meetings-section">
+        <div class="container">
+            <!-- فیلتر -->
+            <div class="meet-filter" data-animate>
+                <button class="mfilter on" data-filter="all">همه</button>
+                <button class="mfilter" data-filter="upcoming">در پیش رو</button>
+                <button class="mfilter" data-filter="held">برگزار شده</button>
+            </div>
+
+            <!-- کارت‌های جلسات (نمونه) -->
+            <div class="meet-grid" id="meetGrid">
+
+                <article class="meet-card" data-status="upcoming" data-animate>
+                    <div class="meet-img"><img src="assets/img/photo-1437252611977-07f74518abd7.avif" alt="جلسه" loading="lazy"></div>
+                    <div class="meet-row">
+                        <div class="meet-date">
+                        <b>۲۲</b>
+                        <span>شهریور</span>
+                        <i>۱۴۰۵</i>
+                    </div>
+                        <div class="meet-body">
+                        <span class="meet-tag upcoming">در پیش رو</span>
+                        <h3>مجمع عمومی سالانه انجمن</h3>
+                        <p>بررسی گزارش عملکرد سالانه، تصویب بودجه و انتخابات اعضای هیئت مدیره‌ی جدید در حضور نمایندگان اعضا.</p>
+                        <div class="meet-meta">
+                            <span>📍 سالن همایش‌های انجمن، تهران</span>
+                            <span>🕑 ۱۶:۰۰ تا ۱۹:۰۰</span>
+                        </div>
+                    </div>
+                    </div>
+                </article>
+
+                <article class="meet-card" data-status="upcoming" data-animate>
+                    <div class="meet-img"><img src="assets/img/photo-1464226184884-fa280b87c399.avif" alt="جلسه" loading="lazy"></div>
+                    <div class="meet-row">
+                        <div class="meet-date">
+                        <b>۰۵</b>
+                        <span>مهر</span>
+                        <i>۱۴۰۵</i>
+                    </div>
+                        <div class="meet-body">
+                        <span class="meet-tag upcoming">در پیش رو</span>
+                        <h3>نشست تخصصی بازار نهاده‌های دامی</h3>
+                        <p>تحلیل وضعیت بازار ذرت و کنجاله‌ی سویا در نیمه‌ی دوم سال و بررسی راهکارهای تأمین پایدار با حضور اعضا.</p>
+                        <div class="meet-meta">
+                            <span>📍 سالن کنفرانس اتاق بازرگانی</span>
+                            <span>🕑 ۱۵:۰۰ تا ۱۷:۳۰</span>
+                        </div>
+                    </div>
+                    </div>
+                </article>
+
+                <article class="meet-card" data-status="held" data-animate>
+                    <div class="meet-img"><img src="assets/img/photo-1574323347407-f5e1ad6d020b.avif" alt="جلسه" loading="lazy"></div>
+                    <div class="meet-row">
+                        <div class="meet-date">
+                        <b>۱۸</b>
+                        <span>مرداد</span>
+                        <i>۱۴۰۵</i>
+                    </div>
+                        <div class="meet-body">
+                        <span class="meet-tag held">برگزار شد</span>
+                        <h3>جلسه‌ی ماهانه‌ی هیئت مدیره</h3>
+                        <p>بررسی گزارش عملکرد سه‌ماهه، پیگیری مصوبات قبلی و برنامه‌ریزی برای همایش ایران گرین ۱۴۰۵.</p>
+                        <div class="meet-meta">
+                            <span>📍 دفتر مرکزی انجمن</span>
+                            <span>🕑 ۱۰:۰۰ تا ۱۳:۰۰</span>
+                        </div>
+                    </div>
+                    </div>
+                </article>
+
+                <article class="meet-card" data-status="held" data-animate>
+                    <div class="meet-img"><img src="assets/img/photo-1625246333195-78d9c38ad449.avif" alt="جلسه" loading="lazy"></div>
+                    <div class="meet-row">
+                        <div class="meet-date">
+                        <b>۰۲</b>
+                        <span>مرداد</span>
+                        <i>۱۴۰۵</i>
+                    </div>
+                        <div class="meet-body">
+                        <span class="meet-tag held">برگزار شد</span>
+                        <h3>نشست هم‌اندیشی با وزارت جهاد کشاورزی</h3>
+                        <p>گفت‌وگوی سازنده درباره‌ی سیاست‌های حمایی خرید تضمینی گندم و تأمین نهاده‌های کشاورزی فصل آینده.</p>
+                        <div class="meet-meta">
+                            <span>📍 وزارت جهاد کشاورزی، تهران</span>
+                            <span>🕑 ۰۹:۳۰ تا ۱۲:۰۰</span>
+                        </div>
+                    </div>
+                    </div>
+                </article>
+
+                <article class="meet-card" data-status="held" data-animate>
+                    <div class="meet-img"><img src="assets/img/photo-1500382017468-9049fed747ef.avif" alt="جلسه" loading="lazy"></div>
+                    <div class="meet-row">
+                        <div class="meet-date">
+                        <b>۲۱</b>
+                        <span>تیر</span>
+                        <i>۱۴۰۵</i>
+                    </div>
+                        <div class="meet-body">
+                        <span class="meet-tag held">برگزار شد</span>
+                        <h3>کارگاه آموزشی واردات غلات</h3>
+                        <p>آموزش چرخه‌ی ثبت سفارش تا ترخیص کالا برای اعضای جدید؛ از اسناد بازرگانی تا مقررات ارزی.</p>
+                        <div class="meet-meta">
+                            <span>📍 دفتر مرکزی انجمن</span>
+                            <span>🕑 ۱۴:۰۰ تا ۱۸:۰۰</span>
+                        </div>
+                    </div>
+                    </div>
+                </article>
+
+                <article class="meet-card" data-status="held" data-animate>
+                    <div class="meet-img"><img src="assets/img/photo-1437252611977-07f74518abd7.avif" alt="جلسه" loading="lazy"></div>
+                    <div class="meet-row">
+                        <div class="meet-date">
+                        <b>۰۹</b>
+                        <span>تیر</span>
+                        <i>۱۴۰۵</i>
+                    </div>
+                        <div class="meet-body">
+                        <span class="meet-tag held">برگزار شد</span>
+                        <h3>جلسه‌ی کمیته‌ی داده و آمار</h3>
+                        <p>بازبینی ساختار گزارش‌های ماهانه‌ی بازار غلات و تصمیم‌گیری درباره‌ی انتشار عمومی داده‌های تولید.</p>
+                        <div class="meet-meta">
+                            <span>📍 آنلاین (بستر برگزاری مجازی)</span>
+                            <span>🕑 ۱۱:۰۰ تا ۱۳:۰۰</span>
+                        </div>
+                    </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col footer-brand">
+                <a href="index.html" class="logo">
+                    <img src="assets/img/logo.png" alt="انجمن غلات ایران" class="logo-img">
+                </a>
+                <p>مرجع تخصصی صنعت غلات و دانه‌های روغنی کشور با هدف تأمین امنیت غذایی و توسعه‌ی پایدار.</p>
+            </div>
+            <div class="footer-col">
+                <h4>دسترسی سریع</h4>
+                <ul>
+                    <li><a href="about.html">درباره ما</a></li>
+                    <li><a href="index.html#services">خدمات</a></li>
+                    <li><a href="index.html#news">اخبار</a></li>
+                    <li><a href="index.html#contact">تماس</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>خدمات</h4>
+                <ul>
+                    <li><a href="index.html#services">آمار و داده‌ها</a></li>
+                    <li><a href="index.html#services">بخشنامه‌ها</a></li>
+                    <li><a href="index.html#services">شرکت‌های عضو</a></li>
+                    <li><a href="meetings.html">رویدادها</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>شبکه‌های اجتماعی</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/iran.grainsunion?igsh=c3UwdWg5dzJxeG52" target="_blank" rel="noopener" aria-label="اینستاگرام" title="اینستاگرام">
+                        <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.7 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85C2.38 3.93 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4zm6.41-10.85a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44z"/></svg>
+                    </a>
+                    <a href="#" target="_blank" rel="noopener" aria-label="واتساپ" title="واتساپ">
+                        <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M.06 24l1.69-6.16a11.81 11.81 0 0 1-1.59-5.95C.16 5.34 5.5 0 12.06 0a11.82 11.82 0 0 1 8.41 3.49 11.78 11.78 0 0 1 3.48 8.41c0 6.56-5.34 11.9-11.9 11.9a11.92 11.92 0 0 1-5.68-1.45L.06 24zM6.6 20.13c1.68.99 3.28 1.59 5.46 1.59 5.45 0 9.89-4.43 9.89-9.88a9.86 9.86 0 0 0-9.88-9.89c-5.45 0-9.89 4.44-9.89 9.89 0 2.23.65 3.87 1.74 5.6l-1 3.63 3.68-.94zm11.39-5.46c-.07-.12-.27-.2-.57-.35-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.48 0 1.46 1.06 2.87 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.69.25-1.28.18-1.41z"/></svg>
+                    </a>
+                    <a href="#" target="_blank" rel="noopener" aria-label="بله" title="بله">
+                        <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 1C5.37 1 0 5.57 0 10.21c0 2.89 1.42 5.47 3.68 7.27V22l4.22-2.32c1.3.36 2.69.55 4.1.55 6.63 0 12-4.57 12-10.21S18.63 1 12 1zm1.2 13.7-3.06-3.26-5.97 3.26 6.56-6.97 3.14 3.26 5.9-3.26-6.57 6.97z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© ۱۴۰۵ انجمن غلات ایران | تمامی حقوق محفوظ است.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="بازگشت به بالا">
+        <span aria-hidden="true">↑</span>
+    </button>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

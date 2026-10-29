@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ایران گرین | انجمن غلات ایران</title>
+    <meta name="description" content="ایران گرین، بزرگ‌ترین گردهمایی صنعت غلات و کشاورزی پایدار ایران؛ گفت‌وگو، هم‌افزایی و نوآوری برای آینده‌ی سبزتر.">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+/* ============================================
+   ایران گرین — استایل اختصاصی
+   ============================================ */
+
+/* --- Hero بخش با افکت ذرات گندم --- */
+.ig-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: #080e0a;
+}
+/* لایه اصلی — پترن گندم و منحنی‌ها */
+.ig-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        /* گندم بالا سمت راست */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 700'%3E%3Cdefs%3E%3ClinearGradient id='wheat' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%232a4a35' stop-opacity='0.5'/%3E%3Cstop offset='1' stop-color='%231a3020' stop-opacity='0.2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='url(%23wheat)' stroke='none'%3E%3C!-- stalk --%3E%3Cpath d='M480 0 Q470 100 460 200 Q450 300 440 400 Q430 500 420 600' stroke='%231f3a28' stroke-width='2' fill='none' opacity='0.6'/%3E%3C!-- grains right --%3E%3Cellipse cx='490' cy='40' rx='18' ry='40' transform='rotate(25 490 40)' opacity='0.35'/%3E%3Cellipse cx='510' cy='80' rx='16' ry='36' transform='rotate(30 510 80)' opacity='0.3'/%3E%3Cellipse cx='520' cy='130' rx='15' ry='34' transform='rotate(35 520 130)' opacity='0.28'/%3E%3Cellipse cx='525' cy='180' rx='14' ry='32' transform='rotate(38 525 180)' opacity='0.25'/%3E%3Cellipse cx='528' cy='230' rx='13' ry='30' transform='rotate(40 528 230)' opacity='0.22'/%3E%3Cellipse cx='525' cy='280' rx='12' ry='28' transform='rotate(42 525 280)' opacity='0.2'/%3E%3Cellipse cx='520' cy='330' rx='11' ry='26' transform='rotate(44 520 330)' opacity='0.18'/%3E%3Cellipse cx='512' cy='380' rx='10' ry='24' transform='rotate(46 512 380)' opacity='0.15'/%3E%3Cellipse cx='502' cy='430' rx='9' ry='22' transform='rotate(48 502 430)' opacity='0.12'/%3E%3C!-- grains left --%3E%3Cellipse cx='460' cy='60' rx='16' ry='36' transform='rotate(-20 460 60)' opacity='0.3'/%3E%3Cellipse cx='445' cy='110' rx='14' ry='32' transform='rotate(-25 445 110)' opacity='0.26'/%3E%3Cellipse cx='435' cy='160' rx='13' ry='30' transform='rotate(-30 435 160)' opacity='0.23'/%3E%3Cellipse cx='428' cy='210' rx='12' ry='28' transform='rotate(-33 428 210)' opacity='0.2'/%3E%3Cellipse cx='422' cy='260' rx='11' ry='26' transform='rotate(-36 422 260)' opacity='0.17'/%3E%3Cellipse cx='418' cy='310' rx='10' ry='24' transform='rotate(-38 418 310)' opacity='0.14'/%3E%3Cellipse cx='415' cy='360' rx='9' ry='22' transform='rotate(-40 415 360)' opacity='0.11'/%3E%3Cellipse cx='410' cy='410' rx='8' ry='20' transform='rotate(-42 410 410)' opacity='0.09'/%3E%3C/g%3E%3C/svg%3E") no-repeat top right,
+        /* منحنی‌های موجی پایین */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400'%3E%3Cdefs%3E%3ClinearGradient id='wave' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%231a2e22' stop-opacity='0.6'/%3E%3Cstop offset='1' stop-color='%230f1f15' stop-opacity='0.3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0 300 Q200 250 400 280 Q600 310 800 260 Q1000 210 1200 250 Q1350 275 1440 260 L1440 400 L0 400Z' fill='url(%23wave)' opacity='0.5'/%3E%3Cpath d='M0 340 Q250 300 500 320 Q750 340 1000 300 Q1200 270 1440 290 L1440 400 L0 400Z' fill='%23121f16' opacity='0.7'/%3E%3Cpath d='M0 370 Q300 350 600 365 Q900 380 1200 355 Q1350 345 1440 355 L1440 400 L0 400Z' fill='%230a150e' opacity='0.9'/%3E%3C/svg%3E") no-repeat bottom,
+        /* درخشش طلایی پایین */
+        radial-gradient(ellipse 1200px 200px at 50% 100%, rgba(180, 150, 60, 0.06) 0%, transparent 70%),
+        /* درخشش ملایم بالا چپ */
+        radial-gradient(ellipse 500px 400px at 5% 5%, rgba(180, 150, 60, 0.03) 0%, transparent 60%),
+        /* گرادیانت اصلی */
+        linear-gradient(170deg, #0c1610 0%, #0a130e 40%, #0d1a13 70%, #080e0a 100%);
+    pointer-events: none;
+}
+/* بافت نویز روی کل هیرو */
+.ig-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    opacity: 0.5;
+    pointer-events: none;
+}
+.ig-hero .container {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    padding-block: 120px;
+}
+
+/* متن watermark وسط هیرو */
+.ig-hero-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    pointer-events: none;
+    width: clamp(300px, 40vw, 550px);
+    height: auto;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 58 22'%3E%3Cpath d='M0.864 19.0002V12.5442H2.736V19.0002H0.864ZM1.8 11.6442C1.456 11.6442 1.176 11.5442 0.96 11.3442C0.744 11.1442 0.636 10.8962 0.636 10.6002C0.636 10.3042 0.744 10.0562 0.96 9.85624C1.176 9.65624 1.456 9.55624 1.8 9.55624C2.144 9.55624 2.424 9.65224 2.64 9.84424C2.856 10.0282 2.964 10.2682 2.964 10.5642C2.964 10.8762 2.856 11.1362 2.64 11.3442C2.432 11.5442 2.152 11.6442 1.8 11.6442ZM4.47338 19.0002V12.5442H6.26138V14.3682L6.00938 13.8402C6.20138 13.3842 6.50938 13.0402 6.93338 12.8082C7.35738 12.5682 7.87338 12.4482 8.48138 12.4482V14.1762C8.40138 14.1682 8.32938 14.1642 8.26538 14.1642C8.20138 14.1562 8.13338 14.1522 8.06138 14.1522C7.54938 14.1522 7.13338 14.3002 6.81338 14.5962C6.50138 14.8842 6.34538 15.3362 6.34538 15.9522V19.0002H4.47338ZM13.1326 19.0002V17.7402L13.0126 17.4642V15.2082C13.0126 14.8082 12.8886 14.4962 12.6406 14.2722C12.4006 14.0482 12.0286 13.9362 11.5246 13.9362C11.1806 13.9362 10.8406 13.9922 10.5046 14.1042C10.1766 14.2082 9.89659 14.3522 9.66459 14.5362L8.99259 13.2282C9.34459 12.9802 9.76859 12.7882 10.2646 12.6522C10.7606 12.5162 11.2646 12.4482 11.7766 12.4482C12.7606 12.4482 13.5246 12.6802 14.0686 13.1442C14.6126 13.6082 14.8846 14.3322 14.8846 15.3162V19.0002H13.1326ZM11.1646 19.0962C10.6606 19.0962 10.2286 19.0122 9.86859 18.8442C9.50859 18.6682 9.23259 18.4322 9.04059 18.1362C8.84859 17.8402 8.75259 17.5082 8.75259 17.1402C8.75259 16.7562 8.84459 16.4202 9.02859 16.1322C9.22059 15.8442 9.52059 15.6202 9.92859 15.4602C10.3366 15.2922 10.8686 15.2082 11.5246 15.2082H13.2406V16.3002H11.7286C11.2886 16.3002 10.9846 16.3722 10.8166 16.5162C10.6566 16.6602 10.5766 16.8402 10.5766 17.0562C10.5766 17.2962 10.6686 17.4882 10.8526 17.6322C11.0446 17.7682 11.3046 17.8362 11.6326 17.8362C11.9446 17.8362 12.2246 17.7642 12.4726 17.6202C12.7206 17.4682 12.9006 17.2482 13.0126 16.9602L13.3006 17.8242C13.1646 18.2402 12.9166 18.5562 12.5566 18.7722C12.1966 18.9882 11.7326 19.0962 11.1646 19.0962ZM16.5788 19.0002V12.5442H18.3668V14.3322L18.0308 13.7922C18.2628 13.3602 18.5948 13.0282 19.0268 12.7962C19.4588 12.5642 19.9508 12.4482 20.5028 12.4482C21.0148 12.4482 21.4708 12.5522 21.8708 12.7602C22.2788 12.9602 22.5988 13.2722 22.8308 13.6962C23.0628 14.1122 23.1788 14.6482 23.1788 15.3042V19.0002H21.3068V15.5922C21.3068 15.0722 21.1908 14.6882 20.9588 14.4402C20.7348 14.1922 20.4148 14.0682 19.9988 14.0682C19.7028 14.0682 19.4348 14.1322 19.1948 14.2602C18.9628 14.3802 18.7788 14.5682 18.6428 14.8242C18.5148 15.0802 18.4508 15.4082 18.4508 15.8082V19.0002H16.5788ZM29.0637 19.1442C28.3997 19.1442 27.7877 19.0402 27.2277 18.8322C26.6757 18.6162 26.1917 18.3122 25.7757 17.9202C25.3677 17.5282 25.0477 17.0682 24.8157 16.5402C24.5917 16.0122 24.4797 15.4322 24.4797 14.8002C24.4797 14.1682 24.5917 13.5882 24.8157 13.0602C25.0477 12.5322 25.3717 12.0722 25.7877 11.6802C26.2037 11.2882 26.6917 10.9882 27.2517 10.7802C27.8117 10.5642 28.4277 10.4562 29.0997 10.4562C29.8437 10.4562 30.5117 10.5802 31.1037 10.8282C31.7037 11.0762 32.2077 11.4362 32.6157 11.9082L31.3677 13.0602C31.0637 12.7402 30.7317 12.5042 30.3717 12.3522C30.0117 12.1922 29.6197 12.1122 29.1957 12.1122C28.7877 12.1122 28.4157 12.1762 28.0797 12.3042C27.7437 12.4322 27.4517 12.6162 27.2037 12.8562C26.9637 13.0962 26.7757 13.3802 26.6397 13.7082C26.5117 14.0362 26.4477 14.4002 26.4477 14.8002C26.4477 15.1922 26.5117 15.5522 26.6397 15.8802C26.7757 16.2082 26.9637 16.4962 27.2037 16.7442C27.4517 16.9842 27.7397 17.1682 28.0677 17.2962C28.4037 17.4242 28.7717 17.4882 29.1717 17.4882C29.5557 17.4882 29.9277 17.4282 30.2877 17.3082C30.6557 17.1802 31.0117 16.9682 31.3557 16.6722L32.4597 18.0762C32.0037 18.4202 31.4717 18.6842 30.8637 18.8682C30.2637 19.0522 29.6637 19.1442 29.0637 19.1442ZM32.4597 18.0762L30.6837 17.8242V14.6682H32.4597V18.0762ZM34.1335 19.0002V12.5442H35.9215V14.3682L35.6695 13.8402C35.8615 13.3842 36.1695 13.0402 36.5935 12.8082C37.0175 12.5682 37.5335 12.4482 38.1415 12.4482V14.1762C38.0615 14.1682 37.9895 14.1642 37.9255 14.1642C37.8615 14.1562 37.7935 14.1522 37.7215 14.1522C37.2095 14.1522 36.7935 14.3002 36.4735 14.5962C36.1615 14.8842 36.0055 15.3362 36.0055 15.9522V19.0002H34.1335ZM42.7928 19.0002V17.7402L42.6728 17.4642V15.2082C42.6728 14.8082 42.5488 14.4962 42.3008 14.2722C42.0608 14.0482 41.6888 13.9362 41.1848 13.9362C40.8408 13.9362 40.5008 13.9922 40.1648 14.1042C39.8368 14.2082 39.5568 14.3522 39.3248 14.5362L38.6528 13.2282C39.0048 12.9802 39.4288 12.7882 39.9248 12.6522C40.4208 12.5162 40.9248 12.4482 41.4368 12.4482C42.4208 12.4482 43.1848 12.6802 43.7288 13.1442C44.2728 13.6082 44.5448 14.3322 44.5448 15.3162V19.0002H42.7928ZM40.8248 19.0962C40.3208 19.0962 39.8888 19.0122 39.5288 18.8442C39.1688 18.6682 38.8928 18.4322 38.7008 18.1362C38.5088 17.8402 38.4128 17.5082 38.4128 17.1402C38.4128 16.7562 38.5048 16.4202 38.6888 16.1322C38.8808 15.8442 39.1808 15.6202 39.5888 15.4602C39.9968 15.2922 40.5288 15.2082 41.1848 15.2082H42.9008V16.3002H41.3888C40.9488 16.3002 40.6448 16.3722 40.4768 16.5162C40.3168 16.6602 40.2368 16.8402 40.2368 17.0562C40.2368 17.2962 40.3288 17.4882 40.5128 17.6322C40.7048 17.7682 40.9648 17.8362 41.2928 17.8362C41.6048 17.8362 41.8848 17.7642 42.1328 17.6202C42.3808 17.4682 42.5608 17.2482 42.6728 16.9602L42.9608 17.8242C42.8248 18.2402 42.5768 18.5562 42.2168 18.7722C41.8568 18.9882 41.3928 19.0962 40.8248 19.0962ZM49.6374 19.0002V12.5442H51.4254V14.3322L51.0894 13.7922C51.3214 13.3602 51.6534 13.0282 52.0854 12.7962C52.5174 12.5642 53.0094 12.4482 53.5614 12.4482C54.0734 12.4482 54.5294 12.5522 54.9294 12.7602C55.3374 12.9602 55.6574 13.2722 55.8894 13.6962C56.1214 14.1122 56.2374 14.6482 56.2374 15.3042V19.0002H54.3654V15.5922C54.3654 15.0722 54.2494 14.6882 54.0174 14.4402C53.7934 14.1922 53.4734 14.0682 53.0574 14.0682C52.7614 14.0682 52.4934 14.1322 52.2534 14.2602C52.0214 14.3802 51.8374 14.5682 51.7014 14.8242C51.5734 15.0802 51.5094 15.4082 51.5094 15.8082V19.0002H49.6374Z' fill='%23F4B719' opacity='0.12'/%3E%3C/svg%3E") no-repeat center;
+    background-size: contain;
+}
+.ig-watermark-img {
+    display: none;
+}
+
+/* سمت متن */
+.ig-hero-text { max-width: 580px; }
+
+.ig-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--gold);
+    background: rgba(239, 189, 89, 0.12);
+    border: 1px solid rgba(239, 189, 89, 0.25);
+    padding: 8px 20px;
+    border-radius: 999px;
+    margin-bottom: 28px;
+    backdrop-filter: blur(8px);
+    letter-spacing: 0.02em;
+}
+.ig-eyebrow .dot {
+    width: 7px; height: 7px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: igDot 2s ease-in-out infinite;
+}
+@keyframes igDot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.6); }
+}
+
+.ig-hero-title {
+    font-family: var(--font-head);
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+}
+.ig-hero-title .ig-highlight {
+    position: relative;
+    display: inline-block;
+    color: var(--gold);
+}
+.ig-hero-title .ig-highlight::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 2px 0;
+    height: 12px;
+    background: rgba(239, 189, 89, 0.2);
+    border-radius: 999px;
+    z-index: -1;
+}
+
+.ig-hero-desc {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 2;
+    margin-bottom: 36px;
+    max-width: 500px;
+}
+
+.ig-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+.ig-hero-btn {
+    color: var(--green);
+    background: #fff;
+    border-color: #fff;
+}
+.ig-hero-btn:hover {
+    color: #fff;
+    background: var(--green);
+    border-color: var(--green);
+    transform: translateY(-2px);
+}
+
+.ig-cta-btn {
+    color: var(--green);
+    background: #fff;
+    border-color: #fff;
+}
+.ig-cta-btn:hover {
+    color: #fff;
+    background: var(--green);
+    border-color: var(--green);
+    transform: translateY(-2px);
+}
+
+/* سمت تصویر / ویژوال */
+.ig-hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* باکس شیشه‌ای اصلی */
+.ig-glass-box {
+    position: relative;
+    width: 420px;
+    height: 420px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 28px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    overflow: hidden;
+    animation: igFloat 6s ease-in-out infinite;
+}
+@keyframes igFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+}
+
+/* الگوی پس‌زمینه‌ی شیشه */
+.ig-glass-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 20px,
+            rgba(255, 255, 255, 0.015) 20px,
+            rgba(255, 255, 255, 0.015) 21px
+        );
+    pointer-events: none;
+}
+
+.ig-glass-logo {
+    width: clamp(160px, 22vw, 260px);
+    height: auto;
+    filter: brightness(0) invert(1);
+    opacity: 0.85;
+    position: relative;
+    z-index: 2;
+}
+
+.ig-glass-label {
+    font-family: var(--font-head);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 2;
+}
+
+.ig-glass-sub {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: -10px;
+    position: relative;
+    z-index: 2;
+}
+
+/* آیتم‌های شناور اطراف */
+.ig-float-item {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    padding: 14px 18px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+    animation: igItemFloat 5s ease-in-out infinite;
+}
+.ig-float-item:nth-child(2) { animation-delay: -1.5s; }
+.ig-float-item:nth-child(3) { animation-delay: -3s; }
+@keyframes igItemFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+.ig-float-item .fi-icon {
+    width: 36px; height: 36px;
+    display: grid; place-items: center;
+    background: rgba(239, 189, 89, 0.15);
+    border-radius: 10px;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+.ig-float-item.fi-1 { top: 30px; left: -30px; }
+.ig-float-item.fi-2 { bottom: 60px; left: -50px; }
+.ig-float-item.fi-3 { top: 50%; right: -40px; transform: translateY(-50%); }
+.ig-float-item.fi-3 { animation-delay: -2.5s; }
+
+/* --- بخش مانیفست / معرفی متمایز --- */
+.ig-manifesto {
+    position: relative;
+    padding: 100px 0;
+    background: var(--bg);
+    overflow: hidden;
+}
+.ig-manifesto::before {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(239, 189, 89, 0.08) 0%, transparent 70%);
+    top: -80px; right: -60px;
+    pointer-events: none;
+}
+
+.ig-manifesto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+/* طرف متن — استایل مانیفست */
+.ig-manifesto-text .ig-m-tag {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--gold-dark);
+    background: var(--gold-soft);
+    padding: 6px 18px;
+    border-radius: 999px;
+    margin-bottom: 18px;
+}
+
+.ig-manifesto-text h2 {
+    font-family: var(--font-head);
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: 22px;
+}
+.ig-manifesto-text h2 .text-gold {
+    color: var(--gold-dark);
+    position: relative;
+    display: inline-block;
+}
+.ig-manifesto-text h2 .text-gold::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 3px 0;
+    height: 10px;
+    background: rgba(239, 189, 89, 0.25);
+    border-radius: 999px;
+    z-index: -1;
+}
+
+.ig-manifesto-text p {
+    color: #40554a;
+    font-size: 0.95rem;
+    line-height: 2.1;
+    margin-bottom: 18px;
+    text-align: justify;
+}
+
+/* لیست ویژگی‌ها با آیکون سفارشی */
+.ig-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 28px;
+}
+.ig-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+.ig-feature:hover {
+    border-color: var(--green);
+    box-shadow: var(--shadow);
+    transform: translateY(-3px);
+}
+.ig-feature-icon {
+    width: 42px; height: 42px;
+    flex-shrink: 0;
+    display: grid; place-items: center;
+    background: var(--sage);
+    border-radius: 10px;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+.ig-feature:hover .ig-feature-icon {
+    background: var(--forest);
+    color: var(--gold);
+}
+.ig-feature h4 {
+    font-family: var(--font-head);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 3px;
+}
+.ig-feature p {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin: 0;
+    text-align: right;
+}
+
+/* طرف ویژوال — گالری تصاویر */
+.ig-manifesto-visual {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 16px;
+    height: 480px;
+}
+.ig-m-img {
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: var(--shadow);
+}
+.ig-m-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+.ig-m-img:hover img { transform: scale(1.06); }
+.ig-m-img:first-child {
+    grid-row: 1 / 3;
+}
+.ig-m-img .ig-img-label {
+    position: absolute;
+    bottom: 14px; right: 14px;
+    background: rgba(16, 40, 32, 0.85);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 999px;
+}
+
+/* --- آمار متمایز --- */
+.ig-stats {
+    position: relative;
+    padding: 80px 0;
+    background: linear-gradient(135deg, #123027 0%, #174434 100%);
+    overflow: hidden;
+}
+.ig-stats::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 500px 400px at 10% 80%, rgba(239, 189, 89, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 400px 300px at 90% 20%, rgba(40, 101, 76, 0.12) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.ig-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.ig-stat {
+    padding: 32px 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.35s ease;
+}
+.ig-stat:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(239, 189, 89, 0.25);
+    transform: translateY(-6px);
+}
+
+.ig-stat-icon {
+    width: 56px; height: 56px;
+    margin: 0 auto 16px;
+    display: grid; place-items: center;
+    background: rgba(239, 189, 89, 0.12);
+    border-radius: 16px;
+    font-size: 1.5rem;
+}
+
+.ig-stat-num {
+    font-family: var(--font-head);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 900;
+    color: var(--gold-light);
+    line-height: 1.1;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 2px;
+}
+
+.ig-stat-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.65);
+    font-weight: 500;
+}
+
+/* --- بخش برنامه / سرفصل‌ها --- */
+.ig-agenda { padding: 96px 0; background: var(--bg); }
+
+.ig-agenda-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.ig-agenda-card {
+    background-color: #fff;
+    background-image: radial-gradient(circle, rgba(23, 68, 52, 0.03) 1px, transparent 1.6px);
+    background-size: 16px 16px;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    padding: 32px 26px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.35s ease;
+}
+.ig-agenda-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to left, rgba(23, 68, 52, 0.34) 0%, rgba(23, 68, 52, 0.13) 35%, transparent 65%);
+    opacity: 0.33;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+.ig-agenda-card:hover::before { opacity: 1; }
+.ig-agenda-card > * { position: relative; }
+.ig-agenda-card::after {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto auto;
+    width: 4px;
+    height: 0;
+    background: var(--gold);
+    transition: height 0.4s ease;
+}
+.ig-agenda-card:hover::after { height: 100%; }
+.ig-agenda-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+    border-color: transparent;
+}
+
+.ig-agenda-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px; height: 44px;
+    background: var(--gold-soft);
+    color: var(--gold-dark);
+    font-family: var(--font-head);
+    font-size: 1.1rem;
+    font-weight: 800;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    transition: all 0.3s ease;
+}
+.ig-agenda-card:hover .ig-agenda-num {
+    background: var(--forest);
+    color: var(--gold);
+}
+
+.ig-agenda-card h3 {
+    font-family: var(--font-head);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+.ig-agenda-card p {
+    color: var(--muted);
+    font-size: 0.85rem;
+    line-height: 1.9;
+    margin-bottom: 16px;
+}
+.ig-agenda-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 999px;
+    background: var(--sage);
+    color: var(--forest);
+}
+
+/* --- سخنرانان --- */
+.ig-speakers { padding: 96px 0; background: var(--sage); }
+
+.ig-speakers-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.ig-speaker {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px 20px;
+    text-align: center;
+    transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
+}
+.ig-speaker::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--green));
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+.ig-speaker:hover::after { transform: scaleX(1); }
+.ig-speaker:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: transparent;
+}
+
+.ig-speaker-photo {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    display: grid; place-items: center;
+    background: linear-gradient(135deg, var(--forest) 0%, #1d543e 100%);
+    border: 3px solid var(--sage);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--gold);
+    font-family: var(--font-head);
+    transition: border-color 0.3s ease;
+}
+.ig-speaker:hover .ig-speaker-photo { border-color: var(--gold); }
+
+.ig-speaker-name {
+    font-family: var(--font-head);
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 4px;
+}
+.ig-speaker-role {
+    font-size: 0.78rem;
+    color: var(--green);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.ig-speaker-bio {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+/* --- CTA اختصاصی --- */
+.ig-cta {
+    padding: 96px 0;
+    background: var(--bg);
+}
+.ig-cta-box {
+    position: relative;
+    background: linear-gradient(135deg, #123027 0%, #174434 50%, #1a4d3a 100%);
+    border-radius: 22px;
+    padding: 60px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(16, 40, 32, 0.3);
+}
+.ig-cta-box::before {
+    content: '';
+    position: absolute;
+    width: 350px; height: 350px;
+    border-radius: 50%;
+    border: 50px solid rgba(239, 189, 89, 0.06);
+    top: -150px; left: -80px;
+    pointer-events: none;
+}
+.ig-cta-box::after {
+    content: '';
+    position: absolute;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(239, 189, 89, 0.1) 0%, transparent 70%);
+    bottom: -60px; right: 40px;
+    pointer-events: none;
+}
+
+.ig-cta-content { position: relative; z-index: 1; flex: 1; }
+.ig-cta-content h2 {
+    font-family: var(--font-head);
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+.ig-cta-content p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    max-width: 480px;
+}
+
+.ig-cta-actions {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    flex-shrink: 0;
+}
+
+/* --- واکنش‌گرایی --- */
+@media (max-width: 992px) {
+    .ig-hero .container { grid-template-columns: 1fr; text-align: center; }
+    .ig-hero-text { max-width: 100%; margin-inline: auto; }
+    .ig-hero-desc { margin-inline: auto; }
+    .ig-hero-actions { justify-content: center; }
+    .ig-hero-visual { display: none; }
+    .ig-manifesto-grid { grid-template-columns: 1fr; gap: 48px; }
+    .ig-manifesto-visual { height: 360px; }
+    .ig-stats-grid { grid-template-columns: 1fr 1fr; }
+    .ig-agenda-grid { grid-template-columns: 1fr 1fr; }
+    .ig-speakers-grid { grid-template-columns: 1fr 1fr; }
+    .ig-cta-box { flex-direction: column; text-align: center; }
+}
+
+@media (max-width: 540px) {
+    .ig-features { grid-template-columns: 1fr; }
+    .ig-manifesto-visual { grid-template-columns: 1fr; height: auto; }
+    .ig-manifesto-visual .ig-m-img:first-child { grid-row: auto; }
+    .ig-m-img { height: 200px; }
+    .ig-stats-grid { grid-template-columns: 1fr; gap: 16px; }
+    .ig-agenda-grid { grid-template-columns: 1fr; }
+    .ig-speakers-grid { grid-template-columns: 1fr; }
+    .ig-cta-box { padding: 36px 24px; }
+}
+    </style>
+</head>
+<body class="subpage">
+
+    <!-- کرسر سفارشی -->
+    <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+    <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+    <!-- ===== Navbar ===== -->
+    <header class="navbar visible" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo" aria-label="انجمن غلات ایران">
+                <img src="assets/img/logo.png" alt="لوگوی انجمن غلات ایران" class="logo-img">
+            </a>
+
+            <nav class="nav-menu" id="navMenu" aria-label="منوی اصلی">
+                <a href="index.html" class="nav-link">خانه</a>
+
+                <div class="nav-item-has-children">
+                    <a href="about.html" class="nav-link">درباره ما <span class="caret" aria-hidden="true">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="about.html">آشنایی با انجمن</a></li>
+                        <li><a href="statute.html">اساسنامه</a></li>
+                        <li><a href="board.html">اعضای هیأت مدیره</a></li>
+                    </ul>
+                </div>
+
+                <div class="nav-item-has-children">
+                    <a href="meetings.html" class="nav-link active">رویدادها <span class="caret" aria-hidden="true">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="meetings.html">جلسات</a></li>
+                        <li><a href="iran-green.html">ایران گرین</a></li>
+                    </ul>
+                </div>
+
+                <a href="index.html#services" class="nav-link">بخشنامه‌ها</a>
+                <a href="index.html#stats" class="nav-link">قیمت‌های مصوب</a>
+
+                <div class="nav-item-has-children">
+                    <a href="index.html#contact" class="nav-link">اعضا <span class="caret" aria-hidden="true">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="#">شرکت‌های عضو</a></li>
+                        <li><a href="#">شرایط عضویت</a></li>
+                    </ul>
+                </div>
+
+                <a href="index.html#contact" class="nav-link">تماس با ما</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="index.html#contact" class="btn btn-primary btn-sm">درخواست عضویت</a>
+                <button class="nav-toggle" id="navToggle" aria-label="باز و بسته کردن منو" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== Hero: ایران گرین ===== -->
+    <section class="ig-hero">
+        <div class="ig-hero-watermark" aria-hidden="true">
+            <img src="assets/img/iranGrain-logo.png" alt="" class="ig-watermark-img">
+        </div>
+        <div class="container">
+            <div class="ig-hero-text">
+                <span class="ig-eyebrow">
+                    <span class="dot" aria-hidden="true"></span>
+                    همایش بین‌المللی صنعت غلات
+                </span>
+                <h1 class="ig-hero-title">
+                    <span class="ig-highlight">ایران گرین</span><br>
+                    آینده‌ی سبزتر صنعت غلات
+                </h1>
+                <p class="ig-hero-desc">
+                    بزرگ‌ترین گردهمایی فعالان صنعت غلات، کشاورزی پایدار و امنیت غذایی؛
+                    جایی که داده، نوآوری و هم‌افزایی برای ساختن فردایی بهتر گرد هم می‌آیند.
+                </p>
+                <div class="ig-hero-actions">
+                    <a href="#agenda" class="btn btn-gold">مشاهده برنامه <span aria-hidden="true">←</span></a>
+                    <a href="#register" class="btn btn-outline ig-hero-btn">ثبت‌نام در همایش</a>
+                </div>
+            </div>
+
+            <div class="ig-hero-visual">
+                <div class="ig-glass-box">
+                    <svg class="ig-glass-logo" width="220" height="80" viewBox="0 0 58 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.864 19.0002V12.5442H2.736V19.0002H0.864ZM1.8 11.6442C1.456 11.6442 1.176 11.5442 0.96 11.3442C0.744 11.1442 0.636 10.8962 0.636 10.6002C0.636 10.3042 0.744 10.0562 0.96 9.85624C1.176 9.65624 1.456 9.55624 1.8 9.55624C2.144 9.55624 2.424 9.65224 2.64 9.84424C2.856 10.0282 2.964 10.2682 2.964 10.5642C2.964 10.8762 2.856 11.1362 2.64 11.3442C2.432 11.5442 2.152 11.6442 1.8 11.6442ZM4.47338 19.0002V12.5442H6.26138V14.3682L6.00938 13.8402C6.20138 13.3842 6.50938 13.0402 6.93338 12.8082C7.35738 12.5682 7.87338 12.4482 8.48138 12.4482V14.1762C8.40138 14.1682 8.32938 14.1642 8.26538 14.1642C8.20138 14.1562 8.13338 14.1522 8.06138 14.1522C7.54938 14.1522 7.13338 14.3002 6.81338 14.5962C6.50138 14.8842 6.34538 15.3362 6.34538 15.9522V19.0002H4.47338ZM13.1326 19.0002V17.7402L13.0126 17.4642V15.2082C13.0126 14.8082 12.8886 14.4962 12.6406 14.2722C12.4006 14.0482 12.0286 13.9362 11.5246 13.9362C11.1806 13.9362 10.8406 13.9922 10.5046 14.1042C10.1766 14.2082 9.89659 14.3522 9.66459 14.5362L8.99259 13.2282C9.34459 12.9802 9.76859 12.7882 10.2646 12.6522C10.7606 12.5162 11.2646 12.4482 11.7766 12.4482C12.7606 12.4482 13.5246 12.6802 14.0686 13.1442C14.6126 13.6082 14.8846 14.3322 14.8846 15.3162V19.0002H13.1326ZM11.1646 19.0962C10.6606 19.0962 10.2286 19.0122 9.86859 18.8442C9.50859 18.6682 9.23259 18.4322 9.04059 18.1362C8.84859 17.8402 8.75259 17.5082 8.75259 17.1402C8.75259 16.7562 8.84459 16.4202 9.02859 16.1322C9.22059 15.8442 9.52059 15.6202 9.92859 15.4602C10.3366 15.2922 10.8686 15.2082 11.5246 15.2082H13.2406V16.3002H11.7286C11.2886 16.3002 10.9846 16.3722 10.8166 16.5162C10.6566 16.6602 10.5766 16.8402 10.5766 17.0562C10.5766 17.2962 10.6686 17.4882 10.8526 17.6322C11.0446 17.7682 11.3046 17.8362 11.6326 17.8362C11.9446 17.8362 12.2246 17.7642 12.4726 17.6202C12.7206 17.4682 12.9006 17.2482 13.0126 16.9602L13.3006 17.8242C13.1646 18.2402 12.9166 18.5562 12.5566 18.7722C12.1966 18.9882 11.7326 19.0962 11.1646 19.0962ZM16.5788 19.0002V12.5442H18.3668V14.3322L18.0308 13.7922C18.2628 13.3602 18.5948 13.0282 19.0268 12.7962C19.4588 12.5642 19.9508 12.4482 20.5028 12.4482C21.0148 12.4482 21.4708 12.5522 21.8708 12.7602C22.2788 12.9602 22.5988 13.2722 22.8308 13.6962C23.0628 14.1122 23.1788 14.6482 23.1788 15.3042V19.0002H21.3068V15.5922C21.3068 15.0722 21.1908 14.6882 20.9588 14.4402C20.7348 14.1922 20.4148 14.0682 19.9988 14.0682C19.7028 14.0682 19.4348 14.1322 19.1948 14.2602C18.9628 14.3802 18.7788 14.5682 18.6428 14.8242C18.5148 15.0802 18.4508 15.4082 18.4508 15.8082V19.0002H16.5788ZM29.0637 19.1442C28.3997 19.1442 27.7877 19.0402 27.2277 18.8322C26.6757 18.6162 26.1917 18.3122 25.7757 17.9202C25.3677 17.5282 25.0477 17.0682 24.8157 16.5402C24.5917 16.0122 24.4797 15.4322 24.4797 14.8002C24.4797 14.1682 24.5917 13.5882 24.8157 13.0602C25.0477 12.5322 25.3717 12.0722 25.7877 11.6802C26.2037 11.2882 26.6917 10.9882 27.2517 10.7802C27.8117 10.5642 28.4277 10.4562 29.0997 10.4562C29.8437 10.4562 30.5117 10.5802 31.1037 10.8282C31.7037 11.0762 32.2077 11.4362 32.6157 11.9082L31.3677 13.0602C31.0637 12.7402 30.7317 12.5042 30.3717 12.3522C30.0117 12.1922 29.6197 12.1122 29.1957 12.1122C28.7877 12.1122 28.4157 12.1762 28.0797 12.3042C27.7437 12.4322 27.4517 12.6162 27.2037 12.8562C26.9637 13.0962 26.7757 13.3802 26.6397 13.7082C26.5117 14.0362 26.4477 14.4002 26.4477 14.8002C26.4477 15.1922 26.5117 15.5522 26.6397 15.8802C26.7757 16.2082 26.9637 16.4962 27.2037 16.7442C27.4517 16.9842 27.7397 17.1682 28.0677 17.2962C28.4037 17.4242 28.7717 17.4882 29.1717 17.4882C29.5557 17.4882 29.9277 17.4282 30.2877 17.3082C30.6557 17.1802 31.0117 16.9682 31.3557 16.6722L32.4597 18.0762C32.0037 18.4202 31.4717 18.6842 30.8637 18.8682C30.2637 19.0522 29.6637 19.1442 29.0637 19.1442ZM32.4597 18.0762L30.6837 17.8242V14.6682H32.4597V18.0762ZM34.1335 19.0002V12.5442H35.9215V14.3682L35.6695 13.8402C35.8615 13.3842 36.1695 13.0402 36.5935 12.8082C37.0175 12.5682 37.5335 12.4482 38.1415 12.4482V14.1762C38.0615 14.1682 37.9895 14.1642 37.9255 14.1642C37.8615 14.1562 37.7935 14.1522 37.7215 14.1522C37.2095 14.1522 36.7935 14.3002 36.4735 14.5962C36.1615 14.8842 36.0055 15.3362 36.0055 15.9522V19.0002H34.1335ZM42.7928 19.0002V17.7402L42.6728 17.4642V15.2082C42.6728 14.8082 42.5488 14.4962 42.3008 14.2722C42.0608 14.0482 41.6888 13.9362 41.1848 13.9362C40.8408 13.9362 40.5008 13.9922 40.1648 14.1042C39.8368 14.2082 39.5568 14.3522 39.3248 14.5362L38.6528 13.2282C39.0048 12.9802 39.4288 12.7882 39.9248 12.6522C40.4208 12.5162 40.9248 12.4482 41.4368 12.4482C42.4208 12.4482 43.1848 12.6802 43.7288 13.1442C44.2728 13.6082 44.5448 14.3322 44.5448 15.3162V19.0002H42.7928ZM40.8248 19.0962C40.3208 19.0962 39.8888 19.0122 39.5288 18.8442C39.1688 18.6682 38.8928 18.4322 38.7008 18.1362C38.5088 17.8402 38.4128 17.5082 38.4128 17.1402C38.4128 16.7562 38.5048 16.4202 38.6888 16.1322C38.8808 15.8442 39.1808 15.6202 39.5888 15.4602C39.9968 15.2922 40.5288 15.2082 41.1848 15.2082H42.9008V16.3002H41.3888C40.9488 16.3002 40.6448 16.3722 40.4768 16.5162C40.3168 16.6602 40.2368 16.8402 40.2368 17.0562C40.2368 17.2962 40.3288 17.4882 40.5128 17.6322C40.7048 17.7682 40.9648 17.8362 41.2928 17.8362C41.6048 17.8362 41.8848 17.7642 42.1328 17.6202C42.3808 17.4682 42.5608 17.2482 42.6728 16.9602L42.9608 17.8242C42.8248 18.2402 42.5768 18.5562 42.2168 18.7722C41.8568 18.9882 41.3928 19.0962 40.8248 19.0962ZM49.6374 19.0002V12.5442H51.4254V14.3322L51.0894 13.7922C51.3214 13.3602 51.6534 13.0282 52.0854 12.7962C52.5174 12.5642 53.0094 12.4482 53.5614 12.4482C54.0734 12.4482 54.5294 12.5522 54.9294 12.7602C55.3374 12.9602 55.6574 13.2722 55.8894 13.6962C56.1214 14.1122 56.2374 14.6482 56.2374 15.3042V19.0002H54.3654V15.5922C54.3654 15.0722 54.2494 14.6882 54.0174 14.4402C53.7934 14.1922 53.4734 14.0682 53.0574 14.0682C52.7614 14.0682 52.4934 14.1322 52.2534 14.2602C52.0214 14.3802 51.8374 14.5682 51.7014 14.8242C51.5734 15.0802 51.5094 15.4082 51.5094 15.8082V19.0002H49.6374Z" fill="white"/>
+                        <rect x="29" y="14.6702" width="1.8" height="1.5" fill="white"/>
+                        <path d="M39.1516 0.497705C39.67 1.51556 40.4587 2.44294 40.932 2.55604C41.3602 2.66913 41.4053 2.60127 41.2926 2.08104C41.1123 1.37985 39.7601 8.68865e-05 39.2418 8.68865e-05C38.9488 8.68865e-05 38.9262 0.0905629 39.1516 0.497705Z" fill="#F4B719"/>
+                        <path d="M41.8335 1.65139C41.8335 2.30734 41.9913 2.85019 42.2617 3.18948L42.6674 3.70972L42.8251 2.87281C42.9829 2.01329 42.78 1.4252 42.1941 0.904959C41.8786 0.65615 41.8335 0.746626 41.8335 1.65139Z" fill="#F4B719"/>
+                        <path d="M43.1857 3.07636C42.9152 3.77755 43.073 4.81802 43.5012 5.17993C44.0195 5.60969 44.4477 4.25255 44.0872 3.39302C43.704 2.44302 43.4561 2.35255 43.1857 3.07636Z" fill="#F4B719"/>
+                        <path d="M39.5798 3.12186C39.5798 3.66472 40.4813 4.09448 41.4053 4.02662L42.3969 3.95877L41.9011 3.43853C41.5405 3.09924 41.1123 2.94091 40.4813 2.94091C39.9855 2.94091 39.5798 3.03139 39.5798 3.12186Z" fill="#F4B719"/>
+                        <path d="M44.3125 5.15752C44.0871 5.90395 44.0871 6.13014 44.3801 6.69561L44.7407 7.35156L45.0787 6.49204C45.4168 5.72299 45.4168 5.58728 45.1013 4.97657C44.8985 4.59204 44.7182 4.298 44.6731 4.298C44.6505 4.298 44.4703 4.68252 44.3125 5.15752Z" fill="#F4B719"/>
+                        <path d="M41.1348 5.06696C41.6757 5.63244 42.9152 6.01696 43.2308 5.7003C43.3209 5.60982 43.2082 5.29315 42.9603 5.02172C42.6223 4.65982 42.2391 4.52411 41.563 4.52411H40.639L41.1348 5.06696Z" fill="#F4B719"/>
+                        <path d="M42.0588 6.31103C42.0588 6.69555 43.2307 7.4646 43.7716 7.4646C44.4252 7.4646 44.4477 7.23841 43.8618 6.60508C43.3885 6.10746 42.0588 5.90389 42.0588 6.31103Z" fill="#F4B719"/>
+                        <path d="M45.3492 6.74063C44.9435 7.53229 44.8985 8.09777 45.214 8.59539C45.7774 9.40967 46.4535 7.21563 45.9126 6.3561C45.7549 6.10729 45.6196 6.19777 45.3492 6.74063Z" fill="#F4B719"/>
+                        <path d="M42.9603 7.89428C42.9603 8.23357 44.1097 9.04785 44.5604 9.04785C45.1464 9.04785 45.1013 8.70857 44.4026 8.16571C43.7942 7.66809 42.9603 7.53238 42.9603 7.89428Z" fill="#F4B719"/>
+                        <path d="M46.0253 8.79913C45.7999 9.22889 45.7098 9.7265 45.7999 9.99793C45.9351 10.4956 45.9577 10.4956 46.476 9.86222C47.1071 9.13841 47.1296 9.04793 46.7014 8.48246C46.4084 8.07532 46.3859 8.09794 46.0253 8.79913Z" fill="#F4B719"/>
+                        <path d="M48.5043 10.1788C48.4142 10.7895 48.0536 11.8526 47.693 12.5764C47.3099 13.2776 47.0169 14.0241 47.0169 14.2503C47.0169 14.4991 46.9268 14.7479 46.7916 14.8157C46.6563 14.9062 46.5662 14.5217 46.5662 13.8205C46.5662 13.1645 46.4535 12.6669 46.3408 12.6669C46.1831 12.6669 46.138 12.9836 46.2281 13.4586C46.5211 15.336 46.5211 15.811 46.3634 17.3717C46.2507 18.6383 46.2732 19.0002 46.4986 19.0002C46.7014 19.0002 46.7916 18.5931 46.7916 17.5752C46.7916 16.3764 46.9268 15.9014 47.8057 14.1372C48.572 12.5764 48.8424 11.7395 48.9551 10.5634C49.1354 8.77645 48.7297 8.41455 48.5043 10.1788Z" fill="#F4B719"/>
+                        <path d="M43.8618 9.72652C44.1097 10.2015 45.1013 10.6991 45.4844 10.586C45.9126 10.4277 44.7407 9.27414 44.1773 9.27414C43.6815 9.27414 43.6589 9.31938 43.8618 9.72652Z" fill="#F4B719"/>
+                        <path d="M46.3859 10.4504C46.0704 10.7671 46.0253 11.9885 46.3408 11.9885C46.6338 11.9885 47.1972 10.8123 47.0845 10.4504C46.9493 10.1111 46.7239 10.1111 46.3859 10.4504Z" fill="#F4B719"/>
+                        <path d="M44.5829 11.3551C44.8985 11.8301 45.8901 12.2147 45.8901 11.8754C45.8901 11.3777 45.3492 10.8575 44.8309 10.8575C44.29 10.8575 44.2674 10.8801 44.5829 11.3551Z" fill="#F4B719"/>
+                    </svg>
+                    <span class="ig-glass-label">ایران گرین ۱۴۰۵</span>
+                    <span class="ig-glass-sub">International Grains and Oilseeds Conference</span>
+                </div>
+
+                <div class="ig-float-item fi-1">
+                    <span class="fi-icon" aria-hidden="true">🎤</span>
+                    <span>+۳۰ سخنران</span>
+                </div>
+                <div class="ig-float-item fi-2">
+                    <span class="fi-icon" aria-hidden="true">🌍</span>
+                    <span>۱۵+ کشور</span>
+                </div>
+                <div class="ig-float-item fi-3">
+                    <span class="fi-icon" aria-hidden="true">🤝</span>
+                    <span>+۵۰۰ شرکت‌کننده</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== مانیفست — چرا ایران گرین ===== -->
+    <section class="ig-manifesto">
+        <div class="container ig-manifesto-grid">
+            <div class="ig-manifesto-text" data-animate>
+                <span class="ig-m-tag">چرا ایران گرین؟</span>
+                <h2>نه فقط یک همایش،<br>بلکه <span class="text-gold">جنبشی</span> برای تغییر</h2>
+                <p>
+                    ایران گرین زاده‌ی باوری ساده است: صنعت غلات ایران لایق فضایی است که در آن
+                    داده‌ها جایگزین حدس‌ها شوند، تجربه‌ها به اشتراک گذاشته شوند و مسیر آینده
+                    با هم‌افزایی نخبگان صنعت ترسیم شود.
+                </p>
+                <p>
+                    این همایش هر ساله با حضور مدیران ارشد شرکت‌ها، سیاست‌گذاران، پژوهشگران
+                    و فعالان بین‌المللی برگزار می‌شود تا پلی میان دانش و عمل، میان بازار و
+                    حاکمیت، و میان ایران و جهان باشد.
+                </p>
+
+                <div class="ig-features">
+                    <div class="ig-feature">
+                        <span class="ig-feature-icon" aria-hidden="true">📊</span>
+                        <div>
+                            <h4>داده‌محور</h4>
+                            <p>ارائه‌ی آخرین آمار و تحلیل‌های بازار جهانی</p>
+                        </div>
+                    </div>
+                    <div class="ig-feature">
+                        <span class="ig-feature-icon" aria-hidden="true">🌐</span>
+                        <div>
+                            <h4>بین‌المللی</h4>
+                            <p>حضور مقامات و متخصصان ۱۵+ کشور جهان</p>
+                        </div>
+                    </div>
+                    <div class="ig-feature">
+                        <span class="ig-feature-icon" aria-hidden="true">💡</span>
+                        <div>
+                            <h4>نوآورانه</h4>
+                            <p>معرفی فناوری‌های نوین در زنجیره‌ی غلات</p>
+                        </div>
+                    </div>
+                    <div class="ig-feature">
+                        <span class="ig-feature-icon" aria-hidden="true">🤝</span>
+                        <div>
+                            <h4>شبکه‌سازی</h4>
+                            <p>فرصت ملاقات مستقیم با خریداران و فروشندگان</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ig-manifesto-visual" data-animate>
+                <div class="ig-m-img">
+                    <img src="assets/img/photo-1574323347407-f5e1ad6d020b.avif" alt="میدان گندم طلایی" loading="lazy">
+                    <span class="ig-img-label">🌾 کشاورزی پایدار</span>
+                </div>
+                <div class="ig-m-img">
+                    <img src="assets/img/photo-1464226184884-fa280b87c399.avif" alt="صادرات غلات" loading="lazy">
+                    <span class="ig-img-label">🌍 تجارت بین‌المللی</span>
+                </div>
+                <div class="ig-m-img">
+                    <img src="assets/img/photo-1625246333195-78d9c38ad449.avif" alt="انبار غلات" loading="lazy">
+                    <span class="ig-img-label">📦 لجستیک مدرن</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== آمار همایش ===== -->
+    <section class="ig-stats">
+        <div class="container">
+            <div class="ig-stats-grid" data-animate>
+                <div class="ig-stat">
+                    <div class="ig-stat-icon" aria-hidden="true">🎤</div>
+                    <div class="ig-stat-num"><span data-count="32">۰</span>+</div>
+                    <p class="ig-stat-label">سخنران تخصصی</p>
+                </div>
+                <div class="ig-stat">
+                    <div class="ig-stat-icon" aria-hidden="true">🏢</div>
+                    <div class="ig-stat-num"><span data-count="500">۰</span>+</div>
+                    <p class="ig-stat-label">شرکت‌کننده</p>
+                </div>
+                <div class="ig-stat">
+                    <div class="ig-stat-icon" aria-hidden="true">🌍</div>
+                    <div class="ig-stat-num"><span data-count="18">۰</span></div>
+                    <p class="ig-stat-label">کشور حاضر</p>
+                </div>
+                <div class="ig-stat">
+                    <div class="ig-stat-icon" aria-hidden="true">📋</div>
+                    <div class="ig-stat-num"><span data-count="12">۰</span></div>
+                    <p class="ig-stat-label">پنل تخصصی</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== برنامه / سرفصل‌ها ===== -->
+    <section class="ig-agenda section" id="agenda">
+        <div class="container">
+            <div class="section-head center" data-animate>
+                <span class="section-tag">برنامه همایش</span>
+                <h2 class="section-title">سرفصل‌های کلیدی ایران گرین</h2>
+                <p class="section-desc">روز اول: سیاست‌گذاری و بازار | روز دوم: فناوری و نوآوری</p>
+            </div>
+
+            <div class="ig-agenda-grid">
+                <div class="ig-agenda-card" data-animate>
+                    <span class="ig-agenda-num">۱</span>
+                    <h3>سیاست‌های حمایی و خرید تضمینی</h3>
+                    <p>بررسی آخرین سیاست‌های دولت در حوزه‌ی خرید تضمینی گندم، تخصیص ارز و حمایت از تولیدکنندگان داخلی.</p>
+                    <span class="ig-agenda-tag">روز اول — صبح</span>
+                </div>
+
+                <div class="ig-agenda-card" data-animate>
+                    <span class="ig-agenda-num">۲</span>
+                    <h3>چشم‌انداز بازار جهانی غلات</h3>
+                    <p>تحلیل روندهای جهانی عرضه و تقاضا، تأثیر تغییرات اقلیمی و پیش‌بینی قیمت‌ها در سال آینده.</p>
+                    <span class="ig-agenda-tag">روز اول — بعدازظهر</span>
+                </div>
+
+                <div class="ig-agenda-card" data-animate>
+                    <span class="ig-agenda-num">۳</span>
+                    <h3>زنجیره‌ی ارزش دانه‌های روغنی</h3>
+                    <p>از کشت تا فرآوری؛ فرصت‌ها و چالش‌های تأمین پایدار روغن نباتی و کنجاله‌ی سویا در منطقه.</p>
+                    <span class="ig-agenda-tag">روز اول — بعدازظهر</span>
+                </div>
+
+                <div class="ig-agenda-card" data-animate>
+                    <span class="ig-agenda-num">۴</span>
+                    <h3>فناوری و دیجیتالی‌سازی صنعت غلات</h3>
+                    <p>کاربرد هوش مصنوعی، بلاکچین و اینترنت اشیا در مدیریت زنجیره‌ی تأمین و انبارداری هوشمند.</p>
+                    <span class="ig-agenda-tag">روز دوم — صبح</span>
+                </div>
+
+                <div class="ig-agenda-card" data-animate>
+                    <span class="ig-agenda-num">۵</span>
+                    <h3>کشاورزی پایدار و امنیت غذایی</h3>
+                    <p>راهکارهای عملی برای کاهش ضایعات، بهینه‌سازی مصرف آب و تولید سازگار با تغییرات اقلیمی.</p>
+                    <span class="ig-agenda-tag">روز دوم — صبح</span>
+                </div>
+
+                <div class="ig-agenda-card" data-animate>
+                    <span class="ig-agenda-num">۶</span>
+                    <h3>گردهمایی مدیران ارشد صنعت</h3>
+                    <p>نشست اختصاصی مدیران عامل شرکت‌های بزرگ برای بررسی چالش‌ها و فرصت‌های همکاری مشترک.</p>
+                    <span class="ig-agenda-tag">روز دوم — بعدازظهر</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== سخنرانان ===== -->
+    <section class="ig-speakers section">
+        <div class="container">
+            <div class="section-head center" data-animate>
+                <span class="section-tag">سخنرانان</span>
+                <h2 class="section-title">نخبگان صنعت غلات در ایران گرین</h2>
+            </div>
+
+            <div class="ig-speakers-grid">
+                <div class="ig-speaker" data-animate>
+                    <div class="ig-speaker-photo">م.ر</div>
+                    <h3 class="ig-speaker-name">دکتر محمد رحیمی</h3>
+                    <p class="ig-speaker-role">رئیس انجمن غلات ایران</p>
+                    <p class="ig-speaker-bio">بیش از ۲۰ سال تجربه در مدیریت و سیاست‌گذاری صنعت غلات کشور.</p>
+                </div>
+
+                <div class="ig-speaker" data-animate>
+                    <div class="ig-speaker-photo">س.م</div>
+                    <h3 class="ig-speaker-name">دکتر سارا محمدی</h3>
+                    <p class="ig-speaker-role">مشاور ارشد وزارت جهاد کشاورزی</p>
+                    <p class="ig-speaker-bio">متخصص سیاست‌های حمایی و خرید تضمینی محصولات کشاورزی.</p>
+                </div>
+
+                <div class="ig-speaker" data-animate>
+                    <div class="ig-speaker-photo">J.S</div>
+                    <h3 class="ig-speaker-name">James Smith</h3>
+                    <p class="ig-speaker-role">تحلیلگر ارشد بازار غلات — USDA</p>
+                    <p class="ig-speaker-bio">تحلیلگر برجسته‌ی وزارت کشاورزی آمریکا با تمرکز بر بازار خاورمیانه.</p>
+                </div>
+
+                <div class="ig-speaker" data-animate>
+                    <div class="ig-speaker-photo">ع.ک</div>
+                    <h3 class="ig-speaker-name">مهندس علی کریمی</h3>
+                    <p class="ig-speaker-role">مدیرعامل شرکت لجستیک سبز</p>
+                    <p class="ig-speaker-bio">پیشگام در زمینه‌ی دیجیتالی‌سازی زنجیره‌ی تأمین غلات.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="ig-cta" id="register">
+        <div class="container">
+            <div class="ig-cta-box" data-animate>
+                <div class="ig-cta-content">
+                    <h2>در ایران گرین ۱۴۰۵ شرکت کنید</h2>
+                    <p>به بیش از ۵۰۰ فعال صنعت غلات بپیوندید و از فرصت شبکه‌سازی، یادگیری و همکاری بهره‌مند شوید.</p>
+                </div>
+                <div class="ig-cta-actions">
+                    <a href="#" class="btn btn-gold">ثبت‌نام زودهنگام <span aria-hidden="true">←</span></a>
+                    <a href="index.html#contact" class="btn ig-cta-btn">تماس با ما</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col footer-brand">
+                <a href="index.html" class="logo">
+                    <img src="assets/img/logo.png" alt="انجمن غلات ایران" class="logo-img">
+                </a>
+                <p>مرجع تخصصی صنعت غلات و دانه‌های روغنی کشور با هدف تأمین امنیت غذایی و توسعه‌ی پایدار.</p>
+            </div>
+            <div class="footer-col">
+                <h4>دسترسی سریع</h4>
+                <ul>
+                    <li><a href="about.html">درباره ما</a></li>
+                    <li><a href="index.html#services">خدمات</a></li>
+                    <li><a href="index.html#news">اخبار</a></li>
+                    <li><a href="index.html#contact">تماس</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>خدمات</h4>
+                <ul>
+                    <li><a href="index.html#services">آمار و داده‌ها</a></li>
+                    <li><a href="index.html#services">بخشنامه‌ها</a></li>
+                    <li><a href="index.html#services">شرکت‌های عضو</a></li>
+                    <li><a href="meetings.html">رویدادها</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>شبکه‌های اجتماعی</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/iran.grainsunion?igsh=c3UwdWg5dzJxeG52" target="_blank" rel="noopener" aria-label="اینستاگرام" title="اینستاگرام">
+                        <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.7 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85C2.38 3.93 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4zm6.41-10.85a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44z"/></svg>
+                    </a>
+                    <a href="#" target="_blank" rel="noopener" aria-label="واتساپ" title="واتساپ">
+                        <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M.06 24l1.69-6.16a11.81 11.81 0 0 1-1.59-5.95C.16 5.34 5.5 0 12.06 0a11.82 11.82 0 0 1 8.41 3.49 11.78 11.78 0 0 1 3.48 8.41c0 6.56-5.34 11.9-11.9 11.9a11.92 11.92 0 0 1-5.68-1.45L.06 24zM6.6 20.13c1.68.99 3.28 1.59 5.46 1.59 5.45 0 9.89-4.43 9.89-9.88a9.86 9.86 0 0 0-9.88-9.89c-5.45 0-9.89 4.44-9.89 9.89 0 2.23.65 3.87 1.74 5.6l-1 3.63 3.68-.94zm11.39-5.46c-.07-.12-.27-.2-.57-.35-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.48 0 1.46 1.06 2.87 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.69.25-1.28.18-1.41z"/></svg>
+                    </a>
+                    <a href="#" target="_blank" rel="noopener" aria-label="بله" title="بله">
+                        <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 1C5.37 1 0 5.57 0 10.21c0 2.89 1.42 5.47 3.68 7.27V22l4.22-2.32c1.3.36 2.69.55 4.1.55 6.63 0 12-4.57 12-10.21S18.63 1 12 1zm1.2 13.7-3.06-3.26-5.97 3.26 6.56-6.97 3.14 3.26 5.9-3.26-6.57 6.97z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© ۱۴۰۵ انجمن غلات ایران | تمامی حقوق محفوظ است.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="بازگشت به بالا">
+        <span aria-hidden="true">↑</span>
+    </button>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

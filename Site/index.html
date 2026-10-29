@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>انجمن غلات ایران | مرجع تخصصی صنعت غلات</title>
+    <meta name="description" content="انجمن غلات ایران، مرجع تخصصی غلات و دانه‌های روغنی کشور با هدف توسعه‌ی پایدار صنعت و تأمین امنیت غذایی.">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌾</text></svg>">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- کرسر سفارشی -->
+    <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+    <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+    <!-- ===== Navbar ===== -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#home" class="logo" aria-label="انجمن غلات ایران">
+                <img src="assets/img/logo.png" alt="لوگوی انجمن غلات ایران" class="logo-img">
+            </a>
+
+            <nav class="nav-menu" id="navMenu" aria-label="منوی اصلی">
+                <a href="#home" class="nav-link active">خانه</a>
+
+                <div class="nav-item-has-children">
+                    <a href="#about" class="nav-link">درباره ما <span class="caret" aria-hidden="true">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="about.html">آشنایی با انجمن</a></li>
+                        <li><a href="statute.html">اساسنامه</a></li>
+                        <li><a href="board.html">اعضای هیأت مدیره</a></li>
+                    </ul>
+                </div>
+
+                <div class="nav-item-has-children">
+                    <a href="#news" class="nav-link">رویدادها <span class="caret" aria-hidden="true">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="meetings.html">جلسات</a></li>
+                        <li><a href="iran-green.html">ایران گرین</a></li>
+                    </ul>
+                </div>
+
+                <a href="#services" class="nav-link">بخشنامه‌ها</a>
+                <a href="#stats" class="nav-link">قیمت‌های مصوب</a>
+
+                <div class="nav-item-has-children">
+                    <a href="#contact" class="nav-link">اعضا <span class="caret" aria-hidden="true">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="#">شرکت‌های عضو</a></li>
+                        <li><a href="#">شرایط عضویت</a></li>
+                    </ul>
+                </div>
+
+                <a href="#contact" class="nav-link">تماس با ما</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="#contact" class="btn btn-primary btn-sm">درخواست عضویت</a>
+                <button class="nav-toggle" id="navToggle" aria-label="باز و بسته کردن منو" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== Hero: اسلایدر خبری (داده‌محور — آماده اتصال به پیج اخبار) ===== -->
+    <section class="hero" id="home">
+        <div class="hero-slider" id="heroSlider" aria-live="polite"></div>
+        <a href="#services" class="hero-scroll" aria-label="اسکرول کنید">
+            <span>اسکرول کنید</span>
+            <span class="scroll-line" aria-hidden="true"></span>
+        </a>
+    </section>
+
+    <!-- ===== نرخ ارز مرکز مبادله ===== -->
+    <section class="exchange">
+        <div class="container">
+            <div class="exchange-box" data-animate>
+                <div class="exchange-head">
+                    <h2>نرخ‌های ارز مرکز مبادله ایران</h2>
+                    <span class="exchange-date" id="exchangeDate">مورخ —</span>
+                </div>
+                <div class="exchange-grid">
+                    <div class="ex-card">
+                        <span class="ex-icon" aria-hidden="true">$</span>
+                        <div class="ex-meta"><span class="ex-name">دلار آمریکا</span><b class="ex-value">۱,۵۳۳,۳۷۵ <i class="ex-unit">ریال</i></b></div>
+                    </div>
+                    <div class="ex-card">
+                        <span class="ex-icon" aria-hidden="true">€</span>
+                        <div class="ex-meta"><span class="ex-name">یورو</span><b class="ex-value">۱,۷۶۸,۳۵۷ <i class="ex-unit">ریال</i></b></div>
+                    </div>
+                    <div class="ex-card">
+                        <span class="ex-icon" aria-hidden="true">د.إ</span>
+                        <div class="ex-meta"><span class="ex-name">درهم امارات</span><b class="ex-value">۴۱۷,۵۲۹ <i class="ex-unit">ریال</i></b></div>
+                    </div>
+                    <div class="ex-card">
+                        <span class="ex-icon" aria-hidden="true">¥</span>
+                        <div class="ex-meta"><span class="ex-name">یوآن چین</span><b class="ex-value">۲۳۷,۰۶۱ <i class="ex-unit">ریال</i></b></div>
+                    </div>
+                    <div class="ex-card">
+                        <span class="ex-icon" aria-hidden="true">₽</span>
+                        <div class="ex-meta"><span class="ex-name">روبل روسیه</span><b class="ex-value">۱۹,۲۹۷ <i class="ex-unit">ریال</i></b></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== News ===== -->
+    <section class="section news" id="news">
+        <div class="container">
+            <div class="news-head" data-animate>
+                <div class="news-head-text">
+                    <span class="section-tag">اخبار و رویدادها</span>
+                    <h2 class="section-title">آخرین خبرهای صنعت غلات</h2>
+                </div>
+                <a href="#" class="btn btn-green-outline news-archive-btn">آرشیو خبرها <span aria-hidden="true">←</span></a>
+            </div>
+
+            <div class="news-grid">
+                <article class="news-card" data-animate>
+                    <div class="news-img">
+                        <img src="assets/img/photo-1464226184884-fa280b87c399.avif" alt="میدان گندم" loading="lazy">
+                        <span class="news-cat">بازار جهانی</span>
+                    </div>
+                    <div class="news-body">
+                        <span class="news-date">۱۲ مرداد ۱۴۰۵</span>
+                        <h3>افزایش تولید جهانی گندم در سال ۲۰۲۶</h3>
+                        <p>بر اساس جدیدترین گزارش فائو، تولید جهانی گندم در سال جاری به رکورد جدیدی خواهد رسید.</p>
+                        <a href="#" class="news-link">ادامه مطلب <span aria-hidden="true">←</span></a>
+                    </div>
+                </article>
+
+                <article class="news-card" data-animate>
+                    <div class="news-img">
+                        <img src="assets/img/photo-1625246333195-78d9c38ad449.avif" alt="انبار غلات" loading="lazy">
+                        <span class="news-cat">قیمت‌ها</span>
+                    </div>
+                    <div class="news-body">
+                        <span class="news-date">۱۰ مرداد ۱۴۰۵</span>
+                        <h3>تثبیت قیمت نهاده‌های دامی در بازار</h3>
+                        <p>قیمت نهاده‌های دامی وارداتی پس از جلسات اخیر با نهادهای ذی‌ربط ثبات پیدا کرد.</p>
+                        <a href="#" class="news-link">ادامه مطلب <span aria-hidden="true">←</span></a>
+                    </div>
+                </article>
+
+                <article class="news-card" data-animate>
+                    <div class="news-img">
+                        <img src="assets/img/photo-1500382017468-9049fed747ef.avif" alt="زراعت" loading="lazy">
+                        <span class="news-cat">بخشنامه</span>
+                    </div>
+                    <div class="news-body">
+                        <span class="news-date">۸ مرداد ۱۴۰۵</span>
+                        <h3>بخشنامه‌ی جدید تخصیص ارز ترجیحی</h3>
+                        <p>بانک مرکزی بخشنامه‌ی جدیدی در خصوص نحوه‌ی تخصیص ارز واردات غلات ابلاغ کرد.</p>
+                        <a href="#" class="news-link">ادامه مطلب <span aria-hidden="true">←</span></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Services ===== -->
+    <section class="section services" id="services">
+        <div class="container">
+            <div class="section-head services-head" data-animate>
+                <span class="section-tag">خدمات ما</span>
+                <h2 class="section-title">چه کاری برای شما انجام می‌دهیم؟</h2>
+            </div>
+
+            <div class="services-grid">
+                <article class="service-card" data-animate>
+                    <div class="service-icon" aria-hidden="true">📊</div>
+                    <h3>آمار و داده‌ها</h3>
+                    <p>دسترسی به آمار دقیق واردات، صادرات، تولید و تخصیص ارز در حوزه‌ی غلات و نهاده‌های دامی.</p>
+                    <a href="#" class="service-link">بیشتر بدانید <span aria-hidden="true">←</span></a>
+                </article>
+
+                <article class="service-card" data-animate>
+                    <div class="service-icon" aria-hidden="true">📰</div>
+                    <h3>اخبار و گزارش‌ها</h3>
+                    <p>آخرین اخبار داخلی و جهانی بازار غلات، تحلیل‌های تخصصی و گزارش‌های دوره‌ای صنعت.</p>
+                    <a href="#" class="service-link">بیشتر بدانید <span aria-hidden="true">←</span></a>
+                </article>
+
+                <article class="service-card" data-animate>
+                    <div class="service-icon" aria-hidden="true">🔔</div>
+                    <h3>بخشنامه‌ها و قوانین</h3>
+                    <p>اطلاع‌رسانی سریع بخشنامه‌ها، قوانین و مقررات جدید مرتبط با واردات و تجارت غلات.</p>
+                    <a href="#" class="service-link">بیشتر بدانید <span aria-hidden="true">←</span></a>
+                </article>
+
+                <article class="service-card" data-animate>
+                    <div class="service-icon" aria-hidden="true">🤝</div>
+                    <h3>ارتباط با نهادها</h3>
+                    <p>ایجاد ارتباط موثر میان اعضا و نهادهای دولتی شامل وزارت جهاد کشاورزی و بانک مرکزی.</p>
+                    <a href="#" class="service-link">بیشتر بدانید <span aria-hidden="true">←</span></a>
+                </article>
+
+                <article class="service-card" data-animate>
+                    <div class="service-icon" aria-hidden="true">🏢</div>
+                    <h3>شرکت‌های عضو</h3>
+                    <p>شبکه‌ی تخصصی شرکت‌های فعال در صنعت غلات با امکانات ویژه، مشاوره و خدمات حمایتی انحصاری.</p>
+                    <a href="#" class="service-link">بیشتر بدانید <span aria-hidden="true">←</span></a>
+                </article>
+
+                <article class="service-card" data-animate>
+                    <div class="service-icon" aria-hidden="true">📅</div>
+                    <h3>رویدادها و کنفرانس‌ها</h3>
+                    <p>برگزاری همایش‌ها، نمایشگاه‌ها و نشست‌های تخصصی برای ارتقای دانش فعالان صنعت.</p>
+                    <a href="#" class="service-link">بیشتر بدانید <span aria-hidden="true">←</span></a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== About ===== -->
+    <section class="section about" id="about">
+        <div class="container about-grid">
+            <div class="about-media" data-animate>
+                <img src="assets/img/photo-1574323347407-f5e1ad6d020b.avif"
+                     alt="میدان گندم طلایی" loading="lazy">
+                <div class="about-badge">
+                    <span class="about-badge-num">۲۰+</span>
+                    <span class="about-badge-text">سال تجربه</span>
+                </div>
+            </div>
+            <div class="about-content" data-animate>
+                <span class="section-tag">درباره انجمن</span>
+                <h2 class="section-title">مرجع معتبر صنعت غلات ایران</h2>
+                <p id="aboutRevealText" class="reveal-text">
+                    انجمن غلات ایران با هدف توسعه‌ی پایدار صنعت غلات و دانه‌های روغنی، تأمین امنیت غذایی کشور
+                    و حمایت از حقوق اعضا فعالیت می‌کند. ما با ایجاد پل ارتباطی میان فعالان صنعت و نهادهای
+                    ذی‌ربط، تلاش می‌کنیم محیطی شفاف و حرفه‌ای برای تجارت غلات فراهم کنیم.
+                </p>
+                <ul class="about-list">
+                    <li><span class="check" aria-hidden="true">✓</span> اتکای به داده‌های معتبر و به‌روز</li>
+                    <li><span class="check" aria-hidden="true">✓</span> شبکه‌ی گسترده‌ی ارتباطات صنعتی</li>
+                    <li><span class="check" aria-hidden="true">✓</span> مشاوره‌ی تخصصی و خدمات حمایتی</li>
+                    <li><span class="check" aria-hidden="true">✓</span> همکاری با نهادهای دولتی و بین‌المللی</li>
+                </ul>
+                <a href="#contact" class="btn btn-green-outline">اطلاعات بیشتر <span aria-hidden="true">←</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Stats ===== -->
+    <section class="stats" id="stats">
+        <div class="stats-bg"></div>
+        <div class="container stats-grid">
+            <div class="stat-item" data-animate>
+                <div class="stat-number"><span data-count="160">۰</span><span class="stat-plus">+</span></div>
+                <p class="stat-label">عضو فعال</p>
+            </div>
+            <div class="stat-item" data-animate>
+                <div class="stat-number"><span data-count="20">۰</span><span class="stat-plus">+</span></div>
+                <p class="stat-label">سال تجربه</p>
+            </div>
+            <div class="stat-item" data-animate>
+                <div class="stat-number"><span data-count="1200">۰</span><span class="stat-plus">+</span></div>
+                <p class="stat-label">گزارش تخصصی</p>
+            </div>
+            <div class="stat-item" data-animate>
+                <div class="stat-number"><span data-count="50">۰</span><span class="stat-plus">+</span></div>
+                <p class="stat-label">رویداد علمی</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="section cta-section">
+        <div class="container">
+            <div class="cta-box" data-animate>
+                <div class="cta-content">
+                    <h2>به جامعه‌ی بزرگ غلات ایران بپیوندید</h2>
+                    <p>از مزایای عضویت در انجمن غلات ایران بهره‌مند شوید و در شبکه‌ی تخصصی فعالان صنعت جای بگیرید.</p>
+                </div>
+                <a href="#contact" class="btn btn-white">درخواست عضویت</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Contact ===== -->
+    <section class="section contact" id="contact">
+        <div class="container contact-grid">
+            <div class="contact-info" data-animate>
+                <span class="section-tag">تماس با ما</span>
+                <h2 class="section-title">با ما در ارتباط باشید</h2>
+                <p>برای هرگونه سؤال، پیشنهاد یا درخواست عضویت، از راه‌های زیر با ما در ارتباط باشید.</p>
+
+                <ul class="contact-list">
+                    <li>
+                        <span class="contact-icon" aria-hidden="true">📍</span>
+                        <div>
+                            <h4>آدرس</h4>
+                            <p>تهران، خیابان سنایی، کوچه ۲۱، پلاک ۴، طبقه ۵، واحد ۱۹</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="contact-icon" aria-hidden="true">📞</span>
+                        <div>
+                            <h4>تلفن</h4>
+                            <p><a href="tel:+982186074587" dir="ltr">۰۲۱ - ۸۶۰۷۴۵۸۷</a> / <a href="tel:+982188326795" dir="ltr">۰۲۱ - ۸۸۳۲۶۷۹۵</a></p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="contact-icon" aria-hidden="true">📠</span>
+                        <div>
+                            <h4>فکس</h4>
+                            <p dir="ltr">۰۲۱ - ۸۶۰۷۴۲۶۹</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="contact-icon" aria-hidden="true">✉️</span>
+                        <div>
+                            <h4>ایمیل</h4>
+                            <p><a href="mailto:info@iran-grains.com">info@iran-grains.com</a></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <form class="contact-form" data-animate id="contactForm" novalidate>
+                <h3>فرم تماس</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="نام و نام خانوادگی" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" placeholder="شماره تماس" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="ایمیل" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="subject" placeholder="موضوع" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" placeholder="پیام شما" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">ارسال پیام</button>
+                <p class="form-status" id="formStatus" role="status"></p>
+            </form>
+        </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col footer-brand">
+                <a href="#home" class="logo">
+                    <span class="logo-mark" aria-hidden="true">🌾</span>
+                    <span class="logo-text">انجمن غلات ایران</span>
+                </a>
+                <p>مرجع تخصصی صنعت غلات و دانه‌های روغنی کشور با هدف تأمین امنیت غذایی و توسعه‌ی پایدار.</p>
+            </div>
+            <div class="footer-col">
+                <h4>دسترسی سریع</h4>
+                <ul>
+                    <li><a href="#about">درباره ما</a></li>
+                    <li><a href="#services">خدمات</a></li>
+                    <li><a href="#news">اخبار</a></li>
+                    <li><a href="#contact">تماس</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>خدمات</h4>
+                <ul>
+                    <li><a href="#services">آمار و داده‌ها</a></li>
+                    <li><a href="#services">بخشنامه‌ها</a></li>
+                    <li><a href="#services">شرکت‌های عضو</a></li>
+                    <li><a href="#news">رویدادها</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>شبکه‌های اجتماعی</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/iran.grainsunion?igsh=c3UwdWg5dzJxeG52"
+                       target="_blank" rel="noopener" aria-label="اینستاگرام" title="اینستاگرام">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.7 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85C2.38 3.93 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4zm6.41-10.85a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44z"/></svg>
+                    </a>
+                    <a href="#" target="_blank" rel="noopener" aria-label="واتساپ" title="واتساپ">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M.06 24l1.69-6.16a11.81 11.81 0 0 1-1.59-5.95C.16 5.34 5.5 0 12.06 0a11.82 11.82 0 0 1 8.41 3.49 11.78 11.78 0 0 1 3.48 8.41c0 6.56-5.34 11.9-11.9 11.9a11.92 11.92 0 0 1-5.68-1.45L.06 24zM6.6 20.13c1.68.99 3.28 1.59 5.46 1.59 5.45 0 9.89-4.43 9.89-9.88a9.86 9.86 0 0 0-9.88-9.89c-5.45 0-9.89 4.44-9.89 9.89 0 2.23.65 3.87 1.74 5.6l-1 3.63 3.68-.94zm11.39-5.46c-.07-.12-.27-.2-.57-.35-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.48 0 1.46 1.06 2.87 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.69.25-1.28.18-1.41z"/></svg>
+                    </a>
+                    <a href="#" target="_blank" rel="noopener" aria-label="بله" title="بله">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 1C5.37 1 0 5.57 0 10.21c0 2.89 1.42 5.47 3.68 7.27V22l4.22-2.32c1.3.36 2.69.55 4.1.55 6.63 0 12-4.57 12-10.21S18.63 1 12 1zm1.2 13.7-3.06-3.26-5.97 3.26 6.56-6.97 3.14 3.26 5.9-3.26-6.57 6.97z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© ۱۴۰۵ انجمن غلات ایران | تمامی حقوق محفوظ است.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <button class="back-to-top" id="backToTop" aria-label="بازگشت به بالا">
+        <span aria-hidden="true">↑</span>
+    </button>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
