@@ -1715,7 +1715,7 @@ input, textarea, select { font-family: var(--font); font-weight: 700 !important;
 
 /* Navigation and introductory hero text */
 .nav-menu .nav-link { font-family: 'Yekan Bakh', sans-serif !important; font-weight: 700 !important; }
-.nav-menu .dropdown a { font-family: 'Yekan Bakh', sans-serif !important; font-weight: 400 !important; }
+.nav-menu .dropdown a { font-family: 'Yekan Bakh', sans-serif !important; font-weight: 600 !important; }
 .slide-intro .hero-subtitle { font-family: 'Yekan Bakh', sans-serif !important; font-weight: 400 !important; }
 
 /* Meetings page typography and pagination */
