@@ -1688,7 +1688,9 @@ input, textarea, select { font-family: var(--font); font-weight: 700 !important;
 
 /* Exchange currency names and the UAE icon */
 .exchange .ex-name { font-family: var(--font); font-weight: 600; }
-.exchange .ex-icon svg { width: 25px; height: 17px; display: block; }
+.exchange .ex-icon img { width: 25px; height: 17px; display: block; }
+.stats .stat-label { font-family: var(--font); font-weight: 600; }
+.cta-content p { font-family: var(--font); font-weight: 400; }
 
 /* Navigation and introductory hero text */
 .nav-menu .nav-link { font-family: 'Yekan Bakh', sans-serif !important; font-weight: 700 !important; }
