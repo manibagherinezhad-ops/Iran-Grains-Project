@@ -1364,6 +1364,8 @@ input, textarea { font-family: inherit; }
 .bviewport {
     position: relative;
     height: 460px;
+    overflow-x: clip;
+    overflow-y: visible;
     user-select: none;
     -webkit-user-select: none;
     touch-action: pan-y;
@@ -1768,3 +1770,71 @@ input, textarea, select { font-family: var(--font); font-weight: 700 !important;
 }
 .meet-pagination button:focus-visible { outline: 2px solid var(--gold-dark); outline-offset: 3px; }
 .meet-pagination button:disabled { opacity: 0.4; cursor: default; }
+
+/* Dedicated contact page */
+.contact-page-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 162px 0 88px;
+    color: #fff;
+    background: radial-gradient(circle at 18% 88%, rgba(239, 189, 89, 0.15), transparent 32%),
+                linear-gradient(125deg, #0c281d, #1b513b 68%, #123326);
+}
+.contact-hero-content { position: relative; z-index: 1; }
+.contact-page-hero .breadcrumb { margin-bottom: 24px; }
+.contact-page-hero h1 { font-family: var(--font-head); font-size: clamp(2.3rem, 5vw, 3.8rem); line-height: 1.35; margin-bottom: 15px; }
+.contact-page-hero p { max-width: 690px; color: #dbe9de; font-family: var(--font); font-weight: 400; }
+.contact-hero-shape { position: absolute; pointer-events: none; }
+.contact-hero-shape.shape-one {
+    width: 420px; height: 420px; left: -130px; top: -180px;
+    border: 54px solid rgba(239, 189, 89, 0.13); border-radius: 50%;
+}
+.contact-hero-shape.shape-two {
+    width: 260px; height: 260px; right: -45px; bottom: -170px;
+    border: 2px solid rgba(255, 255, 255, 0.18); transform: rotate(35deg);
+}
+.contact-hero-shape.shape-three {
+    width: 150px; height: 150px; left: 28%; bottom: -90px;
+    background: rgba(239, 189, 89, 0.1); clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    transform: rotate(-16deg);
+}
+.contact-page-section { background: #f7f7f0; }
+.contact-page-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 30px; align-items: stretch; }
+.contact-page-info, .contact-page-map {
+    min-width: 0; background: #fff; border: 1px solid var(--border); border-radius: 22px;
+    box-shadow: var(--shadow-sm); padding: 36px;
+}
+.contact-page-info .section-tag { margin-bottom: 14px; }
+.contact-page-info .section-title { color: var(--forest); margin-bottom: 26px; }
+.contact-detail-list { display: grid; gap: 0; }
+.contact-detail { display: flex; align-items: flex-start; gap: 16px; padding: 19px 0; border-bottom: 1px solid var(--border); }
+.contact-detail:last-child { border-bottom: 0; }
+.contact-detail-icon, .contact-map-pin {
+    flex: 0 0 46px; width: 46px; height: 46px; display: grid; place-items: center;
+    border-radius: 13px; color: var(--forest); background: var(--sage); font-size: 1.35rem;
+}
+.contact-detail h3 { color: var(--forest); font-size: 1rem; margin-bottom: 5px; }
+.contact-detail p, .contact-detail a { color: var(--muted); font-family: var(--font); font-weight: 400; line-height: 1.9; }
+.contact-detail a:hover { color: var(--green); }
+.contact-map-heading { display: flex; justify-content: space-between; align-items: center; gap: 18px; margin-bottom: 20px; }
+.contact-map-heading .section-tag { margin-bottom: 9px; }
+.contact-map-heading h2 { color: var(--forest); font-size: 1.5rem; }
+.contact-map-pin { background: var(--gold-soft); color: var(--gold-dark); }
+.contact-map-frame {
+    overflow: hidden; height: 410px; border-radius: 16px; border: 1px solid var(--border);
+    background: linear-gradient(45deg, #e9eee7 25%, #f4f6f1 25%, #f4f6f1 50%, #e9eee7 50%, #e9eee7 75%, #f4f6f1 75%);
+    background-size: 32px 32px;
+}
+.contact-map-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+.contact-map-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; color: var(--green); font-family: var(--font); font-weight: 700; }
+.contact-map-link:hover { color: var(--gold-dark); }
+@media (max-width: 900px) {
+    .contact-page-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 540px) {
+    .contact-page-hero { padding: 140px 0 66px; }
+    .contact-page-info, .contact-page-map { padding: 24px; }
+    .contact-map-frame { height: 340px; }
+    .contact-detail { gap: 12px; }
+}
