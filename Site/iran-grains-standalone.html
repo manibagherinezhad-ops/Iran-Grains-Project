@@ -269,15 +269,17 @@ input, textarea { font-family: inherit; }
 .nav-link::after {
     content: '';
     position: absolute;
-    inset: auto 50% 4px 50%;
+    inset-inline: 13px;
+    bottom: 4px;
     height: 2px;
-    width: 0;
     background: var(--gold);
     border-radius: 2px;
-    transition: all var(--transition);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform var(--transition);
 }
 .nav-link:hover, .nav-link.active { color: var(--gold); }
-.nav-link:hover::after, .nav-link.active::after { width: 50%; inset-inline: 25%; }
+.nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
 .caret { font-size: 18px; opacity: 0.8; transition: transform var(--transition); display: inline-block; color: var(--gold); }
 
 /* آیتم دارای زیرمنو */
@@ -988,7 +990,7 @@ input, textarea { font-family: inherit; }
 .footer-col a { font-size: 0.8rem; color: #aabdaf; transition: all var(--transition); }
 .footer-col a:hover { color: var(--gold); }
 .footer-col ul a { display: inline-block; }
-.footer-col ul a:hover { transform: translateX(6px); }
+.footer-col ul a:hover { transform: translateX(-6px); }
 
 .social-links { display: flex; gap: 12px; }
 .social-links a {
