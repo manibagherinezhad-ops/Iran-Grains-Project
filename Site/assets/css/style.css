@@ -1686,6 +1686,10 @@ input, textarea, select { font-family: var(--font); font-weight: 700 !important;
 .news-body p, .service-card p { font-family: var(--font); font-weight: 400; }
 .service-link { font-family: var(--font); font-weight: 700; }
 
+/* Exchange currency names and the UAE icon */
+.exchange .ex-name { font-family: var(--font); font-weight: 600; }
+.exchange .ex-icon svg { width: 25px; height: 17px; display: block; }
+
 /* Navigation and introductory hero text */
 .nav-menu .nav-link { font-family: 'Yekan Bakh', sans-serif !important; font-weight: 700 !important; }
 .nav-menu .dropdown a { font-family: 'Yekan Bakh', sans-serif !important; font-weight: 400 !important; }
