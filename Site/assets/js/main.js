@@ -443,21 +443,58 @@
     });
 
     /* ============================================
-       ۱۲) فیلتر جلسات (meetings.html)
+       ۱۲) فیلتر و صفحه‌بندی جلسات (meetings.html)
        ============================================ */
     const mFilters = $$('.mfilter');
     if (mFilters.length) {
         const mCards = $$('.meet-card');
+        const pagination = $('#meetPagination');
+        const pageNumbers = $('#meetPageNumbers');
+        const pageSize = 5;
+        let currentFilter = 'all';
+        let currentPage = 1;
+
+        function renderMeetings() {
+            const filtered = mCards.filter((card) => currentFilter === 'all' || card.dataset.status === currentFilter);
+            const pageCount = Math.ceil(filtered.length / pageSize);
+            currentPage = Math.min(currentPage, Math.max(pageCount, 1));
+            mCards.forEach((card) => {
+                const index = filtered.indexOf(card);
+                card.classList.toggle('hidden', index < 0 || Math.floor(index / pageSize) + 1 !== currentPage);
+            });
+
+            pageNumbers.replaceChildren();
+            for (let page = 1; page <= pageCount; page++) {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.textContent = toFa(page);
+                button.setAttribute('aria-label', `صفحهٔ ${toFa(page)}`);
+                if (page === currentPage) button.setAttribute('aria-current', 'page');
+                button.addEventListener('click', () => changeMeetingPage(page));
+                pageNumbers.appendChild(button);
+            }
+            pagination.querySelector('[data-page-direction="prev"]').disabled = currentPage === 1;
+            pagination.querySelector('[data-page-direction="next"]').disabled = currentPage === pageCount;
+        }
+
+        function changeMeetingPage(page) {
+            currentPage = page;
+            renderMeetings();
+            $('#meetGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
         mFilters.forEach((btn) => {
             btn.addEventListener('click', () => {
                 mFilters.forEach((b) => b.classList.remove('on'));
                 btn.classList.add('on');
-                const f = btn.dataset.filter;
-                mCards.forEach((card) => {
-                    card.classList.toggle('hidden', f !== 'all' && card.dataset.status !== f);
-                });
+                currentFilter = btn.dataset.filter;
+                currentPage = 1;
+                renderMeetings();
             });
         });
+        pagination.querySelector('[data-page-direction="prev"]').addEventListener('click', () => changeMeetingPage(currentPage - 1));
+        pagination.querySelector('[data-page-direction="next"]').addEventListener('click', () => changeMeetingPage(currentPage + 1));
+        renderMeetings();
     }
 
     /* ============================================

@@ -1717,3 +1717,54 @@ input, textarea, select { font-family: var(--font); font-weight: 700 !important;
 .nav-menu .nav-link { font-family: 'Yekan Bakh', sans-serif !important; font-weight: 700 !important; }
 .nav-menu .dropdown a { font-family: 'Yekan Bakh', sans-serif !important; font-weight: 400 !important; }
 .slide-intro .hero-subtitle { font-family: 'Yekan Bakh', sans-serif !important; font-weight: 400 !important; }
+
+/* Meetings page typography and pagination */
+.meetings-section .mfilter,
+.meet-pagination button {
+    font-family: var(--font);
+    font-weight: 600 !important;
+}
+.meetings-page .page-hero .breadcrumb,
+.meetings-page .page-hero .lead,
+.meet-date span,
+.meet-date i,
+.meet-tag,
+.meet-body p,
+.meet-meta span { font-family: var(--font); }
+.meetings-page .page-hero .breadcrumb,
+.meetings-page .page-hero .lead,
+.meet-date span,
+.meet-tag { font-weight: 600; }
+.meet-date i,
+.meet-body p,
+.meet-meta span { font-weight: 400; }
+
+.meet-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 40px auto 0;
+}
+.meet-page-numbers { display: flex; gap: 8px; }
+.meet-pagination button {
+    display: grid;
+    place-items: center;
+    min-width: 42px;
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--forest);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.meet-pagination button:hover:not(:disabled),
+.meet-pagination button[aria-current="page"] {
+    background: var(--green);
+    border-color: var(--green);
+    color: #fff;
+}
+.meet-pagination button:focus-visible { outline: 2px solid var(--gold-dark); outline-offset: 3px; }
+.meet-pagination button:disabled { opacity: 0.4; cursor: default; }

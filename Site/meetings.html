@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="subpage">
+<body class="subpage meetings-page">
 
     <!-- کرسر سفارشی -->
     <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
@@ -208,7 +208,76 @@
                     </div>
                 </article>
 
+                <article class="meet-card" data-status="upcoming" data-animate>
+                    <div class="meet-img"><img src="assets/img/photo-1574323347407-f5e1ad6d020b.avif" alt="گندم برای نشست نمونه" loading="lazy"></div>
+                    <div class="meet-row">
+                        <div class="meet-date"><b>۲۰</b><span>آبان</span><i>۱۴۰۵</i></div>
+                        <div class="meet-body">
+                            <span class="meet-tag upcoming">در پیش رو</span>
+                            <h3>نشست نمونه؛ برنامه‌ریزی تأمین گندم</h3>
+                            <p>گفت‌وگوی فرضی اعضا درباره‌ی برنامه‌ریزی تأمین گندم و هماهنگی زنجیره‌ی توزیع در ماه‌های آینده.</p>
+                            <div class="meet-meta">
+                                <span>📍 سالن همایش‌های انجمن، تهران</span>
+                                <span>🕑 ۱۰:۰۰ تا ۱۲:۰۰</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="meet-card" data-status="upcoming" data-animate>
+                    <div class="meet-img"><img src="assets/img/photo-1625246333195-78d9c38ad449.avif" alt="مزرعه برای کارگاه نمونه" loading="lazy"></div>
+                    <div class="meet-row">
+                        <div class="meet-date"><b>۱۲</b><span>آذر</span><i>۱۴۰۵</i></div>
+                        <div class="meet-body">
+                            <span class="meet-tag upcoming">در پیش رو</span>
+                            <h3>کارگاه نمونه؛ پایش بازار دانه‌های روغنی</h3>
+                            <p>ارائه‌ی فرضی روش‌های پایش بازار و مرور شاخص‌های عرضه و تقاضای دانه‌های روغنی.</p>
+                            <div class="meet-meta">
+                                <span>📍 مرکز آموزش انجمن، تهران</span>
+                                <span>🕑 ۱۴:۰۰ تا ۱۶:۳۰</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="meet-card" data-status="held" data-animate>
+                    <div class="meet-img"><img src="assets/img/photo-1464226184884-fa280b87c399.avif" alt="محصولات کشاورزی برای جلسه نمونه" loading="lazy"></div>
+                    <div class="meet-row">
+                        <div class="meet-date"><b>۲۴</b><span>مهر</span><i>۱۴۰۵</i></div>
+                        <div class="meet-body">
+                            <span class="meet-tag held">برگزار شد</span>
+                            <h3>جلسه‌ی نمونه؛ بررسی زنجیره‌ی حمل غلات</h3>
+                            <p>مرور فرضی چالش‌های حمل‌ونقل غلات و پیشنهادهای اعضا برای بهبود هماهنگی در زنجیره‌ی تأمین.</p>
+                            <div class="meet-meta">
+                                <span>📍 دفتر مرکزی انجمن</span>
+                                <span>🕑 ۰۹:۰۰ تا ۱۱:۰۰</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="meet-card" data-status="held" data-animate>
+                    <div class="meet-img"><img src="assets/img/photo-1500382017468-9049fed747ef.avif" alt="مزرعه برای نشست نمونه" loading="lazy"></div>
+                    <div class="meet-row">
+                        <div class="meet-date"><b>۱۰</b><span>شهریور</span><i>۱۴۰۵</i></div>
+                        <div class="meet-body">
+                            <span class="meet-tag held">برگزار شد</span>
+                            <h3>نشست نمونه؛ همکاری تولیدکنندگان و واردکنندگان</h3>
+                            <p>تبادل‌نظر فرضی درباره‌ی همکاری فعالان صنعت غلات و برنامه‌های مشترک برای فصل برداشت.</p>
+                            <div class="meet-meta">
+                                <span>📍 سالن جلسات انجمن، تهران</span>
+                                <span>🕑 ۱۱:۰۰ تا ۱۳:۰۰</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
             </div>
+            <nav class="meet-pagination" id="meetPagination" aria-label="صفحه‌بندی جلسات">
+                <button type="button" class="meet-page-arrow" data-page-direction="prev" aria-label="صفحهٔ قبل">→</button>
+                <div class="meet-page-numbers" id="meetPageNumbers"></div>
+                <button type="button" class="meet-page-arrow" data-page-direction="next" aria-label="صفحهٔ بعد">←</button>
+            </nav>
         </div>
     </section>
 
