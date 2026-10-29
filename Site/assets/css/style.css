@@ -671,9 +671,12 @@ input, textarea { font-family: inherit; }
     font-weight: 800;
 }
 .about-badge-num { display: block; font-family: var(--font-head); font-size: 1.8rem; color: #263b2c; }
-.about-badge-text { font-size: 0.76rem; color: #263b2c; }
+.about-badge-text { font-family: var(--font); font-size: 0.76rem; font-weight: 600; color: #263b2c; }
 
+.about-content { text-align: right; }
 .about-content .section-tag {
+    display: block;
+    width: fit-content;
     margin-bottom: 14px;
     background: transparent;
     padding: 0;
@@ -695,7 +698,7 @@ input, textarea { font-family: inherit; }
     border-radius: 999px;
     z-index: -1;
 }
-.about-content p { color: #40554a; margin-bottom: 17px; font-size: 0.95rem; }
+.about-content p { font-family: var(--font); font-weight: 400; color: #40554a; margin-bottom: 17px; font-size: 0.95rem; }
 
 /* افکت کلمه‌به‌کلمه پررنگ شدن */
 .reveal-text { line-height: 2.1; }
@@ -711,7 +714,7 @@ input, textarea { font-family: inherit; }
 }
 
 .about-list { list-style: none; margin: 20px 0 25px; padding: 0; display: grid; gap: 14px; font-size: 1.05rem; }
-.about-list li { display: flex; align-items: center; gap: 12px; color: var(--ink); }
+.about-list li { display: flex; align-items: center; gap: 12px; font-family: var(--font); font-weight: 600; color: var(--ink); }
 .about-list .check {
     flex-shrink: 0;
     width: 28px;
