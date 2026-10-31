@@ -272,20 +272,49 @@
     if (heroSlider && heroNewsData.length) {
         // اسلاید ۰ = معرفی انجمن (فقط بار اول)، بعدش اخبار
         const introSlide = document.createElement('div');
-        introSlide.className = 'hero-slide active';
-        introSlide.innerHTML =
-            '<div class="slide-bg" style="background-image: url(\'assets/img/photo-1437252611977-07f74518abd7.avif\')"></div>' +
-            '<div class="slide-shade intro-shade"></div>' +
-            '<div class="slide-intro"><div class="container">' +
-                '<span class="hero-badge">🌱 مرجع تخصصی صنعت غلات ایران</span>' +
-                '<h1 class="hero-title">آینده‌ی <span class="text-gold">غلات</span> را<br>با هم می‌سازیم</h1>' +
-                '<p class="hero-subtitle">انجمن غلات ایران با بیش از دو دهه تجربه، پل ارتباطی میان تولیدکنندگان، واردکنندگان و نهادهای دولتی برای توسعه‌ی پایدار صنعت غلات و تأمین امنیت غذایی کشور است.</p>' +
-                '<div class="hero-actions">' +
-                    '<a href="#about" class="btn btn-gold">درباره انجمن <span aria-hidden="true">←</span></a>' +
-                    '<a href="#contact" class="btn btn-outline">درخواست عضویت</a>' +
-                '</div>' +
-            '</div></div>';
+        introSlide.className = 'hero-slide hero-intro-stage active';
+        introSlide.innerHTML = `<div class="intro-ambient" aria-hidden="true"></div>
+<div class="intro-gridlines" aria-hidden="true"></div>
+<div class="slide-intro"><div class="container intro-layout">
+    <div class="intro-copy">
+        <img class="intro-brand" src="assets/img/logo.png" width="62" height="78" alt="" aria-hidden="true">
+        <span class="hero-badge">🌱 مرجع تخصصی صنعت غلات ایران</span>
+        <h1 class="hero-title"><span class="intro-title-line">آینده‌ی <span class="text-gold">غلات</span> را</span><br><span class="intro-title-line">با هم می‌سازیم</span></h1>
+        <p class="hero-subtitle">انجمن غلات ایران با بیش از دو دهه تجربه، پل ارتباطی میان تولیدکنندگان، واردکنندگان و نهادهای دولتی برای توسعه‌ی پایدار صنعت غلات و تأمین امنیت غذایی کشور است.</p>
+        <div class="hero-actions">
+            <a href="#about" class="btn btn-gold">درباره انجمن <span aria-hidden="true">←</span></a>
+            <a href="#contact" class="btn btn-outline">درخواست عضویت</a>
+        </div>
+    </div>
+    <div class="intro-art" aria-hidden="true">
+        <div class="intro-orbit orbit-outer"></div><div class="intro-orbit orbit-inner"></div>
+        <div class="intro-photo-frame"><div class="intro-photo"><img src="assets/img/photo-1437252611977-07f74518abd7.avif" alt="" fetchpriority="high"></div></div>
+        <svg class="intro-wheat" viewBox="0 0 180 370" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M82 353C99 275 99 169 87 44" stroke="currentColor" stroke-width="2"/><g fill="currentColor"><path d="M88 77C61 63 62 32 80 9c17 23 22 48 8 68ZM90 121C61 112 43 88 47 62c32 6 51 28 43 59ZM93 162C64 154 43 133 44 106c31 5 55 29 49 56ZM95 205C63 199 42 177 42 150c35 7 58 30 53 55ZM95 248C64 244 40 225 39 197c34 3 59 25 56 51ZM95 291C62 289 36 268 34 242c36 3 62 24 61 49ZM91 121c28-12 42-38 35-64-31 10-47 34-35 64ZM94 162c29-10 45-35 39-62-32 8-51 32-39 62ZM96 205c31-9 48-33 44-61-34 7-55 31-44 61ZM97 248c33-6 52-29 50-57-34 4-57 27-50 57ZM96 291c34-3 56-26 57-54-35 2-61 22-57 54Z"/></g></svg>
+        <div class="intro-coordinate coordinate-top"></div><div class="intro-coordinate coordinate-bottom"></div>
+        <div class="intro-grain grain-one"></div><div class="intro-grain grain-two"></div><div class="intro-grain grain-three"></div>
+    </div>
+</div></div>`;
         heroSlider.appendChild(introSlide);
+        // Subtle pointer depth applies only while the one-time intro is active.
+        if (matchMedia('(hover: hover) and (pointer: fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            let pointerFrame = 0;
+            introSlide.addEventListener('pointermove', (event) => {
+                if (!introSlide.classList.contains('active') || introSlide.classList.contains('leaving')) return;
+                const x = event.clientX, y = event.clientY;
+                cancelAnimationFrame(pointerFrame);
+                pointerFrame = requestAnimationFrame(() => {
+                    const bounds = introSlide.getBoundingClientRect();
+                    introSlide.style.setProperty('--intro-x', ((x - bounds.left) / bounds.width - .5) * 16 + 'px');
+                    introSlide.style.setProperty('--intro-y', ((y - bounds.top) / bounds.height - .5) * 12 + 'px');
+                });
+            });
+            introSlide.addEventListener('pointerleave', () => {
+                cancelAnimationFrame(pointerFrame);
+                introSlide.style.setProperty('--intro-x', '0px');
+                introSlide.style.setProperty('--intro-y', '0px');
+            });
+        }
+
 
         // اسلایدهای خبری
         heroNewsData.forEach((n) => {

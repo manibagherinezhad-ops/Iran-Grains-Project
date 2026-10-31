@@ -158,3 +158,7 @@
  :is(.circulars-feature-link, .circulars-card-bottom button), :is(.circulars-feature-link, .circulars-card-bottom button) svg, :is(.circulars-feature-link, .circulars-card-bottom button)::after { transition: none; }
  :is(.circulars-feature-link, .circulars-card-bottom button):is(:hover, :focus-visible), :is(.circulars-feature-link, .circulars-card-bottom button):is(:hover, :focus-visible) svg { transform: none; }
 }
+
+.circulars-membership .btn-white > span[aria-hidden="true"] { display: inline-block; transition: transform .3s cubic-bezier(.2,.7,.3,1); }
+.circulars-membership .btn-white:hover > span[aria-hidden="true"] { transform: translateX(-5px); }
+@media (prefers-reduced-motion: reduce) { .circulars-membership .btn-white:hover > span[aria-hidden="true"] { transform: none; } }
