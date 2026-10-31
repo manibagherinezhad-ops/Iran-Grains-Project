@@ -63,6 +63,8 @@ body {
 
 a { color: inherit; text-decoration: none; transition: color var(--transition); }
 img { max-width: 100%; display: block; height: auto; }
+
+::selection { background: var(--gold); color: #000; }
 ul { list-style: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
 input, textarea { font-family: inherit; }
@@ -164,13 +166,11 @@ input, textarea { font-family: inherit; }
 .cursor-dot, .cursor-ring { display: none; }
 
 @media (hover: hover) and (pointer: fine) {
-    body { cursor: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M5%203v21l5.5-5%204.5%2010%204-2-4.5-9H25Z%22%20fill%3D%22%23174434%22%20stroke%3D%22%23f8f5ec%22%20stroke-width%3D%221.5%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E") 5 3, auto; }
-    a, button, select, label, [role="button"] {
-        cursor: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M5%203v21l5.5-5%204.5%2010%204-2-4.5-9H25Z%22%20fill%3D%22%23efbd59%22%20stroke%3D%22%23174434%22%20stroke-width%3D%221.5%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E") 5 3, pointer;
-    }
+    body { cursor: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M5%203v21l5.5-5%204.5%2010%204-2-4.5-9H25Z%22%20fill%3D%22%23174434%22%20stroke%3D%22%23efbd59%22%20stroke-width%3D%221.5%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E") 5 3, auto; }
     input, textarea, [contenteditable="true"] { cursor: text; }
-    input[type="checkbox"], input[type="radio"], input[type="submit"], input[type="button"] {
-        cursor: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M5%203v21l5.5-5%204.5%2010%204-2-4.5-9H25Z%22%20fill%3D%22%23efbd59%22%20stroke%3D%22%23174434%22%20stroke-width%3D%221.5%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E") 5 3, pointer;
+    :is(a, button, select, label, [role="button"], .btn, .acc-head, .bmember,
+        input[type="checkbox"], input[type="radio"], input[type="submit"], input[type="button"]):not(:disabled) {
+        cursor: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M10%2017V5a2%202%200%200%201%204%200v9-3a2%202%200%200%201%204%200v3-1a2%202%200%200%201%204%200v2a2%202%200%200%201%204%200v6c0%205-3%208-8%208h-1c-3%200-5-1-7-4l-5-7a2%202%200%200%201%203-3l4%204%22%20fill%3D%22%23efbd59%22%20stroke%3D%22%23174434%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E") 12 3, pointer;
     }
 }
 
@@ -756,7 +756,7 @@ input, textarea { font-family: inherit; }
     z-index: -1;
 }
 .news-archive-btn { white-space: nowrap; }
-.news-archive-btn span { font-size: 17px; line-height: 1; transition: transform var(--transition); }
+.news-archive-btn span { font-size: 1.5em; line-height: 1; transition: transform var(--transition); }
 .news-archive-btn:hover span { transform: translateX(-4px); }
 
 .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 18px; }
