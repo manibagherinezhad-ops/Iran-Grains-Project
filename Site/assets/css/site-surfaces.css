@@ -149,3 +149,8 @@ html:has(.meeting-dialog[open]) { overflow: hidden; }
 }
 .board-carousel .bdot { transition: all .3s ease; }
 .meet-pagination button[aria-current="page"], .meet-pagination button[aria-current="page"]:hover { background: var(--forest); border-color: var(--forest); color: #fff; }
+/* Current-page links keep the same treatment as hover, including submenus. */
+.nav-link[aria-current] { color: var(--gold); }
+.nav-link[aria-current]::after { transform: scaleX(1); }
+.dropdown li a[aria-current="page"] { background: var(--gold-soft); color: var(--gold-dark); padding-inline-start: 18px; }
+#meetingDialogSummary { white-space: pre-line; }

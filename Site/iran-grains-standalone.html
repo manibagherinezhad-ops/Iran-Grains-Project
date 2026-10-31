@@ -1712,7 +1712,7 @@ input, textarea, select { font-family: 'Yekan Bakh', sans-serif; font-weight: 70
             </a>
 
             <nav class="nav-menu" id="navMenu" aria-label="منوی اصلی">
-                <a href="#home" class="nav-link active">خانه</a>
+                <a href="#home" class="active nav-link" aria-current="page">خانه</a>
 
 
 
@@ -2149,14 +2149,7 @@ input, textarea, select { font-family: 'Yekan Bakh', sans-serif; font-weight: 70
             const backTop = $('#backToTop');
             if (backTop) backTop.classList.toggle('show', y > 500);
 
-            // لینک فعال بر اساس بخشی که در دید است
-            const mid = y + window.innerHeight * 0.35;
-            let activeIndex = -1;
-            for (let i = 0; i < sections.length; i++) {
-                const sec = sections[i];
-                if (sec && sec.offsetTop <= mid) activeIndex = i;
-            }
-            navLinks.forEach((link, i) => link.classList.toggle('active', i === activeIndex));
+            // حالت فعال منو بر اساس صفحهٔ جاری در HTML ثابت است.
 
             ticking = false;
         });

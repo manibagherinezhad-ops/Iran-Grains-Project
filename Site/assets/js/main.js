@@ -16,12 +16,6 @@
        ============================================ */
     const navbar = $('#navbar');
     const navLinks = $$('.nav-link');
-    const sections = navLinks
-        .map((link) => {
-            const id = link.getAttribute('href');
-            return id && id.startsWith('#') ? document.querySelector(id) : null;
-        })
-        .filter(Boolean);
 
     let ticking = false;
     function onScroll() {
@@ -43,14 +37,7 @@
             const backTop = $('#backToTop');
             if (backTop) backTop.classList.toggle('show', y > 500);
 
-            // لینک فعال بر اساس بخشی که در دید است
-            const mid = y + window.innerHeight * 0.35;
-            let activeIndex = -1;
-            for (let i = 0; i < sections.length; i++) {
-                const sec = sections[i];
-                if (sec && sec.offsetTop <= mid) activeIndex = i;
-            }
-            navLinks.forEach((link, i) => link.classList.toggle('active', i === activeIndex));
+            // حالت فعال منو بر اساس صفحهٔ جاری در HTML ثابت است.
 
             ticking = false;
         });

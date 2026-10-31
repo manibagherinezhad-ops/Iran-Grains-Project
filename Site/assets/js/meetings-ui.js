@@ -8,7 +8,7 @@
         const image = card.querySelector('.meet-img img');
         const status = card.querySelector('.meet-tag');
         $('meetingDialogTitle').textContent = card.querySelector('h3').textContent;
-        $('meetingDialogSummary').textContent = card.querySelector('.meet-body p').textContent;
+        $('meetingDialogSummary').textContent = card.querySelector('.meet-summary')?.content.textContent.trim() || card.querySelector('.meet-body p').textContent;
         $('meetingDialogDate').textContent = Array.from(card.querySelector('.meet-date').children, (part) => part.textContent.trim()).join(' ');
         const meta = card.querySelectorAll('.meet-meta span');
         $('meetingDialogLocation').textContent = meta[0].textContent.replace('📍', '').trim();
