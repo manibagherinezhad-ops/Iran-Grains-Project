@@ -65,8 +65,7 @@
 .circulars-doc-icon svg { width: 25px; height: 29px; }
 .circulars-card h3 { font-size: 1rem; font-weight: 700; line-height: 1.85; }
 .circulars-card p { color: var(--muted); font-size: .86rem; line-height: 1.95; margin: 15px 0 22px; }
-.circulars-card-bottom { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border); }
-.circulars-card-bottom > span { font-size: .71rem; color: var(--muted); }
+.circulars-card-bottom { display: flex; align-items: center; justify-content: flex-start; gap: 10px; margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border); }
 .circulars-card button { display: inline-flex; align-items: center; gap: 10px; color: var(--forest); font-weight: 700; font-size: .82rem; padding: 5px 0; }
 .circulars-card button svg { color: var(--gold-dark); width: 20px; }
 .circulars-grid.is-list { grid-template-columns: 1fr; }
@@ -145,4 +144,17 @@
  .circulars-select-trigger, .circulars-select-trigger svg, .circulars-select-option { transition: none; }
  .circulars-select-menu { animation: none; }
  .circulars-select-trigger:hover, .circulars-select-option:hover { transform: none; }
+}
+
+/* RTL circular CTAs: text and arrow move together, with an extra arrow glide. */
+:is(.circulars-feature-link, .circulars-card-bottom button) { position: relative; transition: color .25s ease, transform .3s cubic-bezier(.2,.7,.3,1); }
+:is(.circulars-feature-link, .circulars-card-bottom button) svg { transition: transform .3s cubic-bezier(.2,.7,.3,1); }
+:is(.circulars-feature-link, .circulars-card-bottom button)::after { content: ''; position: absolute; inset: auto 0 0 0; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .3s cubic-bezier(.2,.7,.3,1); pointer-events: none; }
+:is(.circulars-feature-link, .circulars-card-bottom button):is(:hover, :focus-visible) { transform: translateX(-3px); }
+:is(.circulars-feature-link, .circulars-card-bottom button):is(:hover, :focus-visible) svg { transform: translateX(-5px); }
+:is(.circulars-feature-link, .circulars-card-bottom button):is(:hover, :focus-visible)::after { transform: scaleX(1); }
+.circulars-card-bottom button:is(:hover, :focus-visible) { color: var(--gold-dark); }
+@media (prefers-reduced-motion: reduce) {
+ :is(.circulars-feature-link, .circulars-card-bottom button), :is(.circulars-feature-link, .circulars-card-bottom button) svg, :is(.circulars-feature-link, .circulars-card-bottom button)::after { transition: none; }
+ :is(.circulars-feature-link, .circulars-card-bottom button):is(:hover, :focus-visible), :is(.circulars-feature-link, .circulars-card-bottom button):is(:hover, :focus-visible) svg { transform: none; }
 }
