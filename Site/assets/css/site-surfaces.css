@@ -72,13 +72,8 @@ body.theme-board { --surface-pattern: url('../img/geometry/lines.svg'); }
  .site-hero--iran-green .ig-glass-label { font-size: 1.15rem; }
  .site-hero--iran-green .ig-glass-sub { font-size: .75rem; }
 }
-/* Numbered RTL carousel navigation, matching the circulars pagination. */
-.board-pagination { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 30px; direction: rtl; }
-.board-pages { display: contents; }
-.board-pagination button { min-width: 42px; height: 42px; padding: 7px; border: 1px solid var(--border); background: var(--bg-card); color: var(--forest); border-radius: var(--radius-sm); font-size: .9rem; }
-.board-pagination button[aria-current="page"] { background: var(--forest); color: #fff; border-color: var(--forest); }
-:is(.board-pagination, .meet-pagination, .circulars-pagination, .circulars-views) button { transition: background-color .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease; }
-:is(.board-pagination, .meet-pagination, .circulars-pagination) button:hover:not(:disabled) { border-color: var(--gold-dark); box-shadow: 0 4px 12px #10282012; }
+:is(.board-arrow, .meet-pagination button, .circulars-pagination button, .circulars-views button) { transition: background-color .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease; }
+:is(.board-arrow, .meet-pagination button, .circulars-pagination button):hover:not(:disabled) { border-color: var(--gold-dark); box-shadow: 0 4px 12px #10282012; }
 @view-transition { navigation: auto; }
 ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .22s; }
 /* A distinct conference hero: illuminated stage, orbiting identity, editorial title. */
@@ -121,3 +116,36 @@ body.theme-board { --surface-pattern: url('../img/geometry/lines.svg'); }
  .ig-signature-hero .site-hero-content { order: 1; padding-inline: 18px; }
  .ig-signature-hero .site-hero-logo { order: 2; }
 }
+/* Keep the original dot-to-gold-line member indicator; restyle only the arrows. */
+.board-arrow { width: 42px; height: 42px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg-card); color: var(--forest); box-shadow: none; font-size: .9rem; padding: 7px; }
+.board-arrow:hover { background: var(--bg-card); color: var(--forest); border-color: var(--gold-dark); transform: translateY(-50%); box-shadow: 0 4px 12px #10282012; }
+.meet-pagination { flex-wrap: wrap; gap: 8px; margin-top: 30px; direction: rtl; }
+.meet-page-numbers { display: contents; }
+.meet-pagination button { min-width: 42px; height: 42px; padding: 7px; border-radius: var(--radius-sm); font-size: .9rem; }
+.meet-pagination button:hover:not(:disabled):not([aria-current="page"]) { background: var(--bg-card); color: var(--forest); }
+.meet-card[role="button"] { cursor: pointer; }
+.meet-card[role="button"]:focus-visible { outline: 3px solid var(--gold-dark); outline-offset: 5px; }
+.meeting-dialog { inset: 0; margin: auto; width: min(700px, calc(100% - 32px)); max-height: 88vh; overflow: auto; color: var(--ink); background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: 0; }
+.meeting-dialog::backdrop { background: #10282080; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+html:has(.meeting-dialog[open]) { overflow: hidden; }
+.meeting-dialog-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 18px 24px; background: var(--bg); }
+.meeting-dialog-heading .section-tag { margin: 0; }
+.meeting-dialog-close { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--forest); font-size: 1.65rem; transition: background .2s ease; }
+.meeting-dialog-close:hover { background: var(--sage); }
+.meeting-dialog-image { width: 100%; height: 180px; object-fit: cover; }
+.meeting-dialog-body { padding: 26px; background: linear-gradient(#f8f5ecb3, #f8f5ecb3), url('../img/geometry/diamonds.svg') center/700px 410px; }
+.meeting-dialog h2 { font-size: clamp(1.2rem, 3vw, 1.7rem); line-height: 1.65; margin: 14px 0 20px; }
+.meeting-dialog-meta { display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 12px; margin-bottom: 22px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+.meeting-dialog-meta span { display: block; color: var(--muted); font-size: .73rem; margin-bottom: 5px; }
+.meeting-dialog-meta b { font-size: .82rem; font-weight: 600; }
+.meeting-dialog-body > p { color: var(--ink-soft); font-size: .95rem; line-height: 2.1; }
+.meeting-dialog :focus-visible { outline: 3px solid var(--gold-dark); outline-offset: 3px; }
+@media (max-width: 540px) {
+ .meeting-dialog-image { height: 140px; }
+ .meeting-dialog-body { padding: 22px; }
+ .meeting-dialog-heading { padding: 15px 22px; }
+ .meeting-dialog-meta { grid-template-columns: 1fr; gap: 14px; }
+ .meeting-dialog-meta > div { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+}
+.board-carousel .bdot { transition: all .3s ease; }
+.meet-pagination button[aria-current="page"], .meet-pagination button[aria-current="page"]:hover { background: var(--forest); border-color: var(--forest); color: #fff; }

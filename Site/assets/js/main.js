@@ -446,14 +446,13 @@
             cards.forEach((_, i) => {
                 const dot = document.createElement('button');
                 dot.type = 'button';
-                dot.className = 'bpage';
-                dot.textContent = toFa(i + 1);
+                dot.className = 'bdot';
                 dot.setAttribute('aria-label', 'عضو ' + (i + 1));
                 dot.addEventListener('click', () => { bActive = i; layout(); syncDots(); restart(); });
                 bDots.appendChild(dot);
             });
         }
-        const dots = $$('.bpage', bDots);
+        const dots = $$('.bdot', bDots);
 
         /* چیدمان: عضو فعال وسط (بزرگ)، همسایه‌ها کوچیک‌تر، بقیه مخفی */
         function layout(dragX) {
@@ -472,6 +471,7 @@
             });
         }
         function syncDots() { dots.forEach((dt, i) => {
+            dt.classList.toggle('on', i === bActive);
             if (i === bActive) dt.setAttribute('aria-current', 'page');
             else dt.removeAttribute('aria-current');
         }); }

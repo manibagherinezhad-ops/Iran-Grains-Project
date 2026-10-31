@@ -281,12 +281,23 @@
 
             </div>
             <nav class="meet-pagination" id="meetPagination" aria-label="صفحه‌بندی جلسات">
-                <button type="button" class="meet-page-arrow" data-page-direction="prev" aria-label="صفحهٔ قبل">→</button>
+                <button type="button" class="meet-page-arrow" data-page-direction="prev" aria-label="صفحهٔ قبل">❮</button>
                 <div class="meet-page-numbers" id="meetPageNumbers"></div>
-                <button type="button" class="meet-page-arrow" data-page-direction="next" aria-label="صفحهٔ بعد">←</button>
+                <button type="button" class="meet-page-arrow" data-page-direction="next" aria-label="صفحهٔ بعد">❯</button>
             </nav>
         </div>
     </section>
+
+    <dialog class="meeting-dialog" id="meetingDialog" aria-labelledby="meetingDialogTitle">
+        <div class="meeting-dialog-heading"><span class="section-tag">خلاصه جلسه</span><button type="button" class="meeting-dialog-close" aria-label="بستن خلاصه جلسه">×</button></div>
+        <img class="meeting-dialog-image" id="meetingDialogImage" src="assets/img/photo-1437252611977-07f74518abd7.avif" alt="">
+        <div class="meeting-dialog-body">
+            <span class="meet-tag" id="meetingDialogStatus"></span>
+            <h2 id="meetingDialogTitle"></h2>
+            <div class="meeting-dialog-meta"><div><span>تاریخ جلسه</span><b id="meetingDialogDate"></b></div><div><span>محل برگزاری</span><b id="meetingDialogLocation"></b></div><div><span>ساعت برگزاری</span><b id="meetingDialogTime"></b></div></div>
+            <p id="meetingDialogSummary"></p>
+        </div>
+    </dialog>
 
     <!-- ===== Footer ===== -->
     <footer class="geometry-section footer">
@@ -343,5 +354,6 @@
 
     <script src="assets/js/site-motion.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/meetings-ui.js"></script>
 </body>
 </html>
