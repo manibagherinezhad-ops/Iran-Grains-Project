@@ -219,6 +219,9 @@ html:has(.member-dialog[open]) { overflow: hidden; }
 #companyTags { justify-content: flex-start; margin: 18px 0; }
 .company-back { display: inline-flex; gap: 15px; font-size: .85rem; color: var(--green); }
 .company-back:hover { color: var(--gold-dark); }
+.company-back { align-items: center; }
+.company-back > span[aria-hidden="true"] { font-size: 1.5em; line-height: 1; }
+.company-page #companyMain, .company-contact dd { text-align: right; }
 .company-brand-panel { display: grid; place-items: center; padding: 36px; min-height: 250px; border: 1px solid var(--border); border-radius: 90px 90px 22px 22px; background: #ffffffa6; box-shadow: var(--shadow); }
 .company-brand-panel .company-brand { width: 220px; height: 170px; margin: 0; }
 .company-brand-panel .company-brand-fallback { width: 130px; height: 130px; font-size: 1.5rem; }
