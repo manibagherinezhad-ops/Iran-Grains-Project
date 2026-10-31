@@ -154,3 +154,11 @@ html:has(.meeting-dialog[open]) { overflow: hidden; }
 .nav-link[aria-current]::after { transform: scaleX(1); }
 .dropdown li a[aria-current="page"] { background: var(--gold-soft); color: var(--gold-dark); padding-inline-start: 18px; }
 #meetingDialogSummary { white-space: pre-line; }
+
+/* Requested CTA states, scoped to the three membership/contact sections. */
+:is(.theme-home, .theme-circulars, .theme-about) .cta-box .btn-white > span[aria-hidden="true"],
+.ig-cta-actions .btn-gold > span[aria-hidden="true"] { font-size: 1.5em; line-height: 1; color: inherit; }
+:is(.theme-home, .theme-circulars, .theme-about) .cta-box .btn-white:hover { background: var(--gold); color: #000; }
+.ig-cta-actions .ig-cta-btn:hover { background: var(--gold); border-color: var(--gold); color: #000; }
+.ig-cta-actions .btn-gold { color: #000; }
+.ig-cta-actions .btn-gold:hover { background: #fff; color: var(--forest); }
