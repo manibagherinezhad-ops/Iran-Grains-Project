@@ -237,60 +237,6 @@
     onScroll();
 
     /* ============================================
-       ۷) کرسر سفارشی دایره‌ای (فقط دسکتاپ)
-       ============================================ */
-    const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    if (isFinePointer) {
-        const dot = $('#cursorDot');
-        const ring = $('#cursorRing');
-        let mouseX = 0, mouseY = 0;
-        let ringX = 0, ringY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            // نقطه‌ی وسط بی‌درنگ دنبال موس
-            dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
-            dot.classList.remove('cursor-hidden');
-            ring.classList.remove('cursor-hidden');
-        });
-
-        // حلقه با کمی تأخیر نرم دنبال موس می‌چرخه
-        function animateRing() {
-            ringX += (mouseX - ringX) * 0.18;
-            ringY += (mouseY - ringY) * 0.18;
-            ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
-            requestAnimationFrame(animateRing);
-        }
-        animateRing();
-
-        // موقع خروج موس از صفحه
-        document.addEventListener('mouseleave', () => {
-            dot.classList.add('cursor-hidden');
-            ring.classList.add('cursor-hidden');
-        });
-
-        // بزرگ شدن حلقه روی عناصر تعاملی
-        const interactiveSelector = 'a, button, input, textarea, select, label, [role="button"]';
-        document.addEventListener('mouseover', (e) => {
-            if (e.target.closest(interactiveSelector)) {
-                dot.classList.add('is-active');
-                ring.classList.add('is-active');
-            }
-        });
-        document.addEventListener('mouseout', (e) => {
-            if (e.target.closest(interactiveSelector)) {
-                dot.classList.remove('is-active');
-                ring.classList.remove('is-active');
-            }
-        });
-
-        // مخفی کردن کرسر موقع کلیک و دراپ‌داون (موارد لبه‌ای)
-        document.addEventListener('mousedown', () => ring.classList.add('is-active'));
-        document.addEventListener('mouseup', () => ring.classList.remove('is-active'));
-    }
-
-    /* ============================================
        ۸) افکت کلمه‌به‌کلمه پررنگ شدن متن درباره انجمن
        (دوطرفه: اسکرول پایین = پررنگ، اسکرول بالا = کمرنگ)
        ============================================ */

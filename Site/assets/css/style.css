@@ -159,55 +159,19 @@ input, textarea { font-family: inherit; }
 .btn-gold:hover span { transform: translateX(-4px); }
 
 /* ============================================
-   کرسر سفارشی دایره‌ای
+   کرسر سفارشی سبز و طلایی
    ============================================ */
-@media (hover: hover) and (pointer: fine) {
-    body { cursor: none; }
-    a, button, input, textarea, select, label { cursor: none; }
+.cursor-dot, .cursor-ring { display: none; }
 
-    .cursor-dot,
-    .cursor-ring {
-        position: fixed;
-        top: 0;
-        left: 0;
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 10000;
-        transform: translate(-50%, -50%);
-        will-change: transform, width, height;
+@media (hover: hover) and (pointer: fine) {
+    body { cursor: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M5%203v21l5.5-5%204.5%2010%204-2-4.5-9H25Z%22%20fill%3D%22%23174434%22%20stroke%3D%22%23f8f5ec%22%20stroke-width%3D%221.5%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E") 5 3, auto; }
+    a, button, select, label, [role="button"] {
+        cursor: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M5%203v21l5.5-5%204.5%2010%204-2-4.5-9H25Z%22%20fill%3D%22%23efbd59%22%20stroke%3D%22%23174434%22%20stroke-width%3D%221.5%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E") 5 3, pointer;
     }
-    /* نقطه‌ی وسط */
-    .cursor-dot {
-        width: 8px;
-        height: 8px;
-        background: var(--gold);
-        transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+    input, textarea, [contenteditable="true"] { cursor: text; }
+    input[type="checkbox"], input[type="radio"], input[type="submit"], input[type="button"] {
+        cursor: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M5%203v21l5.5-5%204.5%2010%204-2-4.5-9H25Z%22%20fill%3D%22%23efbd59%22%20stroke%3D%22%23174434%22%20stroke-width%3D%221.5%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E") 5 3, pointer;
     }
-    /* حلقه‌ی بیرونی که دنبال موس می‌چرخه */
-    .cursor-ring {
-        width: 36px;
-        height: 36px;
-        border: 1.5px solid var(--gold);
-        transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-                    height 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-                    border-color 0.25s ease,
-                    background-color 0.25s ease,
-                    opacity 0.25s ease;
-    }
-    /* وقتی روی عنصر تعاملی میره */
-    .cursor-ring.is-active {
-        width: 60px;
-        height: 60px;
-        background: rgba(200, 160, 53, 0.12);
-        border-color: var(--gold-light);
-    }
-    .cursor-dot.is-active {
-        width: 0;
-        height: 0;
-        opacity: 0;
-    }
-    /* مخفی کردن موقع خروج موس */
-    .cursor-hidden { opacity: 0 !important; }
 }
 
 /* ============================================
