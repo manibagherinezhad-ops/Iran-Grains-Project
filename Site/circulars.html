@@ -8,8 +8,9 @@
     <link rel="icon" type="image/png" href="assets/img/logo.png">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/circulars.css">
+    <link rel="stylesheet" href="assets/css/site-surfaces.css">
 </head>
-<body class="subpage circulars-page">
+<body class="theme-circulars subpage circulars-page">
     <header class="navbar" id="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo" aria-label="انجمن غلات ایران">
@@ -61,7 +62,8 @@
 
 
 <main>
-    <section class="circulars-hero">
+    <section class="geometry-section circulars-hero">
+        <span class="section-geometry" aria-hidden="true"></span>
         <div class="circulars-hero-photo" aria-hidden="true"></div>
         <div class="container circulars-hero-content">
             <nav class="breadcrumb" aria-label="مسیر"><a href="index.html">خانه</a><span class="sep" aria-hidden="true">❯</span><span aria-current="page">بخشنامه‌ها</span></nav>
@@ -71,7 +73,8 @@
             <div class="circulars-hero-facts"><div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H5v18h14V8Z"/><path d="M14 3v5h5M8 12h8M8 16h6"/></svg><span><b id="archiveTotal">۹</b>عنوان در آرشیو نمایشی</span></div><div><b>۱۴۰۵</b><span>سال انتشار</span></div></div>
         </div>
     </section>
-    <section class="circulars-archive container" aria-labelledby="archiveTitle">
+    <section class="geometry-section circulars-archive container" aria-labelledby="archiveTitle">
+        <span class="section-geometry" aria-hidden="true"></span>
         <form class="circulars-filters" id="circularFilters" role="search" aria-label="جستجوی بخشنامه‌ها">
             <label class="circulars-search"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input type="search" id="circularSearch" placeholder="جستجو در عنوان بخشنامه‌ها…" aria-label="جستجو در بخشنامه‌ها"></label>
             <label><span class="sr-only">موضوع</span><select id="circularCategory"><option value="all">همه موضوعات</option><option value="agriculture">غلات و کشاورزی</option><option value="customs">گمرک و تجارت</option><option value="market">تنظیم بازار</option><option value="systems">سامانه‌ها</option></select></label>
@@ -88,11 +91,13 @@
         <div class="circulars-empty" id="circularEmpty" hidden>بخشنامه‌ای با این مشخصات پیدا نشد. عبارت جستجو یا موضوع را تغییر دهید.</div>
         <nav class="circulars-pagination" id="circularPagination" aria-label="صفحه‌بندی بخشنامه‌ها"></nav>
     </section>
-    <section class="container circulars-help"><div><span class="section-tag">همراه فعالان صنعت غلات</span><h2>برای دریافت اطلاعات بیشتر با ما در ارتباط باشید</h2><p>پاسخ پرسش‌های خود دربارهٔ اطلاعیه‌ها و فعالیت‌های انجمن را از ما بخواهید.</p></div><a class="btn btn-green-outline" href="contact.html">تماس با انجمن <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H4m6-6-6 6 6 6"/></svg></a></section>
+    <section class="geometry-section container circulars-help">
+        <span class="section-geometry" aria-hidden="true"></span><div><span class="section-tag">همراه فعالان صنعت غلات</span><h2>برای دریافت اطلاعات بیشتر با ما در ارتباط باشید</h2><p>پاسخ پرسش‌های خود دربارهٔ اطلاعیه‌ها و فعالیت‌های انجمن را از ما بخواهید.</p></div><a class="btn btn-green-outline" href="contact.html">تماس با انجمن <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H4m6-6-6 6 6 6"/></svg></a></section>
 </main>
 <dialog class="circulars-dialog" id="circularDialog" aria-labelledby="circularDialogTitle"><div class="circulars-dialog-head"><span class="section-tag">پیش‌نمایش بخشنامه</span><button type="button" class="circulars-close" aria-label="بستن پیش‌نمایش">×</button></div><span id="circularDialogCategory" class="circulars-tag"></span><h2 id="circularDialogTitle"></h2><time id="circularDialogDate"></time><p id="circularDialogBody"></p><div class="circulars-sample-note">این بخشنامه نمونه است و سند رسمی برای دریافت ندارد.</div></dialog>
     <!-- ===== Footer ===== -->
-    <footer class="footer">
+    <footer class="geometry-section footer">
+        <span class="section-geometry" aria-hidden="true"></span>
         <div class="container footer-grid">
             <div class="footer-col footer-brand">
                 <a href="index.html" class="logo">

@@ -1,0 +1,58 @@
+/* Hero layout shared with the circulars page; decorations vary by page. */
+body { --surface-pattern: url('../img/geometry/orbits.svg'); background-image: var(--surface-pattern); background-size: 1200px 700px; }
+body.theme-meetings, body.theme-circulars { --surface-pattern: url('../img/geometry/lines.svg'); }
+body.theme-iran-green, body.theme-statute { --surface-pattern: url('../img/geometry/diamonds.svg'); }
+body.theme-contact { --surface-pattern: url('../img/geometry/arcs.svg'); }
+body.theme-board { --surface-pattern: url('../img/geometry/lines.svg'); }
+.geometry-section { position: relative; isolation: isolate; }
+.section-geometry { display: block; position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; background-image: var(--surface-pattern); background-position: center; background-size: 1200px 700px; opacity: .65; }
+.geometry-section:nth-of-type(even) > .section-geometry { transform: scaleX(-1); opacity: .45; background-position: 15% 70%; }
+.geometry-section:nth-of-type(3n) > .section-geometry { background-image: url('../img/geometry/arcs.svg'); background-position: 80% 20%; opacity: .7; }
+.geometry-section:nth-of-type(4n) > .section-geometry { background-image: url('../img/geometry/diamonds.svg'); opacity: .48; }
+.hero > .section-geometry { z-index: 1; opacity: .6; }
+.site-hero { --hero-photo: url('../img/photo-1574323347407-f5e1ad6d020b.avif'); position: relative; isolation: isolate; overflow: hidden; padding: 148px 0 92px; color: #fff; background: var(--forest); }
+.site-hero::after { content: ''; position: absolute; z-index: -1; inset: 0; background: repeating-linear-gradient(120deg, transparent 0 8px, #ffffff03 8px 9px); pointer-events: none; }
+.site-hero-photo { position: absolute; inset: 0 59% 0 0; z-index: -1; background: linear-gradient(90deg, #10282010, #10282026), var(--hero-photo) center/cover; border-inline-start: 9px solid var(--gold); border-start-start-radius: 60% 100%; }
+.site-hero-content > p { max-width: 55%; font-size: 1.04rem; line-height: 2; color: var(--sage); }
+.site-hero-eyebrow { display: flex; align-items: center; gap: 12px; color: var(--gold); font-size: .86rem; margin: 2px 0 16px; }
+.site-hero-eyebrow::before { content: ''; width: 36px; height: 2px; background: currentColor; }
+.site-hero h1 { max-width: 59%; font-family: var(--font-head); font-size: clamp(2.3rem, 4.5vw, 3.8rem); font-weight: 800; line-height: 1.5; margin-bottom: 12px; letter-spacing: -.035em; }
+.site-hero h1 em { color: var(--gold); font-style: normal; }
+.site-hero-facts { display: flex; gap: 14px; margin-top: 28px; max-width: 57%; }
+.site-hero-facts > div { display: flex; flex-direction: column; justify-content: center; gap: 3px; border: 1px solid #ffffff26; background: #ffffff06; border-radius: var(--radius); padding: 13px 20px; min-width: 160px; }
+.site-hero-facts b { font-size: 1.2rem; font-weight: 700; }
+.site-hero-facts span { font-size: .75rem; color: var(--sage); }
+.site-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 24px; }
+.site-hero > .section-geometry, .circulars-hero > .section-geometry { z-index: 0; opacity: .9; }
+.site-hero-content, .circulars-hero-content { position: relative; z-index: 1; }
+.site-hero--meetings { --hero-photo: url('../img/photo-1437252611977-07f74518abd7.avif'); }
+.site-hero--iran-green { --hero-photo: url('../img/photo-1500382017468-9049fed747ef.avif'); }
+.site-hero--contact { --hero-photo: url('../img/photo-1625246333195-78d9c38ad449.avif'); }
+.site-hero--about { --hero-photo: url('../img/photo-1574323347407-f5e1ad6d020b.avif'); }
+/* Keep the same curved photo composition, with distinct geometric accents. */
+.site-hero--meetings .site-hero-photo { background-position: center, 55% center; }
+.site-hero--iran-green .site-hero-photo { background-position: center, 65% center; }
+.theme-about .site-hero .section-geometry { background-image: url('../img/geometry/orbits.svg'); }
+.theme-board .site-hero .section-geometry { background-image: url('../img/geometry/lines.svg'); transform: scaleY(-1); }
+.theme-contact .site-hero .section-geometry { background-image: url('../img/geometry/arcs.svg'); background-position: 20% 30%; }
+@media (max-width: 1050px) {
+ .site-hero-photo { inset-inline-start: 65%; opacity: .65; }
+ .site-hero-content > p { max-width: 57%; }
+ .site-hero h1 { max-width: 64%; }
+ .site-hero-facts { max-width: 64%; }
+ .site-hero-facts > div { min-width: 0; }
+}
+@media (max-width: 640px) {
+ .site-hero { padding: 125px 0 80px; }
+ .site-hero-photo { inset: 0; border: 0; border-radius: 0; opacity: .14; }
+ .site-hero-content > p, .site-hero h1, .site-hero-facts { max-width: 100%; }
+ .site-hero-content > p { font-size: .93rem; }
+ .site-hero h1 { font-size: 2.1rem; }
+ .site-hero-eyebrow { font-size: .8rem; }
+ .site-hero-facts { gap: 10px; }
+ .site-hero-facts > div { padding: 11px 14px; flex: 1; min-width: 0; }
+ .site-hero-facts b { font-size: 1rem; }
+ .site-hero-actions .btn { white-space: normal; padding: 12px 18px; }
+ .section-geometry { background-size: 760px 540px; opacity: .45; }
+ body { background-size: 760px 540px; }
+}
