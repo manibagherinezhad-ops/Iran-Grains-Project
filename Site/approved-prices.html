@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="assets/css/circulars.css">
     <link rel="stylesheet" href="assets/css/site-surfaces.css">
 </head>
-<body class="theme-circulars subpage circulars-page">
+<body class="theme-circulars subpage circulars-page prices-page">
     <header class="navbar" id="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo" aria-label="انجمن غلات ایران">
@@ -69,27 +69,27 @@
             <nav class="breadcrumb" aria-label="مسیر"><a href="index.html">خانه</a><span class="sep" aria-hidden="true">❯</span><span aria-current="page">قیمت‌های مصوب</span></nav>
             <span class="circulars-eyebrow">مرکز اطلاع‌رسانی قیمت‌های مصوب</span>
             <h1>قیمت‌های <em>مصوب</em></h1>
-            <p>دسترسی به قیمت‌های مصوب مرتبط با صنعت غلات، تجارت و کشاورزی ایران.</p>
-            <div class="circulars-hero-facts"><div><span><b id="archiveTotal">۹</b>عنوان در آرشیو نمایشی</span></div><div class="circulars-years"><b><bdi dir="ltr">۱۳۹۹ – ۱۴۰۵</bdi></b><span>سال‌های انتشار بخشنامه‌ها</span></div></div>
+            <p>آرشیو ابلاغیه‌های قیمت مصوب، سقف‌های ارزی و نرخ‌های مبنای گمرکی؛ همراه با تاریخ انتشار و دسترسی به سند مرجع.</p>
+            <div class="circulars-hero-facts"><div><span><b id="archiveTotal">۱۰</b>ابلاغیه در این آرشیو</span></div><div class="circulars-years"><b><bdi dir="ltr">۱۴۰۵</bdi></b><span>سال انتشار ابلاغیه‌ها</span></div></div>
         </div>
     </section>
     <section class="geometry-section circulars-archive container" aria-labelledby="archiveTitle">
         <span class="section-geometry" aria-hidden="true"></span>
-        <form class="circulars-filters" id="circularFilters" role="search" aria-label="جستجوی بخشنامه‌ها">
-            <label class="circulars-search"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input type="search" id="circularSearch" placeholder="جستجو در عنوان بخشنامه‌ها…" aria-label="جستجو در بخشنامه‌ها"></label>
-            <label><span class="sr-only">موضوع</span><select id="circularCategory"><option value="all">همه موضوعات</option><option value="agriculture">غلات و کشاورزی</option><option value="customs">گمرک و تجارت</option><option value="market">تنظیم بازار</option><option value="systems">سامانه‌ها</option></select></label>
+        <form class="circulars-filters" id="circularFilters" role="search" aria-label="جستجوی ابلاغیه‌ها">
+            <label class="circulars-search"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input type="search" id="circularSearch" placeholder="جستجو در عنوان قیمت‌ها و کالاها…" aria-label="جستجو در ابلاغیه‌ها"></label>
+            <label><span class="sr-only">موضوع</span><select id="circularCategory"><option value="all">همه موضوعات</option><option value="ceilings">سقف ارزی</option><option value="oils">روغن و دانه‌های روغنی</option><option value="customs">نرخ مبنای گمرک</option><option value="consumer">قیمت مصرف‌کننده</option></select></label>
             <label><span class="sr-only">ترتیب نمایش</span><select id="circularSort"><option value="newest">جدیدترین</option><option value="oldest">قدیمی ترین</option></select></label>
             <button type="reset" class="btn circulars-reset">پاک‌سازی فیلترها <span aria-hidden="true">↺</span></button>
         </form>
-        <div class="circulars-heading"><div><span class="section-tag">آرشیو اسناد</span><h2 class="section-title" id="archiveTitle">آخرین قیمت‌های مصوب</h2></div><div class="circulars-views" role="group" aria-label="نوع نمایش"><button type="button" data-view="grid" aria-label="نمایش شبکه‌ای" aria-pressed="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></svg></button><button type="button" data-view="list" aria-label="نمایش فهرستی" aria-pressed="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5h13M8 12h13M8 19h13M3 5h1M3 12h1M3 19h1"/></svg></button></div></div>
+        <div class="circulars-heading"><div><span class="section-tag">آرشیو ابلاغیه‌های قیمتی</span><h2 class="section-title" id="archiveTitle">آخرین ابلاغیه‌های قیمت</h2></div><div class="circulars-views" role="group" aria-label="نوع نمایش"><button type="button" data-view="grid" aria-label="نمایش شبکه‌ای" aria-pressed="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></svg></button><button type="button" data-view="list" aria-label="نمایش فهرستی" aria-pressed="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5h13M8 12h13M8 19h13M3 5h1M3 12h1M3 19h1"/></svg></button></div></div>
         <article class="circulars-feature" id="circularFeature">
-            <div class="circulars-feature-text"><span class="circulars-feature-label">تازه‌ترین بخشنامه</span><h3>دستورالعمل گندم دامی و انسانی</h3><time datetime="2026-10-25">۳ آبان ۱۴۰۵</time><p>مروری بر دستورالعمل اجرایی خرید و عرضهٔ گندم و ضوابط مرتبط با زنجیرهٔ تأمین آن.</p><button type="button" class="circulars-feature-link" data-open="1">مشاهده بخشنامه <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H4m6-6-6 6 6 6"/></svg></button></div>
-            <div class="circulars-document-art" aria-hidden="true"><div class="circulars-paper"><span>انجمن غلات ایران</span><b>بخشنامه</b><i></i><i></i><i></i><i></i><i></i><small>صنعت غلات · تجارت · کشاورزی</small></div></div>
+            <div class="circulars-feature-text"><span class="circulars-feature-label">تازه‌ترین ابلاغیه</span><h3>سقف ارزی واردات غلات</h3><time datetime="2026-10-05">۱۳ مهر ۱۴۰۵</time><p>ابلاغیهٔ سقف ارزی غلات به تاریخ ۱۲ مهر ۱۴۰۵؛ جزئیات اقلام و جدول قیمت در سند اصلی منتشر شده است.</p><button type="button" class="circulars-feature-link" data-open="1">مشاهده ابلاغیه <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H4m6-6-6 6 6 6"/></svg></button></div>
+            <div class="circulars-document-art" aria-hidden="true"><div class="circulars-paper"><span>انجمن غلات ایران</span><b>ابلاغیه</b><i></i><i></i><i></i><i></i><i></i><small>صنعت غلات · تجارت · کشاورزی</small></div></div>
         </article>
-        <div class="circulars-results-line"><p id="circularCount" role="status" aria-live="polite"></p><span>بخشنامه‌ها و دستورالعمل‌ها</span></div>
+        <div class="circulars-results-line"><p id="circularCount" role="status" aria-live="polite"></p><a href="https://iran-grains.com/category/gheymat-mosavab/" target="_blank" rel="noopener">آرشیو مرجع انجمن</a></div>
         <div class="circulars-grid" id="circularGrid"></div>
-        <div class="circulars-empty" id="circularEmpty" hidden>بخشنامه‌ای با این مشخصات پیدا نشد. عبارت جستجو یا موضوع را تغییر دهید.</div>
-        <nav class="circulars-pagination" id="circularPagination" aria-label="صفحه‌بندی بخشنامه‌ها"></nav>
+        <div class="circulars-empty" id="circularEmpty" hidden>ابلاغیه‌ای با این مشخصات پیدا نشد. عبارت جستجو یا موضوع را تغییر دهید.</div>
+        <nav class="circulars-pagination" id="circularPagination" aria-label="صفحه‌بندی ابلاغیه‌ها"></nav>
     </section>
     <section class="geometry-section section cta-section circulars-membership">
         <span class="section-geometry" aria-hidden="true"></span>
@@ -106,7 +106,7 @@
         </div>
     </section>
 </main>
-<dialog class="circulars-dialog" id="circularDialog" aria-labelledby="circularDialogTitle"><div class="circulars-dialog-head"><span class="section-tag">پیش‌نمایش بخشنامه</span><button type="button" class="circulars-close" aria-label="بستن پیش‌نمایش">×</button></div><span id="circularDialogCategory" class="circulars-tag"></span><h2 id="circularDialogTitle"></h2><time id="circularDialogDate"></time><p id="circularDialogBody"></p><div class="circulars-sample-note">این بخشنامه نمونه است و سند رسمی برای دریافت ندارد.</div></dialog>
+<dialog class="circulars-dialog" id="circularDialog" aria-labelledby="circularDialogTitle"><div class="circulars-dialog-head"><span class="section-tag">جزئیات ابلاغیه قیمت</span><button type="button" class="circulars-close" aria-label="بستن پیش‌نمایش">×</button></div><span id="circularDialogCategory" class="circulars-tag"></span><h2 id="circularDialogTitle"></h2><time id="circularDialogDate"></time><p id="circularDialogBody"></p><a id="priceSource" class="btn btn-green-outline" href="https://iran-grains.com/elam-saghf-arzi-anvae-ghallat/" target="_blank" rel="noopener">مشاهده سند در سایت انجمن <span aria-hidden="true">←</span></a></dialog>
     <!-- ===== Footer ===== -->
     <footer class="geometry-section footer">
         <span class="section-geometry" aria-hidden="true"></span>
@@ -162,6 +162,6 @@
 
     <script src="assets/js/site-motion.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/circulars.js"></script>
+    <script src="assets/js/approved-prices.js"></script>
 </body>
 </html>
