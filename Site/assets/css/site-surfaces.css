@@ -56,3 +56,22 @@ body.theme-board { --surface-pattern: url('../img/geometry/lines.svg'); }
  .section-geometry { background-size: 760px 540px; opacity: .45; }
  body { background-size: 760px 540px; }
 }
+/* Iran Grain combines the curved photograph with the original moving logo. */
+.site-hero-logo { position: absolute; z-index: 2; left: 3%; top: 50%; transform: translateY(-50%); width: 34%; display: flex; justify-content: center; }
+.site-hero--iran-green .ig-glass-box { width: min(100%, 370px); height: 320px; background: #10282073; border-color: #efbd5966; }
+.site-hero--iran-green .ig-glass-logo { width: 72%; }
+.site-hero--iran-green .ig-glass-sub { text-align: center; padding-inline: 14px; }
+.cta-box { isolation: isolate; }
+.cta-box > .section-geometry { z-index: 0; opacity: .9; }
+.cta-box > .btn { position: relative; z-index: 1; }
+.circulars-membership .cta-box { background: var(--sage); }
+.circulars-membership .cta-content h2 { color: var(--ink); }
+.circulars-membership .cta-content p { color: var(--ink-soft); }
+.circulars-membership .section-tag { margin-bottom: 12px; }
+@media (max-width: 640px) {
+ .site-hero-logo { position: relative; inset: auto; transform: none; width: calc(100% - 64px); margin: 32px auto 0; }
+ .site-hero--iran-green .ig-glass-box { height: 220px; gap: 14px; }
+ .site-hero--iran-green .ig-glass-logo { width: 58%; }
+ .site-hero--iran-green .ig-glass-label { font-size: 1.15rem; }
+ .site-hero--iran-green .ig-glass-sub { font-size: .75rem; }
+}

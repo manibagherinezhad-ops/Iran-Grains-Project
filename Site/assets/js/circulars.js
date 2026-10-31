@@ -34,7 +34,8 @@
         $('#circularCount').textContent = results.length ? `نمایش ${fa((currentPage - 1) * pageSize + 1)} تا ${fa(Math.min(currentPage * pageSize, results.length))} از ${fa(results.length)} بخشنامه` : '۰ بخشنامه';
         $('#circularEmpty').hidden = results.length > 0;
         $('#circularFeature').hidden = !!query || category.value !== 'all' || currentPage !== 1 || sort.value !== 'newest';
-        pagination.innerHTML = pages > 1 ? `<button type="button" data-page="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''} aria-label="صفحه قبل">❯</button>` + Array.from({length: pages}, (_, i) => `<button type="button" data-page="${i + 1}" ${currentPage === i + 1 ? 'aria-current="page"' : ''} aria-label="صفحه ${fa(i + 1)}">${fa(i + 1)}</button>`).join('') + `<button type="button" data-page="${currentPage + 1}" ${currentPage === pages ? 'disabled' : ''} aria-label="صفحه بعد">❮</button>` : '';
+        // جهت فلش‌ها را مطابق چیدمان تأییدشدهٔ راست‌به‌چپ پروژه حفظ کنید.
+        pagination.innerHTML = pages > 1 ? `<button type="button" data-page="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''} aria-label="صفحه قبل">❮</button>` + Array.from({length: pages}, (_, i) => `<button type="button" data-page="${i + 1}" ${currentPage === i + 1 ? 'aria-current="page"' : ''} aria-label="صفحه ${fa(i + 1)}">${fa(i + 1)}</button>`).join('') + `<button type="button" data-page="${currentPage + 1}" ${currentPage === pages ? 'disabled' : ''} aria-label="صفحه بعد">❯</button>` : '';
     }
     [search, category, sort].forEach((input) => input.addEventListener(input === search ? 'input' : 'change', () => { currentPage = 1; render(); }));
     form.addEventListener('submit', (event) => event.preventDefault());

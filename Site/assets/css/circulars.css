@@ -124,3 +124,6 @@
 @media (prefers-reduced-motion: reduce) { .circulars-card { transition: none; } .circulars-card:hover { transform: none; } }
 .circulars-page [hidden] { display: none !important; }
 .circulars-heading { scroll-margin-top: 110px; }
+.circulars-hero-facts > .circulars-years { flex-direction: column; align-items: flex-start; justify-content: center; gap: 3px; }
+.circulars-years b { line-height: 1.4; white-space: nowrap; }
+.circulars-years bdi { font-size: 1.3rem; }
