@@ -23,8 +23,81 @@
     const arrow = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 12H4m6-6-6 6 6 6"/></svg>';
     let currentPage = 1;
     const pageSize = 6;
+    // Keep native selects as form controls; enhance them with custom RTL menus.
+    const dropdowns = [category, sort].map((select) => {
+        const label = select.closest('label');
+        const wrapper = document.createElement('div');
+        wrapper.className = 'circulars-select';
+        label.replaceWith(wrapper);
+        wrapper.append(label);
+        const trigger = document.createElement('button');
+        trigger.type = 'button';
+        trigger.className = 'circulars-select-trigger';
+        trigger.setAttribute('aria-haspopup', 'listbox');
+        trigger.setAttribute('aria-expanded', 'false');
+        const list = document.createElement('div');
+        list.id = select.id + 'List';
+        list.className = 'circulars-select-menu';
+        list.setAttribute('role', 'listbox');
+        list.setAttribute('aria-label', select === category ? 'موضوع بخشنامه' : 'ترتیب نمایش');
+        list.hidden = true;
+        trigger.setAttribute('aria-controls', list.id);
+        const text = document.createElement('span');
+        trigger.append(text);
+        trigger.insertAdjacentHTML('beforeend', '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>');
+        const options = Array.from(select.options, (option, index) => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'circulars-select-option';
+            button.setAttribute('role', 'option');
+            button.tabIndex = -1;
+            button.textContent = option.text;
+            button.addEventListener('click', () => {
+                select.value = option.value;
+                select.dispatchEvent(new Event('change', {bubbles: true}));
+                close();
+                trigger.focus({preventScroll: true});
+            });
+            button.addEventListener('keydown', (event) => {
+                if (['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
+                    event.preventDefault();
+                    const next = event.key === 'Home' ? 0 : event.key === 'End' ? select.options.length - 1 : (index + (event.key === 'ArrowDown' ? 1 : -1) + select.options.length) % select.options.length;
+                    options[next].focus();
+                }
+            });
+            list.append(button);
+            return button;
+        });
+        function close() { list.hidden = true; trigger.setAttribute('aria-expanded', 'false'); }
+        function open(last = false) {
+            dropdowns.forEach((item) => item.close());
+            list.hidden = false;
+            trigger.setAttribute('aria-expanded', 'true');
+            options[last ? options.length - 1 : select.selectedIndex].focus({preventScroll: true});
+        }
+        trigger.addEventListener('click', () => list.hidden ? open() : close());
+        trigger.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {event.preventDefault(); open(event.key === 'ArrowUp');}
+        });
+        wrapper.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {event.preventDefault(); close(); trigger.focus({preventScroll: true});}
+        });
+        wrapper.addEventListener('focusout', () => {
+            requestAnimationFrame(() => {if (!wrapper.contains(document.activeElement)) close();});
+        });
+        wrapper.append(trigger, list);
+        label.hidden = true;
+        return {close, wrapper, sync() {
+            text.textContent = select.selectedOptions[0].text;
+            trigger.setAttribute('aria-label', (select === category ? 'موضوع: ' : 'ترتیب نمایش: ') + text.textContent);
+            options.forEach((option, index) => option.setAttribute('aria-selected', String(select.selectedIndex === index)));
+        }};
+    });
+    document.addEventListener('click', (event) => dropdowns.forEach((item) => {if (!item.wrapper.contains(event.target)) item.close();}));
+
     $('#archiveTotal').textContent = fa(documents.length);
     function render() {
+        dropdowns.forEach((item) => item.sync());
         const query = normalize(search.value);
         const results = documents.filter((item) => (category.value === 'all' || item.category === category.value) && normalize(item.title + ' ' + item.description).includes(query))
             .sort((a, b) => sort.value === 'oldest' ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date));
@@ -39,7 +112,7 @@
     }
     [search, category, sort].forEach((input) => input.addEventListener(input === search ? 'input' : 'change', () => { currentPage = 1; render(); }));
     form.addEventListener('submit', (event) => event.preventDefault());
-    form.addEventListener('reset', () => { requestAnimationFrame(() => {currentPage = 1; render();}); });
+    form.addEventListener('reset', () => { dropdowns.forEach((item) => item.close()); requestAnimationFrame(() => {currentPage = 1; render();}); });
     pagination.addEventListener('click', (event) => {
         const button = event.target.closest('[data-page]');
         if (!button || button.disabled) return;
@@ -48,9 +121,19 @@
         $('#archiveTitle').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start'});
         pagination.querySelector('[aria-current="page"]')?.focus({preventScroll: true});
     });
+    let viewAnimations = [];
     document.querySelectorAll('[data-view]').forEach((button) => button.addEventListener('click', () => {
         grid.classList.toggle('is-list', button.dataset.view === 'list');
         document.querySelectorAll('[data-view]').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+        viewAnimations.forEach((animation) => animation.cancel());
+        viewAnimations = [];
+        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            viewAnimations = Array.from(grid.children, (card, index) => card.animate([
+                {opacity: 0, transform: 'translateY(16px) scale(.985)'},
+                {opacity: 1, transform: 'translateY(0) scale(1)'}
+            ], {duration: 380, delay: index * 35, easing: 'cubic-bezier(.2,.7,.3,1)', fill: 'backwards'}));
+        }
+
     }));
     document.addEventListener('click', (event) => {
         const button = event.target.closest('[data-open]');

@@ -64,9 +64,6 @@ body.theme-board { --surface-pattern: url('../img/geometry/lines.svg'); }
 .cta-box { isolation: isolate; }
 .cta-box > .section-geometry { z-index: 0; opacity: .9; }
 .cta-box > .btn { position: relative; z-index: 1; }
-.circulars-membership .cta-box { background: var(--sage); }
-.circulars-membership .cta-content h2 { color: var(--ink); }
-.circulars-membership .cta-content p { color: var(--ink-soft); }
 .circulars-membership .section-tag { margin-bottom: 12px; }
 @media (max-width: 640px) {
  .site-hero-logo { position: relative; inset: auto; transform: none; width: calc(100% - 64px); margin: 32px auto 0; }
