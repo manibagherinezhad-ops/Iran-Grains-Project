@@ -110,30 +110,22 @@
         // جهت فلش‌ها را مطابق چیدمان تأییدشدهٔ راست‌به‌چپ پروژه حفظ کنید.
         pagination.innerHTML = pages > 1 ? `<button type="button" data-page="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''} aria-label="صفحه قبل">❮</button>` + Array.from({length: pages}, (_, i) => `<button type="button" data-page="${i + 1}" ${currentPage === i + 1 ? 'aria-current="page"' : ''} aria-label="صفحه ${fa(i + 1)}">${fa(i + 1)}</button>`).join('') + `<button type="button" data-page="${currentPage + 1}" ${currentPage === pages ? 'disabled' : ''} aria-label="صفحه بعد">❯</button>` : '';
     }
-    [search, category, sort].forEach((input) => input.addEventListener(input === search ? 'input' : 'change', () => { currentPage = 1; render(); }));
+    [search, category, sort].forEach((input) => input.addEventListener(input === search ? 'input' : 'change', () => { currentPage = 1; render(); window.SiteMotion?.reveal(grid.children); }));
     form.addEventListener('submit', (event) => event.preventDefault());
-    form.addEventListener('reset', () => { dropdowns.forEach((item) => item.close()); requestAnimationFrame(() => {currentPage = 1; render();}); });
+    form.addEventListener('reset', () => { dropdowns.forEach((item) => item.close()); requestAnimationFrame(() => {currentPage = 1; render(); window.SiteMotion?.reveal(grid.children);}); });
     pagination.addEventListener('click', (event) => {
         const button = event.target.closest('[data-page]');
         if (!button || button.disabled) return;
         currentPage = Number(button.dataset.page);
         render();
+        window.SiteMotion?.reveal(grid.children);
         $('#archiveTitle').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start'});
         pagination.querySelector('[aria-current="page"]')?.focus({preventScroll: true});
     });
-    let viewAnimations = [];
     document.querySelectorAll('[data-view]').forEach((button) => button.addEventListener('click', () => {
         grid.classList.toggle('is-list', button.dataset.view === 'list');
         document.querySelectorAll('[data-view]').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
-        viewAnimations.forEach((animation) => animation.cancel());
-        viewAnimations = [];
-        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            viewAnimations = Array.from(grid.children, (card, index) => card.animate([
-                {opacity: 0, transform: 'translateY(16px) scale(.985)'},
-                {opacity: 1, transform: 'translateY(0) scale(1)'}
-            ], {duration: 380, delay: index * 35, easing: 'cubic-bezier(.2,.7,.3,1)', fill: 'backwards'}));
-        }
-
+        window.SiteMotion?.reveal(grid.children);
     }));
     document.addEventListener('click', (event) => {
         const button = event.target.closest('[data-open]');
@@ -146,6 +138,7 @@
         $('#circularDialogDate').dateTime = item.date;
         $('#circularDialogBody').textContent = item.description;
         dialog.showModal();
+        window.SiteMotion?.reveal([dialog]);
     });
     $('.circulars-close').addEventListener('click', () => dialog.close());
     dialog.addEventListener('click', (event) => {

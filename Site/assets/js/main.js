@@ -410,6 +410,7 @@
         function changeMeetingPage(page) {
             currentPage = page;
             renderMeetings();
+            window.SiteMotion?.reveal(mCards.filter((card) => !card.classList.contains('hidden')));
             $('#meetGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
@@ -420,6 +421,7 @@
                 currentFilter = btn.dataset.filter;
                 currentPage = 1;
                 renderMeetings();
+                window.SiteMotion?.reveal(mCards.filter((card) => !card.classList.contains('hidden')));
             });
         });
         pagination.querySelector('[data-page-direction="prev"]').addEventListener('click', () => changeMeetingPage(currentPage - 1));
@@ -443,13 +445,15 @@
         if (bDots) {
             cards.forEach((_, i) => {
                 const dot = document.createElement('button');
-                dot.className = 'bdot';
+                dot.type = 'button';
+                dot.className = 'bpage';
+                dot.textContent = toFa(i + 1);
                 dot.setAttribute('aria-label', 'عضو ' + (i + 1));
                 dot.addEventListener('click', () => { bActive = i; layout(); syncDots(); restart(); });
                 bDots.appendChild(dot);
             });
         }
-        const dots = $$('.bdot');
+        const dots = $$('.bpage', bDots);
 
         /* چیدمان: عضو فعال وسط (بزرگ)، همسایه‌ها کوچیک‌تر، بقیه مخفی */
         function layout(dragX) {
@@ -467,7 +471,10 @@
                 card.classList.toggle('is-active', d === 0);
             });
         }
-        function syncDots() { dots.forEach((dt, i) => dt.classList.toggle('on', i === bActive)); }
+        function syncDots() { dots.forEach((dt, i) => {
+            if (i === bActive) dt.setAttribute('aria-current', 'page');
+            else dt.removeAttribute('aria-current');
+        }); }
         function next() { bActive = (bActive + 1) % n; layout(); syncDots(); }
         function prev() { bActive = (bActive - 1 + n) % n; layout(); syncDots(); }
 
