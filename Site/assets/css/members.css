@@ -252,3 +252,7 @@ html:has(.member-dialog[open]) { overflow: hidden; }
  .members-grid .member-card:not(.member-feature) .company-brand { width: 92px; height: 88px; }
 }
 @media (prefers-reduced-motion: reduce) { .members-collage, .members-intro { translate: none; } .member-logo-button:hover { scale: none; } }
+.company-about { background-image: url('../img/geometry/diamonds.svg'); background-position: right top; background-size: 740px 460px; }
+.company-contact { background-image: url('../img/geometry/orbits.svg'); background-position: left bottom; background-size: 700px 470px; }
+.company-page #companyTags > span { cursor: default; transition: background-color .25s ease, color .25s ease; }
+.company-page #companyTags > span:hover { background: var(--gold); color: #000; }
