@@ -173,4 +173,5 @@ html:has(.meeting-dialog[open]) { overflow: hidden; }
 .theme-home .news-link > span { font-size: 1.5em; line-height: 1; }
 .theme-home .contact-list li { align-items: stretch; }
 .theme-home .contact-list li > div { flex: 1; min-width: 0; }
+.theme-home .contact-list p[dir="ltr"] { text-align: right; }
 .theme-home .contact-icon { width: 68px; height: auto; min-height: 64px; font-size: 40px; line-height: 1; }
