@@ -35,7 +35,7 @@ function ig_render(string $route, ?WP_Post $post): void {
     if (in_array($route, ['index', 'news'], true)) {
         $news = ig_feed('ig_news'); $config['news'] = $news;
         $config['categories']['news'] = ig_topic_labels('ig_news');
-        $config['heroNews'] = array_map(fn($n) => ['img' => $n['image'], 'kicker' => $config['categories']['news'][$n['category']] ?? '', 'title' => $n['title'], 'date' => ig_date($n['date'])], array_slice($news, 0, 5));
+        $config['heroNews'] = ig_hero_news($news, $config['categories']['news']);
         if ($route === 'index') ig_home_news($doc, $news, $config['categories']['news']);
         else ig_news_archive($doc, $news, $config['categories']['news']);
     }

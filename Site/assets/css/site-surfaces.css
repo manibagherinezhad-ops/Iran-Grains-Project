@@ -175,3 +175,4 @@ html:has(.meeting-dialog[open]) { overflow: hidden; }
 .theme-home .contact-list li > div { flex: 1; min-width: 0; }
 .theme-home .contact-list p[dir="ltr"] { text-align: right; }
 .theme-home .contact-icon { width: 68px; height: auto; min-height: 64px; font-size: 40px; line-height: 1; }
+.theme-home .slide-title-kicker { display: inline-flex; align-items: center; width: fit-content; padding: 8px 20px; border-radius: 999px; background: #fff; color: var(--gold-dark); }

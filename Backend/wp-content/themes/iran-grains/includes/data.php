@@ -35,6 +35,25 @@ function ig_record(WP_Post $post): array {
 }
 function ig_feed(string $type): array { return array_map('ig_record', ig_public_posts($type)); }
 
+function ig_hero_news(array $news, array $labels): array {
+    $path = get_template_directory() . '/prototype/assets/data/hero-news.json';
+    $source = is_readable($path) ? json_decode(file_get_contents($path), true) : [];
+    $items = []; $seen = [];
+    foreach ($news as $n) {
+        $items[] = ['img' => $n['image'], 'kicker' => $labels[$n['category']] ?? '',
+            'title' => $n['title'], 'date' => ig_date($n['date']),
+            'publishedAt' => $n['publishedAt'] ?: $n['date'], 'source' => $n['source'] ?: $n['url']];
+        if ($n['source']) $seen[rtrim($n['source'], '/')] = true;
+    }
+    foreach (is_array($source) ? $source : [] as $n) {
+        if (!is_array($n) || empty($n['source']) || isset($seen[rtrim($n['source'], '/')])) continue;
+        $items[] = $n; $seen[rtrim($n['source'], '/')] = true;
+    }
+    // PHP 8 keeps the source archive's ordering when publication dates tie.
+    usort($items, fn($a, $b) => strcmp($b['publishedAt'], $a['publishedAt']));
+    return array_slice($items, 0, 10);
+}
+
 function ig_resolve_view(): array {
     $route = (string) get_query_var('ig_view'); $post = null;
     if (is_singular() && in_array(get_post_type(), ['ig_news', 'ig_company', 'ig_circular', 'ig_price', 'ig_event', 'ig_board'], true)) {

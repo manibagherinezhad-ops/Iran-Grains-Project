@@ -260,15 +260,90 @@
     /* ============================================
        ۹) اسلایدر خبری هیرو — داده‌محور
        برای اتصال آینده به پیج اخبار، فقط همین آرایه رو
-       از منبع اخبار (۵ خبر آخر) پر کنید.
+       از منبع اخبار (۱۰ خبر آخر) پر کنید.
        ============================================ */
-    const heroNewsData = window.IranGrains?.heroNews || [
-        { img: 'assets/img/photo-1464226184884-fa280b87c399.avif', kicker: 'بازار جهانی', title: 'افزایش تولید جهانی گندم در سال جاری بر اساس گزارش فائو', date: '۱۲ مرداد ۱۴۰۴' },
-        { img: 'assets/img/photo-1574323347407-f5e1ad6d020b.avif', kicker: 'گزارش روز', title: 'چشم‌انداز مثبت بازار جهانی غلات در نیمه‌ی دوم سال', date: '۱۰ مرداد ۱۴۰۴' },
-        { img: 'assets/img/photo-1625246333195-78d9c38ad449.avif', kicker: 'تولید داخلی', title: 'رکورد جدید برداشت گندم در استان‌های اصلی کشور', date: '۸ مرداد ۱۴۰۴' },
-        { img: 'assets/img/photo-1500382017468-9049fed747ef.avif', kicker: 'قیمت‌ها', title: 'تثبیت قیمت نهاده‌های دامی در بازار داخلی', date: '۵ مرداد ۱۴۰۴' },
-        { img: 'assets/img/photo-1437252611977-07f74518abd7.avif', kicker: 'زراعت مدرن', title: 'توسعه‌ی کشاورزی مکانیزه در اراضی گندم‌کاری کشور', date: '۲ مرداد ۱۴۰۴' },
-    ];
+    const heroNewsData = (window.IranGrains?.heroNews || [
+    {
+        "title": "پاپی‌زاده: تصمیم برداشت از صندوق توسعه ملی برای پرداخت طلب واردکنندگان نهایی نشده است",
+        "source": "https://iran-grains.com/2-3-85/",
+        "img": "https://iran-grains.com/wp-content/uploads/2026/10/%D8%B5%D9%86%D8%AF%D9%88%D9%82%D8%AA%D9%88%D8%B3%D8%B9%D9%87copy-e1793023239505.jpg",
+        "date": "۴ آبان ۱۴۰۵",
+        "kicker": "اخبار داخلی",
+        "publishedAt": "2026-10-26"
+    },
+    {
+        "title": "لغو افزایش ۲برابری نرخ ارز گمرکی با دستور رئیس‌جمهور",
+        "source": "https://iran-grains.com/523987-85/",
+        "img": "https://iran-grains.com/wp-content/uploads/2026/10/2174105_412.jpg",
+        "date": "۴ آبان ۱۴۰۵",
+        "kicker": "اخبار داخلی",
+        "publishedAt": "2026-10-26"
+    },
+    {
+        "title": "هشدار عضو هیات‌مدیره انجمن غلات: فشار بانک‌ها، توان واردات را از تجار می‌گیرد",
+        "source": "https://iran-grains.com/20301-2/",
+        "img": "https://iran-grains.com/wp-content/uploads/2026/10/IMG_4224.jpg",
+        "date": "۴ آبان ۱۴۰۵",
+        "kicker": "اخبار داخلی",
+        "publishedAt": "2026-10-26"
+    },
+    {
+        "title": "اعلام نرخ رسمی ارزهای تجاری؛ حواله دلار در مرز ۱۸۵ هزار تومان ایستاد / یورو ۲۰۷ هزار تومانی در مرکز مبادله",
+        "source": "https://iran-grains.com/425873/",
+        "img": "https://iran-grains.com/wp-content/uploads/2026/10/MTY5YjFmRciF.jpg",
+        "date": "۴ آبان ۱۴۰۵",
+        "kicker": "اخبار داخلی",
+        "publishedAt": "2026-10-26"
+    },
+    {
+        "title": "انقلاب در دسته‌بندی ارزی واردات؛ ۵ اولویت جدید صمت برای تخصیص ارز و ثبت‌سفارش کلید خورد",
+        "source": "https://iran-grains.com/713208/",
+        "img": "https://iran-grains.com/wp-content/uploads/2026/10/2147483648_-210004.jpg",
+        "date": "۴ آبان ۱۴۰۵",
+        "kicker": "اخبار داخلی",
+        "publishedAt": "2026-10-26"
+    },
+    {
+        "title": "برگزاری دوره آموزشی «قانون ساماندهی مبادلات مرزی و آیین‌نامه اجرایی آن»/ برخط+لینک ثبت نام",
+        "source": "https://iran-grains.com/52368-6/",
+        "img": "https://iran-grains.com/wp-content/uploads/2026/10/971828486686908161_702428037526522.jpg",
+        "date": "۴ آبان ۱۴۰۵",
+        "kicker": "اخبار داخلی",
+        "publishedAt": "2026-10-26"
+    },
+    {
+        "title": "هزینه‌های لجستیک، غلات نیوزلند را زمین‌گیر کرد",
+        "source": "https://iran-grains.com/529638-2/",
+        "img": "https://iran-grains.com/wp-content/uploads/2026/10/y5-e1793007620114.jpg",
+        "date": "۴ آبان ۱۴۰۵",
+        "kicker": "اخبار جهان",
+        "publishedAt": "2026-10-26"
+    },
+    {
+        "title": "در پاسخ رسمی بانک مرکزی به نامه تشکل های واردکننده کالاهای اساسی: بانک مرکزی توپ مطالبات ارزی واردکنندگان کالاهای اساسی را به زمین دولت انداخت",
+        "source": "https://iran-grains.com/523689-2/",
+        "img": "https://iran-grains.com/wp-content/uploads/2026/10/It73M1SGgwRI-1.jpg",
+        "date": "۴ آبان ۱۴۰۵",
+        "kicker": "اخبار داخلی",
+        "publishedAt": "2026-10-26"
+    },
+    {
+        "title": "هشدار تشکل‌های واردکننده به همتی؛ بلاتکلیفی مطالبات ارزی امنیت غذایی را تهدید می‌کند+نامه",
+        "source": "https://iran-grains.com/12523/",
+        "img": "https://iran-grains.com/wp-content/uploads/2026/10/40542.jpg",
+        "date": "۳ آبان ۱۴۰۵",
+        "kicker": "اخبار داخلی",
+        "publishedAt": "2026-10-25"
+    },
+    {
+        "title": "افزایش صادرات گندم روسیه از بنادر بالتیک",
+        "source": "https://iran-grains.com/12536-7/",
+        "img": "https://iran-grains.com/wp-content/uploads/2026/10/6a9806d1a8d1d.webp",
+        "date": "۳ آبان ۱۴۰۵",
+        "kicker": "اخبار جهان",
+        "publishedAt": "2026-10-25"
+    }
+]).slice(0, 10);
 
     const heroSlider = $('#heroSlider');
     if (heroSlider && heroNewsData.length) {
