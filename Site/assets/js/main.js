@@ -6,6 +6,7 @@
 
     const $ = (sel, ctx = document) => ctx.querySelector(sel);
     const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+    const asset = (path) => (window.IranGrains?.assetBase || '') + path;
 
     // ---------- تبدیل عدد لاتین به فارسی ----------
     const FA_DIGITS = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
@@ -184,6 +185,7 @@
     const formStatus = $('#formStatus');
     if (form) {
         form.addEventListener('submit', (e) => {
+            if (window.IranGrains?.contact) return;
             e.preventDefault();
 
             // اعتبارسنجی ساده
@@ -260,7 +262,7 @@
        برای اتصال آینده به پیج اخبار، فقط همین آرایه رو
        از منبع اخبار (۵ خبر آخر) پر کنید.
        ============================================ */
-    const heroNewsData = [
+    const heroNewsData = window.IranGrains?.heroNews || [
         { img: 'assets/img/photo-1464226184884-fa280b87c399.avif', kicker: 'بازار جهانی', title: 'افزایش تولید جهانی گندم در سال جاری بر اساس گزارش فائو', date: '۱۲ مرداد ۱۴۰۴' },
         { img: 'assets/img/photo-1574323347407-f5e1ad6d020b.avif', kicker: 'گزارش روز', title: 'چشم‌انداز مثبت بازار جهانی غلات در نیمه‌ی دوم سال', date: '۱۰ مرداد ۱۴۰۴' },
         { img: 'assets/img/photo-1625246333195-78d9c38ad449.avif', kicker: 'تولید داخلی', title: 'رکورد جدید برداشت گندم در استان‌های اصلی کشور', date: '۸ مرداد ۱۴۰۴' },
@@ -277,7 +279,7 @@
 <div class="intro-gridlines" aria-hidden="true"></div>
 <div class="slide-intro"><div class="container intro-layout">
     <div class="intro-copy">
-        <img class="intro-brand" src="assets/img/logo.png" width="62" height="78" alt="" aria-hidden="true">
+        <img class="intro-brand" src="${asset('assets/img/logo.png')}" width="62" height="78" alt="" aria-hidden="true">
         <span class="hero-badge">🌱 مرجع تخصصی صنعت غلات ایران</span>
         <h1 class="hero-title"><span class="intro-title-line">آینده‌ی <span class="text-gold">غلات</span> را</span><br><span class="intro-title-line">با هم می‌سازیم</span></h1>
         <p class="hero-subtitle">انجمن غلات ایران با بیش از دو دهه تجربه، پل ارتباطی میان تولیدکنندگان، واردکنندگان و نهادهای دولتی برای توسعه‌ی پایدار صنعت غلات و تأمین امنیت غذایی کشور است.</p>
@@ -288,12 +290,22 @@
     </div>
     <div class="intro-art" aria-hidden="true">
         <div class="intro-orbit orbit-outer"></div><div class="intro-orbit orbit-inner"></div>
-        <div class="intro-photo-frame"><div class="intro-photo"><img src="assets/img/photo-1437252611977-07f74518abd7.avif" alt="" fetchpriority="high"></div></div>
+        <div class="intro-photo-frame"><div class="intro-photo"><img src="${asset('assets/img/photo-1437252611977-07f74518abd7.avif')}" alt="" fetchpriority="high"></div></div>
         <svg class="intro-wheat" viewBox="0 0 180 370" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M82 353C99 275 99 169 87 44" stroke="currentColor" stroke-width="2"/><g fill="currentColor"><path d="M88 77C61 63 62 32 80 9c17 23 22 48 8 68ZM90 121C61 112 43 88 47 62c32 6 51 28 43 59ZM93 162C64 154 43 133 44 106c31 5 55 29 49 56ZM95 205C63 199 42 177 42 150c35 7 58 30 53 55ZM95 248C64 244 40 225 39 197c34 3 59 25 56 51ZM95 291C62 289 36 268 34 242c36 3 62 24 61 49ZM91 121c28-12 42-38 35-64-31 10-47 34-35 64ZM94 162c29-10 45-35 39-62-32 8-51 32-39 62ZM96 205c31-9 48-33 44-61-34 7-55 31-44 61ZM97 248c33-6 52-29 50-57-34 4-57 27-50 57ZM96 291c34-3 56-26 57-54-35 2-61 22-57 54Z"/></g></svg>
         <div class="intro-coordinate coordinate-top"></div><div class="intro-coordinate coordinate-bottom"></div>
         <div class="intro-grain grain-one"></div><div class="intro-grain grain-two"></div><div class="intro-grain grain-three"></div>
     </div>
 </div></div>`;
+        const intro = window.IranGrains?.intro;
+        if (intro) {
+            const first = introSlide.querySelector('.intro-title-line');
+            if (intro.home_intro_prefix) first.firstChild.textContent = intro.home_intro_prefix + ' ';
+            if (intro.home_intro_highlight) first.querySelector('.text-gold').textContent = intro.home_intro_highlight;
+            if (intro.home_intro_suffix) first.lastChild.textContent = ' ' + intro.home_intro_suffix;
+            if (intro.home_intro_line2) introSlide.querySelectorAll('.intro-title-line')[1].textContent = intro.home_intro_line2;
+            if (intro.home_intro_subtitle) introSlide.querySelector('.hero-subtitle').textContent = intro.home_intro_subtitle;
+            if (intro.home_intro_badge) introSlide.querySelector('.hero-badge').textContent = intro.home_intro_badge;
+        }
         heroSlider.appendChild(introSlide);
         // Subtle pointer depth applies only while the one-time intro is active.
         if (matchMedia('(hover: hover) and (pointer: fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -321,15 +333,19 @@
             const slide = document.createElement('div');
             slide.className = 'hero-slide';
             slide.innerHTML =
-                '<div class="slide-bg" style="background-image: url(\'' + n.img + '\')"></div>' +
+                '<div class="slide-bg"></div>' +
                 '<div class="slide-shade"></div>' +
                 '<div class="slide-info">' +
                     '<div class="slide-title-wrap">' +
-                        '<span class="slide-title-kicker">' + n.kicker + '</span>' +
-                        '<h2 class="slide-title">' + n.title + '</h2>' +
+                        '<span class="slide-title-kicker"></span>' +
+                        '<h2 class="slide-title"></h2>' +
                     '</div>' +
-                    '<span class="slide-date">' + n.date + '</span>' +
+                    '<span class="slide-date"></span>' +
                 '</div>';
+            slide.querySelector('.slide-bg').style.backgroundImage = `url(${JSON.stringify(n.img)})`;
+            slide.querySelector('.slide-title-kicker').textContent = n.kicker;
+            slide.querySelector('.slide-title').textContent = n.title;
+            slide.querySelector('.slide-date').textContent = n.date;
             heroSlider.appendChild(slide);
         });
 

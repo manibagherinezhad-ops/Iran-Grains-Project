@@ -1,8 +1,8 @@
 /* Pricing notices from the association archive; dates are publication dates. */
 (() => {
     'use strict';
-    const categories = {ceilings: 'سقف ارزی', oils: 'روغن و دانه‌های روغنی', customs: 'نرخ مبنای گمرک', consumer: 'قیمت مصرف‌کننده'};
-    const documents = [
+    const categories = window.IranGrains?.categories?.documents || {ceilings: 'سقف ارزی', oils: 'روغن و دانه‌های روغنی', customs: 'نرخ مبنای گمرک', consumer: 'قیمت مصرف‌کننده'};
+    const documents = window.IranGrains?.documents || [
     {
         "id": 1,
         "date": "2026-10-05",
@@ -84,6 +84,7 @@
         "source": "https://iran-grains.com/gheymat-roghan-nabati-1405-02-15/"
     }
 ];
+    const escape = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     const $ = (selector) => document.querySelector(selector);
     const form = $('#circularFilters'), search = $('#circularSearch'), category = $('#circularCategory'), sort = $('#circularSort');
     const grid = $('#circularGrid'), pagination = $('#circularPagination'), dialog = $('#circularDialog');
@@ -174,10 +175,10 @@
             .sort((a, b) => sort.value === 'oldest' ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date));
         const pages = Math.ceil(results.length / pageSize);
         currentPage = Math.min(currentPage, pages || 1);
-        grid.innerHTML = results.slice((currentPage - 1) * pageSize, currentPage * pageSize).map((item) => `<article class="circulars-card"><div class="circulars-card-top"><span class="circulars-tag">${categories[item.category]}</span><time datetime="${item.date}">${date(item.date)}</time></div><div class="circulars-card-title"><span class="circulars-doc-icon">${docIcon}</span><h3>${item.title}</h3></div><p>${item.description}</p><div class="circulars-card-bottom"><button type="button" data-open="${item.id}" aria-label="مشاهده ${item.title}">مشاهده ابلاغیه ${arrow}</button></div></article>`).join('');
+        grid.innerHTML = results.slice((currentPage - 1) * pageSize, currentPage * pageSize).map((item) => `<article class="circulars-card"><div class="circulars-card-top"><span class="circulars-tag">${escape(categories[item.category] || "")}</span><time datetime="${item.date}">${date(item.date)}</time></div><div class="circulars-card-title"><span class="circulars-doc-icon">${docIcon}</span><h3>${escape(item.title)}</h3></div><p>${escape(item.description)}</p><div class="circulars-card-bottom"><button type="button" data-open="${item.id}" aria-label="مشاهده ${escape(item.title)}">مشاهده ابلاغیه ${arrow}</button></div></article>`).join('');
         $('#circularCount').textContent = results.length ? `نمایش ${fa((currentPage - 1) * pageSize + 1)} تا ${fa(Math.min(currentPage * pageSize, results.length))} از ${fa(results.length)} ابلاغیه` : '۰ ابلاغیه';
         $('#circularEmpty').hidden = results.length > 0;
-        $('#circularFeature').hidden = !!query || category.value !== 'all' || currentPage !== 1 || sort.value !== 'newest';
+        $('#circularFeature').hidden = !documents.length || !!query || category.value !== 'all' || currentPage !== 1 || sort.value !== 'newest';
         // جهت فلش‌ها را مطابق چیدمان تأییدشدهٔ راست‌به‌چپ پروژه حفظ کنید.
         pagination.innerHTML = pages > 1 ? `<button type="button" data-page="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''} aria-label="صفحه قبل">❮</button>` + Array.from({length: pages}, (_, i) => `<button type="button" data-page="${i + 1}" ${currentPage === i + 1 ? 'aria-current="page"' : ''} aria-label="صفحه ${fa(i + 1)}">${fa(i + 1)}</button>`).join('') + `<button type="button" data-page="${currentPage + 1}" ${currentPage === pages ? 'disabled' : ''} aria-label="صفحه بعد">❯</button>` : '';
     }
@@ -208,7 +209,8 @@
         $('#circularDialogDate').textContent = date(item.date);
         $('#circularDialogDate').dateTime = item.date;
         $('#circularDialogBody').textContent = item.description;
-        $('#priceSource').href = item.source;
+        $('#priceSource').href = item.attachment || item.source || item.url;
+        $('#priceSource').textContent = item.attachment ? 'دریافت فایل PDF' : 'مشاهده سند';
         dialog.showModal();
         window.SiteMotion?.reveal([dialog]);
     });

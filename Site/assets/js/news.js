@@ -1,8 +1,8 @@
 /* Latest and second-latest news are selected from the dated project feed. */
 (() => {
     'use strict';
-    const categories = {association:'اخبار انجمن', domestic:'تولید داخلی', world:'بازار جهانی', market:'قیمت‌ها و بازار'};
-    const documents = [...(window.NewsItems || [])].sort((a,b) => b.date.localeCompare(a.date) || b.id-a.id);
+    const categories = window.IranGrains?.categories?.news || {association:'اخبار انجمن', domestic:'تولید داخلی', world:'بازار جهانی', market:'قیمت‌ها و بازار'};
+    const documents = [...(window.NewsItems || [])].sort((a,b) => (b.publishedAt || b.date).localeCompare(a.publishedAt || a.date) || b.id-a.id);
     const latest = documents[0], second = documents[1];
     const escape = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     const $ = (selector) => document.querySelector(selector);
@@ -115,10 +115,10 @@
         const query = normalize(search.value);
         const archiveItems = !query && category.value === 'all' && sort.value === 'newest' ? documents.slice(2) : documents;
         const results = archiveItems.filter((item) => (category.value === 'all' || item.category === category.value) && normalize(item.title + ' ' + item.description).includes(query))
-            .sort((a, b) => sort.value === 'oldest' ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date));
+            .sort((a, b) => sort.value === 'oldest' ? (a.publishedAt || a.date).localeCompare(b.publishedAt || b.date) : (b.publishedAt || b.date).localeCompare(a.publishedAt || a.date));
         const pages = Math.ceil(results.length / pageSize);
         currentPage = Math.min(currentPage, pages || 1);
-        grid.innerHTML = results.slice((currentPage-1)*pageSize,currentPage*pageSize).map(item => `<article class="circulars-card"><img class="archive-news-image" src="${escape(item.image)}" alt="" loading="lazy"><div class="archive-news-content"><div class="circulars-card-top"><span class="circulars-tag">${categories[item.category]}</span><time datetime="${item.date}">${date(item.date)}</time></div><div class="circulars-card-title"><h3>${escape(item.title)}</h3></div><p>${escape(item.description)}</p></div><div class="circulars-card-bottom"><button type="button" data-open="${item.id}" aria-label="مشاهده ${escape(item.title)}">مشاهده خبر ${arrow}</button></div></article>`).join('');
+        grid.innerHTML = results.slice((currentPage-1)*pageSize,currentPage*pageSize).map(item => `<article class="circulars-card"><img class="archive-news-image" src="${escape(item.image)}" alt="" loading="lazy"><div class="archive-news-content"><div class="circulars-card-top"><span class="circulars-tag">${escape(categories[item.category] || "")}</span><time datetime="${item.date}">${date(item.date)}</time></div><div class="circulars-card-title"><h3>${escape(item.title)}</h3></div><p>${escape(item.description)}</p></div><div class="circulars-card-bottom"><button type="button" data-open="${item.id}" aria-label="مشاهده ${escape(item.title)}">مشاهده خبر ${arrow}</button></div></article>`).join('');
         $('#circularCount').textContent = results.length ? `نمایش ${fa((currentPage - 1) * pageSize + 1)} تا ${fa(Math.min(currentPage * pageSize, results.length))} از ${fa(results.length)} خبر` : '۰ خبر';
         $('#circularEmpty').hidden = results.length > 0;
         $('#circularFeature').hidden = !second || !!query || category.value !== 'all' || currentPage !== 1 || sort.value !== 'newest';
@@ -154,7 +154,7 @@
         $('#circularDialogBody').textContent = item.description;
         $('#newsDialogImage').src = item.image;
         $('#newsDialogImage').alt = item.title;
-        $('#newsArticleLink').href = 'news-article.html?id=' + item.id;
+        $('#newsArticleLink').href = item.url || ('news-article.html?id=' + item.id);
         dialog.showModal();
         window.SiteMotion?.reveal([dialog]);
     });

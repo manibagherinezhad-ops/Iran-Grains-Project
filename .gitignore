@@ -1,0 +1,6 @@
+Backend/.env
+Backend/.runtime/
+Backend/dist/
+Backend/dev/seed.json
+__pycache__/
+*.pyc

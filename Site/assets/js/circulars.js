@@ -1,8 +1,8 @@
 /* داده‌های نمایشی آرشیو؛ قابل جایگزینی با اسناد انجمن. */
 (() => {
     'use strict';
-    const categories = {agriculture: 'غلات و کشاورزی', customs: 'گمرک و تجارت', market: 'تنظیم بازار', systems: 'سامانه‌ها'};
-    const documents = [
+    const categories = window.IranGrains?.categories?.documents || {agriculture: 'غلات و کشاورزی', customs: 'گمرک و تجارت', market: 'تنظیم بازار', systems: 'سامانه‌ها'};
+    const documents = window.IranGrains?.documents || [
         {id: 1, date: '2026-10-25', category: 'agriculture', title: 'دستورالعمل گندم دامی و انسانی', description: 'مروری بر دستورالعمل اجرایی خرید و عرضهٔ گندم و ضوابط مرتبط با زنجیرهٔ تأمین آن.'},
         {id: 2, date: '2026-10-24', category: 'agriculture', title: 'آموزش ثبت نام خریدار گندم', description: 'آشنایی با مراحل ثبت اطلاعات خریداران گندم و مدارک مورد نیاز برای تکمیل درخواست.'},
         {id: 3, date: '2026-10-23', category: 'agriculture', title: 'آموزش فرایند زنجیره گندم', description: 'مروری بر مراحل و فرایندهای زنجیرهٔ تأمین گندم، از تولید و نگهداری تا مصرف.'},
@@ -13,6 +13,7 @@
         {id: 8, date: '2026-10-17', category: 'customs', title: 'راهنمای مدارک ترخیص محموله‌های غلات', description: 'آشنایی با اسناد مورد نیاز و مراحل بررسی مدارک تجاری و گمرکی محموله‌ها.'},
         {id: 9, date: '2026-10-16', category: 'market', title: 'اطلاعیه پایش موجودی و عرضه محصولات', description: 'مرور شیوهٔ ثبت موجودی و گزارش وضعیت عرضه برای هماهنگی بهتر فعالان بازار.'}
     ];
+    const escape = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     const $ = (selector) => document.querySelector(selector);
     const form = $('#circularFilters'), search = $('#circularSearch'), category = $('#circularCategory'), sort = $('#circularSort');
     const grid = $('#circularGrid'), pagination = $('#circularPagination'), dialog = $('#circularDialog');
@@ -103,10 +104,10 @@
             .sort((a, b) => sort.value === 'oldest' ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date));
         const pages = Math.ceil(results.length / pageSize);
         currentPage = Math.min(currentPage, pages || 1);
-        grid.innerHTML = results.slice((currentPage - 1) * pageSize, currentPage * pageSize).map((item) => `<article class="circulars-card"><div class="circulars-card-top"><span class="circulars-tag">${categories[item.category]}</span><time datetime="${item.date}">${date(item.date)}</time></div><div class="circulars-card-title"><span class="circulars-doc-icon">${docIcon}</span><h3>${item.title}</h3></div><p>${item.description}</p><div class="circulars-card-bottom"><button type="button" data-open="${item.id}" aria-label="مشاهده ${item.title}">مشاهده بخشنامه ${arrow}</button></div></article>`).join('');
+        grid.innerHTML = results.slice((currentPage - 1) * pageSize, currentPage * pageSize).map((item) => `<article class="circulars-card"><div class="circulars-card-top"><span class="circulars-tag">${escape(categories[item.category] || "")}</span><time datetime="${item.date}">${date(item.date)}</time></div><div class="circulars-card-title"><span class="circulars-doc-icon">${docIcon}</span><h3>${escape(item.title)}</h3></div><p>${escape(item.description)}</p><div class="circulars-card-bottom"><button type="button" data-open="${item.id}" aria-label="مشاهده ${escape(item.title)}">مشاهده بخشنامه ${arrow}</button></div></article>`).join('');
         $('#circularCount').textContent = results.length ? `نمایش ${fa((currentPage - 1) * pageSize + 1)} تا ${fa(Math.min(currentPage * pageSize, results.length))} از ${fa(results.length)} بخشنامه` : '۰ بخشنامه';
         $('#circularEmpty').hidden = results.length > 0;
-        $('#circularFeature').hidden = !!query || category.value !== 'all' || currentPage !== 1 || sort.value !== 'newest';
+        $('#circularFeature').hidden = !documents.length || !!query || category.value !== 'all' || currentPage !== 1 || sort.value !== 'newest';
         // جهت فلش‌ها را مطابق چیدمان تأییدشدهٔ راست‌به‌چپ پروژه حفظ کنید.
         pagination.innerHTML = pages > 1 ? `<button type="button" data-page="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''} aria-label="صفحه قبل">❮</button>` + Array.from({length: pages}, (_, i) => `<button type="button" data-page="${i + 1}" ${currentPage === i + 1 ? 'aria-current="page"' : ''} aria-label="صفحه ${fa(i + 1)}">${fa(i + 1)}</button>`).join('') + `<button type="button" data-page="${currentPage + 1}" ${currentPage === pages ? 'disabled' : ''} aria-label="صفحه بعد">❯</button>` : '';
     }
@@ -137,6 +138,8 @@
         $('#circularDialogDate').textContent = date(item.date);
         $('#circularDialogDate').dateTime = item.date;
         $('#circularDialogBody').textContent = item.description;
+        const target = document.getElementById('igDocumentLink');
+        if (target) {target.href = item.attachment || item.source || item.url; target.hidden = !target.href; target.textContent = item.attachment ? 'دریافت فایل PDF' : 'مشاهده سند';}
         dialog.showModal();
         window.SiteMotion?.reveal([dialog]);
     });

@@ -2,7 +2,7 @@
 (() => {
     'use strict';
     const companies = window.MemberDirectory;
-    const categories = {import: 'واردات', production: 'تولید', grains: 'غلات', feed: 'نهاده‌های دامی', oils: 'دانه‌های روغنی', other: 'سایر'};
+    const categories = window.IranGrains?.categories?.companies || {import: 'واردات', production: 'تولید', grains: 'غلات', feed: 'نهاده‌های دامی', oils: 'دانه‌های روغنی', other: 'سایر'};
     const $ = (id) => document.getElementById(id);
     const grid = $('membersGrid'), search = $('membersSearch'), pagination = $('membersPagination');
     const fa = (n) => new Intl.NumberFormat('fa-IR').format(n);
@@ -10,7 +10,7 @@
     const escape = (s) => s.replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     const arrow = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H4m6-6-6 6 6 6"/></svg>';
     const leaf = '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M20 3C8 3 3 8 5 16c8 4 15-1 15-13ZM4 21 16 9"/></svg>';
-    let category = 'all', page = 1, featuredId = 1;
+    let category = 'all', page = 1, featuredId = companies[0]?.id ?? 0;
     let order = companies.map((company) => company.id);
     const pageSize = 8;
     function brand(company) {
@@ -24,10 +24,10 @@
         });
     }
     function card(company, featured = false) {
-        return `<article data-company-card="${company.id}" class="member-card${featured ? ' member-feature' : ''}">${featured ? '<span class="member-feature-badge">✧ معرفی عضو</span>' : ''}<button type="button" class="member-logo-button" data-promote="${company.id}" aria-label="نمایش برجستهٔ ${escape(company.name)}" aria-pressed="${company.id === featuredId}">${brand(company)}</button><div class="member-card-copy"><h3>${escape(company.name)}</h3><span class="member-activity">${escape(company.activity)}</span><p>${escape(company.description)}</p><a href="company.html?id=${company.id}" class="members-more${featured ? ' members-more-primary' : ''}" aria-label="دربارهٔ ${escape(company.name)} بیشتر بدانید">بیشتر بدانید ${arrow}</a></div></article>`;
+        return `<article data-company-card="${company.id}" class="member-card${featured ? ' member-feature' : ''}">${featured ? '<span class="member-feature-badge">✧ معرفی عضو</span>' : ''}<button type="button" class="member-logo-button" data-promote="${company.id}" aria-label="نمایش برجستهٔ ${escape(company.name)}" aria-pressed="${company.id === featuredId}">${brand(company)}</button><div class="member-card-copy"><h3>${escape(company.name)}</h3><span class="member-activity">${escape(company.activity)}</span><p>${escape(company.description)}</p><a href="${escape(company.url || ('company.html?id=' + company.id))}" class="members-more${featured ? ' members-more-primary' : ''}" aria-label="دربارهٔ ${escape(company.name)} بیشتر بدانید">بیشتر بدانید ${arrow}</a></div></article>`;
     }
     function ribbon() {
-        return `<aside class="members-ribbon"><span aria-hidden="true">${leaf}</span><div><h3>${fa(companies.length)} شرکت، همراه صنعت غلات</h3><p>در مسیر توسعهٔ پایدار زنجیرهٔ تأمین، با هم همراه باشیم.</p><a class="btn" href="https://iran-grains.com/sherkat-haye-ozv/" target="_blank" rel="noopener">مشاهده همهٔ شرکت‌ها ${arrow}</a></div></aside>`;
+        return `<aside class="members-ribbon"><span aria-hidden="true">${leaf}</span><div><h3>${fa(companies.length)} شرکت، همراه صنعت غلات</h3><p>در مسیر توسعهٔ پایدار زنجیرهٔ تأمین، با هم همراه باشیم.</p><a class="btn" href="${escape(window.IranGrains?.membersUrl || 'https://iran-grains.com/sherkat-haye-ozv/')}" target="_blank" rel="noopener">مشاهده همهٔ شرکت‌ها ${arrow}</a></div></aside>`;
     }
     function render(animate = true) {
         const query = normalize(search.value);
