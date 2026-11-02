@@ -44,9 +44,11 @@
 .article-content h2 { color: var(--forest); font-size: 1.6rem; margin-bottom: 22px; }
 #articleBody p { color: var(--ink-soft); line-height: 2.35; font-size: 1rem; margin: 0 0 23px; text-align: right; }
 #articleBody p:first-child { color: var(--ink); font-size: 1.05rem; font-weight: 600; }
-.article-back { display: inline-flex; align-items: center; gap: 13px; border-top: 1px solid var(--border); color: var(--green); width: 100%; padding-top: 21px; margin-top: 7px; font-size: .9rem; }
+.article-back { display: inline-flex; align-items: center; gap: 13px; border-top: 0; color: var(--green); width: fit-content; padding-top: 0; margin-top: 21px; font-size: .9rem; }
 .article-back span { font-size: 1.5em; }
 .article-back:hover { color: var(--gold-dark); }
 .article-not-found { padding-block: 180px 90px; min-height: 70vh; }
 .article-not-found h1 { margin-bottom: 25px; }
 @media (max-width: 640px) { .article-content { padding: 27px 23px; } #articleBody p { font-size: .92rem; line-height: 2.2; } .article-hero .breadcrumb [aria-current] { max-width: 240px; } }
+
+#articleBody { padding-bottom: 5px; border-bottom: 1px solid var(--border); }

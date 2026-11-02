@@ -162,3 +162,15 @@ html:has(.meeting-dialog[open]) { overflow: hidden; }
 .ig-cta-actions .ig-cta-btn:hover { background: var(--gold); border-color: var(--gold); color: #000; }
 .ig-cta-actions .btn-gold { color: #000; }
 .ig-cta-actions .btn-gold:hover { background: #fff; color: var(--forest); }
+/* Consistent header action and reliable access to each dropdown. */
+.navbar .nav-actions .btn-primary { box-shadow: none; }
+.navbar .nav-actions .btn-primary:hover { background: var(--gold); color: #000; box-shadow: none; }
+@media (min-width: 769px) {
+ .nav-item-has-children:focus-within > .dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+ .nav-item-has-children:focus-within > .dropdown li { opacity: 1; transform: translateY(0); }
+ .dropdown::before { content: ''; position: absolute; top: -12px; right: 0; width: 100%; height: 12px; }
+}
+.theme-home .news-link > span { font-size: 1.5em; line-height: 1; }
+.theme-home .contact-list li { align-items: stretch; }
+.theme-home .contact-list li > div { flex: 1; min-width: 0; }
+.theme-home .contact-icon { width: 68px; height: auto; min-height: 64px; font-size: 40px; line-height: 1; }

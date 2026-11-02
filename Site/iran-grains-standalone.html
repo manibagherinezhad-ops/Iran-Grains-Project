@@ -1720,10 +1720,11 @@ input, textarea, select { font-family: 'Yekan Bakh', sans-serif; font-weight: 70
 
 
                 <div class="nav-item-has-children">
-                    <a href="#news" class="nav-link">اخبار و رویدادها <span class="caret" aria-hidden="true">▾</span></a>
+                    <a href="news.html" class="nav-link">اخبار و رویدادها <span class="caret" aria-hidden="true">▾</span></a>
                     <ul class="dropdown">
-                        <li><a href="#">جلسات</a></li>
-                        <li><a href="#">ایران گرین</a></li>
+                        <li><a href="news.html">اخبار</a></li>
+                        <li><a href="meetings.html">جلسات</a></li>
+                        <li><a href="iran-green.html">ایران گرین</a></li>
                     </ul>
                 </div>
 
@@ -1731,7 +1732,7 @@ input, textarea, select { font-family: 'Yekan Bakh', sans-serif; font-weight: 70
                 <a href="approved-prices.html" class="nav-link">قیمت‌های مصوب</a>
 
                 <div class="nav-item-has-children">
-                    <a href="#contact" class="nav-link">اعضا <span class="caret" aria-hidden="true">▾</span></a>
+                    <a href="members.html" class="nav-link">اعضا <span class="caret" aria-hidden="true">▾</span></a>
                     <ul class="dropdown">
                         <li><a href="members.html">شرکت‌های عضو</a></li>
                         <li><a href="membership.html">شرایط عضویت</a></li>
@@ -2114,7 +2115,7 @@ input, textarea, select { font-family: 'Yekan Bakh', sans-serif; font-weight: 70
     'use strict';
 
     const $ = (sel, ctx = document) => ctx.querySelector(sel);
-    const $ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+    const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
     // ---------- تبدیل عدد لاتین به فارسی ----------
     const FA_DIGITS = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
@@ -2124,7 +2125,7 @@ input, textarea, select { font-family: 'Yekan Bakh', sans-serif; font-weight: 70
        ۱) نوار ناوبری: افکت اسکرول + لینک فعال
        ============================================ */
     const navbar = $('#navbar');
-    const navLinks = $('.nav-link');
+    const navLinks = $$('.nav-link');
     const sections = navLinks
         .map((link) => {
             const id = link.getAttribute('href');
@@ -2197,7 +2198,7 @@ input, textarea, select { font-family: 'Yekan Bakh', sans-serif; font-weight: 70
     });
 
     // باز/بسته کردن زیرمنو در موبایل با کلیک روی caret
-    const hasChildren = $('.nav-item-has-children > .nav-link .caret');
+    const hasChildren = $$('.nav-item-has-children > .nav-link .caret');
     hasChildren.forEach((caret) => {
         caret.addEventListener('click', (e) => {
             if (window.innerWidth <= 768) {
@@ -2227,7 +2228,7 @@ input, textarea, select { font-family: 'Yekan Bakh', sans-serif; font-weight: 70
     /* ============================================
        ۳) انیمیشن ورود المان‌ها (scroll reveal)
        ============================================ */
-    const animatedEls = $('[data-animate]');
+    const animatedEls = $$('[data-animate]');
     if ('IntersectionObserver' in window) {
         const observer = new IntersectionObserver(
             (entries, obs) => {
@@ -2249,7 +2250,7 @@ input, textarea, select { font-family: 'Yekan Bakh', sans-serif; font-weight: 70
     /* ============================================
        ۴) شمارش آمار (count up)
        ============================================ */
-    const counters = $('[data-count]');
+    const counters = $$('[data-count]');
     const animateCounter = (el) => {
         const target = parseInt(el.dataset.count, 10);
         const duration = 1800;
@@ -2404,7 +2405,7 @@ input, textarea, select { font-family: 'Yekan Bakh', sans-serif; font-weight: 70
             .map((w) => `<span class="reveal-word">${w} </span>`)
             .join('');
 
-        const wordEls = $('.reveal-word', revealText);
+        const wordEls = $$('.reveal-word', revealText);
         const updateReveal = () => {
             const rect = revealText.getBoundingClientRect();
             const vh = window.innerHeight;
@@ -2504,7 +2505,7 @@ input, textarea, select { font-family: 'Yekan Bakh', sans-serif; font-weight: 70
 
         /* چرخش هر ۵ ثانیه: معرفی (اسلاید ۰) فقط بار اول؛
            بعد از آخرین خبر، لوپ فقط بین اخبار (۱ تا آخر) می‌مونه */
-        const slides = $('.hero-slide', heroSlider);
+        const slides = $$('.hero-slide', heroSlider);
         let heroIdx = 0;
         const SLIDE_MS = 5000;
         const ANIM_MS = 900;
@@ -2535,7 +2536,7 @@ input, textarea, select { font-family: 'Yekan Bakh', sans-serif; font-weight: 70
        ۱۱) آکاردئون اهداف — باز/بسته با کلیک (برای لمسی)
        (hover هم از طریق CSS فعاله)
        ============================================ */
-    const accItems = $('.acc-item');
+    const accItems = $$('.acc-item');
     accItems.forEach((item) => {
         item.addEventListener('click', () => {
             const wasOpen = item.classList.contains('open');
@@ -2547,9 +2548,9 @@ input, textarea, select { font-family: 'Yekan Bakh', sans-serif; font-weight: 70
     /* ============================================
        ۱۲) فیلتر جلسات (meetings.html)
        ============================================ */
-    const mFilters = $('.mfilter');
+    const mFilters = $$('.mfilter');
     if (mFilters.length) {
-        const mCards = $('.meet-card');
+        const mCards = $$('.meet-card');
         mFilters.forEach((btn) => {
             btn.addEventListener('click', () => {
                 mFilters.forEach((b) => b.classList.remove('on'));
@@ -2568,7 +2569,7 @@ input, textarea, select { font-family: 'Yekan Bakh', sans-serif; font-weight: 70
        ============================================ */
     const bTrack = $('#bTrack');
     if (bTrack) {
-        const cards = $('.bmember', bTrack);
+        const cards = $$('.bmember', bTrack);
         const n = cards.length;
         let bActive = 0;
         let spacing = window.innerWidth < 540 ? 235 : 330;
@@ -2584,7 +2585,7 @@ input, textarea, select { font-family: 'Yekan Bakh', sans-serif; font-weight: 70
                 bDots.appendChild(dot);
             });
         }
-        const dots = $('.bdot');
+        const dots = $$('.bdot');
 
         /* چیدمان: عضو فعال وسط (بزرگ)، همسایه‌ها کوچیک‌تر، بقیه مخفی */
         function layout(dragX) {
@@ -2614,7 +2615,7 @@ input, textarea, select { font-family: 'Yekan Bakh', sans-serif; font-weight: 70
         /* درگ با نگه‌داشتن کلیک — جهت هماهنگ با فلش‌ها
            کلیک ساده روی کارت → اسکرول نرم به پروفایل همون عضو */
         const viewport = $('#bViewport');
-        const profileEls = $('.profile');
+        const profileEls = $$('.profile');
         let dragging = false, startX = 0, curX = 0, downCard = null;
 
         viewport.addEventListener('pointerdown', (e) => {
