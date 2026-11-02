@@ -36,6 +36,8 @@ powershell -ExecutionPolicy Bypass -File .\Backend\Start-Backend.ps1 -SeedDemo
 notepad .\Backend\.runtime\manager.json
 ```
 
+اگر فایل ورود خالی یا گم شد، راه‌انداز را با `-SeedDemo -ResetLocalPassword` اجرا کنید. رمز مدیر **محلی** دوباره ساخته و در فایل ذخیره می‌شود؛ اطلاعات و مطالب دیتابیس حذف نمی‌شوند. بازشدن آدرس پنل به‌تنهایی نشانهٔ تکمیل نصب نیست؛ باید راه‌انداز تا نمایش آدرس‌های نهایی بدون خطا تمام شود.
+
 برای توقف محیط توسعه، بدون حذف دیتابیس:
 
 ```powershell

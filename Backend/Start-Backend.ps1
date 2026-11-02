@@ -1,4 +1,4 @@
-param([switch]$SeedDemo, [switch]$NoOpen)
+param([switch]$SeedDemo, [switch]$NoOpen, [switch]$ResetLocalPassword)
 $ErrorActionPreference = 'Stop'
 $backendRoot = $PSScriptRoot
 $runtimeRoot = Join-Path $backendRoot '.runtime'
@@ -6,7 +6,38 @@ $coreRoot = Join-Path $runtimeRoot 'wordpress'
 $coreVersion = '7.1.4'
 $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
 function Write-Utf8File([string]$Path, [string]$Text) {
+    if ([string]::IsNullOrWhiteSpace($Text)) { throw 'Refusing to write an empty setup file.' }
     [System.IO.File]::WriteAllText($Path, $Text, $utf8NoBom)
+}
+function Invoke-LocalDocker {
+    param([string[]]$DockerArgs, [string]$InputText = '', [switch]$AllowFailure)
+    # Windows PowerShell 5 treats native stderr as a terminating PowerShell
+    # error. Capture it through Process so expected exit code 1 can be checked.
+    $info = New-Object System.Diagnostics.ProcessStartInfo
+    $info.FileName = (Get-Command docker -ErrorAction Stop).Source
+    foreach ($arg in $DockerArgs) {
+        if ($arg -match '[\s"]') { throw 'Unexpected Docker setup argument.' }
+    }
+    $info.Arguments = $DockerArgs -join ' '
+    $info.WorkingDirectory = $backendRoot
+    $info.UseShellExecute = $false
+    $info.CreateNoWindow = $true
+    $info.RedirectStandardInput = $true
+    $info.RedirectStandardOutput = $true
+    $info.RedirectStandardError = $true
+    $process = New-Object System.Diagnostics.Process
+    $process.StartInfo = $info
+    try {
+        [void]$process.Start()
+        $stdoutTask = $process.StandardOutput.ReadToEndAsync()
+        $stderrTask = $process.StandardError.ReadToEndAsync()
+        if ($InputText) { $process.StandardInput.WriteLine($InputText) }
+        $process.StandardInput.Close()
+        $process.WaitForExit()
+        $result = [pscustomobject]@{ ExitCode = $process.ExitCode; Output = $stdoutTask.GetAwaiter().GetResult(); Error = $stderrTask.GetAwaiter().GetResult() }
+    } finally { $process.Dispose() }
+    if ($result.ExitCode -ne 0 -and -not $AllowFailure) { throw ($result.Error + $result.Output) }
+    return $result
 }
 function New-LocalSecret {
     $bytes = New-Object byte[] 32
@@ -17,13 +48,16 @@ function New-LocalSecret {
 if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
     throw 'Install Docker Desktop for Windows, open it, and run this script again.'
 }
-& docker info --format '{{.ServerVersion}}' *> $null
-if ($LASTEXITCODE -ne 0) { throw 'Open Docker Desktop and wait until its engine is running.' }
+$engine = Invoke-LocalDocker -DockerArgs @('info','--format={{.ServerVersion}}') -AllowFailure
+if ($engine.ExitCode -ne 0) { throw 'Open Docker Desktop and wait until its engine is running.' }
 [System.IO.Directory]::CreateDirectory($runtimeRoot) | Out-Null
 $envPath = Join-Path $backendRoot '.env'
 if (-not (Test-Path $envPath)) {
     Write-Utf8File $envPath ("DB_PASSWORD=$(New-LocalSecret)`nDB_ROOT_PASSWORD=$(New-LocalSecret)`nDEV_PORT=8090`nLOCAL_UID=1000`nLOCAL_GID=1000`n")
 }
+$devPort = 8090
+foreach ($line in (Get-Content $envPath)) { if ($line -match '^DEV_PORT=(\d+)$') { $devPort = [int]$Matches[1] } }
+$siteUrl = "http://localhost:$devPort"
 if (-not (Test-Path (Join-Path $coreRoot 'wp-load.php'))) {
     $archive = Join-Path $runtimeRoot 'core.zip'
     $unpack = Join-Path $runtimeRoot 'unpack'
@@ -58,16 +92,29 @@ require_once __DIR__ . '/wp-settings.php';
 }
 Push-Location $backendRoot
 try {
-    & docker compose up -d --wait
-    if ($LASTEXITCODE -ne 0) { throw 'The local containers could not start.' }
-    & docker compose exec -T web wp core is-installed *> $null
-    if ($LASTEXITCODE -ne 0) {
-        $manager = @{ username = 'ig_manager'; password = (New-LocalSecret); url = 'http://localhost:8090/wp-admin/' }
-        Write-Utf8File (Join-Path $runtimeRoot 'manager.json') ($manager | ConvertTo-Json)
-        $installCommand = "wp core install --url=http://localhost:8090 --title='Iran Grains' --admin_user=ig_manager --admin_email=manager@example.invalid --skip-email --prompt=admin_password"
-        $installOutput = $manager.password | & docker compose exec -T web sh -c $installCommand 2>&1
-        if ($LASTEXITCODE -ne 0) { throw 'WordPress installation failed. Its private output has not been printed.' }
-        Remove-Variable installOutput
+    Write-Host 'Starting the local database and WordPress containers. The first run may download images...'
+    $started = Invoke-LocalDocker -DockerArgs @('compose','up','-d','--wait')
+    $installed = Invoke-LocalDocker -DockerArgs @('compose','exec','-T','web','wp','core','is-installed') -AllowFailure
+    if ($installed.ExitCode -ne 0 -or $ResetLocalPassword) {
+        $manager = @{ username = 'ig_manager'; password = (New-LocalSecret); url = "$siteUrl/wp-admin/" }
+        $payload = @{ username = $manager.username; password = $manager.password; site_url = $siteUrl; reset = [bool]$ResetLocalPassword } | ConvertTo-Json -Compress
+        Write-Host 'Completing the local WordPress installation...'
+        $installation = Invoke-LocalDocker -DockerArgs @('compose','exec','-T','web','wp','eval-file','/opt/ig/install.php','--skip-wordpress') -InputText $payload
+        $verified = Invoke-LocalDocker -DockerArgs @('compose','exec','-T','web','wp','core','is-installed') -AllowFailure
+        if ($verified.ExitCode -ne 0) { throw 'WordPress installation was not completed.' }
+        $managerPath = Join-Path $runtimeRoot 'manager.json'
+        $temporaryPath = Join-Path $runtimeRoot 'manager.pending.json'
+        Write-Utf8File $temporaryPath ($manager | ConvertTo-Json)
+        $saved = Get-Content -Raw $temporaryPath | ConvertFrom-Json
+        if (-not $saved.username -or -not $saved.password) { throw 'The local login file could not be verified.' }
+        Move-Item $temporaryPath $managerPath -Force
+    } else {
+        try {
+            $saved = Get-Content -Raw (Join-Path $runtimeRoot 'manager.json') | ConvertFrom-Json
+            if (-not $saved.username -or -not $saved.password) { throw 'Missing credentials' }
+        } catch {
+            throw 'The local login file is missing or empty. Run this script with -ResetLocalPassword to rebuild it.'
+        }
     }
     foreach ($wpArgs in @(
         @('plugin','activate','iran-grains-core'),
@@ -76,16 +123,16 @@ try {
         @('option','update','blog_public','0'),
         @('rewrite','structure','/%postname%/')
     )) {
-        & docker compose exec -T web wp @wpArgs
-        if ($LASTEXITCODE -ne 0) { throw 'A local WordPress setup step failed.' }
+        $step = Invoke-LocalDocker -DockerArgs (@('compose','exec','-T','web','wp') + $wpArgs)
+        Write-Host $step.Output.Trim()
     }
     if ($SeedDemo) {
         Copy-Item (Join-Path $backendRoot 'dev/fixtures.json') (Join-Path $backendRoot 'dev/seed.json') -Force
-        & docker compose exec -T web wp eval-file /opt/ig/seed.php --user=ig_manager
-        if ($LASTEXITCODE -ne 0) { throw 'The local demo import failed.' }
+        $demo = Invoke-LocalDocker -DockerArgs @('compose','exec','-T','web','wp','eval-file','/opt/ig/seed.php','--user=ig_manager')
+        Write-Host $demo.Output.Trim()
     }
 } finally { Pop-Location }
-Write-Host 'Website: http://localhost:8090/'
-Write-Host 'Admin: http://localhost:8090/wp-admin/admin.php?page=iran-grains'
+Write-Host "Website: $siteUrl/"
+Write-Host "Admin: $siteUrl/wp-admin/admin.php?page=iran-grains"
 Write-Host 'Local login details: Backend/.runtime/manager.json (open this private file with Notepad).'
-if (-not $NoOpen) { Start-Process 'http://localhost:8090/wp-admin/admin.php?page=iran-grains' }
+if (-not $NoOpen) { Start-Process "$siteUrl/wp-admin/admin.php?page=iran-grains" }
