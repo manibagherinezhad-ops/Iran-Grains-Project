@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/site-surfaces.css">
     <link rel="stylesheet" href="assets/css/home-intro.css">
+    <link rel="stylesheet" href="assets/css/home-news.css">
 </head>
 <body class="theme-home">
 
@@ -139,7 +140,7 @@
                         <span class="news-date">۱۲ مرداد ۱۴۰۵</span>
                         <h3>افزایش تولید جهانی گندم در سال ۲۰۲۶</h3>
                         <p>بر اساس جدیدترین گزارش فائو، تولید جهانی گندم در سال جاری به رکورد جدیدی خواهد رسید.</p>
-                        <a href="news.html?article=1" class="news-link">ادامه مطلب <span aria-hidden="true">←</span></a>
+                        <a href="news-article.html?id=1" class="news-link" aria-haspopup="dialog" aria-controls="homeNewsDialog">ادامه مطلب <span aria-hidden="true">←</span></a>
                     </div>
                 </article>
 
@@ -152,7 +153,7 @@
                         <span class="news-date">۱۰ مرداد ۱۴۰۵</span>
                         <h3>تثبیت قیمت نهاده‌های دامی در بازار</h3>
                         <p>قیمت نهاده‌های دامی وارداتی پس از جلسات اخیر با نهادهای ذی‌ربط ثبات پیدا کرد.</p>
-                        <a href="news.html?article=2" class="news-link">ادامه مطلب <span aria-hidden="true">←</span></a>
+                        <a href="news-article.html?id=2" class="news-link" aria-haspopup="dialog" aria-controls="homeNewsDialog">ادامه مطلب <span aria-hidden="true">←</span></a>
                     </div>
                 </article>
 
@@ -165,7 +166,7 @@
                         <span class="news-date">۸ مرداد ۱۴۰۵</span>
                         <h3>بخشنامه‌ی جدید تخصیص ارز ترجیحی</h3>
                         <p>بانک مرکزی بخشنامه‌ی جدیدی در خصوص نحوه‌ی تخصیص ارز واردات غلات ابلاغ کرد.</p>
-                        <a href="news.html?article=3" class="news-link">ادامه مطلب <span aria-hidden="true">←</span></a>
+                        <a href="news-article.html?id=3" class="news-link" aria-haspopup="dialog" aria-controls="homeNewsDialog">ادامه مطلب <span aria-hidden="true">←</span></a>
                     </div>
                 </article>
             </div>
@@ -413,6 +414,19 @@
         </div>
     </footer>
 
+    <dialog class="home-news-dialog" id="homeNewsDialog" aria-labelledby="homeNewsTitle" aria-describedby="homeNewsSummary">
+        <div class="home-news-dialog-head">
+            <span class="section-tag">خلاصه خبر</span>
+            <button type="button" class="home-news-close" aria-label="بستن پیش‌نمایش">×</button>
+        </div>
+        <img class="home-news-image" id="homeNewsImage" alt="">
+        <span class="home-news-category" id="homeNewsCategory"></span>
+        <h2 id="homeNewsTitle"></h2>
+        <span class="home-news-date" id="homeNewsDate"></span>
+        <p id="homeNewsSummary"></p>
+        <a class="btn btn-green-outline" id="homeNewsArticle" href="news-article.html">مطالعهٔ کامل خبر <span aria-hidden="true">←</span></a>
+    </dialog>
+
     <!-- Back to top -->
     <button class="back-to-top" id="backToTop" aria-label="بازگشت به بالا">
         <span aria-hidden="true">↑</span>
@@ -420,5 +434,6 @@
 
     <script src="assets/js/site-motion.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/home-news.js"></script>
 </body>
 </html>
