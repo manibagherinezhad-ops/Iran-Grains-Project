@@ -1,12 +1,15 @@
 /* Latest and second-latest news are selected from the dated project feed. */
 (() => {
     'use strict';
-    const categories = window.IranGrains?.categories?.news || {association:'اخبار انجمن', domestic:'تولید داخلی', world:'بازار جهانی', market:'قیمت‌ها و بازار'};
+    const categories = window.IranGrains?.categories?.news || window.NewsCategories || {association:'اخبار انجمن', domestic:'تولید داخلی', world:'بازار جهانی', market:'قیمت‌ها و بازار'};
     const documents = [...(window.NewsItems || [])].sort((a,b) => (b.publishedAt || b.date).localeCompare(a.publishedAt || a.date) || b.id-a.id);
     const latest = documents[0], second = documents[1];
     const escape = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     const $ = (selector) => document.querySelector(selector);
     const form = $('#circularFilters'), search = $('#circularSearch'), category = $('#circularCategory'), sort = $('#circularSort');
+    Object.entries(categories).forEach(([value, text]) => {
+        if (!Array.from(category.options).some(option => option.value === value)) category.add(new Option(text, value));
+    });
     const grid = $('#circularGrid'), pagination = $('#circularPagination'), dialog = $('#circularDialog');
     const fa = (n) => new Intl.NumberFormat('fa-IR').format(n);
     const date = (value) => new Intl.DateTimeFormat('fa-IR', {timeZone: 'Asia/Tehran', year: 'numeric', month: 'long', day: 'numeric'}).format(new Date(value + 'T12:00:00Z'));

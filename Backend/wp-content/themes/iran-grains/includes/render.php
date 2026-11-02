@@ -35,7 +35,6 @@ function ig_render(string $route, ?WP_Post $post): void {
     if (in_array($route, ['index', 'news'], true)) {
         $news = ig_feed('ig_news'); $config['news'] = $news;
         $config['categories']['news'] = ig_topic_labels('ig_news');
-        $config['heroNews'] = ig_hero_news($news, $config['categories']['news']);
         if ($route === 'index') ig_home_news($doc, $news, $config['categories']['news']);
         else ig_news_archive($doc, $news, $config['categories']['news']);
     }
@@ -163,7 +162,7 @@ function ig_article(DOMDocument $doc, WP_Post $post): void {
     ig_node($doc, 'articleHeroImage')?->setAttribute('src', $n['image']);
     ig_node($doc, 'articleHeroImage')?->setAttribute('alt', $n['title']);
     $body = ig_node($doc, 'articleBody');
-    if ($body) ig_html($body, wp_kses_post(wpautop($post->post_content)) . ($n['attachment'] ? '<p><a class="btn btn-green-outline" href="' . esc_url($n['attachment']) . '" target="_blank" rel="noopener">دریافت فایل PDF</a></p>' : ''));
+    if ($body) ig_html($body, wp_kses_post(wpautop($post->post_content)) . ($n['attachment'] ? '<p><a class="btn btn-green-outline" href="' . esc_url($n['attachment']) . '" target="_blank" rel="noopener">دریافت فایل PDF</a></p>' : '') . ($post->post_type === 'ig_news' && $n['source'] ? '<p><a href="' . esc_url($n['source']) . '" target="_blank" rel="noopener">منبع خبر: انجمن غلات ایران</a></p>' : ''));
     if ($post->post_type !== 'ig_news') {
         $routes = ['ig_circular' => ['circulars','بخشنامه‌ها'], 'ig_price' => ['approved-prices','قیمت‌های مصوب'], 'ig_event' => ['meetings','جلسات'], 'ig_board' => ['board','هیأت‌مدیره']];
         [$route, $label] = $routes[$post->post_type];

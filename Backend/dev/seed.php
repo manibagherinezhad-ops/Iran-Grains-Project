@@ -3,7 +3,7 @@
 if (wp_get_environment_type() !== 'local') throw new RuntimeException('Demo import requires a local environment.');
 $data = json_decode(file_get_contents('/opt/ig/seed.json'), true, 512, JSON_THROW_ON_ERROR);
 $labels = [
-    'ig_news' => ['association'=>'اخبار انجمن','domestic'=>'تولید داخلی','world'=>'بازار جهانی','market'=>'قیمت‌ها و بازار'],
+    'ig_news' => ['association'=>'اخبار انجمن','domestic'=>'تولید داخلی','world'=>'بازار جهانی','market'=>'قیمت‌ها و بازار','official-domestic'=>'اخبار داخلی','official-world'=>'اخبار جهان'],
     'ig_circular' => ['agriculture'=>'گندم و کشاورزی','customs'=>'گمرک و تجارت','market'=>'تنظیم بازار','systems'=>'سامانه‌ها'],
     'ig_price' => ['ceilings'=>'سقف ارزی','oils'=>'روغن و دانه‌های روغنی','customs'=>'نرخ مبنای گمرک','consumer'=>'قیمت مصرف‌کننده'],
     'ig_company' => ['import'=>'واردات','production'=>'تولید','grains'=>'غلات','feed'=>'نهاده‌های دامی','oils'=>'دانه‌های روغنی','other'=>'سایر'],
@@ -13,7 +13,8 @@ foreach ($labels as $type => $terms) foreach ($terms as $slug => $label) {
     if (!term_exists($slug, ig_taxonomy($type))) wp_insert_term($label, ig_taxonomy($type), ['slug' => $slug]);
 }
 foreach (['news'=>'ig_news','circulars'=>'ig_circular','prices'=>'ig_price','companies'=>'ig_company','events'=>'ig_event','board'=>'ig_board'] as $key=>$type) {
-    foreach ($data[$key] as $i=>$record) {
+    $records = $type === 'ig_news' ? array_reverse($data[$key]) : $data[$key];
+    foreach ($records as $i=>$record) {
         $seed_key = $key . '-' . ($record['id'] ?? $i);
         if (get_posts(['post_type'=>$type,'post_status'=>'any','meta_key'=>'_ig_seed_key','meta_value'=>$seed_key,'fields'=>'ids'])) continue;
         $content = $record['content'] ?? $record['fullActivity'] ?? $record['description'] ?? '';

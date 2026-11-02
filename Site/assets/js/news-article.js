@@ -8,7 +8,7 @@
         $('newsArticleMain').innerHTML = '<section class="container article-not-found"><h1>خبر موردنظر یافت نشد</h1><a class="btn btn-green-outline" href="news.html">بازگشت به اخبار</a></section>';
         return;
     }
-    const categories = {association:'اخبار انجمن',domestic:'تولید داخلی',world:'بازار جهانی',market:'قیمت‌ها و بازار'};
+    const categories = window.NewsCategories || {association:'اخبار انجمن',domestic:'تولید داخلی',world:'بازار جهانی',market:'قیمت‌ها و بازار'};
     document.title = item.title + ' | انجمن غلات ایران';
     $('articleTitle').textContent = item.title;
     $('articleCrumb').textContent = item.title;
@@ -22,4 +22,9 @@
         paragraph.textContent=text;
         $('articleBody').append(paragraph);
     });
+    if (item.source) {
+        const paragraph = document.createElement('p'), link = document.createElement('a');
+        link.href = item.source; link.target = '_blank'; link.rel = 'noopener';
+        link.textContent = 'منبع خبر: انجمن غلات ایران'; paragraph.append(link); $('articleBody').append(paragraph);
+    }
 })();
