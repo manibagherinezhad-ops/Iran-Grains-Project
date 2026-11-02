@@ -152,6 +152,9 @@
         $('#circularDialogDate').textContent = date(item.date);
         $('#circularDialogDate').dateTime = item.date;
         $('#circularDialogBody').textContent = item.description;
+        $('#newsDialogImage').src = item.image;
+        $('#newsDialogImage').alt = item.title;
+        $('#newsArticleLink').href = 'news-article.html?id=' + item.id;
         dialog.showModal();
         window.SiteMotion?.reveal([dialog]);
     });
