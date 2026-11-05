@@ -1959,5 +1959,412 @@ window.MemberDirectory = [
         "email": "",
         "website": "",
         "address": ""
+    },
+    {
+        "id": 81,
+        "name": "طعام گستر پرگاس آرین",
+        "activity": "تولیدکننده و صادرکننده مستقیم میوه‌های خشک و ادویه",
+        "logo": "https://iran-grains.com/wp-content/uploads/2026/08/فوتر-min-1-removebg-preview.png",
+        "source": "https://iran-grains.com/taam-gostar-pargas-arian/",
+        "directorySource": "https://iran-grains.com/sherkat-haye-ozv-8/",
+        "description": "تولیدکننده و صادرکننده مستقیم میوه‌های خشک و ادویه",
+        "categories": [
+            "import",
+            "production"
+        ],
+        "fullActivity": "تولیدکننده و صادرکننده مستقیم میوه‌های خشک و ادویه",
+        "manager": "",
+        "phone": "",
+        "fax": "",
+        "email": "",
+        "website": "",
+        "address": ""
+    },
+    {
+        "id": 82,
+        "name": "مهر صنعت فیدار",
+        "activity": "تولیدکننده و صادرکننده غلات و محصولات کشاورزی",
+        "logo": "",
+        "source": "https://iran-grains.com/mehr-sanat-fidar/",
+        "directorySource": "https://iran-grains.com/sherkat-haye-ozv-8/",
+        "description": "تولیدکننده و صادرکننده غلات و محصولات کشاورزی",
+        "categories": [
+            "import",
+            "production",
+            "grains"
+        ],
+        "fullActivity": "تولیدکننده و صادرکننده غلات و محصولات کشاورزی",
+        "manager": "",
+        "phone": "",
+        "fax": "",
+        "email": "",
+        "website": "",
+        "address": ""
+    },
+    {
+        "id": 83,
+        "name": "آروین تجارت بنیان پارس",
+        "activity": "تولیدکننده و صادرکننده غلات و محصولات کشاورزی",
+        "logo": "https://iran-grains.com/wp-content/uploads/2026/09/Untitled-1-removebg-preview.png",
+        "source": "https://iran-grains.com/arvin-tejarat-bonyan-pars/",
+        "directorySource": "https://iran-grains.com/sherkat-haye-ozv-8/",
+        "description": "تولیدکننده و صادرکننده غلات و محصولات کشاورزی",
+        "categories": [
+            "import",
+            "production",
+            "grains"
+        ],
+        "fullActivity": "تولیدکننده و صادرکننده غلات و محصولات کشاورزی",
+        "manager": "",
+        "phone": "",
+        "fax": "",
+        "email": "",
+        "website": "",
+        "address": ""
+    },
+    {
+        "id": 84,
+        "name": "تیوان جم",
+        "activity": "تأمین کننده و واردکننده نهاده های دامی و روغنی",
+        "logo": "https://iran-grains.com/wp-content/uploads/2026/09/logo_latin.png-removebg-preview.png",
+        "source": "https://iran-grains.com/tivan-jam/",
+        "directorySource": "https://iran-grains.com/sherkat-haye-ozv-8/",
+        "description": "تأمین کننده و واردکننده نهاده های دامی و روغنی",
+        "categories": [
+            "import",
+            "feed",
+            "oils"
+        ],
+        "fullActivity": "تأمین کننده و واردکننده نهاده های دامی و روغنی",
+        "manager": "",
+        "phone": "",
+        "fax": "",
+        "email": "",
+        "website": "",
+        "address": ""
+    },
+    {
+        "id": 85,
+        "name": "کاردان صنعت تابان",
+        "activity": "تأمین کننده و واردکننده نهاده های دامی",
+        "logo": "",
+        "source": "https://iran-grains.com/kardan-sanat-taban/",
+        "directorySource": "https://iran-grains.com/sherkat-haye-ozv-8/",
+        "description": "تأمین کننده و واردکننده نهاده های دامی",
+        "categories": [
+            "import",
+            "feed"
+        ],
+        "fullActivity": "تأمین کننده و واردکننده نهاده های دامی",
+        "manager": "",
+        "phone": "",
+        "fax": "",
+        "email": "",
+        "website": "",
+        "address": ""
+    },
+    {
+        "id": 86,
+        "name": "کیهان گستر تابان",
+        "activity": "تأمین کننده و واردکننده نهاده های دامی",
+        "logo": "",
+        "source": "https://iran-grains.com/keygan-gostar-taban/",
+        "directorySource": "https://iran-grains.com/sherkat-haye-ozv-8/",
+        "description": "تأمین کننده و واردکننده نهاده های دامی",
+        "categories": [
+            "import",
+            "feed"
+        ],
+        "fullActivity": "تأمین کننده و واردکننده نهاده های دامی",
+        "manager": "",
+        "phone": "",
+        "fax": "",
+        "email": "",
+        "website": "",
+        "address": ""
+    },
+    {
+        "id": 87,
+        "name": "پارسان امید نیک آرمان",
+        "activity": "تأمین‌کننده و صادرکننده محصولات غلات",
+        "logo": "https://iran-grains.com/wp-content/uploads/2026/09/IMG-20260912-WA0001-removebg-preview.png",
+        "source": "https://iran-grains.com/parsan-omid-nik-arman/",
+        "directorySource": "https://iran-grains.com/sherkat-haye-ozv-8/",
+        "description": "تأمین‌کننده و صادرکننده محصولات غلات",
+        "categories": [
+            "import",
+            "grains"
+        ],
+        "fullActivity": "تأمین‌کننده و صادرکننده محصولات غلات",
+        "manager": "",
+        "phone": "",
+        "fax": "",
+        "email": "",
+        "website": "",
+        "address": ""
+    },
+    {
+        "id": 88,
+        "name": "تجارت گستر دانا دانه",
+        "activity": "تأمین‌کننده و صادرکننده نهاده های دامی",
+        "logo": "https://iran-grains.com/wp-content/uploads/2026/09/IMG-20260905-WA0003-removebg-preview.png",
+        "source": "https://iran-grains.com/tejarat-gostar-dana-daneh/",
+        "directorySource": "https://iran-grains.com/sherkat-haye-ozv-8/",
+        "description": "تأمین‌کننده و صادرکننده نهاده های دامی",
+        "categories": [
+            "import",
+            "feed"
+        ],
+        "fullActivity": "تأمین‌کننده و صادرکننده نهاده های دامی",
+        "manager": "",
+        "phone": "",
+        "fax": "",
+        "email": "",
+        "website": "",
+        "address": ""
+    },
+    {
+        "id": 89,
+        "name": "آریا تجارت نیک پرداز",
+        "activity": "تأمین‌کننده و صادرکننده نهاده های دامی",
+        "logo": "https://iran-grains.com/wp-content/uploads/2026/09/LOGO_ALFATEL_260912_122119-removebg-preview.png",
+        "source": "https://iran-grains.com/arya-tejarat-nik-pardaz/",
+        "directorySource": "https://iran-grains.com/sherkat-haye-ozv-8/",
+        "description": "تأمین‌کننده و صادرکننده نهاده های دامی",
+        "categories": [
+            "import",
+            "feed"
+        ],
+        "fullActivity": "تأمین‌کننده و صادرکننده نهاده های دامی",
+        "manager": "",
+        "phone": "",
+        "fax": "",
+        "email": "",
+        "website": "",
+        "address": ""
+    },
+    {
+        "id": 90,
+        "name": "کوشا پیروزان مهر دماوند",
+        "activity": "تأمین‌کننده و صادرکننده نهاده های دامی",
+        "logo": "https://iran-grains.com/wp-content/uploads/2026/09/IMG-20260902-WA0014-removebg-preview.png",
+        "source": "https://iran-grains.com/koosha-pirozan-mehr-damavand/",
+        "directorySource": "https://iran-grains.com/sherkat-haye-ozv-8/",
+        "description": "تأمین‌کننده و صادرکننده نهاده های دامی",
+        "categories": [
+            "import",
+            "feed"
+        ],
+        "fullActivity": "تأمین‌کننده و صادرکننده نهاده های دامی",
+        "manager": "",
+        "phone": "",
+        "fax": "",
+        "email": "",
+        "website": "",
+        "address": ""
+    },
+    {
+        "id": 91,
+        "name": "نهاده های دامی مطلق",
+        "activity": "تولیدکننده و واردکننده نهاده های دامی",
+        "logo": "https://iran-grains.com/wp-content/uploads/2026/09/1780384535237-removebg-preview.png",
+        "source": "https://iran-grains.com/nahade-dami-motlagh/",
+        "directorySource": "https://iran-grains.com/sherkat-haye-ozv-9/",
+        "description": "تولیدکننده و واردکننده نهاده های دامی",
+        "categories": [
+            "import",
+            "production",
+            "feed"
+        ],
+        "fullActivity": "تولیدکننده و واردکننده نهاده های دامی",
+        "manager": "",
+        "phone": "",
+        "fax": "",
+        "email": "",
+        "website": "",
+        "address": ""
+    },
+    {
+        "id": 92,
+        "name": "توسعه تجارت سپهر پارسیان آستارا",
+        "activity": "تولیدکننده و واردکننده نهاده های دامی",
+        "logo": "https://iran-grains.com/wp-content/uploads/2026/09/IMG-20260914-WA0000-removebg-preview.png",
+        "source": "https://iran-grains.com/tosee-tejarat-sepehr-parsian-astara/",
+        "directorySource": "https://iran-grains.com/sherkat-haye-ozv-9/",
+        "description": "تولیدکننده و واردکننده نهاده های دامی",
+        "categories": [
+            "import",
+            "production",
+            "feed"
+        ],
+        "fullActivity": "تولیدکننده و واردکننده نهاده های دامی",
+        "manager": "",
+        "phone": "",
+        "fax": "",
+        "email": "",
+        "website": "",
+        "address": ""
+    },
+    {
+        "id": 93,
+        "name": "اصیل تجارت اطلس",
+        "activity": "واردکننده و صادرکننده نهاده های دامی",
+        "logo": "https://iran-grains.com/wp-content/uploads/2026/09/102025_Logo_ATA_11_V01_AB_COM-removebg-preview.png",
+        "source": "https://iran-grains.com/asil-tejarat-atlas/",
+        "directorySource": "https://iran-grains.com/sherkat-haye-ozv-9/",
+        "description": "واردکننده و صادرکننده نهاده های دامی",
+        "categories": [
+            "import",
+            "feed"
+        ],
+        "fullActivity": "واردکننده و صادرکننده نهاده های دامی",
+        "manager": "",
+        "phone": "",
+        "fax": "",
+        "email": "",
+        "website": "",
+        "address": ""
+    },
+    {
+        "id": 94,
+        "name": "انرژی ساز",
+        "activity": "واردکننده و صادرکننده نهاده های دامی",
+        "logo": "https://iran-grains.com/wp-content/uploads/2026/09/لوگو_page-0001-removebg-preview.png",
+        "source": "https://iran-grains.com/energy-saz/",
+        "directorySource": "https://iran-grains.com/sherkat-haye-ozv-9/",
+        "description": "واردکننده و صادرکننده نهاده های دامی",
+        "categories": [
+            "import",
+            "feed"
+        ],
+        "fullActivity": "واردکننده و صادرکننده نهاده های دامی",
+        "manager": "",
+        "phone": "",
+        "fax": "",
+        "email": "",
+        "website": "",
+        "address": ""
+    },
+    {
+        "id": 95,
+        "name": "روشنا تجارت پاسارگاد",
+        "activity": "واردکننده و صادرکننده نهاده های دامی",
+        "logo": "https://iran-grains.com/wp-content/uploads/2026/09/roshana_tejarat_logo-removebg-preview.png",
+        "source": "https://iran-grains.com/roshna-tejarat-pasargad/",
+        "directorySource": "https://iran-grains.com/sherkat-haye-ozv-9/",
+        "description": "واردکننده و صادرکننده نهاده های دامی",
+        "categories": [
+            "import",
+            "feed"
+        ],
+        "fullActivity": "واردکننده و صادرکننده نهاده های دامی",
+        "manager": "",
+        "phone": "",
+        "fax": "",
+        "email": "",
+        "website": "",
+        "address": ""
+    },
+    {
+        "id": 96,
+        "name": "سینا گستر پیشرو",
+        "activity": "واردکننده و صادرکننده نهاده های دامی",
+        "logo": "https://iran-grains.com/wp-content/uploads/2026/09/ADB351FC-56C7-4DBE-B64A-814A830945A9_.png-removebg-preview.png",
+        "source": "https://iran-grains.com/sina-gostar-pishro-shahr-froodgahi/",
+        "directorySource": "https://iran-grains.com/sherkat-haye-ozv-9/",
+        "description": "واردکننده و صادرکننده نهاده های دامی",
+        "categories": [
+            "import",
+            "feed"
+        ],
+        "fullActivity": "واردکننده و صادرکننده نهاده های دامی",
+        "manager": "",
+        "phone": "",
+        "fax": "",
+        "email": "",
+        "website": "",
+        "address": ""
+    },
+    {
+        "id": 97,
+        "name": "اطلس غلات آفتاب",
+        "activity": "واردکننده و صادرکننده نهاده های دامی",
+        "logo": "https://iran-grains.com/wp-content/uploads/2026/09/IMG-20260921-WA0004-removebg-preview.png",
+        "source": "https://iran-grains.com/atlas-ghallat-aftab/",
+        "directorySource": "https://iran-grains.com/sherkat-haye-ozv-9/",
+        "description": "واردکننده و صادرکننده نهاده های دامی",
+        "categories": [
+            "import",
+            "feed"
+        ],
+        "fullActivity": "واردکننده و صادرکننده نهاده های دامی",
+        "manager": "",
+        "phone": "",
+        "fax": "",
+        "email": "",
+        "website": "",
+        "address": ""
+    },
+    {
+        "id": 98,
+        "name": "شرکت بازرگانی ایران گارمنت",
+        "activity": "واردکننده و صادرکننده نهاده های دامی",
+        "logo": "https://iran-grains.com/wp-content/uploads/2026/09/IMG-20260921-WA0005-removebg-preview.png",
+        "source": "https://iran-grains.com/iran-garment/",
+        "directorySource": "https://iran-grains.com/sherkat-haye-ozv-9/",
+        "description": "واردکننده و صادرکننده نهاده های دامی",
+        "categories": [
+            "import",
+            "feed"
+        ],
+        "fullActivity": "واردکننده و صادرکننده نهاده های دامی",
+        "manager": "",
+        "phone": "",
+        "fax": "",
+        "email": "",
+        "website": "",
+        "address": ""
+    },
+    {
+        "id": 99,
+        "name": "افق توسعه تجارت سیب همراه زاگرس",
+        "activity": "واردکننده و صادرکننده نهاده های دامی",
+        "logo": "https://iran-grains.com/wp-content/uploads/2026/09/Logo-main-w-1-removebg-preview.png",
+        "source": "https://iran-grains.com/ofogh-tose-tejarat-sib-hamrah-zagros/",
+        "directorySource": "https://iran-grains.com/sherkat-haye-ozv-9/",
+        "description": "واردکننده و صادرکننده نهاده های دامی",
+        "categories": [
+            "import",
+            "feed"
+        ],
+        "fullActivity": "واردکننده و صادرکننده نهاده های دامی",
+        "manager": "",
+        "phone": "",
+        "fax": "",
+        "email": "",
+        "website": "",
+        "address": ""
+    },
+    {
+        "id": 100,
+        "name": "غذا فناوری پنگوئن",
+        "activity": "واردات انواع کالای اساسی از جمله برنج ،روغن خوراکی و نهاده دامی",
+        "logo": "",
+        "source": "https://iran-grains.com/ghaza-faravar-penguin/",
+        "directorySource": "https://iran-grains.com/sherkat-haye-ozv-9/",
+        "description": "واردات انواع کالای اساسی از جمله برنج ،روغن خوراکی و نهاده دامی",
+        "categories": [
+            "import",
+            "grains",
+            "feed",
+            "oils"
+        ],
+        "fullActivity": "واردات انواع کالای اساسی از جمله برنج ،روغن خوراکی و نهاده دامی",
+        "manager": "",
+        "phone": "",
+        "fax": "",
+        "email": "",
+        "website": "",
+        "address": ""
     }
 ];
