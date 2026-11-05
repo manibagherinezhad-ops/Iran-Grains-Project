@@ -3,7 +3,7 @@ defined('ABSPATH') || exit;
 function ig_copy_route_labels(): array {
     return ['index'=>'خانه','about'=>'آشنایی با انجمن','membership'=>'شرایط عضویت','iran-green'=>'ایران گرین',
         'contact'=>'تماس با ما','statute'=>'اساسنامه','news'=>'اخبار','news-article'=>'صفحهٔ خبر کامل',
-        'circulars'=>'بخشنامه‌ها','approved-prices'=>'قیمت‌های مصوب','members'=>'شرکت‌های عضو',
+        'circulars'=>'بخشنامه‌ها','approved-prices'=>'قیمت‌های مصوب','members'=>'شرکت‌های عضو','members-all'=>'آرشیو همهٔ شرکت‌ها',
         'company'=>'معرفی شرکت','board'=>'هیأت‌مدیره','meetings'=>'جلسات'];
 }
 function ig_copy_source(string $route): ?DOMDocument {

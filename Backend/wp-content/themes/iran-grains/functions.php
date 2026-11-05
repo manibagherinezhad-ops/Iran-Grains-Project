@@ -10,7 +10,7 @@ add_action('after_setup_theme', function () {
 });
 function ig_routes(): array {
     return ['index', 'news', 'news-article', 'circulars', 'approved-prices', 'meetings',
-        'iran-green', 'members', 'company', 'membership', 'about', 'board', 'contact', 'statute'];
+        'iran-green', 'members', 'members-all', 'company', 'membership', 'about', 'board', 'contact', 'statute'];
 }
 add_action('init', function () {
     foreach (ig_routes() as $route) {

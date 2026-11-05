@@ -1,0 +1,23 @@
+/* Full member archive; uses the member page's cards and RTL pagination. */
+.members-archive-hero { padding-bottom: 48px; background: radial-gradient(ellipse at 8% 35%, #efbd5933, transparent 55%), linear-gradient(115deg, var(--sage), var(--bg) 65%); }
+.members-archive-heading { display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+.members-archive-heading h1 { font-size: clamp(2rem, 4vw, 3.3rem); line-height: 1.5; color: var(--forest); margin-bottom: 10px; }
+.members-archive-heading em { color: var(--gold-dark); font-style: normal; }
+.members-archive-heading p { color: var(--ink-soft); font-size: .94rem; line-height: 2; }
+.members-archive-heading .company-back { flex-shrink: 0; margin: 0; }
+.members-archive-page .members-directory { padding-top: 28px; }
+.members-archive-title { color: var(--forest); font-size: 1.35rem; scroll-margin-top: 110px; }
+.members-archive-page .members-grid { grid-auto-rows: 1fr; }
+.members-archive-page .member-card { padding-block: 25px 20px; }
+.members-archive-page .member-logo-button { align-self: center; }
+.members-archive-page .member-activity { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.9em; }
+.members-archive-page .member-card p { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.members-archive-page .members-pagination { margin-top: 32px; }
+@media (max-width: 640px) {
+    .members-archive-heading { align-items: flex-start; flex-direction: column; gap: 18px; }
+    .members-archive-hero { padding-bottom: 35px; }
+    .members-archive-heading p { font-size: .87rem; }
+}
+@media (max-width: 480px) {
+    .members-archive-page .members-grid { grid-template-columns: 1fr; }
+}

@@ -28,7 +28,7 @@ function ig_render(string $route, ?WP_Post $post): void {
     libxml_clear_errors(); libxml_use_internal_errors($previous);
     foreach (iterator_to_array($doc->childNodes) as $node) if ($node->nodeType === XML_PI_NODE) $doc->removeChild($node);
     $copyTargets = ig_copy_prepare($doc, $route);
-    $config = ['assetBase' => get_template_directory_uri() . '/prototype/', 'membersUrl' => ig_page_url('members'), 'contact' => ['url' => rest_url('iran-grains/v1/contact'), 'nonce' => wp_create_nonce('ig_contact'), 'restNonce' => wp_create_nonce('wp_rest')], 'categories' => []];
+    $config = ['assetBase' => get_template_directory_uri() . '/prototype/', 'membersUrl' => ig_page_url('members'), 'membersArchiveUrl' => ig_page_url('members-all'), 'contact' => ['url' => rest_url('iran-grains/v1/contact'), 'nonce' => wp_create_nonce('ig_contact'), 'restNonce' => wp_create_nonce('wp_rest')], 'categories' => []];
     $settings = get_option('ig_settings', []);
     $config['intro'] = array_intersect_key($settings, array_flip(['home_intro_prefix','home_intro_highlight','home_intro_suffix','home_intro_line2','home_intro_subtitle','home_intro_badge']));
     if (!empty($settings['rates_updated'])) $config['ratesUpdated'] = $settings['rates_updated'];
@@ -38,8 +38,8 @@ function ig_render(string $route, ?WP_Post $post): void {
         if ($route === 'index') ig_home_news($doc, $news, $config['categories']['news']);
         else ig_news_archive($doc, $news, $config['categories']['news']);
     }
-    if (in_array($route, ['members', 'company'], true)) $config['companies'] = ig_feed('ig_company');
-    if ($route === 'members') {
+    if (in_array($route, ['members', 'members-all', 'company'], true)) $config['companies'] = ig_feed('ig_company');
+    if (in_array($route, ['members', 'members-all'], true)) {
         $config['categories']['companies'] = ig_topic_labels('ig_company');
         $filters = ig_nodes($doc, '//*[' . ig_class('members-filters') . ']')[0] ?? null;
         if ($filters) {
@@ -259,7 +259,7 @@ function ig_site_settings(DOMDocument $doc, array $settings): void {
     if (!empty($settings['association_about'])) foreach (ig_nodes($doc, '//*[' . ig_class('footer-brand') . ']/p') as $p) ig_text($p, $settings['association_about']);
 }
 function ig_menu(DOMDocument $doc, string $route, string $type): void {
-    $current = match ($type) {'ig_company' => 'members', 'ig_circular' => 'circulars', 'ig_price' => 'approved-prices', 'ig_event' => 'meetings', 'ig_board' => 'board', default => $route === 'news-article' ? 'news' : $route};
+    $current = match ($type) {'ig_company' => 'members', 'ig_circular' => 'circulars', 'ig_price' => 'approved-prices', 'ig_event' => 'meetings', 'ig_board' => 'board', default => match($route) {'news-article'=>'news', 'members-all'=>'members', default=>$route}};
     foreach (ig_nodes($doc, '//*[@id="navMenu"]//a') as $link) {
         $class = trim(preg_replace('/\bactive\b/', '', $link->getAttribute('class'))); $link->setAttribute('class', $class); $link->removeAttribute('aria-current');
         if ($link->getAttribute('href') === $current . '.html') {
