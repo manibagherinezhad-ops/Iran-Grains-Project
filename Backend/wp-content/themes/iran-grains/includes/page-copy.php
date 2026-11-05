@@ -49,6 +49,7 @@ function ig_copy_section(DOMElement $element): array {
         if($a->tagName==='dialog')return ['page','پنجره‌های توضیحات'];
         if($a->tagName==='head')return ['page','عنوان و توضیحات مرورگر'];
         if($a->tagName==='section'){
+            if(str_contains(' '.$a->getAttribute('class').' ',' service-detail '))return ['page','خدمات انجمن · توضیحات '.ig_copy_normalize($a->getElementsByTagName('h2')->item(0)->textContent)];
             if(isset($known[$a->getAttribute('id')]))return ['page',$known[$a->getAttribute('id')]];
             foreach(['h1','h2','h3']as$tag){$h=$a->getElementsByTagName($tag)->item(0);if($h&&trim($h->textContent)!=='')return ['page',mb_substr(ig_copy_normalize($h->textContent),0,85)];}
             return ['page','برچسب‌ها و دکمه‌های صفحه'];

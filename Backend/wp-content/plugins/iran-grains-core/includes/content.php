@@ -39,6 +39,23 @@ function ig_fields(string $type): array {
 
 function ig_taxonomy(string $type): string { return $type . '_topic'; }
 
+// A full activity edit must not leave an older summary on member cards.
+// An explicitly edited summary takes precedence, including clearing it.
+function ig_company_sync_summary(array $values, WP_Post $before): array {
+    if ($before->post_type !== 'ig_company' || !array_key_exists('post_content', $values)
+        || $values['post_content'] === $before->post_content) return $values;
+    if (array_key_exists('post_excerpt', $values) && $values['post_excerpt'] !== $before->post_excerpt) return $values;
+    $plain = preg_replace('/<\/(?:p|div|li|h[1-6])>|<br\s*\/?\s*>/i', ' ', strip_shortcodes($values['post_content']));
+    $values['post_excerpt'] = wp_trim_words(wp_strip_all_tags($plain), 40, '…');
+    return $values;
+}
+add_filter('wp_insert_post_data', function ($data, $postarr, $unsanitized, $update) {
+    if (!$update || $data['post_type'] !== 'ig_company' || (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)) return $data;
+    $before = get_post((int) ($postarr['ID'] ?? 0));
+    if (!$before) return $data;
+    return wp_slash(ig_company_sync_summary(wp_unslash($data), $before));
+}, 10, 4);
+
 function ig_register_content(): void {
     foreach (ig_content_types() as $type => [$plural, $single, $slug]) {
         register_post_type($type, [
@@ -115,7 +132,9 @@ function ig_details_box(WP_Post $post): void {
         }
         echo '</p>';
     }
-    echo '<p class="description">خلاصه را در بخش «چکیده» و متن کامل را در ویرایشگر وارد کنید. ترتیب نمایش از بخش «ویژگی‌ها» قابل تنظیم است.</p></div>';
+    echo '<p class="description">خلاصه را در بخش «چکیده» و متن کامل را در ویرایشگر وارد کنید. ترتیب نمایش از بخش «ویژگی‌ها» قابل تنظیم است.</p>';
+    if ($post->post_type === 'ig_company') echo '<p class="description">فعالیت کوتاه و چکیده روی همهٔ کارت‌های شرکت نمایش داده می‌شوند. با تغییر متن کامل، چکیدهٔ کارت هم تازه می‌شود؛ اگر هم‌زمان چکیده را ویرایش کنید، متن دلخواه شما استفاده می‌شود.</p>';
+    echo '</div>';
 }
 add_action('save_post', function ($id, $post) {
     if (!isset(ig_content_types()[$post->post_type]) || wp_is_post_revision($id) || wp_is_post_autosave($id)

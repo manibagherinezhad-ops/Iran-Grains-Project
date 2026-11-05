@@ -14,7 +14,7 @@ function ig_copy_content_clean(array $input,WP_Post $post): array {
         if($key==='post_content')$clean[$key]=wp_kses_post(mb_substr($raw,0,200000));
         elseif(str_starts_with($key,'meta_'))$clean[$key]=ig_sanitize_field($raw,$field['type']);
         else $clean[$key]=$key==='post_excerpt'?sanitize_textarea_field($raw):sanitize_text_field($raw);
-    }if(isset($clean['post_title'])&&$clean['post_title']==='')throw new RuntimeException('عنوان نمی‌تواند خالی باشد.');return $clean;
+    }if(isset($clean['post_title'])&&$clean['post_title']==='')throw new RuntimeException('عنوان نمی‌تواند خالی باشد.');return ig_company_sync_summary($clean,$post);
 }
 function ig_copy_content_write(array $clean,WP_Post $post): void {
     if(!current_user_can('edit_post',$post->ID))throw new RuntimeException('اجازهٔ ویرایش این محتوا را ندارید.');
@@ -39,6 +39,7 @@ function ig_copy_content_panel(): void {
     echo '</aside><div class="ig-copy-record-editor">';
     if(!$post){echo '<div class="ig-copy-empty">یک محتوا را برای ویرایش متن انتخاب کنید.</div></div></div>';return;}
     echo '<h2>'.esc_html($post->post_title).'</h2><p>عنوان، خلاصه و متن را از همین‌جا ویرایش کنید. وضعیت انتشار با ذخیرهٔ متن تغییر نمی‌کند.</p><form method="post" class="ig-copy-form" data-copy-preview="1">';
+    if($type==='ig_company')echo '<p class="description">«فعالیت کوتاه» و «خلاصه» در کارت‌های شرکت در معرفی اعضا و آرشیو نمایش داده می‌شوند. با ویرایش متن کامل، خلاصهٔ کارت هم تازه می‌شود؛ اگر هم‌زمان خلاصه را تغییر دهید، متن دلخواه شما نمایش داده می‌شود.</p>';
     wp_nonce_field('ig_text_center');echo '<input type="hidden" name="ig_action" value="save_content"><input type="hidden" name="view" value="content"><input type="hidden" name="content_type" value="'.esc_attr($type).'"><input type="hidden" name="content_id" value="'.$post->ID.'"><input type="hidden" name="revision" value="'.esc_attr(hash('sha256',wp_json_encode(ig_copy_content_snapshot($post)))).'">';
     foreach(ig_copy_content_fields($post)as$key=>$field){echo '<div class="ig-copy-field"><label for="ig-content-'.esc_attr($key).'">'.esc_html($field['label']).'</label>';
         if($field['type']==='rich')wp_editor($field['default'],'ig_copy_content',['textarea_name'=>'content[post_content]','textarea_rows'=>12,'media_buttons'=>false,'teeny'=>true]);
