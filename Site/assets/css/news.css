@@ -47,6 +47,15 @@
 .article-back { display: inline-flex; align-items: center; gap: 13px; border-top: 0; color: var(--green); width: fit-content; padding-top: 0; margin-top: 21px; font-size: .9rem; }
 .article-back span { font-size: 1.5em; }
 .article-back:hover { color: var(--gold-dark); }
+.article-facts { display: grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap: 16px; padding: 20px; margin-bottom: 24px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--gold-soft); }
+.article-facts dt { color: var(--muted); font-size: .8rem; margin-bottom: 5px; }
+.article-facts dd { color: var(--forest); font-size: .9rem; font-weight: 700; margin: 0; }
+.article-related { border-top: 1px solid var(--border); margin-top: 30px; padding-top: 24px; }
+.article-related h2 { font-size: 1.2rem; margin-bottom: 14px; }
+.article-related li + li { margin-top: 10px; }
+.article-related a { color: var(--green); line-height: 1.9; }
+.article-related a:hover { color: var(--gold-dark); }
+.article-updated { font-size: .8rem; }
 .article-not-found { padding-block: 180px 90px; min-height: 70vh; }
 .article-not-found h1 { margin-bottom: 25px; }
 @media (max-width: 640px) { .article-content { padding: 27px 23px; } #articleBody p { font-size: .92rem; line-height: 2.2; } .article-hero .breadcrumb [aria-current] { max-width: 240px; } }

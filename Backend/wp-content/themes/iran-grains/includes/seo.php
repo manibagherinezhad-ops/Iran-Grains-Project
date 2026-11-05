@@ -3,6 +3,7 @@ defined('ABSPATH') || exit;
 require_once __DIR__.'/seo-archive.php';
 require_once __DIR__.'/seo-admin.php';
 require_once __DIR__.'/seo-sitemap.php';
+require_once __DIR__.'/seo-content.php';
 
 function ig_seo_indexable(): bool {
     return wp_get_environment_type()==='production' && (bool)get_option('blog_public') && !is_preview() && !ig_copy_preview_data();
@@ -20,6 +21,7 @@ function ig_seo_metadata(string $route, ?WP_Post $post=null, ?DOMDocument $doc=n
     $title=$doc?->getElementsByTagName('title')->item(0)?->textContent ?: (ig_copy_route_labels()[$route]??'انجمن غلات ایران');
     $description=$doc ? ((ig_nodes($doc,'//meta[@name="description"]')[0]??null)?->getAttribute('content')??'') : '';
     $image=ig_asset('assets/img/hero-wheat-bg.png');$url=ig_page_url($route);$page=ig_archive_type($route)?max(1,ig_archive_page()):1;
+    if($route==='news'&&($latest=ig_public_posts('ig_news')))$image=ig_image($latest[0]);
     if($post){
         $url=get_permalink($post);$image=ig_image($post);
         $title=$post->post_title.($post->post_type==='ig_company'?' | شرکت عضو انجمن غلات ایران':' | انجمن غلات ایران');
@@ -49,7 +51,7 @@ function ig_seo_schema(array $meta, ?WP_Post $post): array {
     foreach(['contact_email'=>'email','contact_phone'=>'telephone']as$key=>$property)if(!empty($settings[$key]))$org[$property]=$property==='telephone'?ig_seo_phone($settings[$key]):$settings[$key];
     if(!empty($settings['contact_address']))$org['address']=['@type'=>'PostalAddress','streetAddress'=>$settings['contact_address'],'addressCountry'=>'IR'];
     $web=['@type'=>'WebPage','@id'=>$url.'#webpage','url'=>$url,'name'=>$meta['title'],'description'=>$meta['description'],'inLanguage'=>'fa-IR','isPartOf'=>['@id'=>$home.'#website'],'publisher'=>['@id'=>$home.'#organization']];
-    if($route==='members'||ig_archive_type($route))$web['@type']='CollectionPage';
+    if(in_array($route,['members','board','meetings'],true)||ig_archive_type($route))$web['@type']='CollectionPage';
     if($route==='contact')$web['@type']='ContactPage';
     if($route==='about')$web['@type']='AboutPage';
     $graph=[$org,['@type'=>'WebSite','@id'=>$home.'#website','url'=>$home,'name'=>'انجمن غلات ایران','inLanguage'=>'fa-IR','publisher'=>['@id'=>$home.'#organization']]];
@@ -63,9 +65,20 @@ function ig_seo_schema(array $meta, ?WP_Post $post): array {
     }elseif($post&&$post->post_type==='ig_news'){
         $graph[]=['@type'=>'NewsArticle','@id'=>$url.'#article','headline'=>$post->post_title,'description'=>$meta['description'],'image'=>[$meta['image']],'datePublished'=>get_post_time('c',true,$post),'dateModified'=>get_post_modified_time('c',true,$post),'inLanguage'=>'fa-IR','publisher'=>['@id'=>$home.'#organization'],'mainEntityOfPage'=>['@id'=>$url.'#webpage']];
         $web['mainEntity']=['@id'=>$url.'#article'];
+    }elseif($post&&$post->post_type==='ig_board'){
+        $person=['@type'=>'Person','@id'=>$url.'#person','name'=>$post->post_title,'url'=>$url,'memberOf'=>['@id'=>$home.'#organization'],'description'=>ig_seo_snippet($post->post_content?:$post->post_excerpt,400)];
+        if($role=(string)get_post_meta($post->ID,'_ig_position',true))$person['jobTitle']=$role;
+        if(has_post_thumbnail($post)||get_post_meta($post->ID,'_ig_seed_image',true))$person['image']=$meta['image'];
+        $graph[]=$person;$web['mainEntity']=['@id'=>$url.'#person'];
+    }elseif($post&&in_array($post->post_type,['ig_circular','ig_price'],true)){
+        $document=['@type'=>'DigitalDocument','@id'=>$url.'#document','name'=>$post->post_title,'url'=>$url,'description'=>$meta['description'],'inLanguage'=>'fa-IR','mainEntityOfPage'=>['@id'=>$url.'#webpage']];
+        if($number=(string)get_post_meta($post->ID,'_ig_document_number',true))$document['identifier']=$number;
+        $attachment=absint(get_post_meta($post->ID,'_ig_attachment_id',true));
+        if($attachment&&get_post_mime_type($attachment)==='application/pdf'&&($file=wp_get_attachment_url($attachment)))$document['encoding']=['@type'=>'MediaObject','contentUrl'=>$file,'encodingFormat'=>'application/pdf'];
+        $graph[]=$document;$web['mainEntity']=['@id'=>$url.'#document'];
     }
-    if($route==='members'||ig_archive_type($route)){
-        $items=$route==='members'?array_slice(ig_feed('ig_company'),0,8):array_slice(ig_archive_items($route),($meta['page']-1)*($route==='members-all'?16:6),$route==='members-all'?16:6);
+    if(in_array($route,['members','board','meetings'],true)||ig_archive_type($route)){
+        $items=match($route){'members'=>array_slice(ig_feed('ig_company'),0,8),'board'=>ig_feed('ig_board'),'meetings'=>ig_feed('ig_event'),default=>array_slice(ig_archive_items($route),($meta['page']-1)*($route==='members-all'?16:6),$route==='members-all'?16:6)};
         $graph[]=['@type'=>'ItemList','@id'=>$url.'#list','itemListElement'=>array_map(fn($item,$i)=>['@type'=>'ListItem','position'=>$i+1,'name'=>$item['title'],'url'=>$item['url']],$items,array_keys($items))];
         $web['mainEntity']=['@id'=>$url.'#list'];
     }
@@ -85,10 +98,13 @@ function ig_seo_apply(DOMDocument $doc,string $route,?WP_Post $post): void {
     if(ig_archive_type($route))foreach(['prev'=>$meta['page']-1,'next'=>$meta['page']+1]as$rel=>$page)if($page>=1&&$page<=ig_archive_pages($route)){$n=$doc->createElement('link');$n->setAttribute('rel',$rel);$n->setAttribute('href',ig_archive_url($route,$page));$head->appendChild($n);}
     $schema=$doc->createElement('script');$schema->setAttribute('type','application/ld+json');$schema->appendChild($doc->createCDATASection(wp_json_encode(ig_seo_schema($meta,$post),JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT)));$head->appendChild($schema);
     $font=$doc->createElement('link');$font->setAttribute('rel','preload');$font->setAttribute('as','font');$font->setAttribute('type','font/woff2');$font->setAttribute('crossorigin','anonymous');$font->setAttribute('href',ig_asset('assets/fonts/YekanBakh-Regular.woff2'));$head->appendChild($font);
+    if(in_array($route,['index','news'],true)){$image=$doc->createElement('link');$image->setAttribute('rel','preload');$image->setAttribute('as','image');$image->setAttribute('fetchpriority','high');$image->setAttribute('href',$route==='index'?ig_asset('assets/img/photo-1437252611977-07f74518abd7.avif'):$meta['image']);$head->appendChild($image);}
+    $fallback=$doc->createElement('noscript');$style=$doc->createElement('style');$style->appendChild($doc->createTextNode('[data-animate]{opacity:1!important;transform:none!important}.reveal-word{color:var(--ink)}'));$fallback->appendChild($style);$doc->getElementsByTagName('body')->item(0)->appendChild($fallback);
     foreach(ig_nodes($doc,'//img')as$img){
         if(!$img->hasAttribute('decoding'))$img->setAttribute('decoding','async');
-        $hero=in_array($img->getAttribute('id'),['articleHeroImage','newsFeatureImage'],true)||$img->parentNode instanceof DOMElement&&$img->parentNode->getAttribute('id')==='companyBrand';
+        $hero=$img->getAttribute('id')==='articleHeroImage'||$img->getAttribute('fetchpriority')==='high'||$img->parentNode instanceof DOMElement&&$img->parentNode->getAttribute('id')==='companyBrand';
         if($hero){$img->setAttribute('loading','eager');$img->setAttribute('fetchpriority','high');}
+        elseif(str_contains($img->getAttribute('class'),'intro-brand'))$img->setAttribute('loading','eager');
         elseif(!$img->hasAttribute('loading')&&!str_contains($img->getAttribute('class'),'logo'))$img->setAttribute('loading','lazy');
         $src=$img->getAttribute('src');$prefix=get_template_directory_uri().'/prototype/';
         if(str_starts_with($src,$prefix)){$local=get_template_directory().'/prototype/'.substr((string)parse_url($src,PHP_URL_PATH),strlen((string)parse_url($prefix,PHP_URL_PATH)));if(is_file($local)&&($size=@getimagesize($local))){if(!$img->hasAttribute('width'))$img->setAttribute('width',(string)$size[0]);if(!$img->hasAttribute('height'))$img->setAttribute('height',(string)$size[1]);}}

@@ -38,7 +38,7 @@ function ig_render(string $route, ?WP_Post $post): void {
         if ($route === 'index') ig_home_news($doc, $news, $config['categories']['news']);
         else ig_news_archive($doc, $news, $config['categories']['news']);
     }
-    if (in_array($route, ['members', 'members-all'], true)) $config['companies'] = ig_feed('ig_company');
+    if (in_array($route, ['members', 'members-all'], true)) $config['companies'] = ig_company_listing_feed();
     if (in_array($route, ['members', 'members-all'], true)) {
         $config['categories']['companies'] = ig_topic_labels('ig_company');
         $filters = ig_nodes($doc, '//*[' . ig_class('members-filters') . ']')[0] ?? null;
@@ -101,10 +101,12 @@ function ig_render(string $route, ?WP_Post $post): void {
         $name = basename(parse_url($script->getAttribute('src'), PHP_URL_PATH));
         if (in_array($name, ['news-data.js', 'member-data.js'], true) || ($route === 'news-article' && $name === 'news-article.js') || ($route === 'company' && $name === 'company.js')) $script->parentNode->removeChild($script);
     }
-    // ASCII JSON escapes preserve Persian text through libxml's HTML serializer.
-    $json = wp_json_encode($config, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
+    // Inject UTF-8 JSON after serialization so libxml cannot rewrite Persian
+    // inside script elements. HTML-sensitive characters remain escaped.
+    $json = wp_json_encode($config, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
+    $configMarker = '__IG_CONFIG_' . str_replace('-', '', wp_generate_uuid4()) . '__';
     $script = $doc->createElement('script');
-    $script->appendChild($doc->createCDATASection('window.IranGrains=' . $json . ';window.NewsItems=window.IranGrains.news||[];window.MemberDirectory=window.IranGrains.companies||[];'));
+    $script->appendChild($doc->createCDATASection('window.IranGrains=' . $configMarker . ';window.NewsItems=window.IranGrains.news||[];window.MemberDirectory=window.IranGrains.companies||[];'));
     $body = $doc->getElementsByTagName('body')->item(0);
     $firstScript = ig_nodes($doc, '//body//script')[0] ?? null;
     if ($firstScript) $firstScript->parentNode->insertBefore($script, $firstScript); else $body->appendChild($script);
@@ -112,7 +114,7 @@ function ig_render(string $route, ?WP_Post $post): void {
     if ($firstScript) $firstScript->parentNode->insertBefore($copyRuntime, $firstScript); else $body->appendChild($copyRuntime);
     $bridge = $doc->createElement('script'); $bridge->setAttribute('src', get_template_directory_uri() . '/assets/site.js'); $body->appendChild($bridge);
     ig_seo_apply($doc, $route, $post);
-    $html = $doc->saveHTML();
+    $html = str_replace($configMarker, $json, $doc->saveHTML());
     ob_start(); wp_head(); $head = ob_get_clean();
     ob_start(); wp_footer(); $footer = ob_get_clean();
     ob_start(); wp_body_open(); $open = ob_get_clean();
@@ -184,7 +186,9 @@ function ig_article(DOMDocument $doc, WP_Post $post): void {
         [$route, $label] = $routes[$post->post_type];
         foreach (ig_nodes($doc, '//a[@href="news.html"]') as $a) if (!$a->hasAttribute('class') || $a->getAttribute('class') === 'article-back') {$a->setAttribute('href', ig_page_url($route)); ig_text($a, 'بازگشت به ' . $label . ' ←');}
         foreach (ig_nodes($doc, '//*[' . ig_class('article-content') . ']/*[' . ig_class('section-tag') . ']') as $tag) ig_text($tag, 'متن کامل');
+        ig_text(ig_nodes($doc,'//*['.ig_class('article-hero').']//*['.ig_class('circulars-eyebrow').']')[0]??null,$label);
     }
+    ig_article_details($doc,$post);
 }
 function ig_company(DOMDocument $doc, WP_Post $post): void {
     $c = ig_record($post); $labels = ig_topic_labels('ig_company');
@@ -219,16 +223,19 @@ function ig_meetings(DOMDocument $doc): void {
         $date = get_post_meta($post->ID, '_ig_event_date', true) ?: substr($post->post_date,0,10);
         [$year,$month,$day] = ig_date_parts($date);
         $status = get_post_meta($post->ID, '_ig_event_status', true) === 'held' ? 'held' : 'upcoming';
-        $html .= '<article class="meet-card" data-status="' . $status . '" data-animate><div class="meet-img"><img src="' . esc_url(ig_image($post)) . '" alt="' . esc_attr($post->post_title) . '" loading="lazy"></div><div class="meet-row"><div class="meet-date"><b>' . ig_fa($day) . '</b><span>' . esc_html($month) . '</span><i>' . ig_fa($year) . '</i></div><div class="meet-body"><span class="meet-tag ' . $status . '">' . ($status==='held'?'برگزارشده':'در پیش رو') . '</span><h3>' . esc_html($post->post_title) . '</h3><p>' . esc_html($post->post_excerpt) . '</p><div class="meet-meta"><span>📍 ' . esc_html(get_post_meta($post->ID,'_ig_location',true)) . '</span><span>🕑 ' . esc_html(get_post_meta($post->ID,'_ig_event_time',true)) . '</span></div></div></div><template class="meet-summary">' . esc_html(wp_strip_all_tags($post->post_content)) . '</template></article>';
+        $html .= '<article class="meet-card" data-status="' . $status . '" data-animate><div class="meet-img"><img src="' . esc_url(ig_image($post)) . '" alt="' . esc_attr($post->post_title) . '" loading="lazy"></div><div class="meet-row"><div class="meet-date"><b>' . ig_fa($day) . '</b><span>' . esc_html($month) . '</span><i>' . ig_fa($year) . '</i></div><div class="meet-body"><span class="meet-tag ' . $status . '">' . ($status==='held'?'برگزارشده':'در پیش رو') . '</span><h3><a class="meeting-detail-link" href="'.esc_url(get_permalink($post)).'">' . esc_html($post->post_title) . '</a></h3><p>' . esc_html($post->post_excerpt) . '</p><div class="meet-meta"><span>📍 ' . esc_html(get_post_meta($post->ID,'_ig_location',true)) . '</span><span>🕑 ' . esc_html(get_post_meta($post->ID,'_ig_event_time',true)) . '</span></div></div></div><template class="meet-summary">' . esc_html(wp_strip_all_tags($post->post_content)) . '</template></article>';
     }
     ig_html(ig_node($doc, 'meetGrid'), $html ?: '<p>هنوز جلسه‌ای ثبت نشده است.</p>');
+    if($summary=ig_node($doc,'meetingDialogSummary')){
+        $link=$doc->createElement('a');$link->setAttribute('id','meetingArticleLink');$link->setAttribute('class','btn btn-green-outline');$link->setAttribute('hidden','');$link->textContent=ig_ui('مطالعهٔ کامل جلسه');$summary->parentNode->appendChild($link);
+    }
 }
 function ig_board(DOMDocument $doc): void {
     $cards = ''; $profiles = '';
     foreach (ig_public_posts('ig_board') as $i => $post) {
         $role = get_post_meta($post->ID, '_ig_position', true); $image = ig_image($post);
         $cards .= '<article class="bmember"><div class="bphoto"><img src="' . esc_url($image) . '" alt="' . esc_attr($post->post_title) . '"></div><h3 class="bname">' . esc_html($post->post_title) . '</h3><span class="brole">' . esc_html($role) . '</span><p class="bbio">' . esc_html($post->post_excerpt) . '</p></article>';
-        $profiles .= '<article class="profile" id="profile-' . ($i+1) . '" data-animate><div class="profile-photo"><img src="' . esc_url($image) . '" alt="' . esc_attr($post->post_title) . '"></div><div class="profile-info"><span class="profile-role">' . esc_html($role) . '</span><h3 class="section-title">' . esc_html($post->post_title) . '</h3><div class="profile-bio">' . wp_kses_post(wpautop($post->post_content)) . '</div></div></article>';
+        $profiles .= '<article class="profile" id="profile-' . ($i+1) . '" data-animate><div class="profile-photo"><img src="' . esc_url($image) . '" alt="' . esc_attr($post->post_title) . '"></div><div class="profile-info"><span class="profile-role">' . esc_html($role) . '</span><h3 class="section-title"><a href="'.esc_url(get_permalink($post)).'">' . esc_html($post->post_title) . '</a></h3><div class="profile-bio">' . wp_kses_post(wpautop($post->post_content)) . '</div></div></article>';
     }
     ig_html(ig_node($doc, 'bTrack'), $cards);
     $section = ig_nodes($doc, '//*[' . ig_class('profiles-section') . ']/div')[0] ?? null;

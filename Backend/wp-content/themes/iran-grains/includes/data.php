@@ -35,6 +35,10 @@ function ig_record(WP_Post $post): array {
     return $record;
 }
 function ig_feed(string $type): array { return array_map('ig_record', ig_public_posts($type)); }
+function ig_company_listing_feed(): array {
+    $fields=array_flip(['id','name','activity','description','categories','logo','url']);
+    return array_map(fn($record)=>array_intersect_key($record,$fields),ig_feed('ig_company'));
+}
 
 
 function ig_resolve_view(): array {

@@ -16,5 +16,25 @@ function ig_seo_admin(): void {
     echo '<p>برای هر شرکت، خبر یا سند، عنوان و توضیح اختصاصی سئو در «اطلاعات تکمیلی» همان محتوا و در «مرکز مدیریت متن‌ها ← محتوای بخش‌ها» قرار دارد. نام رسمی، فعالیت دقیق، معرفی اختصاصی، لوگو و اطلاعات تماس معتبر را کامل کنید؛ اطلاعات ساختگی و تکرار بی‌رویهٔ نام شرکت به رتبه کمک نمی‌کند.</p><form method="post">';wp_nonce_field('ig_seo_settings');
     echo '<h2>اتصال به Google Search Console</h2><p>بعد از ساخت مالکیت از نوع URL prefix، فقط مقدار <code>content</code> کد تأیید HTML را وارد کنید.</p><input class="large-text" dir="ltr" aria-label="کد تأیید گوگل" name="seo[google_verification]" value="'.esc_attr($values['google_verification']??'').'">';
     foreach($routes as$route=>$label){$default=ig_seo_metadata($route);echo '<details style="margin:16px 0;padding:16px;background:#fff;border:1px solid #dbe3da;border-radius:12px"><summary><strong>'.esc_html($label).'</strong></summary><p><label>عنوان در گوگل<br><input class="large-text" name="seo[pages]['.esc_attr($route).'][title]" value="'.esc_attr($values['pages'][$route]['title']??'').'" placeholder="'.esc_attr($default['title']).'"></label></p><p><label>توضیح نتیجهٔ جستجو<br><textarea class="large-text" rows="3" name="seo[pages]['.esc_attr($route).'][description]" placeholder="'.esc_attr($default['description']).'">'.esc_textarea($values['pages'][$route]['description']??'').'</textarea></label></p></details>';}
-    submit_button('ذخیرهٔ تنظیمات سئو');echo '</form></div>';
+    submit_button('ذخیرهٔ تنظیمات سئو');echo '</form>';ig_seo_quality_panel();echo '</div>';
+}
+
+function ig_seo_company_gaps(): array {
+    $rows=[];
+    foreach(ig_public_posts('ig_company')as$post){
+        $missing=[];$body=ig_copy_normalize(wp_strip_all_tags($post->post_content));$activity=ig_copy_normalize((string)get_post_meta($post->ID,'_ig_activity',true));
+        if($body===''||$body===$activity)$missing[]='معرفی اختصاصی شرکت';
+        if(!has_post_thumbnail($post)&&!get_post_meta($post->ID,'_ig_seed_image',true))$missing[]='لوگوی شرکت';
+        $contact=false;foreach(['phone','email','website','address']as$key)if(get_post_meta($post->ID,'_ig_'.$key,true)!=='')$contact=true;
+        if(!$contact)$missing[]='راه ارتباطی معتبر';
+        if($missing)$rows[]=['id'=>$post->ID,'name'=>$post->post_title,'missing'=>$missing];
+    }return$rows;
+}
+function ig_seo_quality_panel(): void {
+    $rows=ig_seo_company_gaps();
+    echo '<h2>تکمیل اطلاعات واقعی شرکت‌ها</h2><p>'.esc_html(ig_fa(count($rows))).' شرکت برای معرفی اختصاصی، لوگو یا راه ارتباطی به تکمیل اطلاعات نیاز دارند. این فهرست، کمبود داده را نشان می‌دهد و امتیاز یا پیش‌بینی رتبهٔ گوگل نیست.</p>';
+    if(!$rows)return;
+    echo '<table class="widefat striped"><thead><tr><th>شرکت</th><th>اطلاعات قابل تکمیل</th><th>ویرایش</th></tr></thead><tbody>';
+    foreach(array_slice($rows,0,12)as$row){$url=add_query_arg(['page'=>'ig-page-copy','view'=>'content','content_type'=>'ig_company','content_id'=>$row['id']],admin_url('admin.php'));echo '<tr><td>'.esc_html($row['name']).'</td><td>'.esc_html(implode('، ',$row['missing'])).'</td><td><a href="'.esc_url($url).'">تکمیل اطلاعات</a></td></tr>';}
+    echo '</tbody></table><p><a href="'.esc_url(admin_url('admin.php?page=ig-page-copy&view=content&content_type=ig_company')).'">مشاهده و ویرایش همهٔ شرکت‌ها</a></p>';
 }

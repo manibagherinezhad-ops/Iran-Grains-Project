@@ -283,9 +283,10 @@
     const heroSlider = $('#heroSlider');
     if (heroSlider) {
         // اسلاید ۰ = معرفی انجمن (فقط بار اول)، بعدش اخبار
-        const introSlide = document.createElement('div');
+        const serverIntro = heroSlider.querySelector('.hero-intro-stage');
+        const introSlide = serverIntro || document.createElement('div');
         introSlide.className = 'hero-slide hero-intro-stage active';
-        introSlide.innerHTML = `<div class="intro-ambient" aria-hidden="true"></div>
+        if (!serverIntro) introSlide.innerHTML = `<div class="intro-ambient" aria-hidden="true"></div>
 <div class="intro-gridlines" aria-hidden="true"></div>
 <div class="slide-intro"><div class="container intro-layout">
     <div class="intro-copy">
@@ -307,7 +308,7 @@
     </div>
 </div></div>`;
         const intro = window.IranGrains?.intro;
-        if (intro) {
+        if (intro && !serverIntro) {
             const first = introSlide.querySelector('.intro-title-line');
             if (intro.home_intro_prefix) first.firstChild.textContent = intro.home_intro_prefix + ' ';
             if (intro.home_intro_highlight) first.querySelector('.text-gold').textContent = intro.home_intro_highlight;
@@ -316,7 +317,7 @@
             if (intro.home_intro_subtitle) introSlide.querySelector('.hero-subtitle').textContent = intro.home_intro_subtitle;
             if (intro.home_intro_badge) introSlide.querySelector('.hero-badge').textContent = intro.home_intro_badge;
         }
-        heroSlider.appendChild(introSlide);
+        if (!serverIntro) heroSlider.appendChild(introSlide);
         // Subtle pointer depth applies only while the one-time intro is active.
         if (matchMedia('(hover: hover) and (pointer: fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
             let pointerFrame = 0;
@@ -352,7 +353,7 @@
                     '</div>' +
                     '<span class="slide-date"></span>' +
                 '</div>';
-            slide.querySelector('.slide-bg').style.backgroundImage = `url(${JSON.stringify(n.img)})`;
+            slide.querySelector('.slide-bg').dataset.image = n.img;
             slide.querySelector('.slide-title-kicker').textContent = n.kicker;
             slide.querySelector('.slide-title').textContent = n.title;
             slide.querySelector('.slide-date').textContent = n.date;
@@ -365,12 +366,22 @@
         let heroIdx = 0;
         const SLIDE_MS = 5000;
         const ANIM_MS = 900;
+        function prepareSlide(index) {
+            const background = slides[index]?.querySelector('.slide-bg');
+            if (!background?.dataset.image) return;
+            background.style.backgroundImage = `url(${JSON.stringify(background.dataset.image)})`;
+            delete background.dataset.image;
+        }
+        if (slides.length > 1) setTimeout(() => prepareSlide(1), 1200);
 
         function heroNext() {
+            if (document.hidden) return;
             const current = slides[heroIdx];
             let nextIdx = heroIdx + 1;
             if (nextIdx >= slides.length) nextIdx = 1; /* برگشت به اولین خبر، نه معرفی */
             const next = slides[nextIdx];
+            prepareSlide(nextIdx);
+            setTimeout(() => prepareSlide(nextIdx + 1 >= slides.length ? 1 : nextIdx + 1), ANIM_MS);
 
             current.classList.add('leaving');
             next.classList.add('active');

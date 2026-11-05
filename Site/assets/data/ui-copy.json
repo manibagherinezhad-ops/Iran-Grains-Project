@@ -473,7 +473,8 @@
     "key": "ui_ad3da3996b32149e",
     "default": "تلفن",
     "groups": [
-      "company"
+      "company",
+      "site"
     ],
     "tokens": []
   },
@@ -481,7 +482,8 @@
     "key": "ui_4ac6e7abd3f33128",
     "default": "فکس",
     "groups": [
-      "company"
+      "company",
+      "site"
     ],
     "tokens": []
   },
@@ -489,7 +491,8 @@
     "key": "ui_41182935a39cf9ed",
     "default": "ایمیل",
     "groups": [
-      "company"
+      "company",
+      "site"
     ],
     "tokens": []
   },
@@ -497,7 +500,8 @@
     "key": "ui_29d6c3239e1cdf25",
     "default": "وب‌سایت",
     "groups": [
-      "company"
+      "company",
+      "site"
     ],
     "tokens": []
   },
@@ -558,7 +562,8 @@
     "key": "ui_7e37403ba81a3fb8",
     "default": "منبع خبر: انجمن غلات ایران",
     "groups": [
-      "news-article"
+      "news-article",
+      "site"
     ],
     "tokens": []
   },
@@ -603,6 +608,150 @@
   {
     "key": "ui_0782d1bc472cab08",
     "default": "قالب صفحه در بستهٔ انتشار موجود نیست.",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_90e8c8e426f9949a",
+    "default": "\" aria-haspopup=\"dialog\" aria-controls=\"homeNewsDialog\">ادامه مطلب",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_8c4d074caca2c992",
+    "default": "هنوز خبری منتشر نشده است.",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_0412ddbc67611359",
+    "default": "همه موضوعات",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_85894e79715b3fa1",
+    "default": "| انجمن غلات ایران",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_39b744128193aefe",
+    "default": "\" target=\"_blank\" rel=\"noopener\">دریافت فایل PDF",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_2f9f39378b5a098e",
+    "default": "بخشنامه‌ها",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_27d7433f3ceb5339",
+    "default": "قیمت‌های مصوب",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_bf927aeb3f5cc839",
+    "default": "جلسات",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_88848bd25d8edbf6",
+    "default": "هیأت‌مدیره",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_0e2e48cb87771f4e",
+    "default": "بازگشت به",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_94198caeba088b47",
+    "default": "متن کامل",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_4edd074e70786070",
+    "default": "آدرس",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_052b8f2d4e35a696",
+    "default": "برگزارشده",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_caaf286568fb5b22",
+    "default": "در پیش رو",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_c904fe06bced3f9e",
+    "default": "هنوز جلسه‌ای ثبت نشده است.",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_215d01ec83370006",
+    "default": "مطالعهٔ کامل جلسه",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_e30d72bc4478a664",
+    "default": "ریال",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_0df842da9aaf08f0",
+    "default": "مورخ",
     "groups": [
       "site"
     ],
@@ -707,6 +856,70 @@
   {
     "key": "ui_e7da78786233dc35",
     "default": "شرکت‌های هم‌زمینه",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_7d218a901fb798e5",
+    "default": "تاریخ جلسه",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_22cad4766bed8107",
+    "default": "ساعت برگزاری",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_8804b14a9d1479cf",
+    "default": "محل برگزاری",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_6fd9db6766136f2b",
+    "default": "سمت در انجمن",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_312cc267fb4d8c4f",
+    "default": "شمارهٔ ابلاغیه",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_11bee0211626ab69",
+    "default": "مرجع صادرکننده",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_a6f87a1b783fd4e1",
+    "default": "آخرین به‌روزرسانی",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_066441c28e7ab62d",
+    "default": "مطالب مرتبط",
     "groups": [
       "site"
     ],

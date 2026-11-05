@@ -17,6 +17,8 @@
         $('meetingDialogStatus').className = status.className;
         $('meetingDialogImage').src = image.src;
         $('meetingDialogImage').alt = card.querySelector('h3').textContent;
+        const detail = $('meetingArticleLink'), source = card.querySelector('.meeting-detail-link');
+        if (detail) {detail.hidden = !source;if (source) detail.href = source.href;}
         card.focus({preventScroll: true});
         dialog.showModal();
         window.SiteMotion?.reveal([dialog]);
@@ -27,7 +29,10 @@
         card.setAttribute('aria-haspopup', 'dialog');
         card.setAttribute('aria-controls', 'meetingDialog');
         card.setAttribute('aria-label', 'خلاصهٔ ' + card.querySelector('h3').textContent.trim());
-        card.addEventListener('click', () => open(card));
+        card.addEventListener('click', (event) => {
+            if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+            event.preventDefault();open(card);
+        });
         card.addEventListener('keydown', (event) => {
             if (event.key === 'Enter' || event.key === ' ') {event.preventDefault(); open(card);}
         });

@@ -17,7 +17,7 @@ for(const name of files){const file=path.join(root,'Site/assets/js',name+'.js'),
   for(const [key,v]of Object.entries(node)){if(['start','end','type'].includes(key))continue;if(Array.isArray(v))v.forEach(visit);else if(v&&typeof v==='object')visit(v)}
  }visit(tree)}
 // PHP renderers produce the same labels as the browser controllers.
-for(const relative of ['Backend/wp-content/themes/iran-grains/includes/render.php','Backend/wp-content/themes/iran-grains/includes/seo-archive.php','Backend/wp-content/themes/iran-grains/index.php','Backend/wp-content/plugins/iran-grains-core/includes/messages.php','Backend/wp-content/themes/iran-grains/assets/site.js']){
+for(const relative of ['Backend/wp-content/themes/iran-grains/includes/render.php','Backend/wp-content/themes/iran-grains/includes/seo-archive.php','Backend/wp-content/themes/iran-grains/includes/seo-content.php','Backend/wp-content/themes/iran-grains/index.php','Backend/wp-content/plugins/iran-grains-core/includes/messages.php','Backend/wp-content/themes/iran-grains/assets/site.js']){
  let code=fs.readFileSync(path.join(root,relative),'utf8');if(relative.endsWith('messages.php'))code=code.slice(code.indexOf("add_action('rest_api_init'"),code.indexOf("add_action('admin_menu'"));
  for(const m of code.matchAll(/'((?:\\.|[^'\\])*)'/g)){const text=m[1].replace(/\\'/g,"'").replace(/\\\\/g,'\\');if(text.includes('<'))markup(text,'site');else add(text,'site')}
 }
