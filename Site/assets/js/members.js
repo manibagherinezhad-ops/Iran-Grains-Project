@@ -11,7 +11,7 @@
     const escape = (s) => s.replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     const arrow = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H4m6-6-6 6 6 6"/></svg>';
     const leaf = '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M20 3C8 3 3 8 5 16c8 4 15-1 15-13ZM4 21 16 9"/></svg>';
-    let category = 'all', page = 1, featuredId = companies[0]?.id ?? 0;
+    let category = 'all', page = isArchive ? (window.ArchiveNavigation?.page() || 1) : 1, featuredId = companies[0]?.id ?? 0;
     let order = companies.map((company) => company.id);
     const pageSize = isArchive ? 16 : 8;
     function brand(company) {
@@ -27,7 +27,7 @@
     function card(company, featured = false) {
         const url = escape(company.url || ('company.html?id=' + company.id));
         const logo = isArchive ? `<a class="member-logo-button" href="${url}" aria-label="معرفی ${escape(company.name)}">${brand(company)}</a>` : `<button type="button" class="member-logo-button" data-promote="${company.id}" aria-label="نمایش برجستهٔ ${escape(company.name)}" aria-pressed="${company.id === featuredId}">${brand(company)}</button>`;
-        return `<article data-company-card="${company.id}" class="member-card${featured ? ' member-feature' : ''}">${featured ? '<span class="member-feature-badge">✧ معرفی عضو</span>' : ''}${logo}<div class="member-card-copy"><h3>${escape(company.name)}</h3><span class="member-activity">${escape(company.activity)}</span><p>${escape(company.description)}</p><a href="${url}" class="members-more${featured ? ' members-more-primary' : ''}" aria-label="دربارهٔ ${escape(company.name)} بیشتر بدانید">بیشتر بدانید ${arrow}</a></div></article>`;
+        return `<article data-company-card="${company.id}" class="member-card${featured ? ' member-feature' : ''}">${featured ? '<span class="member-feature-badge">✧ معرفی عضو</span>' : ''}${logo}<div class="member-card-copy"><h3><a href="${url}">${escape(company.name)}</a></h3><span class="member-activity">${escape(company.activity)}</span><p>${escape(company.description)}</p><a href="${url}" class="members-more${featured ? ' members-more-primary' : ''}" aria-label="دربارهٔ ${escape(company.name)} بیشتر بدانید">بیشتر بدانید ${arrow}</a></div></article>`;
     }
     function ribbon() {
         return `<aside class="members-ribbon"><span aria-hidden="true">${leaf}</span><div><h3>${fa(companies.length)} شرکت، همراه صنعت غلات</h3><p>در مسیر توسعهٔ پایدار زنجیرهٔ تأمین، با هم همراه باشیم.</p><a class="btn" href="${escape(window.IranGrains?.membersArchiveUrl || 'members-all.html')}">مشاهده همهٔ شرکت‌ها ${arrow}</a></div></aside>`;
@@ -53,7 +53,7 @@
             button.setAttribute('aria-pressed', String(active));
         });
         // Keep arrow directions consistent with the approved RTL pagination.
-        if (pagination) pagination.innerHTML = pages > 1 ? `<button type="button" data-page="${page - 1}" ${page === 1 ? 'disabled' : ''} aria-label="صفحه قبل">❮</button>` + Array.from({length: pages}, (_, index) => `<button type="button" data-page="${index + 1}" ${page === index + 1 ? 'aria-current="page"' : ''} aria-label="صفحه ${fa(index + 1)}">${fa(index + 1)}</button>`).join('') + `<button type="button" data-page="${page + 1}" ${page === pages ? 'disabled' : ''} aria-label="صفحه بعد">❯</button>` : '';
+        if (pagination) pagination.innerHTML = window.ArchiveNavigation.render(pages, page, category !== 'all' || !!query);
         if (animate) window.SiteMotion?.reveal(grid.children);
     }
     function reset() { category = 'all'; search.value = ''; page = 1; render(); }
@@ -65,8 +65,11 @@
     $('membersEmptyReset').addEventListener('click', () => {reset(); search.focus({preventScroll: true});});
     pagination?.addEventListener('click', (event) => {
         const button = event.target.closest('[data-page]');
-        if (!button || button.disabled) return;
-        page = Number(button.dataset.page); render();
+        if (!button || button.disabled || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        page = Number(button.dataset.page);
+        window.ArchiveNavigation.commit(page, category !== 'all' || !!search.value);
+        render();
         $('directoryTitle').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start'});
         pagination.querySelector('[aria-current="page"]')?.focus({preventScroll: true});
     });
@@ -101,5 +104,6 @@
         });
         hero.addEventListener('pointerleave', () => {cancelAnimationFrame(frame);hero.style.setProperty('--members-x','0px');hero.style.setProperty('--members-y','0px');});
     }
+    if (isArchive) window.addEventListener('popstate', () => {category='all';search.value='';page=window.ArchiveNavigation.page();render();});
     render(false);
 })();

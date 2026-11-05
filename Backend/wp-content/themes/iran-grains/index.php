@@ -6,8 +6,8 @@ if (!function_exists('ig_content_types')) {
 }
 [$route, $post] = ig_resolve_view();
 if ($route === '404') {
-    status_header(404); nocache_headers();
-    echo '<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8"><title>' . esc_html(ig_ui('صفحه یافت نشد')) . '</title><h1>' . esc_html(ig_ui('صفحهٔ موردنظر پیدا نشد.')) . '</h1><a href="' . esc_url(home_url('/')) . '">' . esc_html(ig_ui('بازگشت به خانه')) . '</a></html>';
+    status_header(404); nocache_headers();header('X-Robots-Tag: noindex, nofollow',true);
+    echo '<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><title>' . esc_html(ig_ui('صفحه یافت نشد')) . '</title><h1>' . esc_html(ig_ui('صفحهٔ موردنظر پیدا نشد.')) . '</h1><a href="' . esc_url(home_url('/')) . '">' . esc_html(ig_ui('بازگشت به خانه')) . '</a></html>';
     return;
 }
 status_header(200);

@@ -52,5 +52,6 @@ function ig_resolve_view(): array {
     if ($post && !$authorized_preview && post_password_required($post)) $post = null;
     if ($route === '' && is_front_page()) $route = 'index';
     if (!in_array($route, ig_routes(), true) || (in_array($route, ['company', 'news-article'], true) && !$post)) return ['404', null];
+    if (ig_archive_type($route) && (ig_archive_page()<1 || ig_archive_page()>ig_archive_pages($route))) return ['404', null];
     return [$route, $post ? ig_copy_preview_post($post) : null];
 }

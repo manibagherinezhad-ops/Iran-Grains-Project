@@ -14,7 +14,7 @@ function ig_content_types(): array {
 
 function ig_fields(string $type): array {
     $shared = ['source' => ['نشانی منبع', 'url']];
-    return match ($type) {
+    return ['seo_title'=>['عنوان نمایش در گوگل (اختیاری)','text'], 'seo_description'=>['توضیح نمایش در گوگل (اختیاری)','textarea']] + match ($type) {
         'ig_news' => $shared,
         'ig_circular', 'ig_price' => $shared + [
             'document_number' => ['شمارهٔ ابلاغیه', 'text'],

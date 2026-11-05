@@ -4,11 +4,11 @@
    ============================================ */
 
 /* ---------- فونت‌ها ---------- */
-@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
-@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-SemiBold.ttf') format('truetype'); font-weight: 600; font-display: swap; }
-@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
-@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-ExtraBold.ttf') format('truetype'); font-weight: 800; font-display: swap; }
-@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-Black.ttf') format('truetype'); font-weight: 900; font-display: swap; }
+@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-Regular.woff2') format('woff2'), url('../fonts/YekanBakh-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-SemiBold.woff2') format('woff2'), url('../fonts/YekanBakh-SemiBold.ttf') format('truetype'); font-weight: 600; font-display: swap; }
+@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-Bold.woff2') format('woff2'), url('../fonts/YekanBakh-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-ExtraBold.woff2') format('woff2'), url('../fonts/YekanBakh-ExtraBold.ttf') format('truetype'); font-weight: 800; font-display: swap; }
+@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-Black.woff2') format('woff2'), url('../fonts/YekanBakh-Black.ttf') format('truetype'); font-weight: 900; font-display: swap; }
 
 /* ---------- متغیرهای رنگ و طراحی ---------- */
 :root {

@@ -75,9 +75,9 @@
 .circulars-grid.is-list .circulars-card-bottom { border: 0; padding: 0; margin: 0; }
 .circulars-empty { padding: 65px 20px; text-align: center; color: var(--muted); border: 1px dashed var(--border); border-radius: var(--radius); }
 .circulars-pagination { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 30px; }
-.circulars-pagination button { min-width: 42px; height: 42px; padding: 7px; border: 1px solid var(--border); background: var(--bg-card); color: var(--forest); border-radius: var(--radius-sm); font-size: .9rem; }
-.circulars-pagination button[aria-current="page"] { background: var(--forest); color: #fff; border-color: var(--forest); }
-.circulars-pagination button:disabled { opacity: .4; cursor: default; }
+.circulars-pagination :is(button, a) { min-width: 42px; height: 42px; padding: 7px; border: 1px solid var(--border); background: var(--bg-card); color: var(--forest); border-radius: var(--radius-sm); font-size: .9rem; }
+.circulars-pagination :is(button, a)[aria-current="page"] { background: var(--forest); color: #fff; border-color: var(--forest); }
+.circulars-pagination :is(button, a):disabled { opacity: .4; cursor: default; }
 .circulars-help { display: flex; align-items: center; justify-content: space-between; gap: 30px; padding: 32px 38px; border-radius: var(--radius-lg); background: var(--sage); margin-bottom: 65px; }
 .circulars-help h2 { font-size: 1.35rem; margin-bottom: 8px; }
 .circulars-help p { font-size: .85rem; color: var(--ink-soft); }
@@ -163,3 +163,5 @@
 .circulars-membership .btn-white > span[aria-hidden="true"] { display: inline-block; transition: transform .3s cubic-bezier(.2,.7,.3,1); }
 .circulars-membership .btn-white:hover > span[aria-hidden="true"] { transform: translateX(-5px); }
 @media (prefers-reduced-motion: reduce) { .circulars-membership .btn-white:hover > span[aria-hidden="true"] { transform: none; } }
+
+.circulars-pagination a { display: inline-flex; align-items: center; justify-content: center; font-weight: 900; }

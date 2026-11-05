@@ -16,7 +16,7 @@
     const normalize = (value) => value.replace(/ي/g, 'ی').replace(/ك/g, 'ک').replace(/[\u200c\u200f]/g, ' ').replace(/\s+/g, ' ').trim();
     const docIcon = '<svg width="24" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H5v18h14V8Z"/><path d="M14 3v5h5M8 12h8M8 16h6"/></svg>';
     const arrow = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 12H4m6-6-6 6 6 6"/></svg>';
-    let currentPage = 1;
+    let currentPage = window.ArchiveNavigation?.page() || 1;
     const pageSize = 6;
     // Keep native selects as form controls; enhance them with custom RTL menus.
     const dropdowns = [category, sort].map((select) => {
@@ -121,20 +121,22 @@
             .sort((a, b) => sort.value === 'oldest' ? (a.publishedAt || a.date).localeCompare(b.publishedAt || b.date) : (b.publishedAt || b.date).localeCompare(a.publishedAt || a.date));
         const pages = Math.ceil(results.length / pageSize);
         currentPage = Math.min(currentPage, pages || 1);
-        grid.innerHTML = results.slice((currentPage-1)*pageSize,currentPage*pageSize).map(item => `<article class="circulars-card"><img class="archive-news-image" src="${escape(item.image)}" alt="" loading="lazy"><div class="archive-news-content"><div class="circulars-card-top"><span class="circulars-tag">${escape(categories[item.category] || "")}</span><time datetime="${item.date}">${date(item.date)}</time></div><div class="circulars-card-title"><h3>${escape(item.title)}</h3></div><p>${escape(item.description)}</p></div><div class="circulars-card-bottom"><button type="button" data-open="${item.id}" aria-label="مشاهده ${escape(item.title)}">مشاهده خبر ${arrow}</button></div></article>`).join('');
+        grid.innerHTML = results.slice((currentPage-1)*pageSize,currentPage*pageSize).map(item => `<article class="circulars-card"><img class="archive-news-image" src="${escape(item.image)}" alt="" loading="lazy"><div class="archive-news-content"><div class="circulars-card-top"><span class="circulars-tag">${escape(categories[item.category] || "")}</span><time datetime="${item.date}">${date(item.date)}</time></div><div class="circulars-card-title"><h3>${item.url ? `<a href="${escape(item.url)}">${escape(item.title)}</a>` : escape(item.title)}</h3></div><p>${escape(item.description)}</p></div><div class="circulars-card-bottom"><button type="button" data-open="${item.id}" aria-label="مشاهده ${escape(item.title)}">مشاهده خبر ${arrow}</button></div></article>`).join('');
         $('#circularCount').textContent = results.length ? `نمایش ${fa((currentPage - 1) * pageSize + 1)} تا ${fa(Math.min(currentPage * pageSize, results.length))} از ${fa(results.length)} خبر` : '۰ خبر';
         $('#circularEmpty').hidden = results.length > 0;
         $('#circularFeature').hidden = !second || !!query || category.value !== 'all' || currentPage !== 1 || sort.value !== 'newest';
         // جهت فلش‌ها را مطابق چیدمان تأییدشدهٔ راست‌به‌چپ پروژه حفظ کنید.
-        pagination.innerHTML = pages > 1 ? `<button type="button" data-page="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''} aria-label="صفحه قبل">❮</button>` + Array.from({length: pages}, (_, i) => `<button type="button" data-page="${i + 1}" ${currentPage === i + 1 ? 'aria-current="page"' : ''} aria-label="صفحه ${fa(i + 1)}">${fa(i + 1)}</button>`).join('') + `<button type="button" data-page="${currentPage + 1}" ${currentPage === pages ? 'disabled' : ''} aria-label="صفحه بعد">❯</button>` : '';
+        pagination.innerHTML = window.ArchiveNavigation.render(pages, currentPage, !!query || category.value !== 'all' || sort.value !== 'newest');
     }
     [search, category, sort].forEach((input) => input.addEventListener(input === search ? 'input' : 'change', () => { currentPage = 1; render(); window.SiteMotion?.reveal(grid.children); }));
     form.addEventListener('submit', (event) => event.preventDefault());
     form.addEventListener('reset', () => { dropdowns.forEach((item) => item.close()); requestAnimationFrame(() => {currentPage = 1; render(); window.SiteMotion?.reveal(grid.children);}); });
     pagination.addEventListener('click', (event) => {
         const button = event.target.closest('[data-page]');
-        if (!button || button.disabled) return;
+        if (!button || button.disabled || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
         currentPage = Number(button.dataset.page);
+        window.ArchiveNavigation.commit(currentPage, !!search.value || category.value !== 'all' || sort.value !== 'newest');
         render();
         window.SiteMotion?.reveal(grid.children);
         $('#archiveTitle').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start'});

@@ -38,7 +38,7 @@ function ig_render(string $route, ?WP_Post $post): void {
         if ($route === 'index') ig_home_news($doc, $news, $config['categories']['news']);
         else ig_news_archive($doc, $news, $config['categories']['news']);
     }
-    if (in_array($route, ['members', 'members-all', 'company'], true)) $config['companies'] = ig_feed('ig_company');
+    if (in_array($route, ['members', 'members-all'], true)) $config['companies'] = ig_feed('ig_company');
     if (in_array($route, ['members', 'members-all'], true)) {
         $config['categories']['companies'] = ig_topic_labels('ig_company');
         $filters = ig_nodes($doc, '//*[' . ig_class('members-filters') . ']')[0] ?? null;
@@ -65,7 +65,7 @@ function ig_render(string $route, ?WP_Post $post): void {
         ig_documents($doc, $config['documents'], $config['categories']['documents']);
     }
     if ($route === 'news-article') ig_article($doc, $post);
-    if ($route === 'company') ig_company($doc, $post);
+    if ($route === 'company') {ig_company($doc, $post);ig_company_related($doc,$post);}
     if ($route === 'meetings') ig_meetings($doc);
     if ($route === 'board') ig_board($doc);
     if ($route === 'circulars') {
@@ -80,6 +80,8 @@ function ig_render(string $route, ?WP_Post $post): void {
     ig_menu($doc, $route, $post?->post_type ?? '');
     if ($route === 'news') ig_select_options($doc, 'circularCategory', $config['categories']['news']);
     if (in_array($route, ['circulars', 'approved-prices'], true)) ig_select_options($doc, 'circularCategory', $config['categories']['documents']);
+    ig_render_archive($doc, $route);
+    if ($route === 'index') ig_render_home_intro($doc);
     ig_copy_apply_targets($copyTargets);
     $config['copy'] = ig_copy_public_dictionary();
 
@@ -109,6 +111,7 @@ function ig_render(string $route, ?WP_Post $post): void {
     $copyRuntime = $doc->createElement('script'); $copyRuntime->setAttribute('src', get_template_directory_uri() . '/assets/copy.js');
     if ($firstScript) $firstScript->parentNode->insertBefore($copyRuntime, $firstScript); else $body->appendChild($copyRuntime);
     $bridge = $doc->createElement('script'); $bridge->setAttribute('src', get_template_directory_uri() . '/assets/site.js'); $body->appendChild($bridge);
+    ig_seo_apply($doc, $route, $post);
     $html = $doc->saveHTML();
     ob_start(); wp_head(); $head = ob_get_clean();
     ob_start(); wp_footer(); $footer = ob_get_clean();

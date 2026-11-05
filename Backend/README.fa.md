@@ -117,6 +117,8 @@ npm run copy-catalog --prefix .\Backend\scripts
 
 ## آزمایش
 
+سئوی فنی، نقشهٔ سایت، تنظیمات مدیر و مراحل انتشار در [راهنمای سئو](SEO.fa.md) توضیح داده شده‌اند. مسیر پنل: «پنل انجمن ← سئو و نمایش در گوگل».
+
 ```powershell
 docker compose -f .\Backend\compose.yaml exec -T web wp eval-file /opt/ig-tests/integration.php --user=ig_manager
 ```

@@ -3,6 +3,7 @@ defined('ABSPATH') || exit;
 require_once __DIR__ . '/includes/data.php';
 require_once __DIR__ . '/includes/render.php';
 require_once __DIR__ . '/includes/page-copy.php';
+require_once __DIR__ . '/includes/seo.php';
 add_action('after_setup_theme', function () {
     add_theme_support('post-thumbnails');
     add_theme_support('html5', ['search-form', 'gallery', 'caption']);
@@ -22,15 +23,15 @@ add_filter('query_vars', fn($vars) => array_merge($vars, ['ig_view']));
 add_action('after_switch_theme', 'flush_rewrite_rules');
 add_filter('redirect_canonical', fn($url) => get_query_var('ig_view') ? false : $url);
 remove_action('wp_head', 'rel_canonical');
-add_action('wp_head', function () {
-    if (is_singular() && get_post_type() !== 'page') echo '<link rel="canonical" href="' . esc_url(get_permalink()) . '">';
-});
+remove_action('wp_head', '_wp_render_title_tag', 1);
 
 function ig_page_url(string $route): string {
     return home_url($route === 'index' ? '/' : '/' . $route . '/');
 }
 function ig_asset(string $path): string {
-    return get_template_directory_uri() . '/prototype/' . ltrim($path, '/');
+    $url = get_template_directory_uri() . '/prototype/' . ltrim($path, '/');
+    $local = get_template_directory() . '/prototype/' . ltrim((string)parse_url($path, PHP_URL_PATH), '/');
+    return is_file($local) && preg_match('/\.(css|js)$/i', $local) ? add_query_arg('ver', filemtime($local), $url) : $url;
 }
 function ig_image(WP_Post $post): string {
     $url = get_the_post_thumbnail_url($post, 'large');

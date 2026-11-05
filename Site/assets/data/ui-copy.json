@@ -229,41 +229,6 @@
     "tokens": []
   },
   {
-    "key": "ui_954aa38b95041574",
-    "default": "صفحه قبل",
-    "groups": [
-      "news",
-      "circulars",
-      "approved-prices",
-      "members"
-    ],
-    "tokens": []
-  },
-  {
-    "key": "ui_63b5d4a1c438da06",
-    "default": "صفحه {شماره}",
-    "groups": [
-      "news",
-      "circulars",
-      "approved-prices",
-      "members"
-    ],
-    "tokens": [
-      "شماره"
-    ]
-  },
-  {
-    "key": "ui_e8ac8242c4c87286",
-    "default": "صفحه بعد",
-    "groups": [
-      "news",
-      "circulars",
-      "approved-prices",
-      "members"
-    ],
-    "tokens": []
-  },
-  {
     "key": "ui_8eb53d3f4a0fb7db",
     "default": "موضوع بخشنامه",
     "groups": [
@@ -275,7 +240,8 @@
     "key": "ui_b5b3efafe60b391f",
     "default": "مشاهده بخشنامه",
     "groups": [
-      "circulars"
+      "circulars",
+      "site"
     ],
     "tokens": []
   },
@@ -330,7 +296,8 @@
     "key": "ui_69e47f3a523165db",
     "default": "مشاهده ابلاغیه",
     "groups": [
-      "approved-prices"
+      "approved-prices",
+      "site"
     ],
     "tokens": []
   },
@@ -399,7 +366,8 @@
     "key": "ui_00d84a190dcabbc1",
     "default": "بیشتر بدانید",
     "groups": [
-      "members"
+      "members",
+      "site"
     ],
     "tokens": []
   },
@@ -407,7 +375,8 @@
     "key": "ui_9b7c835568ca0321",
     "default": "✧ معرفی عضو",
     "groups": [
-      "members"
+      "members",
+      "site"
     ],
     "tokens": []
   },
@@ -425,7 +394,8 @@
     "key": "ui_256630ae15b22b2d",
     "default": "در مسیر توسعهٔ پایدار زنجیرهٔ تأمین، با هم همراه باشیم.",
     "groups": [
-      "members"
+      "members",
+      "site"
     ],
     "tokens": []
   },
@@ -593,8 +563,150 @@
     "tokens": []
   },
   {
+    "key": "ui_df780ef1e413e09f",
+    "default": "— صفحهٔ {مقدار}",
+    "groups": [
+      "archive-navigation"
+    ],
+    "tokens": [
+      "مقدار"
+    ]
+  },
+  {
+    "key": "ui_954aa38b95041574",
+    "default": "صفحه قبل",
+    "groups": [
+      "archive-navigation",
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_63b5d4a1c438da06",
+    "default": "صفحه {شماره}",
+    "groups": [
+      "archive-navigation"
+    ],
+    "tokens": [
+      "شماره"
+    ]
+  },
+  {
+    "key": "ui_e8ac8242c4c87286",
+    "default": "صفحه بعد",
+    "groups": [
+      "archive-navigation",
+      "site"
+    ],
+    "tokens": []
+  },
+  {
     "key": "ui_0782d1bc472cab08",
     "default": "قالب صفحه در بستهٔ انتشار موجود نیست.",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_0572e8936cb97e48",
+    "default": "صفحه",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_86904ade3b3512ca",
+    "default": "\" alt=\"نشان",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_44ac8df4c08abbf3",
+    "default": "\" aria-label=\"نمایش برجستهٔ",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_7c9197020ae4bb09",
+    "default": "شرکت، همراه صنعت غلات",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_b648de711cd7c687",
+    "default": "\">مشاهده همهٔ شرکت‌ها ←",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_699c3ef43117472b",
+    "default": "شرکت",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_44185590c5a95d34",
+    "default": "خبر",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_5fdffe51c9e0b9e7",
+    "default": "بخشنامه",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_4c5e5081335a5b49",
+    "default": "ابلاغیه",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_588d689fc82cac64",
+    "default": "نمایش",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_b1e000640da2ab9c",
+    "default": "تا",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_77e7a9224bb9c177",
+    "default": "از",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_e7da78786233dc35",
+    "default": "شرکت‌های هم‌زمینه",
     "groups": [
       "site"
     ],
