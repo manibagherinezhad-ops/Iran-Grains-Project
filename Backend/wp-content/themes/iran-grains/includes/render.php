@@ -70,7 +70,11 @@ function ig_render(string $route, ?WP_Post $post): void {
     if ($route === 'board') ig_board($doc);
     if ($route === 'circulars') {
         $dialog = ig_node($doc, 'circularDialog');
-        if ($dialog) {$link = $doc->createElement('a'); $link->setAttribute('id','igDocumentLink'); $link->setAttribute('class','btn btn-green-outline'); $link->textContent = 'مشاهده سند'; $dialog->appendChild($link);}
+        if ($dialog) {
+            $actions = $doc->createElement('div'); $actions->setAttribute('class','circulars-dialog-actions');
+            $link = $doc->createElement('a'); $link->setAttribute('id','igDocumentLink'); $link->setAttribute('class','btn btn-green-outline'); $link->textContent = 'مشاهده سند';
+            $actions->appendChild($link); $dialog->appendChild($actions);
+        }
     }
     ig_site_settings($doc, $settings);
     ig_menu($doc, $route, $post?->post_type ?? '');
