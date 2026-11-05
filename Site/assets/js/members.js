@@ -13,7 +13,7 @@
     const leaf = '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M20 3C8 3 3 8 5 16c8 4 15-1 15-13ZM4 21 16 9"/></svg>';
     let category = 'all', page = 1, featuredId = companies[0]?.id ?? 0;
     let order = companies.map((company) => company.id);
-    const pageSize = isArchive ? 20 : 8;
+    const pageSize = isArchive ? 16 : 8;
     function brand(company) {
         return `<div class="company-brand brand-tone-${company.id % 4}"><span class="company-brand-fallback" aria-hidden="true">${leaf}<b>${escape(company.name.split(' ')[0])}</b></span><img data-logo="${escape(company.logo)}" alt="نشان ${escape(company.name)}" loading="lazy" decoding="async" referrerpolicy="no-referrer"></div>`;
     }
@@ -35,7 +35,7 @@
     function render(animate = true) {
         const query = normalize(search.value);
         const results = order.map((id) => companies.find((company) => company.id === id)).filter((company) => (category === 'all' || company.categories.includes(category)) && normalize(company.name + ' ' + company.activity + ' ' + company.description + ' ' + company.categories.map((key) => categories[key]).join(' ')).includes(query));
-        const pages = Math.ceil(results.length / pageSize);
+        const pages = isArchive ? Math.ceil(results.length / pageSize) : 1;
         page = Math.min(page, Math.max(pages, 1));
         const items = results.slice((page - 1) * pageSize, page * pageSize);
         const featured = !isArchive && page === 1 && items[0]?.id === featuredId;
@@ -53,7 +53,7 @@
             button.setAttribute('aria-pressed', String(active));
         });
         // Keep arrow directions consistent with the approved RTL pagination.
-        pagination.innerHTML = pages > 1 ? `<button type="button" data-page="${page - 1}" ${page === 1 ? 'disabled' : ''} aria-label="صفحه قبل">❮</button>` + Array.from({length: pages}, (_, index) => `<button type="button" data-page="${index + 1}" ${page === index + 1 ? 'aria-current="page"' : ''} aria-label="صفحه ${fa(index + 1)}">${fa(index + 1)}</button>`).join('') + `<button type="button" data-page="${page + 1}" ${page === pages ? 'disabled' : ''} aria-label="صفحه بعد">❯</button>` : '';
+        if (pagination) pagination.innerHTML = pages > 1 ? `<button type="button" data-page="${page - 1}" ${page === 1 ? 'disabled' : ''} aria-label="صفحه قبل">❮</button>` + Array.from({length: pages}, (_, index) => `<button type="button" data-page="${index + 1}" ${page === index + 1 ? 'aria-current="page"' : ''} aria-label="صفحه ${fa(index + 1)}">${fa(index + 1)}</button>`).join('') + `<button type="button" data-page="${page + 1}" ${page === pages ? 'disabled' : ''} aria-label="صفحه بعد">❯</button>` : '';
         if (animate) window.SiteMotion?.reveal(grid.children);
     }
     function reset() { category = 'all'; search.value = ''; page = 1; render(); }
@@ -63,7 +63,7 @@
     document.querySelectorAll('[data-category]').forEach((button) => button.addEventListener('click', () => {category = button.dataset.category; page = 1; render();}));
     $('membersClear').addEventListener('click', reset);
     $('membersEmptyReset').addEventListener('click', () => {reset(); search.focus({preventScroll: true});});
-    pagination.addEventListener('click', (event) => {
+    pagination?.addEventListener('click', (event) => {
         const button = event.target.closest('[data-page]');
         if (!button || button.disabled) return;
         page = Number(button.dataset.page); render();
