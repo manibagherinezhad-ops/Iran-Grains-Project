@@ -102,7 +102,7 @@
 .members-empty button { display: block; color: var(--forest); border-bottom: 1px solid var(--gold); margin: 17px auto 0; padding-bottom: 4px; }
 .member-join { padding-top: 0; }
 .member-join .cta-box { padding: 30px 38px; }
-.members-join-tag { display: block; width: fit-content; padding: 6px 18px; background: #fff; border-radius: 50px; font-size: .74rem; color: var(--gold); margin-bottom: 7px; }
+.members-join-tag { border-radius: 50px; margin-bottom: 12px; }
 .member-join .cta-content h2 { font-size: 1.45rem; }
 .member-join .btn-white:hover { background: var(--gold); color: #000; }
 .member-join .btn-white span { font-size: 1.5em; transition: transform .25s; }
