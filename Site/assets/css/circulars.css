@@ -88,6 +88,7 @@
 .circulars-dialog h2 { margin: 15px 0 10px; font-size: 1.4rem; }
 .circulars-dialog time { font-size: .8rem; color: var(--muted); }
 .circulars-dialog p { margin: 20px 0; line-height: 2; }
+.circulars-dialog #igDocumentLink { margin-top: 16px; }
 .circulars-sample-note { padding: 14px; background: var(--gold-soft); border-inline-start: 3px solid var(--gold); font-size: .8rem; color: var(--ink-soft); }
 @media (max-width: 1050px) {
  .circulars-filters { grid-template-columns: 1.5fr 1fr; }
