@@ -29,6 +29,7 @@ services:
       WORDPRESS_ENVIRONMENT_TYPE: local
     volumes:
       - ./.runtime/wordpress:/var/www/html
+      - ./dev/uploads.ini:/usr/local/etc/php/conf.d/ig-uploads.ini:ro
       - ./wp-content/plugins/iran-grains-core:/var/www/html/wp-content/plugins/iran-grains-core:ro
       - ./wp-content/themes/iran-grains:/var/www/html/wp-content/themes/iran-grains:ro
       - ../Site:/var/www/html/wp-content/themes/iran-grains/prototype:ro

@@ -59,9 +59,10 @@ add_filter('upload_mimes', function ($mimes) {
     if (current_user_can('manage_options')) return $mimes;
     return array_intersect_key($mimes, array_flip(['jpg|jpeg|jpe', 'png', 'gif', 'webp', 'avif', 'pdf']));
 });
+add_filter('upload_size_limit', fn($size) => min($size, 64 * MB_IN_BYTES));
 add_filter('wp_handle_upload_prefilter', function ($file) {
-    if (!current_user_can('manage_options') && $file['size'] > 10 * MB_IN_BYTES) {
-        $file['error'] = 'حداکثر حجم فایل برای ادمین محتوا ۱۰ مگابایت است.';
+    if ($file['size'] > 64 * MB_IN_BYTES) {
+        $file['error'] = 'حداکثر حجم فایل برای بارگذاری ۶۴ مگابایت است.';
     }
     return $file;
 });

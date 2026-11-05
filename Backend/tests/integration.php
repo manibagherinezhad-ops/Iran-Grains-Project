@@ -41,8 +41,15 @@ try {
     ig_assert(user_can($u,'edit_ig_companys'),'granting another section is effective');
     $mimes=get_allowed_mime_types($author);
     ig_assert(!isset($mimes['svg']) && !in_array('application/x-httpd-php',$mimes,true),'unsafe upload types excluded');
-    $file=apply_filters('wp_handle_upload_prefilter',['name'=>'test.pdf','size'=>11*MB_IN_BYTES,'error'=>0]);
-    ig_assert(is_string($file['error']),'oversized content upload rejected');
+    foreach ([11*MB_IN_BYTES,64*MB_IN_BYTES] as $size) {
+        $file=apply_filters('wp_handle_upload_prefilter',['name'=>'test.pdf','size'=>$size,'error'=>0]);
+        ig_assert($file['error']===0,'content administrator upload allowed through 64 MiB');
+    }
+    $file=apply_filters('wp_handle_upload_prefilter',['name'=>'test.pdf','size'=>64*MB_IN_BYTES+1,'error'=>0]);
+    ig_assert(is_string($file['error']),'content administrator upload over 64 MiB rejected');
+    wp_set_current_user($manager->ID);
+    $file=apply_filters('wp_handle_upload_prefilter',['name'=>'test.pdf','size'=>64*MB_IN_BYTES+1,'error'=>0]);
+    ig_assert(is_string($file['error']),'manager upload over 64 MiB rejected');
     wp_set_current_user(0);
     $ids=wp_list_pluck(ig_public_posts('ig_news'),'ID');
     ig_assert(in_array($own,$ids) && !in_array($draft,$ids) && !in_array($future,$ids) && !in_array($protected,$ids),'public feed excludes drafts, future and protected news');
