@@ -13,6 +13,7 @@ require_once __DIR__ . '/includes/access.php';
 require_once __DIR__ . '/includes/admin.php';
 require_once __DIR__ . '/includes/messages.php';
 require_once __DIR__ . '/includes/security.php';
+require_once __DIR__ . '/includes/copy.php';
 
 register_activation_hook(__FILE__, function () {
     ig_register_content();

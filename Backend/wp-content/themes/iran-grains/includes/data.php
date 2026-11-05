@@ -17,6 +17,7 @@ function ig_topic_slugs(WP_Post $post): array {
     return $terms && !is_wp_error($terms) ? array_values(wp_list_pluck($terms, 'slug')) : [];
 }
 function ig_record(WP_Post $post): array {
+    $post = ig_copy_preview_post($post);
     $meta = fn($key) => (string) get_post_meta($post->ID, '_ig_' . $key, true);
     $topics = ig_topic_slugs($post);
     $record = ['id' => $post->ID, 'title' => wp_strip_all_tags($post->post_title),
@@ -51,5 +52,5 @@ function ig_resolve_view(): array {
     if ($post && !$authorized_preview && post_password_required($post)) $post = null;
     if ($route === '' && is_front_page()) $route = 'index';
     if (!in_array($route, ig_routes(), true) || (in_array($route, ['company', 'news-article'], true) && !$post)) return ['404', null];
-    return [$route, $post];
+    return [$route, $post ? ig_copy_preview_post($post) : null];
 }

@@ -1,0 +1,731 @@
+[
+  {
+    "key": "ui_ac2557f61e070ed6",
+    "default": "لطفاً همه‌ی فیلدها را تکمیل کنید.",
+    "groups": [
+      "main"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_43867ae8235f2cc9",
+    "default": "در حال ارسال...",
+    "groups": [
+      "main"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_478594963b949478",
+    "default": "✓ پیام شما با موفقیت ارسال شد. به‌زودی با شما تماس می‌گیریم.",
+    "groups": [
+      "main"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_a45a72222aea863e",
+    "default": "🌱 مرجع تخصصی صنعت غلات ایران",
+    "groups": [
+      "main"
+    ],
+    "tokens": [],
+    "setting": "home_intro_badge"
+  },
+  {
+    "key": "ui_d16a185164f8665f",
+    "default": "آینده‌ی",
+    "groups": [
+      "main"
+    ],
+    "tokens": [],
+    "setting": "home_intro_prefix"
+  },
+  {
+    "key": "ui_5a7e52d51cdbde5c",
+    "default": "غلات",
+    "groups": [
+      "main"
+    ],
+    "tokens": [],
+    "setting": "home_intro_highlight"
+  },
+  {
+    "key": "ui_4809641c81da8e67",
+    "default": "را",
+    "groups": [
+      "main"
+    ],
+    "tokens": [],
+    "setting": "home_intro_suffix"
+  },
+  {
+    "key": "ui_5efcb244d849fe0b",
+    "default": "با هم می‌سازیم",
+    "groups": [
+      "main"
+    ],
+    "tokens": [],
+    "setting": "home_intro_line2"
+  },
+  {
+    "key": "ui_1755756c166f6383",
+    "default": "انجمن غلات ایران با بیش از دو دهه تجربه، پل ارتباطی میان تولیدکنندگان، واردکنندگان و نهادهای دولتی برای توسعه‌ی پایدار صنعت غلات و تأمین امنیت غذایی کشور است.",
+    "groups": [
+      "main"
+    ],
+    "tokens": [],
+    "setting": "home_intro_subtitle"
+  },
+  {
+    "key": "ui_ee13c5fd458882a7",
+    "default": "درباره انجمن",
+    "groups": [
+      "main"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_2abca77097a6dc72",
+    "default": "درخواست عضویت",
+    "groups": [
+      "main"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_98b0b090d22f66cb",
+    "default": "مورخ {تاریخ}",
+    "groups": [
+      "main"
+    ],
+    "tokens": [
+      "تاریخ"
+    ]
+  },
+  {
+    "key": "ui_ee92d7f291b03174",
+    "default": "صفحهٔ {شماره}",
+    "groups": [
+      "main"
+    ],
+    "tokens": [
+      "شماره"
+    ]
+  },
+  {
+    "key": "ui_26229c4758d80b18",
+    "default": "عضو {شماره}",
+    "groups": [
+      "main"
+    ],
+    "tokens": [
+      "شماره"
+    ]
+  },
+  {
+    "key": "ui_0d54f959c091539e",
+    "default": "موضوع خبر",
+    "groups": [
+      "news"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_f22a34db35c90600",
+    "default": "ترتیب نمایش",
+    "groups": [
+      "news",
+      "circulars",
+      "approved-prices"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_c5f3c4b7e2dfbde5",
+    "default": "موضوع:",
+    "groups": [
+      "news",
+      "circulars",
+      "approved-prices"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_fe5907ad7bde80f3",
+    "default": "ترتیب نمایش:",
+    "groups": [
+      "news",
+      "circulars",
+      "approved-prices"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_83dee58ece90158a",
+    "default": "{تعداد} خبر در آرشیو",
+    "groups": [
+      "news"
+    ],
+    "tokens": [
+      "تعداد"
+    ]
+  },
+  {
+    "key": "ui_fae23acdf9bc73cb",
+    "default": "اخبار",
+    "groups": [
+      "news"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_3309436d389e4edd",
+    "default": "هنوز خبری ثبت نشده است.",
+    "groups": [
+      "news"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_7a028209816d8e4f",
+    "default": "مشاهده {عنوان}",
+    "groups": [
+      "news",
+      "circulars",
+      "approved-prices"
+    ],
+    "tokens": [
+      "عنوان"
+    ]
+  },
+  {
+    "key": "ui_964dbf190092a313",
+    "default": "مشاهده خبر",
+    "groups": [
+      "news",
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_acbeacb1054e2188",
+    "default": "نمایش {شروع} تا {پایان} از {تعداد} خبر",
+    "groups": [
+      "news"
+    ],
+    "tokens": [
+      "شروع",
+      "پایان",
+      "تعداد"
+    ]
+  },
+  {
+    "key": "ui_db03479c62ca1356",
+    "default": "۰ خبر",
+    "groups": [
+      "news"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_954aa38b95041574",
+    "default": "صفحه قبل",
+    "groups": [
+      "news",
+      "circulars",
+      "approved-prices",
+      "members"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_63b5d4a1c438da06",
+    "default": "صفحه {شماره}",
+    "groups": [
+      "news",
+      "circulars",
+      "approved-prices",
+      "members"
+    ],
+    "tokens": [
+      "شماره"
+    ]
+  },
+  {
+    "key": "ui_e8ac8242c4c87286",
+    "default": "صفحه بعد",
+    "groups": [
+      "news",
+      "circulars",
+      "approved-prices",
+      "members"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_8eb53d3f4a0fb7db",
+    "default": "موضوع بخشنامه",
+    "groups": [
+      "circulars"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_b5b3efafe60b391f",
+    "default": "مشاهده بخشنامه",
+    "groups": [
+      "circulars"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_47c090b65265a802",
+    "default": "نمایش {شروع} تا {پایان} از {تعداد} بخشنامه",
+    "groups": [
+      "circulars"
+    ],
+    "tokens": [
+      "شروع",
+      "پایان",
+      "تعداد"
+    ]
+  },
+  {
+    "key": "ui_097e169a0e1849e9",
+    "default": "۰ بخشنامه",
+    "groups": [
+      "circulars"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_39bc84188c22feb3",
+    "default": "دریافت فایل PDF",
+    "groups": [
+      "circulars",
+      "approved-prices"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_ce332eba4daf5adb",
+    "default": "مشاهده سند",
+    "groups": [
+      "circulars",
+      "approved-prices",
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_37c56c45d16dccb9",
+    "default": "موضوع ابلاغیه",
+    "groups": [
+      "approved-prices"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_69e47f3a523165db",
+    "default": "مشاهده ابلاغیه",
+    "groups": [
+      "approved-prices"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_667ed3b4a73e155b",
+    "default": "نمایش {شروع} تا {پایان} از {تعداد} ابلاغیه",
+    "groups": [
+      "approved-prices"
+    ],
+    "tokens": [
+      "شروع",
+      "پایان",
+      "تعداد"
+    ]
+  },
+  {
+    "key": "ui_907dbc4b36291a54",
+    "default": "۰ ابلاغیه",
+    "groups": [
+      "approved-prices"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_980eecdc646a833f",
+    "default": "نشان {نام شرکت}",
+    "groups": [
+      "members",
+      "company"
+    ],
+    "tokens": [
+      "نام شرکت"
+    ]
+  },
+  {
+    "key": "ui_71e50e43261b73b1",
+    "default": "نمایش برجستهٔ {نام شرکت}",
+    "groups": [
+      "members"
+    ],
+    "tokens": [
+      "نام شرکت"
+    ]
+  },
+  {
+    "key": "ui_e80edf5d55d76ebf",
+    "default": "دربارهٔ {نام شرکت} بیشتر بدانید",
+    "groups": [
+      "members"
+    ],
+    "tokens": [
+      "نام شرکت"
+    ]
+  },
+  {
+    "key": "ui_00d84a190dcabbc1",
+    "default": "بیشتر بدانید",
+    "groups": [
+      "members"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_9b7c835568ca0321",
+    "default": "✧ معرفی عضو",
+    "groups": [
+      "members"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_7ac51d05860e77b4",
+    "default": "{تعداد} شرکت، همراه صنعت غلات",
+    "groups": [
+      "members"
+    ],
+    "tokens": [
+      "تعداد"
+    ]
+  },
+  {
+    "key": "ui_256630ae15b22b2d",
+    "default": "در مسیر توسعهٔ پایدار زنجیرهٔ تأمین، با هم همراه باشیم.",
+    "groups": [
+      "members"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_9bfa84182a62832f",
+    "default": "مشاهده همهٔ شرکت‌ها",
+    "groups": [
+      "members"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_82adeb6671ef604d",
+    "default": "نمایش {شروع} تا {پایان} از {تعداد} شرکت",
+    "groups": [
+      "members"
+    ],
+    "tokens": [
+      "شروع",
+      "پایان",
+      "تعداد"
+    ]
+  },
+  {
+    "key": "ui_678abeec936ef7a3",
+    "default": "۰ شرکت",
+    "groups": [
+      "members"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_cc9f42bb8f4e3890",
+    "default": "شرکت یافت نشد | انجمن غلات ایران",
+    "groups": [
+      "company"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_ff8ecf52b6f00e75",
+    "default": "شرکت موردنظر یافت نشد",
+    "groups": [
+      "company"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_99e5e82c82f6c151",
+    "default": "بازگشت به شرکت‌های عضو",
+    "groups": [
+      "company"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_b3fa664537ac741b",
+    "default": "{نام شرکت} | انجمن غلات ایران",
+    "groups": [
+      "company"
+    ],
+    "tokens": [
+      "نام شرکت"
+    ]
+  },
+  {
+    "key": "ui_9659c657b0ae8f55",
+    "default": "درج نشده",
+    "groups": [
+      "company"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_ad3da3996b32149e",
+    "default": "تلفن",
+    "groups": [
+      "company"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_4ac6e7abd3f33128",
+    "default": "فکس",
+    "groups": [
+      "company"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_41182935a39cf9ed",
+    "default": "ایمیل",
+    "groups": [
+      "company"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_29d6c3239e1cdf25",
+    "default": "وب‌سایت",
+    "groups": [
+      "company"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_486b25911239e8be",
+    "default": "آدرس دفتر",
+    "groups": [
+      "company"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_5d4e0f357d78528b",
+    "default": "خلاصهٔ {مقدار}",
+    "groups": [
+      "meetings-ui"
+    ],
+    "tokens": [
+      "مقدار"
+    ]
+  },
+  {
+    "key": "ui_19c9593f8c3f80e2",
+    "default": "خبر یافت نشد | انجمن غلات ایران",
+    "groups": [
+      "news-article"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_2992533f42bc4d44",
+    "default": "خبر موردنظر یافت نشد",
+    "groups": [
+      "news-article"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_abebdcf16ab01b04",
+    "default": "بازگشت به اخبار",
+    "groups": [
+      "news-article"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_128bea3cd1ea8b1e",
+    "default": "{عنوان} | انجمن غلات ایران",
+    "groups": [
+      "news-article",
+      "site"
+    ],
+    "tokens": [
+      "عنوان"
+    ]
+  },
+  {
+    "key": "ui_7e37403ba81a3fb8",
+    "default": "منبع خبر: انجمن غلات ایران",
+    "groups": [
+      "news-article"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_0782d1bc472cab08",
+    "default": "قالب صفحه در بستهٔ انتشار موجود نیست.",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_34aa894f39d76f7e",
+    "default": "افزونهٔ Iran Grains Core باید فعال شود.",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_b2aac779a796b0bd",
+    "default": "آماده‌سازی سایت",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_e5548fd919d64e0c",
+    "default": "صفحه یافت نشد",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_9b98b4a82539ae03",
+    "default": "صفحهٔ موردنظر پیدا نشد.",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_39b28085baecffe5",
+    "default": "بازگشت به خانه",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_f58b44299f90d841",
+    "default": "صفحه را تازه‌سازی و دوباره تلاش کنید.",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_71e8b22955de950c",
+    "default": "پیام بیش از حد طولانی است.",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_2094fa5efe562acf",
+    "default": "ارسال پیام انجام نشد.",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_be168cb6e582eceb",
+    "default": "نام، ایمیل معتبر، موضوع و متن پیام را وارد کنید.",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_1ae301eb84b7dde1",
+    "default": "تعداد پیام‌ها زیاد است. چند دقیقه بعد تلاش کنید.",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_c6d940d8d0434093",
+    "default": "ذخیرهٔ پیام انجام نشد. دوباره تلاش کنید.",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_08d091247e7cedcd",
+    "default": "پیام شما ثبت شد و از پنل انجمن قابل پیگیری است.",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_be031297039783b7",
+    "default": "لطفاً همهٔ فیلدهای الزامی را کامل کنید.",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_6f92429e846a2d82",
+    "default": "لطفاً یک ایمیل معتبر وارد کنید.",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_3fd17ed5acf73f43",
+    "default": "در حال ارسال…",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_216c6cd310e0736e",
+    "default": "ارتباط برقرار نشد. دوباره تلاش کنید.",
+    "groups": [
+      "site"
+    ],
+    "tokens": []
+  },
+  {
+    "key": "ui_74cb2112afbc5e38",
+    "default": "{مبلغ} ریال",
+    "groups": [
+      "main"
+    ],
+    "tokens": [
+      "مبلغ"
+    ]
+  }
+]

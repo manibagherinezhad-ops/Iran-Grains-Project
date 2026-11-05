@@ -27,7 +27,7 @@ function ig_render(string $route, ?WP_Post $post): void {
     $doc->encoding = 'UTF-8';
     libxml_clear_errors(); libxml_use_internal_errors($previous);
     foreach (iterator_to_array($doc->childNodes) as $node) if ($node->nodeType === XML_PI_NODE) $doc->removeChild($node);
-    ig_apply_page_copy($doc, $route);
+    $copyTargets = ig_copy_prepare($doc, $route);
     $config = ['assetBase' => get_template_directory_uri() . '/prototype/', 'membersUrl' => ig_page_url('members'), 'contact' => ['url' => rest_url('iran-grains/v1/contact'), 'nonce' => wp_create_nonce('ig_contact'), 'restNonce' => wp_create_nonce('wp_rest')], 'categories' => []];
     $settings = get_option('ig_settings', []);
     $config['intro'] = array_intersect_key($settings, array_flip(['home_intro_prefix','home_intro_highlight','home_intro_suffix','home_intro_line2','home_intro_subtitle','home_intro_badge']));
@@ -47,6 +47,11 @@ function ig_render(string $route, ?WP_Post $post): void {
             foreach (ig_nodes($doc,'//*[@data-category]') as $button) {
                 $slug=$button->getAttribute('data-category'); $existing[]=$slug;
                 if ($slug!=='all' && !isset($config['categories']['companies'][$slug])) $button->parentNode->removeChild($button);
+                elseif ($slug!=='all') {
+                    $found=false;
+                    foreach($button->childNodes as$node)if($node->nodeType===XML_TEXT_NODE&&trim($node->textContent)!==''){$node->textContent=$config['categories']['companies'][$slug];$found=true;break;}
+                    if(!$found)$button->appendChild($doc->createTextNode($config['categories']['companies'][$slug]));
+                }
             }
             foreach ($config['categories']['companies'] as $slug=>$label) if (!in_array($slug,$existing,true)) {
                 $button=$doc->createElement('button');$button->setAttribute('type','button');$button->setAttribute('class','members-filter');$button->setAttribute('data-category',$slug);$button->setAttribute('aria-pressed','false');$button->textContent=$label;$filters->appendChild($button);
@@ -71,6 +76,8 @@ function ig_render(string $route, ?WP_Post $post): void {
     ig_menu($doc, $route, $post?->post_type ?? '');
     if ($route === 'news') ig_select_options($doc, 'circularCategory', $config['categories']['news']);
     if (in_array($route, ['circulars', 'approved-prices'], true)) ig_select_options($doc, 'circularCategory', $config['categories']['documents']);
+    ig_copy_apply_targets($copyTargets);
+    $config['copy'] = ig_copy_public_dictionary();
 
     // All URLs remain valid when WordPress is installed in a subdirectory.
     foreach (ig_nodes($doc, '//*[@href or @src or @action]') as $node) {
@@ -95,6 +102,8 @@ function ig_render(string $route, ?WP_Post $post): void {
     $body = $doc->getElementsByTagName('body')->item(0);
     $firstScript = ig_nodes($doc, '//body//script')[0] ?? null;
     if ($firstScript) $firstScript->parentNode->insertBefore($script, $firstScript); else $body->appendChild($script);
+    $copyRuntime = $doc->createElement('script'); $copyRuntime->setAttribute('src', get_template_directory_uri() . '/assets/copy.js');
+    if ($firstScript) $firstScript->parentNode->insertBefore($copyRuntime, $firstScript); else $body->appendChild($copyRuntime);
     $bridge = $doc->createElement('script'); $bridge->setAttribute('src', get_template_directory_uri() . '/assets/site.js'); $body->appendChild($bridge);
     $html = $doc->saveHTML();
     ob_start(); wp_head(); $head = ob_get_clean();
@@ -162,7 +171,7 @@ function ig_article(DOMDocument $doc, WP_Post $post): void {
     ig_node($doc, 'articleHeroImage')?->setAttribute('src', $n['image']);
     ig_node($doc, 'articleHeroImage')?->setAttribute('alt', $n['title']);
     $body = ig_node($doc, 'articleBody');
-    if ($body) ig_html($body, wp_kses_post(wpautop($post->post_content)) . ($n['attachment'] ? '<p><a class="btn btn-green-outline" href="' . esc_url($n['attachment']) . '" target="_blank" rel="noopener">دریافت فایل PDF</a></p>' : '') . ($post->post_type === 'ig_news' && $n['source'] ? '<p><a href="' . esc_url($n['source']) . '" target="_blank" rel="noopener">منبع خبر: انجمن غلات ایران</a></p>' : ''));
+    if ($body) ig_html($body, wp_kses_post(wpautop($post->post_content)) . ($n['attachment'] ? '<p><a class="btn btn-green-outline" href="' . esc_url($n['attachment']) . '" target="_blank" rel="noopener">دریافت فایل PDF</a></p>' : '') . ($post->post_type === 'ig_news' && $n['source'] ? '<p><a href="' . esc_url($n['source']) . '" target="_blank" rel="noopener">' . esc_html(ig_ui('منبع خبر: انجمن غلات ایران')) . '</a></p>' : ''));
     if ($post->post_type !== 'ig_news') {
         $routes = ['ig_circular' => ['circulars','بخشنامه‌ها'], 'ig_price' => ['approved-prices','قیمت‌های مصوب'], 'ig_event' => ['meetings','جلسات'], 'ig_board' => ['board','هیأت‌مدیره']];
         [$route, $label] = $routes[$post->post_type];
@@ -227,7 +236,7 @@ function ig_site_settings(DOMDocument $doc, array $settings): void {
     foreach (ig_nodes($doc, '//*[' . ig_class('contact-list') . ']/li | //*[' . ig_class('contact-detail') . ']') as $li) {
         $xp = new DOMXPath($doc); $heading = $xp->query('.//h4 | .//h3', $li)->item(0); $p = $xp->query('.//p',$li)->item(0);
         $key = $keys[trim($heading?->textContent ?? '')] ?? '';
-        if ($key && isset($settings[$key]) && $settings[$key] !== '') {
+        if ($key && array_key_exists($key, $settings)) {
             if ($key === 'contact_email') ig_html($p, '<a href="' . esc_url('mailto:' . $settings[$key]) . '">' . esc_html($settings[$key]) . '</a>');
             elseif ($key === 'contact_phone') {
                 $html=''; foreach (explode('/', $settings[$key]) as $phone) {

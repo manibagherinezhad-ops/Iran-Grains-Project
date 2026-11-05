@@ -67,7 +67,7 @@ function ig_admin_pagination(string $slug, int $page, int $count): void {
 add_action('admin_enqueue_scripts', function ($hook) {
     $screen = get_current_screen();
     if (!str_contains($hook, 'ig-') && !str_contains($hook, 'iran-grains') && !isset(ig_content_types()[$screen->post_type ?? ''])) return;
-    wp_enqueue_style('ig-admin', plugins_url('assets/admin.css', dirname(__DIR__) . '/iran-grains-core.php'), [], '0.1.0');
+    wp_enqueue_style('ig-admin', plugins_url('assets/admin.css', dirname(__DIR__) . '/iran-grains-core.php'), [], filemtime(dirname(__DIR__) . '/assets/admin.css'));
     wp_add_inline_style('ig-admin', '@font-face{font-family:IGAdmin;src:url("' . esc_url(get_template_directory_uri() . '/prototype/assets/fonts/YekanBakh-Regular.ttf') . '") format("truetype");font-display:swap}.ig-admin,.ig-admin input,.ig-admin textarea,.ig-admin button,.ig-admin select{font-family:IGAdmin,Tahoma,sans-serif}');
     if (isset(ig_content_types()[$screen->post_type ?? ''])) {
         wp_enqueue_media();

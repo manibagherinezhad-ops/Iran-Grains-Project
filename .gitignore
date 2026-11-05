@@ -4,3 +4,4 @@ Backend/dist/
 Backend/dev/seed.json
 __pycache__/
 *.pyc
+node_modules/

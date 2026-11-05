@@ -93,6 +93,7 @@ function ig_access_page(): void {
 
 function ig_dashboard(): void {
     echo '<div class="wrap ig-admin"><h1>پنل انجمن غلات ایران</h1><p>خوش آمدید. بخش موردنظر را برای مدیریت محتوا انتخاب کنید.</p><div class="ig-admin-grid">';
+    if (current_user_can('manage_options')) echo '<a class="ig-admin-card" href="' . esc_url(admin_url('admin.php?page=ig-page-copy')) . '"><span class="dashicons dashicons-edit"></span><h2>مرکز مدیریت متن‌ها</h2><span>ویرایش متن تمام صفحات و بخش‌ها ←</span></a>';
     foreach (ig_content_types() as $type => [$plural]) {
         if (!current_user_can('edit_' . $type . 's')) continue;
         echo '<a class="ig-admin-card" href="' . esc_url(admin_url('edit.php?post_type=' . $type)) . '"><span class="dashicons dashicons-media-document"></span><h2>' . esc_html($plural) . '</h2><span>مشاهده و مدیریت ←</span></a>';

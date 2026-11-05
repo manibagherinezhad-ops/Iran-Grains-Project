@@ -7,7 +7,9 @@
         form.addEventListener('submit', async (event) => {
             event.preventDefault();
             const status = document.getElementById('formStatus');
-            if (!form.reportValidity()) return;
+            const missing = [...form.querySelectorAll('[required]')].find(input => !input.value.trim());
+            if (missing) {status.textContent = 'لطفاً همهٔ فیلدهای الزامی را کامل کنید.'; missing.focus(); return;}
+            if (form.querySelector('#email').validity.typeMismatch) {status.textContent = 'لطفاً یک ایمیل معتبر وارد کنید.'; form.querySelector('#email').focus(); return;}
             const button = form.querySelector('[type="submit"]'), label = button.textContent;
             button.disabled = true; button.textContent = 'در حال ارسال…'; status.textContent = '';
             try {
