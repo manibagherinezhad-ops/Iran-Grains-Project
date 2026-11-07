@@ -19,7 +19,16 @@
  form.addEventListener('change',e=>{if(e.target.name!=='rating')return;prompt.textContent=prompts[Number(e.target.value)-1];const wasHidden=panel.hidden;panel.hidden=false;if(wasHidden)window.SiteMotion?.reveal([panel]);});
  form.addEventListener('submit',async e=>{e.preventDefault();if(!form.reportValidity())return;if(!config.feedback){status.textContent='ثبت رأی در نسخهٔ متصل به پنل فعال است.';return;}const button=form.querySelector('[type="submit"]');button.disabled=true;status.textContent='در حال ثبت نظر…';try{const response=await fetch(config.feedback.url,{method:'POST',headers:{'Content-Type':'application/json',...(config.feedback.restNonce?{'X-WP-Nonce':config.feedback.restNonce}:{})},body:JSON.stringify({...Object.fromEntries(new FormData(form)),_ig_nonce:config.feedback.nonce})});const data=await response.json();if(!response.ok)throw Error(data.message||'ثبت نظر انجام نشد.');status.textContent=data.message;form.reset();panel.hidden=true;}catch(error){status.textContent=error.message;}finally{button.disabled=false;}});
  }
- const rail=document.querySelector('.ig-ad-rail');if(rail){let frame=0;const update=()=>{frame=0;const range=document.documentElement.scrollHeight-innerHeight;rail.classList.toggle('is-past-half',range>0&&scrollY>range/2);};addEventListener('scroll',()=>{if(!frame)frame=requestAnimationFrame(update);},{passive:true});addEventListener('resize',update);update();}
+ if(!window.IranGrains&&!document.querySelector('.ig-ad-rail')){
+  fetch('assets/data/advertising-samples.json').then(r=>r.json()).then(ads=>{
+   const rail=document.createElement('span');rail.className='ig-ad-rail';rail.setAttribute('role','complementary');rail.setAttribute('aria-label','تبلیغات');rail.setAttribute('data-nosnippet','');
+   const label=document.createElement('span');label.className='ig-ad-label';label.textContent='تبلیغات';rail.append(label);
+   for(const ad of ads){const card=document.createElement('span');card.className='ig-ad-card';const picture=document.createElement('span');picture.className='ig-ad-picture';const img=new Image();img.src='assets/img/'+ad.sample_image;img.alt='تصویر تبلیغ نمونه';img.loading='lazy';picture.append(img);const text=document.createElement('span');text.className='ig-ad-text';text.textContent=ad.text;card.append(picture,text);rail.append(card);}
+   document.body.append(rail);document.body.classList.add('ig-has-ads');watchRail(rail);
+  }).catch(()=>{});
+ }
+ function watchRail(rail){let frame=0;const update=()=>{frame=0;const range=document.documentElement.scrollHeight-innerHeight;rail.classList.toggle('is-past-half',range>0&&scrollY>range/2);};addEventListener('scroll',()=>{if(!frame)frame=requestAnimationFrame(update);},{passive:true});addEventListener('resize',update);update();}
+ const rail=document.querySelector('.ig-ad-rail');if(rail)watchRail(rail);
  };
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initialize,{once:true});else initialize();
 })();
