@@ -36,7 +36,7 @@ function ig_ad_text(string $text):string {
 function ig_ads():array {return array_values(array_filter(get_option('ig_advertising',[]),fn($a)=>!empty($a['enabled'])&&(!empty($a['text'])||!empty($a['image'])||ig_ad_sample_image($a))));}
 function ig_ads_visible(?string $route=null):bool {
     if($route===null)$route=function_exists('ig_resolve_view')?ig_resolve_view()[0]:(string)get_query_var('ig_view');
-    return !in_array($route,['about','board','404'],true)&&!is_404()&&(bool)ig_ads();
+    return !in_array($route,['about','board','contact','404'],true)&&!is_404()&&(bool)ig_ads();
 }
 add_action('admin_menu',fn()=>add_submenu_page('iran-grains','تبلیغات سایت','تبلیغات سایت','manage_options','ig-advertising','ig_ads_admin'));
 function ig_ads_admin():void {
