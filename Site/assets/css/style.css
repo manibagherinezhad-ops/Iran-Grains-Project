@@ -510,7 +510,7 @@ input, textarea { font-family: inherit; }
 }
 .ex-meta { line-height: 1.7; }
 .ex-name { display: block; font-size: 0.78rem; color: var(--muted); }
-.ex-value { display: block; font-family: var(--font-head); font-size: 1rem; color: var(--ink); font-weight: 700; }
+.ex-value { display: block; font-family: var(--font); font-size: 1rem; color: var(--ink); font-weight: 600; }
 .ex-unit { font-style: normal; font-size: 0.62rem; color: var(--muted); font-weight: 400; }
 
 @media (max-width: 540px) {
@@ -1647,11 +1647,11 @@ p, .lead, .section-desc, .hero-subtitle, .bbio { font-weight: 400; }
 .dropdown a, .footer a { font-weight: 400 !important; }
 button, .btn, .section-tag, .chip, .slide-title-kicker, .doc-format { font-family: var(--font); font-weight: 900 !important; }
 input, textarea, select { font-family: var(--font); font-weight: 700 !important; }
-.intro-facts b, .tl-year, .ex-value, .meet-date b, .stat-number, .about-badge-num, .acc-num { font-family: var(--font); font-weight: 700 !important; }
+.intro-facts b, .tl-year, .meet-date b, .stat-number, .about-badge-num, .acc-num { font-family: var(--font); font-weight: 700 !important; }
 
 /* Home page: exchange rates, news and services */
 .exchange-date { font-family: var(--font); font-weight: 700; }
-.ex-value { font-family: var(--font); font-weight: 600 !important; }
+.exchange .ex-value { font-family: 'Yekan Bakh', sans-serif; font-weight: 600 !important; }
 .ex-unit { font-family: var(--font); font-weight: 400; }
 .news-cat { font-family: var(--font); font-weight: 600; }
 .news-date, .news-link { font-family: var(--font); font-weight: 700; }
