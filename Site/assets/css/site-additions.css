@@ -1,8 +1,32 @@
 .input-cost-head { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border); }
 .input-cost-note { font-family: 'Yekan Bakh', sans-serif; font-weight: 600; color: var(--muted); font-size: .78rem; margin-bottom: 16px; line-height: 1.9; }
 .input-cost-grid { grid-template-columns: repeat(auto-fit,minmax(190px,1fr)); }
-.feedback-panel { padding: clamp(24px,4vw,48px); border: 1px solid var(--border); border-radius: 24px; background: linear-gradient(130deg,#dfe9d752,#fff); }
-.feedback-panel > p { color: var(--muted); margin: 15px 0 22px; }
+/* A dark invitation paired with a warm, readable voting surface. */
+.feedback-panel { position: relative; isolation: isolate; overflow: hidden; display: grid; grid-template-columns: .9fr 1.1fr; grid-template-rows: auto auto 1fr; column-gap: clamp(24px,4vw,58px); row-gap: 16px; align-items: start; padding: clamp(28px,4vw,52px); border: 1px solid #efbd5940; border-radius: 30px; color: var(--gold-soft); background: radial-gradient(ellipse at 95% 0%,#36765b66,transparent 65%),linear-gradient(135deg,#102820,#174434 70%,#1c503d); box-shadow: 0 20px 48px #10282018; }
+.feedback-panel::before { content: ''; position: absolute; z-index: -1; width: 460px; height: 460px; left: -180px; top: -210px; border: 1px solid #efbd5933; border-radius: 50%; box-shadow: 0 0 0 48px #efbd5907,0 0 0 96px #efbd5905; pointer-events: none; }
+.feedback-panel::after { content: ''; position: absolute; z-index: -1; width: 200px; height: 200px; right: -70px; bottom: -110px; border: 1px solid #efbd5933; border-radius: 28px; transform: rotate(35deg); pointer-events: none; }
+.feedback-panel > .section-tag { grid-column: 1; grid-row: 1; justify-self: start; margin: 0; color: var(--gold-light); background: #efbd5914; border: 1px solid #efbd5940; padding: 8px 20px; }
+.feedback-panel > h2 { grid-column: 1; grid-row: 2; margin: 0; color: var(--gold-soft); font-size: clamp(1.7rem,2.7vw,2.6rem); line-height: 1.6; max-width: 390px; }
+.feedback-panel > p { grid-column: 1; grid-row: 3; color: #dfe9d7e6; margin: 0; font-size: .93rem; line-height: 2.1; max-width: 380px; }
+.feedback-panel > form { grid-column: 2; grid-row: 1 / span 3; align-self: center; min-width: 0; width: 100%; padding: clamp(20px,2.5vw,30px); border-radius: 22px; border: 1px solid #ffffff80; background: linear-gradient(135deg,#fffdf7,#f4f6ee); color: var(--ink); box-shadow: 0 12px 30px #06191026; }
+.feedback-panel .feedback-ratings { margin: 8px 0 18px; }
+.feedback-panel #feedbackRatingLabel { font-size: .82rem; font-weight: 600; color: var(--forest); }
+.feedback-panel .feedback-comment { border-top: 1px solid var(--border); padding-top: 20px; margin-top: 22px; }
+.feedback-panel .feedback-comment label { font-size: .85rem; line-height: 1.9; }
+.feedback-panel .feedback-comment textarea { min-height: 120px; color: var(--ink); box-shadow: inset 0 2px 6px #10282004; transition: border-color .2s,box-shadow .2s; }
+.feedback-panel .feedback-comment textarea:focus { outline: none; border-color: var(--gold-dark); box-shadow: 0 0 0 3px #efbd592e; }
+.feedback-panel .feedback-comment .btn { width: 100%; color: var(--ink); background: var(--gold); border: 1px solid var(--gold); box-shadow: none; }
+.feedback-panel .feedback-comment .btn:hover { background: var(--forest); border-color: var(--forest); color: var(--gold-soft); }
+.feedback-panel #feedbackStatus:empty { display: none; }
+.feedback-panel #feedbackStatus { color: var(--forest); font-size: .8rem; line-height: 1.8; }
+@media(max-width:800px) {
+ .feedback-panel { grid-template-columns: minmax(0,1fr); padding: 26px; row-gap: 16px; border-radius: 24px; }
+ .feedback-panel > h2 { font-size: clamp(1.55rem,5vw,2rem); }
+ .feedback-panel > p { font-size: .85rem; max-width: none; }
+ .feedback-panel > form { grid-column: 1; grid-row: 4; padding: 20px 16px; margin-top: 6px; border-radius: 18px; }
+}
+@media(max-width:380px) { .feedback-panel { padding: 22px 18px; } }
+
 .feedback-ratings { --rating-percent: 50%; position: relative; border: 0; display: block; padding: 0; margin: 24px 0; min-width: 0; }
 #feedbackRating { appearance: none; -webkit-appearance: none; display: block; width: calc(80% + 24px); margin: 0 calc(10% - 12px); height: 44px; background: transparent; cursor: pointer; touch-action: pan-y; }
 #feedbackRating::-webkit-slider-runnable-track { height: 8px; border-radius: 20px; background: linear-gradient(to left, var(--gold) var(--rating-percent), var(--border) var(--rating-percent)); }
