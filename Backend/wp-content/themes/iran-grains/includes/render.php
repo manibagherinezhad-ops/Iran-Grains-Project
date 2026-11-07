@@ -86,7 +86,7 @@ function ig_render(string $route, ?WP_Post $post): void {
         if($grid)ig_html($grid,$html);
         $data=$config['inputPrices'];ig_text(ig_node($doc,'inputCostsNote'),'قیمت فروش با ۱۲٪ سود، ریال برای هر کیلوگرم | یوروی مبنا: '.ig_fa(number_format($data['euro'])).' ریال | تاریخ نرخ: '.($data['date']?:'ثبت نشده'));
     }
-    if (ig_ads()) {
+    if (ig_ads_visible($route)) {
         $body=$doc->getElementsByTagName('body')->item(0);
         $body->setAttribute('class',$body->getAttribute('class').' ig-has-ads');
     }

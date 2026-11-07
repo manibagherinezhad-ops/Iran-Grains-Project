@@ -34,6 +34,10 @@ function ig_ad_text(string $text):string {
     return '<span class="ig-ad-title">'.esc_html($title).'</span>'.($lines?'<span class="ig-ad-description">'.esc_html(implode("\n",$lines)).'</span>':'').($caption!==''?'<span class="ig-ad-caption">'.esc_html($caption).'</span>':'');
 }
 function ig_ads():array {return array_values(array_filter(get_option('ig_advertising',[]),fn($a)=>!empty($a['enabled'])&&(!empty($a['text'])||!empty($a['image'])||ig_ad_sample_image($a))));}
+function ig_ads_visible(?string $route=null):bool {
+    if($route===null)$route=function_exists('ig_resolve_view')?ig_resolve_view()[0]:(string)get_query_var('ig_view');
+    return !in_array($route,['about','board','404'],true)&&!is_404()&&(bool)ig_ads();
+}
 add_action('admin_menu',fn()=>add_submenu_page('iran-grains','تبلیغات سایت','تبلیغات سایت','manage_options','ig-advertising','ig_ads_admin'));
 function ig_ads_admin():void {
     if(!current_user_can('manage_options'))wp_die('دسترسی مجاز نیست.');
@@ -51,8 +55,8 @@ function ig_ads_admin():void {
     foreach($ads as$i=>$ad){echo '<fieldset class="ig-ad-editor" style="padding:20px;margin:15px 0;border:1px solid #ccc"><legend>تبلیغ '.($i+1).'</legend><label><input type="checkbox" name="ads['.$i.'][enabled]" '.checked(!empty($ad['enabled']),true,false).'> نمایش فعال</label><p><label>متن تبلیغ<br><textarea class="large-text" rows="3" name="ads['.$i.'][text]">'.esc_textarea($ad['text']).'</textarea></label></p><p><label>لینک مقصد<br><input class="regular-text" type="url" dir="ltr" name="ads['.$i.'][url]" value="'.esc_attr($ad['url']).'"></label></p><input class="ig-ad-image" type="hidden" name="ads['.$i.'][image]" value="'.absint($ad['image']).'"><input class="ig-ad-sample-image" type="hidden" name="ads['.$i.'][sample_image]" value="'.esc_attr($ad['sample_image']??'').'"><div class="ig-ad-preview">'.ig_ad_image($ad,'thumbnail').'</div><button type="button" class="button ig-ad-pick">انتخاب تصویر</button> <button type="button" class="button ig-ad-remove">حذف تصویر</button></fieldset>';}
     submit_button('ذخیرهٔ تبلیغات');echo '</form></div>';
 }
-add_filter('body_class',function($classes){if(ig_ads())$classes[]='ig-has-ads';return $classes;});
-add_action('wp_footer',function(){if(is_404()||!ig_ads())return;echo '<span class="ig-ad-rail" role="complementary" aria-label="تبلیغات" data-nosnippet><span class="ig-ad-label">تبلیغات</span>';
+add_filter('body_class',function($classes){if(ig_ads_visible())$classes[]='ig-has-ads';return $classes;});
+add_action('wp_footer',function(){if(!ig_ads_visible())return;echo '<span class="ig-ad-rail" role="complementary" aria-label="تبلیغات" data-nosnippet><span class="ig-ad-label">تبلیغات</span>';
     foreach(ig_ads()as$ad){echo '<span class="ig-ad-card">';if($ad['url'])echo '<a href="'.esc_url($ad['url']).'" rel="sponsored nofollow noopener noreferrer" target="_blank">';
         $picture=ig_ad_image($ad,'medium');if($picture)echo '<span class="ig-ad-picture">'.$picture.'</span>';
         echo '<span class="ig-ad-text">'.ig_ad_text($ad['text']).'</span>';if($ad['url'])echo '</a>';echo '</span>';}

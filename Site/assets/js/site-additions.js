@@ -19,7 +19,7 @@
  form.addEventListener('change',e=>{if(e.target.name!=='rating')return;prompt.textContent=prompts[Number(e.target.value)-1];const wasHidden=panel.hidden;panel.hidden=false;if(wasHidden)window.SiteMotion?.reveal([panel]);});
  form.addEventListener('submit',async e=>{e.preventDefault();if(!form.reportValidity())return;if(!config.feedback){status.textContent='ثبت رأی در نسخهٔ متصل به پنل فعال است.';return;}const button=form.querySelector('[type="submit"]');button.disabled=true;status.textContent='در حال ثبت نظر…';try{const response=await fetch(config.feedback.url,{method:'POST',headers:{'Content-Type':'application/json',...(config.feedback.restNonce?{'X-WP-Nonce':config.feedback.restNonce}:{})},body:JSON.stringify({...Object.fromEntries(new FormData(form)),_ig_nonce:config.feedback.nonce})});const data=await response.json();if(!response.ok)throw Error(data.message||'ثبت نظر انجام نشد.');status.textContent=data.message;form.reset();panel.hidden=true;}catch(error){status.textContent=error.message;}finally{button.disabled=false;}});
  }
- if(!window.IranGrains&&!document.querySelector('.ig-ad-rail')){
+ if(!window.IranGrains&&!document.body.matches('.theme-about,.theme-board')&&!document.querySelector('.ig-ad-rail')){
   fetch('assets/data/advertising-samples.json').then(r=>r.json()).then(ads=>{
    const rail=document.createElement('span');rail.className='ig-ad-rail';rail.setAttribute('role','complementary');rail.setAttribute('aria-label','تبلیغات');rail.setAttribute('data-nosnippet','');
    const label=document.createElement('span');label.className='ig-ad-label';label.textContent='تبلیغات';rail.append(label);
