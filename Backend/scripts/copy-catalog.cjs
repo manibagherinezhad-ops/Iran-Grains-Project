@@ -1,0 +1,25 @@
+/* Build the editable UI-copy catalogue without changing application logic. */
+const fs=require('fs'),path=require('path'),crypto=require('crypto');
+const acorn=require(process.env.IG_COPY_ACORN_MODULE || 'acorn');
+const root=path.resolve(__dirname,'../..'),entries=new Map();
+const normalize=s=>s.replace(/\s+/gu,' ').trim();
+const hasWords=s=>/[\u0621-\u063a\u0641-\u064a\u067e\u0686\u0698\u06a9\u06af\u06cc]/u.test(s.replace(/\{[^}]+\}/g,''));
+const aliases={'آینده‌ی':'home_intro_prefix','غلات':'home_intro_highlight','را':'home_intro_suffix','با هم می‌سازیم':'home_intro_line2','🌱 مرجع تخصصی صنعت غلات ایران':'home_intro_badge','انجمن غلات ایران با بیش از دو دهه تجربه، پل ارتباطی میان تولیدکنندگان، واردکنندگان و نهادهای دولتی برای توسعه‌ی پایدار صنعت غلات و تأمین امنیت غذایی کشور است.':'home_intro_subtitle'};
+function add(value,group){value=normalize(value.replace(/&nbsp;/g,' ').replace(/&amp;/g,'&'));const slots=[...new Set([...value.matchAll(/\{([^}]+)\}/g)].map(m=>m[1]))];for(const slot of slots){const base=slot.replace(/ \d+$/,'');if(slots.filter(x=>x.replace(/ \d+$/,'')===base).length===1)value=value.replaceAll('{'+slot+'}','{'+base+'}');}if(!hasWords(value))return;const key='ui_'+crypto.createHash('sha256').update(value).digest('hex').slice(0,16);const e=entries.get(key)||{key,default:value,groups:[],tokens:[...new Set([...value.matchAll(/\{([^}]+)\}/g)].map(m=>m[1]))]};if(!e.groups.includes(group))e.groups.push(group);if(group==='main'&&aliases[value])e.setting=aliases[value];entries.set(key,e)}
+function markup(text,group){let last=0;for(const m of text.matchAll(/<[^>]*>/g)){add(text.slice(last,m.index),group);for(const a of m[0].matchAll(/(?:aria-label|title|placeholder|alt)=(['"])(.*?)\1/g))add(a[2],group);last=m.index+m[0].length}add(text.slice(last),group)}
+function tokensFor(expressions,code){const used=new Map();return expressions.map((e,i)=>{const s=code.slice(e.start,e.end);if(/^(arrow|docIcon|leaf)$/.test(s.trim()))return '';let n=/Date|formatter\.format/.test(s)?'تاریخ':/\.title\b/.test(s)?'عنوان':/company\.name/.test(s)?'نام شرکت':/Math\.min/.test(s)?'پایان':/(currentPage|page)\s*-\s*1/.test(s)?'شروع':/\.length/.test(s)?'تعداد':/\b(i|index|page)\b/.test(s)?'شماره':'مقدار';const count=(used.get(n)||0)+1;used.set(n,count);return '{'+n+(count>1?' '+count:'')+'}'})}
+const files=['main','news','circulars','approved-prices','members','company','meetings-ui','home-news','news-article','archive-navigation'];
+for(const name of files){const file=path.join(root,'Site/assets/js',name+'.js'),code=fs.readFileSync(file,'utf8'),tree=acorn.parse(code,{ecmaVersion:'latest'});
+ function visit(node){if(!node||!node.type)return;if(node.type==='VariableDeclarator'&&['categories','documents','FA_DIGITS'].includes(node.id?.name))return;
+  if(node.type==='BinaryExpression'&&node.operator==='+'){const xs=[];function hasString(n){return n.type==='Literal'&&typeof n.value==='string'||n.type==='BinaryExpression'&&(hasString(n.left)||hasString(n.right))}function flatten(n){if(n.type==='BinaryExpression'&&n.operator==='+'&&hasString(n))return flatten(n.left)+flatten(n.right);if(n.type==='Literal'&&typeof n.value==='string')return n.value;xs.push(n);return '\u0000'+(xs.length-1)+'\u0000'}const joined=flatten(node);if(!joined.includes('<')&&hasWords(joined)){const ts=tokensFor(xs,code);add(joined.replace(/\u0000(\d+)\u0000/g,(_,i)=>ts[i]),name);return}}
+  if(node.type==='TemplateLiteral'){const ts=tokensFor(node.expressions,code);const full=node.quasis.map((q,i)=>q.value.cooked+(ts[i]||'')).join('');if(full.includes('<'))markup(full,name);else add(full,name);for(const e of node.expressions)visit(e);return}
+  if(node.type==='Literal'&&typeof node.value==='string'&&node.value.length>1){if(node.value.includes('<'))markup(node.value,name);else add(node.value,name);return}
+  for(const [key,v]of Object.entries(node)){if(['start','end','type'].includes(key))continue;if(Array.isArray(v))v.forEach(visit);else if(v&&typeof v==='object')visit(v)}
+ }visit(tree)}
+// PHP renderers produce the same labels as the browser controllers.
+for(const relative of ['Backend/wp-content/themes/iran-grains/includes/render.php','Backend/wp-content/themes/iran-grains/includes/seo-archive.php','Backend/wp-content/themes/iran-grains/includes/seo-content.php','Backend/wp-content/themes/iran-grains/index.php','Backend/wp-content/plugins/iran-grains-core/includes/messages.php','Backend/wp-content/themes/iran-grains/assets/site.js']){
+ let code=fs.readFileSync(path.join(root,relative),'utf8');if(relative.endsWith('messages.php'))code=code.slice(code.indexOf("add_action('rest_api_init'"),code.indexOf("add_action('admin_menu'"));
+ for(const m of code.matchAll(/'((?:\\.|[^'\\])*)'/g)){const text=m[1].replace(/\\'/g,"'").replace(/\\\\/g,'\\');if(text.includes('<'))markup(text,'site');else add(text,'site')}
+}
+add('مورخ {تاریخ}','main');add('{مبلغ} ریال','main');add('{عنوان} | انجمن غلات ایران','site');
+const output=path.join(root,'Site/assets/data/ui-copy.json');fs.writeFileSync(output,JSON.stringify([...entries.values()],null,2)+'\n');console.log('UI copy catalogue:',entries.size,'entries');

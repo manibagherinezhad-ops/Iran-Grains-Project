@@ -1,0 +1,27 @@
+/* Homepage service details, using the site's existing palette and typography. */
+.services-dialog {
+    inset: 0;
+    margin: auto;
+    width: min(680px, calc(100% - 32px));
+    max-height: 85vh;
+    max-height: 85dvh;
+    overflow: auto;
+    padding: clamp(22px, 4vw, 38px);
+    color: var(--ink);
+    background: var(--bg-card);
+    background-image: radial-gradient(circle at 0 100%, #efbd591a, transparent 48%), radial-gradient(circle at 100% 0, #1744340c, transparent 45%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    text-align: start;
+}
+.services-dialog::backdrop { background: #102820a6; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.services-dialog-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+.services-dialog-close { flex: 0 0 40px; width: 40px; height: 40px; border: 1px solid var(--border); border-radius: 10px; color: var(--forest); background: var(--bg-card); font-size: 1.8rem; line-height: 1; transition: background .2s, color .2s; }
+.services-dialog-close:hover { background: var(--gold); color: var(--ink); }
+.services-dialog-close:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.service-detail h2 { font-family: var(--font-head); font-size: clamp(1.3rem, 3vw, 1.8rem); margin-bottom: 18px; color: var(--forest); }
+.service-detail p { line-height: 2.2; font-size: .95rem; }
+.service-detail p + p { margin-top: 16px; }
+.service-detail[hidden] { display: none; }
+html:has(.services-dialog[open]) { overflow: hidden; }

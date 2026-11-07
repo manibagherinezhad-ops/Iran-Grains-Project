@@ -1,0 +1,20 @@
+/* News previews stay on the landing page until the reader opens the full article. */
+.home-news-dialog { inset: 0; margin: auto; width: min(620px, calc(100% - 32px)); max-height: 85vh; overflow: auto; padding: 30px; background: var(--bg-card); color: var(--ink); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
+.home-news-dialog::backdrop { background: #102820b3; backdrop-filter: blur(4px); }
+.home-news-dialog-head { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 20px; }
+.home-news-close { color: var(--forest); font-size: 1.8rem; line-height: 1; border: 1px solid var(--border); border-radius: 8px; width: 38px; height: 38px; }
+.home-news-image { display: block; width: 100%; height: 225px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; }
+.home-news-category { display: inline-flex; border-radius: 30px; padding: 3px 12px; background: var(--sage); color: var(--forest); font-size: .75rem; }
+.home-news-dialog h2 { margin: 15px 0 10px; font-size: 1.4rem; }
+.home-news-date { font-size: .8rem; color: var(--muted); }
+.home-news-dialog p { margin: 20px 0; line-height: 2; }
+#homeNewsArticle { gap: 13px; font-size: .9rem; }
+#homeNewsArticle span { font-size: 1.5em; }
+html:has(.home-news-dialog[open]) { overflow: hidden; }
+@media (max-width: 640px) {
+    .home-news-dialog { padding: 22px; }
+    .home-news-image { height: 175px; }
+}
+.home-news-progress { height: 4px; margin-top: 25px; border-radius: 20px; overflow: hidden; background: var(--border); }
+.home-news-progress[hidden] { display: none; }
+.home-news-progress > span { display: block; width: 100%; height: 100%; background: var(--gold); transform: scaleX(0); transform-origin: right center; }

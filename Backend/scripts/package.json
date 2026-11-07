@@ -1,0 +1,6 @@
+{
+  "name": "iran-grains-copy-tools",
+  "private": true,
+  "scripts": { "copy-catalog": "node copy-catalog.cjs" },
+  "devDependencies": { "acorn": "8.15.0" }
+}
