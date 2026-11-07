@@ -5,7 +5,7 @@ function ig_input_models(): array {
 }
 function ig_input_costs(float $euro): array {
     if ($euro <= 0) return [];
-    return array_map(fn($m)=>['name'=>$m['name'],'price'=>(int) round($m['slope']*$euro+$m['intercept'])],ig_input_models());
+    return array_map(fn($m)=>['name'=>$m['name'],'icon'=>$m['icon'],'price'=>(int) round($m['slope']*$euro+$m['intercept'])],ig_input_models());
 }
 function ig_input_price_data(): array {
     $settings=get_option('ig_settings',[]);$quote=get_option('ig_euro_quote',[]);
@@ -34,7 +34,7 @@ add_action('admin_menu',fn()=>add_submenu_page('iran-grains','قیمت نهاد�
 function ig_input_admin(): void {
     if(!current_user_can('manage_options'))wp_die('دسترسی مجاز نیست.');
     if($_SERVER['REQUEST_METHOD']==='POST'){check_admin_referer('ig_input_settings');update_option('ig_euro_auto',isset($_POST['automatic']),false);if(isset($_POST['refresh']))ig_refresh_euro(true);}
-    $data=ig_input_price_data();echo '<div class="wrap"><h1>قیمت تمام شده نهاده‌ها بر مبنای یورو</h1><p>خروجی نهایی فایل اکسل، شامل ۱۲٪ سود، به ریال برای هر کیلوگرم. سایر مفروضات فایل از جمله نرخ ETS ثابت مانده‌اند.</p><form method="post">';wp_nonce_field('ig_input_settings');
+    $data=ig_input_price_data();echo '<div class="wrap"><h1>قیمت تمام شده نهاده‌ها بر مبنای نرخ ارز</h1><p>خروجی نهایی فایل اکسل، شامل ۱۲٪ سود، به ریال برای هر کیلوگرم. سایر مفروضات فایل از جمله نرخ ETS ثابت مانده‌اند.</p><form method="post">';wp_nonce_field('ig_input_settings');
     echo '<label><input type="checkbox" name="automatic" '.checked(get_option('ig_euro_auto',true),true,false).'> دریافت روزانهٔ نرخ یورو مرکز مبادله (منبع ثانویه: شبکه اطلاع‌رسانی طلا و ارز)</label><p>'.esc_html($data['status']).'</p><p>یوروی مبنا: '.esc_html(number_format($data['euro'])).' ریال. نرخ دستی از اطلاعات انجمن ← نرخ‌های ارز قابل تغییر است.</p><button class="button button-primary">ذخیره</button> <button class="button" name="refresh" value="1">دریافت نرخ اکنون</button></form><table class="widefat striped"><tr><th>کالا</th><th>قیمت با ۱۲٪ سود (ریال/کیلوگرم)</th></tr>';
     foreach($data['items']as$item)echo '<tr><td>'.esc_html($item['name']).'</td><td>'.esc_html(number_format($item['price'])).'</td></tr>';echo '</table><p>زمان‌بندی وردپرس با بازدید سایت اجرا می‌شود. برای اجرای دقیق روزانه روی هاست، زمان‌بند سرور باید wp-cron.php را فراخوانی کند. در قطعی منبع، نرخ قبلی با تاریخ خودش حفظ می‌شود.</p></div>';
 }

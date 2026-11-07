@@ -1,5 +1,5 @@
 .input-cost-head { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border); }
-.input-cost-note { color: var(--muted); font-size: .78rem; margin-bottom: 16px; line-height: 1.9; }
+.input-cost-note { font-family: 'Yekan Bakh', sans-serif; font-weight: 600; color: var(--muted); font-size: .78rem; margin-bottom: 16px; line-height: 1.9; }
 .input-cost-grid { grid-template-columns: repeat(auto-fit,minmax(190px,1fr)); }
 .feedback-panel { padding: clamp(24px,4vw,48px); border: 1px solid var(--border); border-radius: 24px; background: linear-gradient(130deg,#dfe9d752,#fff); }
 .feedback-panel > p { color: var(--muted); margin: 15px 0 22px; }
@@ -32,3 +32,5 @@
  .feedback-ratings label { min-width: 85px; }
 }
 @media(prefers-reduced-motion:reduce) { .ig-ad-rail,.feedback-ratings label span { transition: none; } }
+
+.exchange .input-cost-grid .ex-icon img { width: 36px; height: 36px; object-fit: contain; }
