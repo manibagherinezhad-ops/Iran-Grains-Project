@@ -177,8 +177,8 @@ html:has(.meeting-dialog[open]) { overflow: hidden; }
 .theme-home .contact-list p[dir="ltr"] { text-align: right; }
 .theme-home .contact-icon { width: 68px; height: auto; min-height: 64px; font-size: 40px; line-height: 1; }
 .theme-home .slide-title-kicker { display: inline-flex; align-items: center; width: fit-content; padding: 8px 20px; border-radius: 999px; background: #fff; color: var(--gold-dark); }
-.footer-useful { padding-block: 22px; border-top: 1px solid #ffffff18; }
-.footer-useful h4 { color: var(--gold); font-size: .9rem; margin-bottom: 14px; }
-.footer-useful ul { display: flex; flex-wrap: wrap; gap: 12px 24px; }
-.footer-useful a { color: #aabdaf; font-size: .8rem; }
-.footer-useful a:hover { color: var(--gold); }
+/* Useful links share the footer columns and their vertical list style. */
+.footer-grid:has(> .footer-useful) { grid-template-columns: 1.3fr repeat(4, minmax(0, 1fr)); }
+.footer-useful ul { display: flex; flex-direction: column; gap: 6px; }
+@media (max-width: 980px) { .footer-grid:has(> .footer-useful) { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .footer-grid:has(> .footer-useful) { grid-template-columns: 1fr; } }
