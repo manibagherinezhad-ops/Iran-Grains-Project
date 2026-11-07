@@ -27,7 +27,38 @@
    document.body.append(rail);document.body.classList.add('ig-has-ads');watchRail(rail);
   }).catch(()=>{});
  }
- function watchRail(rail){let frame=0;const update=()=>{frame=0;const range=document.documentElement.scrollHeight-innerHeight;rail.classList.toggle('is-past-half',range>0&&scrollY>range/2);};addEventListener('scroll',()=>{if(!frame)frame=requestAnimationFrame(update);},{passive:true});addEventListener('resize',update);update();}
+ function watchRail(rail){
+  const compact=matchMedia('(max-width: 1100px)');
+  let frame=0, resizeFrame=0;
+  const containers=Array.from(document.querySelectorAll('.container')).filter(node=>!node.closest('header,footer,dialog')&&!node.parentElement.closest('.container'));
+  const update=()=>{
+   frame=0;
+   const range=document.documentElement.scrollHeight-innerHeight;
+   const hidden=!compact.matches&&range>0&&scrollY>range/2;
+   rail.classList.toggle('is-past-half',hidden);
+   rail.inert=hidden;
+  };
+  const layout=()=>{
+   resizeFrame=0;
+   containers.forEach(node=>node.classList.remove('ig-ad-reserved'));
+   if(compact.matches){
+    const hero=document.querySelector('#home, body > section, body > main > section');
+    const main=document.querySelector('body > main');
+    if(hero)hero.after(rail);else if(main)main.before(rail);
+   }else{
+    document.body.append(rail);
+    // Reserve space only for content in the first half. Section backgrounds
+    // stay full width, and later sections retain their normal centred layout.
+    const halfway=document.documentElement.scrollHeight/2;
+    containers.filter(node=>node.getBoundingClientRect().top+scrollY<halfway).forEach(node=>node.classList.add('ig-ad-reserved'));
+   }
+   update();
+  };
+  addEventListener('scroll',()=>{if(!frame)frame=requestAnimationFrame(update);},{passive:true});
+  addEventListener('resize',()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(layout);});
+  addEventListener('load',layout,{once:true});
+  layout();
+ }
  const rail=document.querySelector('.ig-ad-rail');if(rail)watchRail(rail);
  };
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initialize,{once:true});else initialize();
