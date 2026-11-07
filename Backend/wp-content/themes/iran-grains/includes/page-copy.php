@@ -14,7 +14,7 @@ function ig_copy_source(string $route): ?DOMDocument {
     libxml_clear_errors();libxml_use_internal_errors($old);return $doc;
 }
 function ig_copy_is_data(DOMNode $node): bool {
-    $ids=['bTrack','meetGrid','membersGrid','circularGrid','membersTotal','archiveTotal','companyTitle','companyCrumb','companyActivity','companyDescription','companyManager',
+    $ids=['inputCostsGrid','inputCostsNote','bTrack','meetGrid','membersGrid','circularGrid','membersTotal','archiveTotal','companyTitle','companyCrumb','companyActivity','companyDescription','companyManager',
         'companyTags','companyBrand','articleTitle','articleCrumb','articleCategory','articleDate','articleBody','articleBodyTitle',
         'newsHeroTitle','newsHeroDescription','newsHeroDate','newsHeroCategory','newsFeatureTitle','newsFeatureDescription','newsFeatureDate',
         'circularDialogTitle','circularDialogBody','circularDialogCategory','circularDialogDate','homeNewsTitle','homeNewsSummary','homeNewsCategory','homeNewsDate'];

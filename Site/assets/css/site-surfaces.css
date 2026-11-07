@@ -177,3 +177,8 @@ html:has(.meeting-dialog[open]) { overflow: hidden; }
 .theme-home .contact-list p[dir="ltr"] { text-align: right; }
 .theme-home .contact-icon { width: 68px; height: auto; min-height: 64px; font-size: 40px; line-height: 1; }
 .theme-home .slide-title-kicker { display: inline-flex; align-items: center; width: fit-content; padding: 8px 20px; border-radius: 999px; background: #fff; color: var(--gold-dark); }
+.footer-useful { padding-block: 22px; border-top: 1px solid #ffffff18; }
+.footer-useful h4 { color: var(--gold); font-size: .9rem; margin-bottom: 14px; }
+.footer-useful ul { display: flex; flex-wrap: wrap; gap: 12px 24px; }
+.footer-useful a { color: #aabdaf; font-size: .8rem; }
+.footer-useful a:hover { color: var(--gold); }

@@ -407,9 +407,11 @@
         const formatter = new Intl.DateTimeFormat('fa-IR-u-ca-persian', {
             timeZone: 'Asia/Tehran', year: 'numeric', month: '2-digit', day: '2-digit'
         });
-        const updateExchangeDate = () => { exDateEl.textContent = 'مورخ ' + formatter.format(new Date()); };
-        updateExchangeDate();
-        setInterval(updateExchangeDate, 60 * 1000);
+        // Display the recorded rate date; a stale quote must not look freshly updated.
+        const rateDate = window.IranGrains?.ratesUpdated;
+        if (rateDate && /^\d{4}-\d{2}-\d{2}$/.test(rateDate)) {
+            exDateEl.textContent = 'مورخ ' + formatter.format(new Date(rateDate + 'T12:00:00+03:30'));
+        }
     }
 
     /* ============================================

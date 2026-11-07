@@ -99,3 +99,35 @@
  .hero-intro-stage .hero-subtitle { font-size: .82rem; line-height: 1.9; margin-bottom: 18px; }
  .hero-intro-stage .hero-actions .btn { padding: 10px 15px; }
 }
+
+/* The introduction and every news slide share the requested half-screen stage. */
+.theme-home .hero { height: 50vh; min-height: 50vh; }
+.hero-intro-stage .slide-intro { padding: 16px 0 36px; }
+.hero-intro-stage .intro-copy { display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; }
+.hero-intro-stage .intro-brand { grid-column: 1; grid-row: 1; width: 64px; height: 80px; margin: 0; }
+.hero-intro-stage .hero-badge { grid-column: 2; align-self: center; margin: 0; }
+.hero-intro-stage .hero-title, .hero-intro-stage .hero-subtitle, .hero-intro-stage .hero-actions { grid-column: 1 / -1; margin: 0; }
+.hero-intro-stage .hero-title { font-size: clamp(1.8rem, 3.4vw, 3.6rem); line-height: 1.2; }
+.hero-intro-stage .hero-subtitle { font-size: .85rem; line-height: 1.7; }
+.hero-intro-stage .hero-actions .btn { padding: 10px 20px; }
+.hero-intro-stage .intro-art { height: 39vh; min-height: 0; }
+.theme-home .slide-info { bottom: 36px; }
+@media (max-width: 640px) {
+ .hero-intro-stage .slide-intro { padding: 10px 0 30px; }
+ .hero-intro-stage .intro-copy { gap: 5px 10px; }
+ .hero-intro-stage .intro-brand { width: 44px; height: 55px; }
+ .hero-intro-stage .hero-badge { font-size: .65rem; }
+ .hero-intro-stage .hero-title { font-size: clamp(1.4rem, 6.5vw, 2rem); }
+ .hero-intro-stage .hero-subtitle { font-size: .68rem; line-height: 1.6; }
+ .hero-intro-stage .hero-actions .btn { padding: 7px 12px; font-size: .72rem; }
+ .theme-home .slide-info { padding-inline: 20px; gap: 10px; }
+ .theme-home .slide-title { font-size: 1rem; line-height: 1.6; }
+}
+@media (max-height: 650px) and (min-width: 641px) {
+ .hero-intro-stage .intro-brand { width: 40px; height: 50px; }
+ .hero-intro-stage .hero-title { font-size: 1.65rem; }
+ .hero-intro-stage .hero-subtitle { font-size: .7rem; }
+ .hero-intro-stage .hero-actions .btn { padding: 6px 14px; font-size: .75rem; }
+}
+.theme-home .hero-scroll { bottom: 6px; gap: 3px; font-size: .6rem; }
+.theme-home .hero-scroll .scroll-line { height: 14px; }

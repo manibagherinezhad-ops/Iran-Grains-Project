@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="assets/css/home-intro.css">
     <link rel="stylesheet" href="assets/css/home-news.css">
     <link rel="stylesheet" href="assets/css/services.css">
+    <link rel="stylesheet" href="assets/css/site-additions.css">
 </head>
 <body class="theme-home">
 
@@ -115,6 +116,9 @@
                         <div class="ex-meta"><span class="ex-name">روبل روسیه</span><b class="ex-value">۲۳,۳۲۷ <i class="ex-unit">ریال</i></b></div>
                     </div>
                 </div>
+                <div class="exchange-head input-cost-head"><h2>قیمت تمام شده نهاده‌ها بر مبنای یورو</h2></div>
+                <p class="input-cost-note" id="inputCostsNote">قیمت فروش با ۱۲٪ سود، ریال برای هر کیلوگرم؛ بر مبنای آخرین نرخ ثبت‌شدهٔ یورو.</p>
+                <div class="exchange-grid input-cost-grid" id="inputCostsGrid"></div>
             </div>
         </div>
     </section>
@@ -300,6 +304,27 @@
     </section>
 
     <!-- ===== Contact ===== -->
+    <section class="geometry-section section association-feedback" id="associationFeedback">
+        <span class="section-geometry" aria-hidden="true"></span>
+        <div class="container"><div class="feedback-panel">
+            <span class="section-tag">صدای شما</span><h2 class="section-title">ارزیابی عملکرد انجمن</h2>
+            <p>عملکرد انجمن را چگونه ارزیابی می‌کنید؟ ابتدا رأی خود را انتخاب کنید و سپس نظرتان را بنویسید.</p>
+            <form id="associationFeedbackForm">
+                <span id="feedbackPrompts" hidden><span>چه مشکلاتی تجربه کرده‌اید و چه تغییری انتظار دارید؟</span><span>کدام بخش‌ها به بهبود بیشتری نیاز دارند؟</span><span>چه پیشنهادهایی برای بهتر شدن عملکرد انجمن دارید؟</span><span>چه بخش‌هایی برای شما مفید بوده و چه پیشنهادی دارید؟</span><span>کدام خدمات و تجربه‌ها را بیش از همه پسندیده‌اید؟</span></span>
+                <fieldset class="feedback-ratings"><legend class="sr-only">امتیاز شما به عملکرد انجمن</legend>
+<label><input type="radio" name="rating" value="1" required><span>ضعیف</span></label><label><input type="radio" name="rating" value="2" required><span>نیازمند بهبود</span></label><label><input type="radio" name="rating" value="3" required><span>متوسط</span></label><label><input type="radio" name="rating" value="4" required><span>خوب</span></label><label><input type="radio" name="rating" value="5" required><span>عالی</span></label>
+                </fieldset>
+                <div class="feedback-comment" id="feedbackCommentPanel" hidden>
+                    <label id="feedbackPrompt" for="feedbackComment">نظر شما</label>
+                    <textarea id="feedbackComment" name="comment" rows="4" maxlength="2000" required></textarea>
+                    <input type="text" name="website" class="feedback-trap" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <button class="btn btn-primary" type="submit">ثبت رأی و نظر</button>
+                </div>
+                <p id="feedbackStatus" role="status" aria-live="polite"></p>
+            </form>
+        </div></div>
+    </section>
+
     <section class="geometry-section section contact" id="contact">
         <span class="section-geometry" aria-hidden="true"></span>
         <div class="container contact-grid">
@@ -408,7 +433,8 @@
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
+        <div class="container footer-useful"><h4>لینک‌های مفید</h4><ul><li><a href="https://iranslal.com/" target="_blank" rel="noopener noreferrer">شرکت پشتیبانی امور دام کشور</a></li><li><a href="https://gtc.ir/" target="_blank" rel="noopener noreferrer">شرکت بازرگانی دولتی ایران</a></li><li><a href="https://www.mimt.gov.ir/" target="_blank" rel="noopener noreferrer">وزارت صنعت، معدن و تجارت</a></li><li><a href="https://www.maj.ir/" target="_blank" rel="noopener noreferrer">وزارت جهاد کشاورزی</a></li><li><a href="https://www.ivo.ir/" target="_blank" rel="noopener noreferrer">سازمان دامپزشکی کشور</a></li><li><a href="https://cppo.mimt.gov.ir/" target="_blank" rel="noopener noreferrer">سازمان حمایت مصرف‌کنندگان و تولیدکنندگان</a></li><li><a href="https://www.irica.ir/index.php" target="_blank" rel="noopener noreferrer">گمرک جمهوری اسلامی ایران</a></li></ul></div>
+<div class="footer-bottom">
             <div class="container">
                 <p>© ۱۴۰۵ انجمن غلات ایران | تمامی حقوق محفوظ است.</p>
             </div>
@@ -475,5 +501,6 @@
     <script src="assets/js/main.js"></script>
     <script src="assets/js/home-news.js"></script>
     <script src="assets/js/services.js"></script>
+    <script src="assets/js/site-additions.js"></script>
 </body>
 </html>

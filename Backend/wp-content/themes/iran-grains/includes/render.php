@@ -77,6 +77,19 @@ function ig_render(string $route, ?WP_Post $post): void {
         }
     }
     ig_site_settings($doc, $settings);
+    if ($route === 'index') {
+        $config['inputPrices'] = ig_input_price_data();
+        $config['inputPricesUrl'] = rest_url('iran-grains/v1/input-prices');
+        $config['feedback'] = ['url'=>rest_url('iran-grains/v1/feedback'),'nonce'=>wp_create_nonce('ig_feedback'),'restNonce'=>wp_create_nonce('wp_rest')];
+        $grid=ig_node($doc,'inputCostsGrid');$html='';
+        foreach ($config['inputPrices']['items'] as $item) $html.='<div class="ex-card"><span class="ex-icon" aria-hidden="true">🌾</span><div class="ex-meta"><span class="ex-name">'.esc_html($item['name']).'</span><b class="ex-value">'.esc_html(ig_fa(number_format($item['price']))).' ریال</b></div></div>';
+        if($grid)ig_html($grid,$html);
+        $data=$config['inputPrices'];ig_text(ig_node($doc,'inputCostsNote'),'قیمت فروش با ۱۲٪ سود، ریال برای هر کیلوگرم | یوروی مبنا: '.ig_fa(number_format($data['euro'])).' ریال | تاریخ نرخ: '.($data['date']?:'ثبت نشده'));
+    }
+    if (ig_ads()) {
+        $body=$doc->getElementsByTagName('body')->item(0);
+        $body->setAttribute('class',$body->getAttribute('class').' ig-has-ads');
+    }
     ig_menu($doc, $route, $post?->post_type ?? '');
     if ($route === 'news') ig_select_options($doc, 'circularCategory', $config['categories']['news']);
     if (in_array($route, ['circulars', 'approved-prices'], true)) ig_select_options($doc, 'circularCategory', $config['categories']['documents']);

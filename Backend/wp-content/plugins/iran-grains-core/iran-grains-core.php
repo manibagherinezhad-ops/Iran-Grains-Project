@@ -21,7 +21,7 @@ register_activation_hook(__FILE__, function () {
     ig_install_tables();
     flush_rewrite_rules();
 });
-register_deactivation_hook(__FILE__, 'flush_rewrite_rules');
+register_deactivation_hook(__FILE__, function(){wp_clear_scheduled_hook('ig_refresh_euro');flush_rewrite_rules();});
 
 add_action('init', 'ig_register_content');
 add_action('init', function () {
@@ -66,3 +66,7 @@ add_filter('wp_handle_upload_prefilter', function ($file) {
     }
     return $file;
 });
+
+require_once __DIR__.'/includes/input-costs.php';
+require_once __DIR__.'/includes/feedback.php';
+require_once __DIR__.'/includes/advertising.php';
