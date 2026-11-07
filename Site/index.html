@@ -312,8 +312,11 @@
             <p>عملکرد انجمن را چگونه ارزیابی می‌کنید؟ ابتدا رأی خود را انتخاب کنید و سپس نظرتان را بنویسید.</p>
             <form id="associationFeedbackForm">
                 <span id="feedbackPrompts" hidden><span>چه مشکلاتی تجربه کرده‌اید و چه تغییری انتظار دارید؟</span><span>کدام بخش‌ها به بهبود بیشتری نیاز دارند؟</span><span>چه پیشنهادهایی برای بهتر شدن عملکرد انجمن دارید؟</span><span>چه بخش‌هایی برای شما مفید بوده و چه پیشنهادی دارید؟</span><span>کدام خدمات و تجربه‌ها را بیش از همه پسندیده‌اید؟</span></span>
-                <fieldset class="feedback-ratings"><legend class="sr-only">امتیاز شما به عملکرد انجمن</legend>
-<label><input type="radio" name="rating" value="1" required><span>ضعیف</span></label><label><input type="radio" name="rating" value="2" required><span>نیازمند بهبود</span></label><label><input type="radio" name="rating" value="3" required><span>متوسط</span></label><label><input type="radio" name="rating" value="4" required><span>خوب</span></label><label><input type="radio" name="rating" value="5" required><span>عالی</span></label>
+                <fieldset class="feedback-ratings">
+                    <legend class="sr-only" id="feedbackRatingLabel">امتیاز شما به عملکرد انجمن</legend>
+                    <input type="hidden" name="rating" id="feedbackRatingValue" value="">
+                    <input type="range" id="feedbackRating" min="1" max="5" step="1" value="3" dir="rtl" aria-labelledby="feedbackRatingLabel" aria-valuetext="متوسط">
+                    <div class="feedback-rating-stops" aria-hidden="true"><span>ضعیف</span><span>نیازمند بهبود</span><span>متوسط</span><span>خوب</span><span>عالی</span></div>
                 </fieldset>
                 <div class="feedback-comment" id="feedbackCommentPanel" hidden>
                     <label id="feedbackPrompt" for="feedbackComment">نظر شما</label>
