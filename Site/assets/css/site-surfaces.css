@@ -91,6 +91,7 @@ body.theme-board { --surface-pattern: url('../img/geometry/lines.svg'); }
 .ig-signature-hero .ig-glass-logo { width: 77%; }
 .ig-signature-hero .ig-visit { position: relative; z-index: 2; display: flex; gap: 14px; align-items: center; font-size: .8rem; color: var(--gold); padding: 12px 0 0; border-top: 1px solid #efbd5933; }
 .ig-signature-hero .site-hero-facts > div { background: transparent; border: 0; border-inline-start: 1px solid #efbd5955; border-radius: 0; padding: 0 20px; }
+.ig-signature-hero .site-hero-facts b[dir="ltr"] { text-align: right; }
 .ig-signature-hero .site-hero-actions { margin-top: 32px; }
 @media (max-width: 1050px) and (min-width: 641px) {
  .ig-signature-hero .site-hero-logo { left: 3%; width: 30%; }
