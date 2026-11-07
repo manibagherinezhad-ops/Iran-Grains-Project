@@ -261,9 +261,9 @@ function ig_site_settings(DOMDocument $doc, array $settings): void {
         }
     }
     if (!empty($settings['contact_phone'])) foreach (ig_nodes($doc,'//body['.ig_class('contact-page').']//*['.ig_class('site-hero-facts').']/div[2]/b') as $node) ig_text($node, trim(explode('/',$settings['contact_phone'])[0]));
-    foreach (['usd','aed','eur','rub','cny'] as $i => $currency) {
-        $nodes = ig_nodes($doc, '//*[' . ig_class('ex-value') . ']');
-        if (isset($nodes[$i]) && isset($settings['rate_'.$currency])) ig_text($nodes[$i], ig_fa(number_format((int)$settings['rate_'.$currency])) . ' ریال');
+    foreach (['usd','aed','eur','rub','cny'] as $currency) {
+        $node = ig_nodes($doc, '//*[@data-currency="' . $currency . '"]//*[' . ig_class('ex-value') . ']')[0] ?? null;
+        if ($node && isset($settings['rate_'.$currency])) ig_text($node, ig_fa(number_format((int)$settings['rate_'.$currency])) . ' ریال');
     }
     if (!empty($settings['rates_updated'])) ig_text(ig_node($doc,'exchangeDate'), 'مورخ ' . ig_date($settings['rates_updated']));
     if (!empty($settings['association_about'])) foreach (ig_nodes($doc, '//*[' . ig_class('footer-brand') . ']/p') as $p) ig_text($p, $settings['association_about']);
