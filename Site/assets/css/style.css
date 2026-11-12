@@ -4,10 +4,11 @@
    ============================================ */
 
 /* ---------- فونت‌ها ---------- */
-@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
-@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
-@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-ExtraBold.ttf') format('truetype'); font-weight: 800; font-display: swap; }
-@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-Black.ttf') format('truetype'); font-weight: 900; font-display: swap; }
+@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-Regular.woff2') format('woff2'), url('../fonts/YekanBakh-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-SemiBold.woff2') format('woff2'), url('../fonts/YekanBakh-SemiBold.ttf') format('truetype'); font-weight: 600; font-display: swap; }
+@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-Bold.woff2') format('woff2'), url('../fonts/YekanBakh-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-ExtraBold.woff2') format('woff2'), url('../fonts/YekanBakh-ExtraBold.ttf') format('truetype'); font-weight: 800; font-display: swap; }
+@font-face { font-family: 'Yekan Bakh'; src: url('../fonts/YekanBakh-Black.woff2') format('woff2'), url('../fonts/YekanBakh-Black.ttf') format('truetype'); font-weight: 900; font-display: swap; }
 
 /* ---------- متغیرهای رنگ و طراحی ---------- */
 :root {
@@ -62,6 +63,8 @@ body {
 
 a { color: inherit; text-decoration: none; transition: color var(--transition); }
 img { max-width: 100%; display: block; height: auto; }
+
+::selection { background: var(--gold); color: #000; }
 ul { list-style: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
 input, textarea { font-family: inherit; }
@@ -158,55 +161,17 @@ input, textarea { font-family: inherit; }
 .btn-gold:hover span { transform: translateX(-4px); }
 
 /* ============================================
-   کرسر سفارشی دایره‌ای
+   کرسر سفارشی سبز و طلایی
    ============================================ */
-@media (hover: hover) and (pointer: fine) {
-    body { cursor: none; }
-    a, button, input, textarea, select, label { cursor: none; }
+.cursor-dot, .cursor-ring { display: none; }
 
-    .cursor-dot,
-    .cursor-ring {
-        position: fixed;
-        top: 0;
-        left: 0;
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 10000;
-        transform: translate(-50%, -50%);
-        will-change: transform, width, height;
+@media (hover: hover) and (pointer: fine) {
+    body { cursor: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M5%203v21l5.5-5%204.5%2010%204-2-4.5-9H25Z%22%20fill%3D%22%23174434%22%20stroke%3D%22%23efbd59%22%20stroke-width%3D%221.5%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E") 5 3, auto; }
+    input, textarea, [contenteditable="true"] { cursor: text; }
+    :is(a, button, select, label, [role="button"], .btn, .acc-head, .bmember,
+        input[type="checkbox"], input[type="radio"], input[type="submit"], input[type="button"]):not(:disabled) {
+        cursor: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M10%2017V5a2%202%200%200%201%204%200v9-3a2%202%200%200%201%204%200v3-1a2%202%200%200%201%204%200v2a2%202%200%200%201%204%200v6c0%205-3%208-8%208h-1c-3%200-5-1-7-4l-5-7a2%202%200%200%201%203-3l4%204%22%20fill%3D%22%23efbd59%22%20stroke%3D%22%23174434%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E") 12 3, pointer;
     }
-    /* نقطه‌ی وسط */
-    .cursor-dot {
-        width: 8px;
-        height: 8px;
-        background: var(--gold);
-        transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
-    }
-    /* حلقه‌ی بیرونی که دنبال موس می‌چرخه */
-    .cursor-ring {
-        width: 36px;
-        height: 36px;
-        border: 1.5px solid var(--gold);
-        transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-                    height 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-                    border-color 0.25s ease,
-                    background-color 0.25s ease,
-                    opacity 0.25s ease;
-    }
-    /* وقتی روی عنصر تعاملی میره */
-    .cursor-ring.is-active {
-        width: 60px;
-        height: 60px;
-        background: rgba(200, 160, 53, 0.12);
-        border-color: var(--gold-light);
-    }
-    .cursor-dot.is-active {
-        width: 0;
-        height: 0;
-        opacity: 0;
-    }
-    /* مخفی کردن موقع خروج موس */
-    .cursor-hidden { opacity: 0 !important; }
 }
 
 /* ============================================
@@ -249,15 +214,17 @@ input, textarea { font-family: inherit; }
 .nav-link::after {
     content: '';
     position: absolute;
-    inset: auto 50% 4px 50%;
+    inset-inline: 13px;
+    bottom: 4px;
     height: 2px;
-    width: 0;
     background: var(--gold);
     border-radius: 2px;
-    transition: all var(--transition);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform var(--transition);
 }
 .nav-link:hover, .nav-link.active { color: var(--gold); }
-.nav-link:hover::after, .nav-link.active::after { width: 50%; inset-inline: 25%; }
+.nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
 .caret { font-size: 18px; opacity: 0.8; transition: transform var(--transition); display: inline-block; color: var(--gold); }
 
 /* آیتم دارای زیرمنو */
@@ -543,7 +510,7 @@ input, textarea { font-family: inherit; }
 }
 .ex-meta { line-height: 1.7; }
 .ex-name { display: block; font-size: 0.78rem; color: var(--muted); }
-.ex-value { display: block; font-family: var(--font-head); font-size: 1rem; color: var(--ink); font-weight: 700; }
+.ex-value { display: block; font-family: var(--font); font-size: 1rem; color: var(--ink); font-weight: 600; }
 .ex-unit { font-style: normal; font-size: 0.62rem; color: var(--muted); font-weight: 400; }
 
 @media (max-width: 540px) {
@@ -670,12 +637,15 @@ input, textarea { font-family: inherit; }
     font-weight: 800;
 }
 .about-badge-num { display: block; font-family: var(--font-head); font-size: 1.8rem; color: #263b2c; }
-.about-badge-text { font-size: 0.76rem; color: #263b2c; }
+.about-badge-text { font-family: var(--font); font-size: 0.76rem; font-weight: 600; color: #263b2c; }
 
+.about-content { text-align: right; }
 .about-content .section-tag {
+    display: inline-block;
+    width: fit-content;
     margin-bottom: 14px;
-    background: transparent;
-    padding: 0;
+    background: var(--gold-soft);
+    padding: 6px 18px;
     color: var(--gold-dark);
 }
 .about-content .section-title {
@@ -694,7 +664,7 @@ input, textarea { font-family: inherit; }
     border-radius: 999px;
     z-index: -1;
 }
-.about-content p { color: #40554a; margin-bottom: 17px; font-size: 0.95rem; }
+.about-content p { font-family: var(--font); font-weight: 400; color: #40554a; margin-bottom: 17px; font-size: 0.95rem; }
 
 /* افکت کلمه‌به‌کلمه پررنگ شدن */
 .reveal-text { line-height: 2.1; }
@@ -710,7 +680,7 @@ input, textarea { font-family: inherit; }
 }
 
 .about-list { list-style: none; margin: 20px 0 25px; padding: 0; display: grid; gap: 14px; font-size: 1.05rem; }
-.about-list li { display: flex; align-items: center; gap: 12px; color: var(--ink); }
+.about-list li { display: flex; align-items: center; gap: 12px; font-family: var(--font); font-weight: 600; color: var(--ink); }
 .about-list .check {
     flex-shrink: 0;
     width: 28px;
@@ -786,7 +756,7 @@ input, textarea { font-family: inherit; }
     z-index: -1;
 }
 .news-archive-btn { white-space: nowrap; }
-.news-archive-btn span { font-size: 17px; line-height: 1; transition: transform var(--transition); }
+.news-archive-btn span { font-size: 1.5em; line-height: 1; transition: transform var(--transition); }
 .news-archive-btn:hover span { transform: translateX(-4px); }
 
 .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 18px; }
@@ -967,6 +937,8 @@ input, textarea { font-family: inherit; }
 .footer-col li { color: #aabdaf; font-size: 0.8rem; }
 .footer-col a { font-size: 0.8rem; color: #aabdaf; transition: all var(--transition); }
 .footer-col a:hover { color: var(--gold); }
+.footer-col ul a { display: inline-block; }
+.footer-col ul a:hover { transform: translateX(-6px); }
 
 .social-links { display: flex; gap: 12px; }
 .social-links a {
@@ -1030,6 +1002,7 @@ input, textarea { font-family: inherit; }
         position: fixed;
         inset: 0 -100% 0 auto;
         width: 300px;
+        height: 100dvh;
         max-width: 85vw;
         flex-direction: column;
         align-items: stretch;
@@ -1037,11 +1010,11 @@ input, textarea { font-family: inherit; }
         background: #fff;
         padding: 90px 18px 30px;
         box-shadow: -10px 0 40px rgba(0,0,0,0.1);
-        transition: inset-inline-end var(--transition);
+        transition: right var(--transition);
         overflow-y: auto;
     }
-    .nav-menu.open { inset-inline-end: 0; }
-    .nav-link { padding: 14px 12px; border-bottom: 1px solid var(--border); border-radius: 0; justify-content: space-between; }
+    .nav-menu.open { right: 0; }
+    .nav-link { color: var(--ink-soft); padding: 14px 12px; border-bottom: 1px solid var(--border); border-radius: 0; justify-content: space-between; }
     .nav-link::after { display: none; }
 
     /* زیرمنوی کشویی در موبایل */
@@ -1061,6 +1034,7 @@ input, textarea { font-family: inherit; }
         overflow: hidden;
         transition: max-height 0.35s ease;
     }
+    .dropdown li { opacity: 1; transform: none; }
     .nav-item-has-children.open-mobile > .dropdown { max-height: 320px; padding-bottom: 6px; }
     .dropdown li a { border-bottom: 1px solid var(--bg-alt); font-size: 13.5px; }
 
@@ -1360,6 +1334,8 @@ input, textarea { font-family: inherit; }
 .bviewport {
     position: relative;
     height: 460px;
+    overflow-x: clip;
+    overflow-y: visible;
     user-select: none;
     -webkit-user-select: none;
     touch-action: pan-y;
@@ -1671,4 +1647,164 @@ p, .lead, .section-desc, .hero-subtitle, .bbio { font-weight: 400; }
 .dropdown a, .footer a { font-weight: 400 !important; }
 button, .btn, .section-tag, .chip, .slide-title-kicker, .doc-format { font-family: var(--font); font-weight: 900 !important; }
 input, textarea, select { font-family: var(--font); font-weight: 700 !important; }
-.intro-facts b, .tl-year, .ex-value, .meet-date b, .stat-number, .about-badge-num, .acc-num { font-family: var(--font); font-weight: 700 !important; }
+.intro-facts b, .tl-year, .meet-date b, .stat-number, .about-badge-num, .acc-num { font-family: var(--font); font-weight: 700 !important; }
+
+/* Home page: exchange rates, news and services */
+.exchange-date { font-family: var(--font); font-weight: 700; }
+.exchange .ex-value { font-family: 'Yekan Bakh', sans-serif; font-weight: 600 !important; }
+.ex-unit { font-family: var(--font); font-weight: 400; }
+.news-cat { font-family: var(--font); font-weight: 600; }
+.news-date, .news-link { font-family: var(--font); font-weight: 700; }
+.news-body p, .service-card p { font-family: var(--font); font-weight: 400; }
+.service-link { font-family: var(--font); font-weight: 700; }
+
+/* Exchange currency names and the UAE icon */
+.exchange .ex-name { font-family: var(--font); font-weight: 600; }
+.exchange .ex-icon img { width: 25px; height: 17px; display: block; }
+.stats .stat-label { font-family: var(--font); font-weight: 600; }
+.cta-content p { font-family: var(--font); font-weight: 400; }
+
+/* Contact section and footer typography */
+.contact-info > p,
+.contact-list p,
+.contact-list p a,
+.footer-brand > p,
+.footer-col ul a {
+    font-family: var(--font);
+    font-weight: 400;
+}
+.contact-form input,
+.contact-form textarea,
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    font-family: var(--font);
+    font-weight: 400 !important;
+}
+.footer-brand .logo { font-size: 23px; }
+.footer-brand .logo-text { font-family: var(--font); font-weight: 700; }
+.footer-brand .logo-mark { font-size: 32px; }
+.footer-brand .logo-img { height: 110px; }
+
+/* Navigation and introductory hero text */
+.nav-menu .nav-link { font-family: 'Yekan Bakh', sans-serif !important; font-weight: 700 !important; }
+.nav-menu .dropdown a { font-family: 'Yekan Bakh', sans-serif !important; font-weight: 600 !important; }
+.slide-intro .hero-subtitle { font-family: 'Yekan Bakh', sans-serif !important; font-weight: 400 !important; }
+
+/* Meetings page typography and pagination */
+.meetings-section .mfilter,
+.meet-pagination button {
+    font-family: var(--font);
+    font-weight: 600 !important;
+}
+.meetings-page .page-hero .breadcrumb,
+.meetings-page .page-hero .lead,
+.meet-date span,
+.meet-date i,
+.meet-tag,
+.meet-body p,
+.meet-meta span { font-family: var(--font); }
+.meetings-page .page-hero .breadcrumb,
+.meetings-page .page-hero .lead,
+.meet-date span,
+.meet-tag { font-weight: 600; }
+.meet-date i,
+.meet-body p,
+.meet-meta span { font-weight: 400; }
+
+.meet-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 40px auto 0;
+}
+.meet-page-numbers { display: flex; gap: 8px; }
+.meet-pagination button {
+    display: grid;
+    place-items: center;
+    min-width: 42px;
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--forest);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.meet-pagination button:hover:not(:disabled),
+.meet-pagination button[aria-current="page"] {
+    background: var(--green);
+    border-color: var(--green);
+    color: #fff;
+}
+.meet-pagination button:focus-visible { outline: 2px solid var(--gold-dark); outline-offset: 3px; }
+.meet-pagination button:disabled { opacity: 0.4; cursor: default; }
+
+/* Dedicated contact page */
+.contact-page-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 162px 0 88px;
+    color: #fff;
+    background: radial-gradient(circle at 18% 88%, rgba(239, 189, 89, 0.15), transparent 32%),
+                linear-gradient(125deg, #0c281d, #1b513b 68%, #123326);
+}
+.contact-hero-content { position: relative; z-index: 1; }
+.contact-page-hero .breadcrumb { margin-bottom: 24px; }
+.contact-page-hero h1 { font-family: var(--font-head); font-size: clamp(2.3rem, 5vw, 3.8rem); line-height: 1.35; margin-bottom: 15px; }
+.contact-page-hero p { max-width: 690px; color: #dbe9de; font-family: var(--font); font-weight: 400; }
+.contact-hero-shape { position: absolute; pointer-events: none; }
+.contact-hero-shape.shape-one {
+    width: 420px; height: 420px; left: -130px; top: -180px;
+    border: 54px solid rgba(239, 189, 89, 0.13); border-radius: 50%;
+}
+.contact-hero-shape.shape-two {
+    width: 260px; height: 260px; right: -45px; bottom: -170px;
+    border: 2px solid rgba(255, 255, 255, 0.18); transform: rotate(35deg);
+}
+.contact-hero-shape.shape-three {
+    width: 150px; height: 150px; left: 28%; bottom: -90px;
+    background: rgba(239, 189, 89, 0.1); clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    transform: rotate(-16deg);
+}
+.contact-page-section { background: #f7f7f0; }
+.contact-page-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 30px; align-items: stretch; }
+.contact-page-info, .contact-page-map {
+    min-width: 0; background: #fff; border: 1px solid var(--border); border-radius: 22px;
+    box-shadow: var(--shadow-sm); padding: 36px;
+}
+.contact-page-info .section-tag { margin-bottom: 14px; }
+.contact-page-info .section-title { color: var(--forest); margin-bottom: 26px; }
+.contact-detail-list { display: grid; gap: 0; }
+.contact-detail { display: flex; align-items: flex-start; gap: 16px; padding: 19px 0; border-bottom: 1px solid var(--border); }
+.contact-detail:last-child { border-bottom: 0; }
+.contact-detail-icon, .contact-map-pin {
+    flex: 0 0 46px; width: 46px; height: 46px; display: grid; place-items: center;
+    border-radius: 13px; color: var(--forest); background: var(--sage); font-size: 1.35rem;
+}
+.contact-detail h3 { color: var(--forest); font-size: 1rem; margin-bottom: 5px; }
+.contact-detail p, .contact-detail a { color: var(--muted); font-family: var(--font); font-weight: 400; line-height: 1.9; }
+.contact-detail a:hover { color: var(--green); }
+.contact-map-heading { display: flex; justify-content: space-between; align-items: center; gap: 18px; margin-bottom: 20px; }
+.contact-map-heading .section-tag { margin-bottom: 9px; }
+.contact-map-heading h2 { color: var(--forest); font-size: 1.5rem; }
+.contact-map-pin { background: var(--gold-soft); color: var(--gold-dark); }
+.contact-map-frame {
+    overflow: hidden; height: 410px; border-radius: 16px; border: 1px solid var(--border);
+    background: linear-gradient(45deg, #e9eee7 25%, #f4f6f1 25%, #f4f6f1 50%, #e9eee7 50%, #e9eee7 75%, #f4f6f1 75%);
+    background-size: 32px 32px;
+}
+.contact-map-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+.contact-map-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; color: var(--green); font-family: var(--font); font-weight: 700; }
+.contact-map-link:hover { color: var(--gold-dark); }
+@media (max-width: 900px) {
+    .contact-page-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 540px) {
+    .contact-page-hero { padding: 140px 0 66px; }
+    .contact-page-info, .contact-page-map { padding: 24px; }
+    .contact-map-frame { height: 340px; }
+    .contact-detail { gap: 12px; }
+}

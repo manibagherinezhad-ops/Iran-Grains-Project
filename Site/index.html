@@ -7,13 +7,18 @@
     <meta name="description" content="انجمن غلات ایران، مرجع تخصصی غلات و دانه‌های روغنی کشور با هدف توسعه‌ی پایدار صنعت و تأمین امنیت غذایی.">
 
     <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌾</text></svg>">
+    <link rel="icon" type="image/png" href="assets/img/logo.png"><link rel="icon" type="image/svg+xml" sizes="any" href="assets/img/favicon.svg">
 
     <!-- Fonts -->
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/site-surfaces.css">
+    <link rel="stylesheet" href="assets/css/home-intro.css">
+    <link rel="stylesheet" href="assets/css/home-news.css">
+    <link rel="stylesheet" href="assets/css/services.css">
+    <link rel="stylesheet" href="assets/css/site-additions.css">
 </head>
-<body>
+<body class="theme-home">
 
     <!-- کرسر سفارشی -->
     <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
@@ -27,29 +32,38 @@
             </a>
 
             <nav class="nav-menu" id="navMenu" aria-label="منوی اصلی">
-                <a href="#home" class="nav-link active">خانه</a>
+                <a href="#home" class="active nav-link" aria-current="page">خانه</a>
 
 
                 <div class="nav-item-has-children">
-                    <a href="#news" class="nav-link">رویدادها <span class="caret" aria-hidden="true">▾</span></a>
+                    <a href="news.html" class="nav-link">اخبار و رویدادها <span class="caret" aria-hidden="true">▾</span></a>
                     <ul class="dropdown">
+                        <li><a href="news.html">اخبار</a></li>
                         <li><a href="meetings.html">جلسات</a></li>
                         <li><a href="iran-green.html">ایران گرین</a></li>
                     </ul>
                 </div>
 
-                <a href="#services" class="nav-link">بخشنامه‌ها</a>
-                <a href="#stats" class="nav-link">قیمت‌های مصوب</a>
+                <a href="circulars.html" class="nav-link">بخشنامه‌ها</a>
+                <a href="approved-prices.html" class="nav-link">قیمت‌های مصوب</a>
 
                 <div class="nav-item-has-children">
-                    <a href="#contact" class="nav-link">اعضا <span class="caret" aria-hidden="true">▾</span></a>
+                    <a href="members.html" class="nav-link">اعضا <span class="caret" aria-hidden="true">▾</span></a>
                     <ul class="dropdown">
-                        <li><a href="#">شرکت‌های عضو</a></li>
-                        <li><a href="#">شرایط عضویت</a></li>
+                        <li><a href="members.html">شرکت‌های عضو</a></li>
+                        <li><a href="membership.html">شرایط عضویت</a></li>
                     </ul>
                 </div>
 
-                <a href="#contact" class="nav-link">تماس با ما</a>
+                <a href="contact.html" class="nav-link">تماس با ما</a>
+
+                <div class="nav-item-has-children">
+                    <a href="about.html" class="nav-link">درباره ما <span class="caret" aria-hidden="true">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="about.html">آشنایی با انجمن</a></li>
+                        <li><a href="board.html">اعضای هیأت مدیره</a></li>
+                    </ul>
+                </div>
             </nav>
 
             <div class="nav-actions">
@@ -62,7 +76,8 @@
     </header>
 
     <!-- ===== Hero: اسلایدر خبری (داده‌محور — آماده اتصال به پیج اخبار) ===== -->
-    <section class="hero" id="home">
+    <section class="geometry-section hero" id="home">
+        <span class="section-geometry" aria-hidden="true"></span>
         <div class="hero-slider" id="heroSlider" aria-live="polite"></div>
         <a href="#services" class="hero-scroll" aria-label="اسکرول کنید">
             <span>اسکرول کنید</span>
@@ -71,48 +86,53 @@
     </section>
 
     <!-- ===== نرخ ارز مرکز مبادله ===== -->
-    <section class="exchange">
+    <section class="geometry-section exchange">
+        <span class="section-geometry" aria-hidden="true"></span>
         <div class="container">
             <div class="exchange-box" data-animate>
                 <div class="exchange-head">
                     <h2>نرخ‌های ارز مرکز مبادله ایران</h2>
-                    <span class="exchange-date" id="exchangeDate">مورخ —</span>
+                    <span class="exchange-date" id="exchangeDate">مورخ ۱۴۰۵/۰۸/۰۷</span>
                 </div>
                 <div class="exchange-grid">
-                    <div class="ex-card">
-                        <span class="ex-icon" aria-hidden="true">$</span>
-                        <div class="ex-meta"><span class="ex-name">دلار آمریکا</span><b class="ex-value">۱,۵۳۳,۳۷۵ <i class="ex-unit">ریال</i></b></div>
+                    <div class="ex-card" data-currency="usd">
+                        <span class="ex-icon" aria-hidden="true"><img src="assets/img/flag-us.svg" width="25" height="17" alt=""></span>
+                        <div class="ex-meta"><span class="ex-name">دلار آمریکا</span><b class="ex-value">۱,۸۷۹,۱۵۸ <i class="ex-unit">ریال</i></b></div>
                     </div>
-                    <div class="ex-card">
-                        <span class="ex-icon" aria-hidden="true">€</span>
-                        <div class="ex-meta"><span class="ex-name">یورو</span><b class="ex-value">۱,۷۶۸,۳۵۷ <i class="ex-unit">ریال</i></b></div>
+                    <div class="ex-card" data-currency="eur">
+                        <span class="ex-icon" aria-hidden="true"><img src="assets/img/flag-eu.svg" width="25" height="17" alt=""></span>
+                        <div class="ex-meta"><span class="ex-name">یورو</span><b class="ex-value">۲,۰۹۷,۰۵۰ <i class="ex-unit">ریال</i></b></div>
                     </div>
-                    <div class="ex-card">
-                        <span class="ex-icon" aria-hidden="true">د.إ</span>
-                        <div class="ex-meta"><span class="ex-name">درهم امارات</span><b class="ex-value">۴۱۷,۵۲۹ <i class="ex-unit">ریال</i></b></div>
+                    <div class="ex-card" data-currency="aed">
+                        <span class="ex-icon" aria-hidden="true"><img src="assets/img/flag-uae.svg" width="25" height="17" alt=""></span>
+                        <div class="ex-meta"><span class="ex-name">درهم امارات</span><b class="ex-value">۵۱۱,۶۸۴ <i class="ex-unit">ریال</i></b></div>
                     </div>
-                    <div class="ex-card">
-                        <span class="ex-icon" aria-hidden="true">¥</span>
-                        <div class="ex-meta"><span class="ex-name">یوآن چین</span><b class="ex-value">۲۳۷,۰۶۱ <i class="ex-unit">ریال</i></b></div>
+                    <div class="ex-card" data-currency="cny">
+                        <span class="ex-icon" aria-hidden="true"><img src="assets/img/flag-cn.svg" width="25" height="17" alt=""></span>
+                        <div class="ex-meta"><span class="ex-name">یوآن چین</span><b class="ex-value">۲۸۲,۴۰۵ <i class="ex-unit">ریال</i></b></div>
                     </div>
-                    <div class="ex-card">
-                        <span class="ex-icon" aria-hidden="true">₽</span>
-                        <div class="ex-meta"><span class="ex-name">روبل روسیه</span><b class="ex-value">۱۹,۲۹۷ <i class="ex-unit">ریال</i></b></div>
+                    <div class="ex-card" data-currency="rub">
+                        <span class="ex-icon" aria-hidden="true"><img src="assets/img/flag-ru.svg" width="25" height="17" alt=""></span>
+                        <div class="ex-meta"><span class="ex-name">روبل روسیه</span><b class="ex-value">۲۳,۳۲۷ <i class="ex-unit">ریال</i></b></div>
                     </div>
                 </div>
+                <div class="exchange-head input-cost-head"><h2>قیمت تمام شده نهاده‌ها بر مبنای نرخ ارز</h2></div>
+                <p class="input-cost-note" id="inputCostsNote">قیمت فروش با ۱۲٪ سود، ریال برای هر کیلوگرم؛ بر مبنای آخرین نرخ ثبت‌شدهٔ یورو.</p>
+                <div class="exchange-grid input-cost-grid" id="inputCostsGrid"></div>
             </div>
         </div>
     </section>
 
     <!-- ===== News ===== -->
-    <section class="section news" id="news">
+    <section class="geometry-section section news" id="news">
+        <span class="section-geometry" aria-hidden="true"></span>
         <div class="container">
             <div class="news-head" data-animate>
                 <div class="news-head-text">
                     <span class="section-tag">اخبار و رویدادها</span>
                     <h2 class="section-title">آخرین خبرهای صنعت غلات</h2>
                 </div>
-                <a href="#" class="btn btn-green-outline news-archive-btn">آرشیو خبرها <span aria-hidden="true">←</span></a>
+                <a href="news.html" class="btn btn-green-outline news-archive-btn">آرشیو خبرها <span aria-hidden="true">←</span></a>
             </div>
 
             <div class="news-grid">
@@ -125,7 +145,7 @@
                         <span class="news-date">۱۲ مرداد ۱۴۰۵</span>
                         <h3>افزایش تولید جهانی گندم در سال ۲۰۲۶</h3>
                         <p>بر اساس جدیدترین گزارش فائو، تولید جهانی گندم در سال جاری به رکورد جدیدی خواهد رسید.</p>
-                        <a href="#" class="news-link">ادامه مطلب <span aria-hidden="true">←</span></a>
+                        <a href="news-article.html?id=1" class="news-link" aria-haspopup="dialog" aria-controls="homeNewsDialog">ادامه مطلب <span aria-hidden="true">←</span></a>
                     </div>
                 </article>
 
@@ -138,7 +158,7 @@
                         <span class="news-date">۱۰ مرداد ۱۴۰۵</span>
                         <h3>تثبیت قیمت نهاده‌های دامی در بازار</h3>
                         <p>قیمت نهاده‌های دامی وارداتی پس از جلسات اخیر با نهادهای ذی‌ربط ثبات پیدا کرد.</p>
-                        <a href="#" class="news-link">ادامه مطلب <span aria-hidden="true">←</span></a>
+                        <a href="news-article.html?id=2" class="news-link" aria-haspopup="dialog" aria-controls="homeNewsDialog">ادامه مطلب <span aria-hidden="true">←</span></a>
                     </div>
                 </article>
 
@@ -151,15 +171,17 @@
                         <span class="news-date">۸ مرداد ۱۴۰۵</span>
                         <h3>بخشنامه‌ی جدید تخصیص ارز ترجیحی</h3>
                         <p>بانک مرکزی بخشنامه‌ی جدیدی در خصوص نحوه‌ی تخصیص ارز واردات غلات ابلاغ کرد.</p>
-                        <a href="#" class="news-link">ادامه مطلب <span aria-hidden="true">←</span></a>
+                        <a href="news-article.html?id=3" class="news-link" aria-haspopup="dialog" aria-controls="homeNewsDialog">ادامه مطلب <span aria-hidden="true">←</span></a>
                     </div>
                 </article>
             </div>
+            <div class="home-news-progress" id="homeNewsProgress" aria-hidden="true" hidden><span></span></div>
         </div>
     </section>
 
     <!-- ===== Services ===== -->
-    <section class="section services" id="services">
+    <section class="geometry-section section services" id="services">
+        <span class="section-geometry" aria-hidden="true"></span>
         <div class="container">
             <div class="section-head services-head" data-animate>
                 <span class="section-tag">خدمات ما</span>
@@ -185,7 +207,7 @@
                     <div class="service-icon" aria-hidden="true">🔔</div>
                     <h3>بخشنامه‌ها و قوانین</h3>
                     <p>اطلاع‌رسانی سریع بخشنامه‌ها، قوانین و مقررات جدید مرتبط با واردات و تجارت غلات.</p>
-                    <a href="#" class="service-link">بیشتر بدانید <span aria-hidden="true">←</span></a>
+                    <a href="circulars.html" class="service-link">بیشتر بدانید <span aria-hidden="true">←</span></a>
                 </article>
 
                 <article class="service-card" data-animate>
@@ -213,7 +235,8 @@
     </section>
 
     <!-- ===== About ===== -->
-    <section class="section about" id="about">
+    <section class="geometry-section section about" id="about">
+        <span class="section-geometry" aria-hidden="true"></span>
         <div class="container about-grid">
             <div class="about-media" data-animate>
                 <img src="assets/img/photo-1574323347407-f5e1ad6d020b.avif"
@@ -243,7 +266,8 @@
     </section>
 
     <!-- ===== Stats ===== -->
-    <section class="stats" id="stats">
+    <section class="geometry-section stats" id="stats">
+        <span class="section-geometry" aria-hidden="true"></span>
         <div class="stats-bg"></div>
         <div class="container stats-grid">
             <div class="stat-item" data-animate>
@@ -266,9 +290,11 @@
     </section>
 
     <!-- ===== CTA ===== -->
-    <section class="section cta-section">
+    <section class="geometry-section section cta-section">
+        <span class="section-geometry" aria-hidden="true"></span>
         <div class="container">
             <div class="cta-box" data-animate>
+                <span class="section-geometry" aria-hidden="true"></span>
                 <div class="cta-content">
                     <h2>به جامعه‌ی بزرگ غلات ایران بپیوندید</h2>
                     <p>از مزایای عضویت در انجمن غلات ایران بهره‌مند شوید و در شبکه‌ی تخصصی فعالان صنعت جای بگیرید.</p>
@@ -279,7 +305,33 @@
     </section>
 
     <!-- ===== Contact ===== -->
-    <section class="section contact" id="contact">
+    <section class="geometry-section section association-feedback" id="associationFeedback">
+        <span class="section-geometry" aria-hidden="true"></span>
+        <div class="container"><div class="feedback-panel">
+            <span class="section-tag">صدای شما</span><h2 class="section-title">ارزیابی عملکرد انجمن</h2>
+            <p>عملکرد انجمن را چگونه ارزیابی می‌کنید؟ ابتدا رأی خود را انتخاب کنید و سپس نظرتان را بنویسید.</p>
+            <form id="associationFeedbackForm">
+                <span id="feedbackPrompts" hidden><span>چه مشکلاتی تجربه کرده‌اید و چه تغییری انتظار دارید؟</span><span>کدام بخش‌ها به بهبود بیشتری نیاز دارند؟</span><span>چه پیشنهادهایی برای بهتر شدن عملکرد انجمن دارید؟</span><span>چه بخش‌هایی برای شما مفید بوده و چه پیشنهادی دارید؟</span><span>کدام خدمات و تجربه‌ها را بیش از همه پسندیده‌اید؟</span></span>
+                <fieldset class="feedback-ratings">
+                    <legend class="sr-only" id="feedbackRatingLabel">امتیاز شما به عملکرد انجمن</legend>
+                    <input type="hidden" name="rating" id="feedbackRatingValue" value="">
+                    <input type="range" id="feedbackRating" min="1" max="5" step="1" value="3" dir="rtl" aria-labelledby="feedbackRatingLabel" aria-valuetext="متوسط">
+                    <span class="feedback-slider-visual" aria-hidden="true"><span class="feedback-slider-fill"></span><span class="feedback-slider-thumb"></span></span>
+                    <div class="feedback-rating-stops" aria-hidden="true"><span>ضعیف</span><span>نیازمند بهبود</span><span>متوسط</span><span>خوب</span><span>عالی</span></div>
+                </fieldset>
+                <div class="feedback-comment" id="feedbackCommentPanel" hidden>
+                    <label id="feedbackPrompt" for="feedbackComment">نظر شما</label>
+                    <textarea id="feedbackComment" name="comment" rows="4" maxlength="2000" required></textarea>
+                    <input type="text" name="website" class="feedback-trap" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <button class="btn btn-primary" type="submit">ثبت رأی و نظر</button>
+                </div>
+                <p id="feedbackStatus" role="status" aria-live="polite"></p>
+            </form>
+        </div></div>
+    </section>
+
+    <section class="geometry-section section contact" id="contact">
+        <span class="section-geometry" aria-hidden="true"></span>
         <div class="container contact-grid">
             <div class="contact-info" data-animate>
                 <span class="section-tag">تماس با ما</span>
@@ -344,12 +396,12 @@
     </section>
 
     <!-- ===== Footer ===== -->
-    <footer class="footer">
+    <footer class="geometry-section footer">
+        <span class="section-geometry" aria-hidden="true"></span>
         <div class="container footer-grid">
             <div class="footer-col footer-brand">
                 <a href="#home" class="logo">
-                    <span class="logo-mark" aria-hidden="true">🌾</span>
-                    <span class="logo-text">انجمن غلات ایران</span>
+                    <img src="assets/img/logo.png" alt="لوگوی انجمن غلات ایران" class="logo-img">
                 </a>
                 <p>مرجع تخصصی صنعت غلات و دانه‌های روغنی کشور با هدف تأمین امنیت غذایی و توسعه‌ی پایدار.</p>
             </div>
@@ -358,18 +410,19 @@
                 <ul>
                     <li><a href="#services">خدمات</a></li>
                     <li><a href="#news">اخبار</a></li>
-                    <li><a href="#contact">تماس</a></li>
+                    <li><a href="contact.html">تماس</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>خدمات</h4>
                 <ul>
                     <li><a href="#services">آمار و داده‌ها</a></li>
-                    <li><a href="#services">بخشنامه‌ها</a></li>
-                    <li><a href="#services">شرکت‌های عضو</a></li>
+                    <li><a href="circulars.html">بخشنامه‌ها</a></li>
+                    <li><a href="members.html">شرکت‌های عضو</a></li>
                     <li><a href="#news">رویدادها</a></li>
                 </ul>
             </div>
+            <div class="footer-col footer-useful"><h4>لینک‌های مفید</h4><ul><li><a href="https://iranslal.com/" target="_blank" rel="noopener noreferrer">شرکت پشتیبانی امور دام کشور</a></li><li><a href="https://gtc.ir/" target="_blank" rel="noopener noreferrer">شرکت بازرگانی دولتی ایران</a></li><li><a href="https://www.mimt.gov.ir/" target="_blank" rel="noopener noreferrer">وزارت صنعت، معدن و تجارت</a></li><li><a href="https://www.maj.ir/" target="_blank" rel="noopener noreferrer">وزارت جهاد کشاورزی</a></li><li><a href="https://www.ivo.ir/" target="_blank" rel="noopener noreferrer">سازمان دامپزشکی کشور</a></li><li><a href="https://cppo.mimt.gov.ir/" target="_blank" rel="noopener noreferrer">سازمان حمایت مصرف‌کنندگان و تولیدکنندگان</a></li><li><a href="https://www.irica.ir/index.php" target="_blank" rel="noopener noreferrer">گمرک جمهوری اسلامی ایران</a></li></ul></div>
             <div class="footer-col">
                 <h4>شبکه‌های اجتماعی</h4>
                 <div class="social-links">
@@ -385,19 +438,75 @@
                     </a>
                 </div>
             </div>
+
         </div>
-        <div class="footer-bottom">
+<div class="footer-bottom">
             <div class="container">
                 <p>© ۱۴۰۵ انجمن غلات ایران | تمامی حقوق محفوظ است.</p>
             </div>
         </div>
     </footer>
 
+    <dialog class="home-news-dialog" id="homeNewsDialog" aria-labelledby="homeNewsTitle" aria-describedby="homeNewsSummary">
+        <div class="home-news-dialog-head">
+            <span class="section-tag">خلاصه خبر</span>
+            <button type="button" class="home-news-close" aria-label="بستن پیش‌نمایش">×</button>
+        </div>
+        <img class="home-news-image" id="homeNewsImage" alt="">
+        <span class="home-news-category" id="homeNewsCategory"></span>
+        <h2 id="homeNewsTitle"></h2>
+        <span class="home-news-date" id="homeNewsDate"></span>
+        <p id="homeNewsSummary"></p>
+        <a class="btn btn-green-outline" id="homeNewsArticle" href="news-article.html">مطالعهٔ کامل خبر <span aria-hidden="true">←</span></a>
+    </dialog>
+
+    <dialog class="services-dialog" id="servicesDialog" aria-labelledby="serviceStatsTitle">
+        <div class="services-dialog-head">
+            <span class="section-tag">خدمات انجمن</span>
+            <button type="button" class="services-dialog-close" aria-label="بستن توضیحات خدمات" autofocus>×</button>
+        </div>
+        <section class="service-detail" id="serviceStats" hidden>
+            <h2 id="serviceStatsTitle">آمار و داده‌ها</h2>
+            <p>شناخت وضعیت بازار از بررسی آمار تولید، واردات و صادرات آغاز می‌شود. این خدمت به گردآوری و ارائهٔ اطلاعات مرتبط با غلات، دانه‌های روغنی و نهاده‌های دامی اختصاص دارد تا فعالان صنعت تصویر روشن‌تری از زنجیرهٔ تأمین داشته باشند.</p>
+            <p>اطلاعات مربوط به تأمین و تخصیص ارز، روند تجارت و تغییرات بازار در کنار یکدیگر بررسی می‌شوند. اعضا می‌توانند با توجه به تاریخ، منبع و موضوع هر گزارش، از داده‌ها برای برنامه‌ریزی خرید، تأمین و فعالیت تجاری خود استفاده کنند.</p>
+        </section>
+        <section class="service-detail" id="serviceReports" hidden>
+            <h2 id="serviceReportsTitle">اخبار و گزارش‌ها</h2>
+            <p>اخبار و گزارش‌های انجمن، تحولات مؤثر بر صنعت غلات ایران و بازارهای جهانی را دنبال می‌کنند؛ از وضعیت تولید و تجارت تا تصمیم‌های اقتصادی و تغییرات زنجیرهٔ تأمین.</p>
+            <p>در هر خبر، عنوان، تاریخ و شرح موضوع ارائه می‌شود و گزارش‌های تحلیلی به درک زمینه و پیامدهای رویدادها کمک می‌کنند. این مجموعه برای پیگیری منظم مسائل صنعت و آگاهی از موضوعات مرتبط با فعالیت اعضا فراهم شده است.</p>
+        </section>
+        <section class="service-detail" id="serviceRegulations" hidden>
+            <h2 id="serviceRegulationsTitle">بخشنامه‌ها و قوانین</h2>
+            <p>تغییر مقررات می‌تواند بر مراحل واردات، ترخیص، تأمین و توزیع غلات اثر بگذارد. انجمن، بخشنامه‌ها و اطلاعیه‌های مرتبط را در یک آرشیو موضوعی معرفی می‌کند تا دسترسی به مقررات مورد نیاز آسان‌تر باشد.</p>
+            <p>برای هر بخشنامه، توضیح موضوع، تاریخ انتشار و در صورت وجود، سند یا منبع مربوط در دسترس قرار می‌گیرد. هنگام اقدام اجرایی لازم است متن کامل سند، مرجع صادرکننده و آخرین اصلاحات آن بررسی شود.</p>
+        </section>
+        <section class="service-detail" id="serviceInstitutions" hidden>
+            <h2 id="serviceInstitutionsTitle">ارتباط با نهادها</h2>
+            <p>انجمن زمینهٔ طرح مسائل مشترک فعالان صنعت با نهادهای مرتبط، از جمله وزارت جهاد کشاورزی، بانک مرکزی و دستگاه‌های مسئول تجارت را فراهم می‌کند. هدف، انتقال روشن دیدگاه‌ها و مشکلات زنجیرهٔ تأمین غلات است.</p>
+            <p>جمع‌بندی دغدغه‌های اعضا، حضور در نشست‌های تخصصی و پیگیری موضوعات صنفی، به گفت‌وگو دربارهٔ مقررات و فرایندهای اجرایی کمک می‌کند. اعضا می‌توانند موضوعات خود را همراه با اطلاعات و مستندات لازم برای بررسی به انجمن ارائه کنند.</p>
+        </section>
+        <section class="service-detail" id="serviceMembers" hidden>
+            <h2 id="serviceMembersTitle">شرکت‌های عضو</h2>
+            <p>شبکهٔ شرکت‌های عضو، فعالان بخش‌های مختلف زنجیرهٔ غلات، نهاده‌های دامی و دانه‌های روغنی را به یکدیگر معرفی می‌کند. اطلاعات فعالیت و راه‌های ارتباطی شرکت‌ها، شناخت ظرفیت‌ها و زمینه‌های همکاری را آسان‌تر می‌سازد.</p>
+            <p>عضویت در انجمن، بستری برای تبادل تجربه، طرح مسائل مشترک صنفی و مشارکت در برنامه‌های تخصصی فراهم می‌کند. متقاضیان می‌توانند شرایط و مدارک لازم را در بخش شرایط عضویت بررسی و درخواست خود را به انجمن ارائه کنند.</p>
+        </section>
+        <section class="service-detail" id="serviceEvents" hidden>
+            <h2 id="serviceEventsTitle">رویدادها و کنفرانس‌ها</h2>
+            <p>همایش‌ها، نشست‌ها و رویدادهای تخصصی، فرصتی برای گفت‌وگوی فعالان صنعت، تبادل تجربه و بررسی مسائل روز بازار غلات هستند. این برنامه‌ها به آشنایی با دیدگاه‌های کارشناسی و تقویت ارتباط میان اعضای زنجیرهٔ تأمین کمک می‌کنند.</p>
+            <p>اطلاعات برنامه‌ها، موضوعات نشست‌ها و گزارش جلسات در بخش اخبار و رویدادها معرفی می‌شود. برای هر برنامه، زمان، محل و نحوهٔ حضور مطابق اطلاعیهٔ همان رویداد اعلام خواهد شد.</p>
+        </section>
+    </dialog>
+
     <!-- Back to top -->
     <button class="back-to-top" id="backToTop" aria-label="بازگشت به بالا">
         <span aria-hidden="true">↑</span>
     </button>
 
+    <script src="assets/js/site-motion.js"></script>
+    <script src="assets/js/news-data.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/home-news.js"></script>
+    <script src="assets/js/services.js"></script>
+    <script src="assets/js/site-additions.js"></script>
 </body>
 </html>

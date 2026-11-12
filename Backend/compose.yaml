@@ -1,0 +1,42 @@
+name: iran-grains-dev
+services:
+  db:
+    image: mariadb:10.11
+    environment:
+      MARIADB_DATABASE: iran_grains
+      MARIADB_USER: iran_grains
+      MARIADB_PASSWORD: ${DB_PASSWORD:?Run scripts/dev.py first}
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:?Run scripts/dev.py first}
+    volumes:
+      - database:/var/lib/mysql
+    healthcheck:
+      test: [CMD, healthcheck.sh, --connect, --innodb_initialized]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+  web:
+    image: wordpress:cli-php8.4
+    user: "${LOCAL_UID:-1000}:${LOCAL_GID:-1000}"
+    entrypoint: [php]
+    command: [-S, '0.0.0.0:8080', -t, /var/www/html, /opt/ig/router.php]
+    ports:
+      - '127.0.0.1:${DEV_PORT:-8090}:8080'
+    environment:
+      DB_HOST: db
+      DB_NAME: iran_grains
+      DB_USER: iran_grains
+      DB_PASSWORD: ${DB_PASSWORD}
+      WORDPRESS_ENVIRONMENT_TYPE: local
+    volumes:
+      - ./.runtime/wordpress:/var/www/html
+      - ./dev/uploads.ini:/usr/local/etc/php/conf.d/ig-uploads.ini:ro
+      - ./wp-content/plugins/iran-grains-core:/var/www/html/wp-content/plugins/iran-grains-core:ro
+      - ./wp-content/themes/iran-grains:/var/www/html/wp-content/themes/iran-grains:ro
+      - ../Site:/var/www/html/wp-content/themes/iran-grains/prototype:ro
+      - ./dev:/opt/ig:ro
+      - ./tests:/opt/ig-tests:ro
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  database:

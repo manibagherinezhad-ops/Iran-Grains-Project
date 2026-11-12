@@ -6,11 +6,13 @@
     <title>جلسات | انجمن غلات ایران</title>
     <meta name="description" content="جلسات، مجامع و نشست‌های انجمن غلات ایران؛ گزارش و اطلاعیه‌ی جلسات برگزارشده و در پیش رو.">
 
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌾</text></svg>">
+    <link rel="icon" type="image/png" href="assets/img/logo.png"><link rel="icon" type="image/svg+xml" sizes="any" href="assets/img/favicon.svg">
 
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/site-surfaces.css">
+<link rel="stylesheet" href="assets/css/site-additions.css">
 </head>
-<body class="subpage">
+<body class="theme-meetings subpage meetings-page">
 
     <!-- کرسر سفارشی -->
     <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
@@ -28,25 +30,34 @@
 
 
                 <div class="nav-item-has-children">
-                    <a href="meetings.html" class="nav-link active">رویدادها <span class="caret" aria-hidden="true">▾</span></a>
+                    <a href="news.html" class="nav-link active" aria-current="true">اخبار و رویدادها <span class="caret" aria-hidden="true">▾</span></a>
                     <ul class="dropdown">
-                        <li><a href="meetings.html">جلسات</a></li>
+                        <li><a href="news.html">اخبار</a></li>
+                        <li><a href="meetings.html" class="active" aria-current="page">جلسات</a></li>
                         <li><a href="iran-green.html">ایران گرین</a></li>
                     </ul>
                 </div>
 
-                <a href="index.html#services" class="nav-link">بخشنامه‌ها</a>
-                <a href="index.html#stats" class="nav-link">قیمت‌های مصوب</a>
+                <a href="circulars.html" class="nav-link">بخشنامه‌ها</a>
+                <a href="approved-prices.html" class="nav-link">قیمت‌های مصوب</a>
 
                 <div class="nav-item-has-children">
-                    <a href="index.html#contact" class="nav-link">اعضا <span class="caret" aria-hidden="true">▾</span></a>
+                    <a href="members.html" class="nav-link">اعضا <span class="caret" aria-hidden="true">▾</span></a>
                     <ul class="dropdown">
-                        <li><a href="#">شرکت‌های عضو</a></li>
-                        <li><a href="#">شرایط عضویت</a></li>
+                        <li><a href="members.html">شرکت‌های عضو</a></li>
+                        <li><a href="membership.html">شرایط عضویت</a></li>
                     </ul>
                 </div>
 
-                <a href="index.html#contact" class="nav-link">تماس با ما</a>
+                <a href="contact.html" class="nav-link">تماس با ما</a>
+
+                <div class="nav-item-has-children">
+                    <a href="about.html" class="nav-link">درباره ما <span class="caret" aria-hidden="true">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="about.html">آشنایی با انجمن</a></li>
+                        <li><a href="board.html">اعضای هیأت مدیره</a></li>
+                    </ul>
+                </div>
             </nav>
 
             <div class="nav-actions">
@@ -59,24 +70,22 @@
     </header>
 
     <!-- ===== هدر صفحه ===== -->
-    <section class="page-hero">
-        <div class="container">
-            <nav class="breadcrumb" aria-label="مسیر">
-                <a href="index.html">خانه</a>
-                <span class="sep" aria-hidden="true">❯</span>
-                <span>رویدادها</span>
-                <span class="sep" aria-hidden="true">❯</span>
-                <span>جلسات</span>
-            </nav>
-            <h1>جلسات انجمن</h1>
-            <p class="lead">
-                گزارش و اطلاعیه‌ی جلسات، مجامع و نشست‌های تخصصی انجمن غلات ایران.
-            </p>
+    <section class="geometry-section site-hero site-hero--meetings">
+        <span class="section-geometry" aria-hidden="true"></span>
+        <div class="site-hero-photo" aria-hidden="true"></div>
+        <div class="container site-hero-content">
+            <nav class="breadcrumb" aria-label="مسیر"><a href="index.html">خانه</a><span class="sep" aria-hidden="true">❯</span><span>اخبار و رویدادها</span><span class="sep" aria-hidden="true">❯</span><span aria-current="page">جلسات</span></nav>
+            <span class="site-hero-eyebrow">گفت‌وگو، هم‌افزایی و تصمیم‌سازی</span>
+            <h1><em>جلسات</em> انجمن</h1>
+            <p>گزارش و اطلاعیه‌ی جلسات، مجامع و نشست‌های تخصصی انجمن غلات ایران.</p>
+            <div class="site-hero-facts"><div><b>نشست‌های تخصصی</b><span>صنعت غلات</span></div><div><b>مجامع انجمن</b><span>گزارش‌ها و اطلاعیه‌ها</span></div></div>
+
         </div>
     </section>
 
     <!-- ===== جلسات ===== -->
-    <section class="section meetings-section">
+    <section class="geometry-section section meetings-section">
+        <span class="section-geometry" aria-hidden="true"></span>
         <div class="container">
             <!-- فیلتر -->
             <div class="meet-filter" data-animate>
@@ -106,6 +115,11 @@
                         </div>
                     </div>
                     </div>
+                                    <template class="meet-summary">در این مجمع، گزارش عملکرد سالانهٔ انجمن بررسی می‌شود.
+نمایندگان اعضا فعالیت‌ها و برنامه‌های انجمن را مرور می‌کنند.
+بررسی و تصویب بودجه از محورهای اصلی دستور جلسه است.
+انتخابات هیأت مدیرهٔ جدید نیز در برنامهٔ مجمع قرار دارد.
+هدف، تعیین مسیر فعالیت انجمن برای دورهٔ پیش رو است.</template>
                 </article>
 
                 <article class="meet-card" data-status="upcoming" data-animate>
@@ -126,6 +140,11 @@
                         </div>
                     </div>
                     </div>
+                                    <template class="meet-summary">این نشست به وضعیت بازار ذرت و کنجالهٔ سویا اختصاص دارد.
+چشم‌انداز بازار در نیمهٔ دوم سال بررسی می‌شود.
+اعضا دربارهٔ نیازهای زنجیرهٔ تأمین گفت‌وگو می‌کنند.
+راهکارهای تأمین پایدار نهاده‌های دامی مرور می‌شود.
+محور گفت‌وگو، هماهنگی بیشتر میان فعالان این بازار است.</template>
                 </article>
 
                 <article class="meet-card" data-status="held" data-animate>
@@ -146,6 +165,11 @@
                         </div>
                     </div>
                     </div>
+                                    <template class="meet-summary">محور جلسه، بررسی گزارش عملکرد سه‌ماههٔ انجمن بود.
+فعالیت‌های دوره و موارد نیازمند پیگیری مرور شد.
+پیگیری مصوبات جلسات قبلی در دستور کار قرار داشت.
+برنامه‌ریزی همایش ایران گرین ۱۴۰۵ نیز بررسی شد.
+تمرکز جلسه بر هماهنگی فعالیت‌های جاری انجمن بود.</template>
                 </article>
 
                 <article class="meet-card" data-status="held" data-animate>
@@ -166,6 +190,11 @@
                         </div>
                     </div>
                     </div>
+                                    <template class="meet-summary">این نشست به سیاست‌های حمایتی بخش کشاورزی اختصاص داشت.
+موضوع خرید تضمینی گندم در محور گفت‌وگو قرار گرفت.
+نیازهای تأمین نهاده برای فصل آینده نیز بررسی شد.
+ارتباط سیاست‌های حمایتی با نیاز فعالان صنعت مرور شد.
+هدف گفت‌وگو، هماهنگی بیشتر در تأمین محصولات بود.</template>
                 </article>
 
                 <article class="meet-card" data-status="held" data-animate>
@@ -186,6 +215,11 @@
                         </div>
                     </div>
                     </div>
+                                    <template class="meet-summary">کارگاه با معرفی چرخهٔ واردات غلات برای اعضای جدید آغاز شد.
+مراحل ثبت سفارش و اسناد بازرگانی مورد نیاز مرور شد.
+مقررات ارزی مرتبط با فرایند واردات توضیح داده شد.
+مراحل ترخیص کالا و ارتباط آن با مدارک بررسی شد.
+هدف، آشنایی اعضا با مسیر ثبت سفارش تا ترخیص بود.</template>
                 </article>
 
                 <article class="meet-card" data-status="held" data-animate>
@@ -206,14 +240,120 @@
                         </div>
                     </div>
                     </div>
+                                    <template class="meet-summary">جلسه به بازبینی گزارش‌های ماهانهٔ بازار غلات اختصاص داشت.
+ساختار گزارش‌ها و نحوهٔ ارائهٔ اطلاعات مرور شد.
+داده‌های تولید به‌عنوان بخشی از این گزارش‌ها بررسی شد.
+موضوع انتشار عمومی داده‌های تولید در دستور کار بود.
+تمرکز جلسه بر نظم و شفافیت اطلاعات بازار غلات بود.</template>
+                </article>
+
+                <article class="meet-card" data-status="upcoming" data-animate>
+                    <div class="meet-img"><img src="assets/img/photo-1574323347407-f5e1ad6d020b.avif" alt="گندم برای نشست نمونه" loading="lazy"></div>
+                    <div class="meet-row">
+                        <div class="meet-date"><b>۲۰</b><span>آبان</span><i>۱۴۰۵</i></div>
+                        <div class="meet-body">
+                            <span class="meet-tag upcoming">در پیش رو</span>
+                            <h3>نشست نمونه؛ برنامه‌ریزی تأمین گندم</h3>
+                            <p>گفت‌وگوی فرضی اعضا درباره‌ی برنامه‌ریزی تأمین گندم و هماهنگی زنجیره‌ی توزیع در ماه‌های آینده.</p>
+                            <div class="meet-meta">
+                                <span>📍 سالن همایش‌های انجمن، تهران</span>
+                                <span>🕑 ۱۰:۰۰ تا ۱۲:۰۰</span>
+                            </div>
+                        </div>
+                    </div>
+                                    <template class="meet-summary">این نشست نمونه، سناریوی تأمین گندم را بررسی می‌کند.
+نیازهای ماه‌های آینده در قالب گفت‌وگویی فرضی مرور می‌شود.
+هماهنگی میان حلقه‌های زنجیرهٔ توزیع موضوع بحث است.
+دیدگاه‌های اعضا دربارهٔ برنامه‌ریزی تأمین مطرح می‌شود.
+محتوا نمایشی است و گزارش یک جلسهٔ واقعی نیست.</template>
+                </article>
+
+                <article class="meet-card" data-status="upcoming" data-animate>
+                    <div class="meet-img"><img src="assets/img/photo-1625246333195-78d9c38ad449.avif" alt="مزرعه برای کارگاه نمونه" loading="lazy"></div>
+                    <div class="meet-row">
+                        <div class="meet-date"><b>۱۲</b><span>آذر</span><i>۱۴۰۵</i></div>
+                        <div class="meet-body">
+                            <span class="meet-tag upcoming">در پیش رو</span>
+                            <h3>کارگاه نمونه؛ پایش بازار دانه‌های روغنی</h3>
+                            <p>ارائه‌ی فرضی روش‌های پایش بازار و مرور شاخص‌های عرضه و تقاضای دانه‌های روغنی.</p>
+                            <div class="meet-meta">
+                                <span>📍 مرکز آموزش انجمن، تهران</span>
+                                <span>🕑 ۱۴:۰۰ تا ۱۶:۳۰</span>
+                            </div>
+                        </div>
+                    </div>
+                                    <template class="meet-summary">این کارگاه نمونه به پایش بازار دانه‌های روغنی می‌پردازد.
+روش‌های رصد بازار در قالب محتوای فرضی مرور می‌شود.
+شاخص‌های عرضه و تقاضا موضوع اصلی بررسی هستند.
+کاربرد این شاخص‌ها در شناخت وضعیت بازار توضیح داده می‌شود.
+محتوا نمایشی است و گزارش یک کارگاه واقعی نیست.</template>
+                </article>
+
+                <article class="meet-card" data-status="held" data-animate>
+                    <div class="meet-img"><img src="assets/img/photo-1464226184884-fa280b87c399.avif" alt="محصولات کشاورزی برای جلسه نمونه" loading="lazy"></div>
+                    <div class="meet-row">
+                        <div class="meet-date"><b>۲۴</b><span>مهر</span><i>۱۴۰۵</i></div>
+                        <div class="meet-body">
+                            <span class="meet-tag held">برگزار شد</span>
+                            <h3>جلسه‌ی نمونه؛ بررسی زنجیره‌ی حمل غلات</h3>
+                            <p>مرور فرضی چالش‌های حمل‌ونقل غلات و پیشنهادهای اعضا برای بهبود هماهنگی در زنجیره‌ی تأمین.</p>
+                            <div class="meet-meta">
+                                <span>📍 دفتر مرکزی انجمن</span>
+                                <span>🕑 ۰۹:۰۰ تا ۱۱:۰۰</span>
+                            </div>
+                        </div>
+                    </div>
+                                    <template class="meet-summary">این جلسهٔ نمونه به زنجیرهٔ حمل غلات اختصاص دارد.
+چالش‌های حمل‌ونقل در قالب سناریویی فرضی مرور می‌شود.
+پیشنهادهای اعضا برای هماهنگی زنجیره مطرح می‌شود.
+ارتباط حمل‌ونقل با جریان تأمین، محور گفت‌وگو است.
+محتوا نمایشی است و گزارش یک جلسهٔ واقعی نیست.</template>
+                </article>
+
+                <article class="meet-card" data-status="held" data-animate>
+                    <div class="meet-img"><img src="assets/img/photo-1500382017468-9049fed747ef.avif" alt="مزرعه برای نشست نمونه" loading="lazy"></div>
+                    <div class="meet-row">
+                        <div class="meet-date"><b>۱۰</b><span>شهریور</span><i>۱۴۰۵</i></div>
+                        <div class="meet-body">
+                            <span class="meet-tag held">برگزار شد</span>
+                            <h3>نشست نمونه؛ همکاری تولیدکنندگان و واردکنندگان</h3>
+                            <p>تبادل‌نظر فرضی درباره‌ی همکاری فعالان صنعت غلات و برنامه‌های مشترک برای فصل برداشت.</p>
+                            <div class="meet-meta">
+                                <span>📍 سالن جلسات انجمن، تهران</span>
+                                <span>🕑 ۱۱:۰۰ تا ۱۳:۰۰</span>
+                            </div>
+                        </div>
+                    </div>
+                                    <template class="meet-summary">این نشست نمونه، همکاری فعالان صنعت غلات را بررسی می‌کند.
+گفت‌وگوی فرضی میان تولیدکنندگان و واردکنندگان شکل می‌گیرد.
+برنامه‌های مشترک برای فصل برداشت در محور بحث است.
+راه‌های هماهنگی بیشتر میان فعالان صنعت مرور می‌شود.
+محتوا نمایشی است و گزارش یک نشست واقعی نیست.</template>
                 </article>
 
             </div>
+            <nav class="meet-pagination" id="meetPagination" aria-label="صفحه‌بندی جلسات">
+                <button type="button" class="meet-page-arrow" data-page-direction="prev" aria-label="صفحهٔ قبل">❮</button>
+                <div class="meet-page-numbers" id="meetPageNumbers"></div>
+                <button type="button" class="meet-page-arrow" data-page-direction="next" aria-label="صفحهٔ بعد">❯</button>
+            </nav>
         </div>
     </section>
 
+    <dialog class="meeting-dialog" id="meetingDialog" aria-labelledby="meetingDialogTitle">
+        <div class="meeting-dialog-heading"><span class="section-tag">خلاصه جلسه</span><button type="button" class="meeting-dialog-close" aria-label="بستن خلاصه جلسه">×</button></div>
+        <img class="meeting-dialog-image" id="meetingDialogImage" src="assets/img/photo-1437252611977-07f74518abd7.avif" alt="">
+        <div class="meeting-dialog-body">
+            <span class="meet-tag" id="meetingDialogStatus"></span>
+            <h2 id="meetingDialogTitle"></h2>
+            <div class="meeting-dialog-meta"><div><span>تاریخ جلسه</span><b id="meetingDialogDate"></b></div><div><span>محل برگزاری</span><b id="meetingDialogLocation"></b></div><div><span>ساعت برگزاری</span><b id="meetingDialogTime"></b></div></div>
+            <p id="meetingDialogSummary"></p>
+        </div>
+    </dialog>
+
     <!-- ===== Footer ===== -->
-    <footer class="footer">
+    <footer class="geometry-section footer">
+        <span class="section-geometry" aria-hidden="true"></span>
         <div class="container footer-grid">
             <div class="footer-col footer-brand">
                 <a href="index.html" class="logo">
@@ -226,18 +366,19 @@
                 <ul>
                     <li><a href="index.html#services">خدمات</a></li>
                     <li><a href="index.html#news">اخبار</a></li>
-                    <li><a href="index.html#contact">تماس</a></li>
+                    <li><a href="contact.html">تماس</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>خدمات</h4>
                 <ul>
                     <li><a href="index.html#services">آمار و داده‌ها</a></li>
-                    <li><a href="index.html#services">بخشنامه‌ها</a></li>
-                    <li><a href="index.html#services">شرکت‌های عضو</a></li>
+                    <li><a href="circulars.html">بخشنامه‌ها</a></li>
+                    <li><a href="members.html">شرکت‌های عضو</a></li>
                     <li><a href="meetings.html">رویدادها</a></li>
                 </ul>
             </div>
+            <div class="footer-col footer-useful"><h4>لینک‌های مفید</h4><ul><li><a href="https://iranslal.com/" target="_blank" rel="noopener noreferrer">شرکت پشتیبانی امور دام کشور</a></li><li><a href="https://gtc.ir/" target="_blank" rel="noopener noreferrer">شرکت بازرگانی دولتی ایران</a></li><li><a href="https://www.mimt.gov.ir/" target="_blank" rel="noopener noreferrer">وزارت صنعت، معدن و تجارت</a></li><li><a href="https://www.maj.ir/" target="_blank" rel="noopener noreferrer">وزارت جهاد کشاورزی</a></li><li><a href="https://www.ivo.ir/" target="_blank" rel="noopener noreferrer">سازمان دامپزشکی کشور</a></li><li><a href="https://cppo.mimt.gov.ir/" target="_blank" rel="noopener noreferrer">سازمان حمایت مصرف‌کنندگان و تولیدکنندگان</a></li><li><a href="https://www.irica.ir/index.php" target="_blank" rel="noopener noreferrer">گمرک جمهوری اسلامی ایران</a></li></ul></div>
             <div class="footer-col">
                 <h4>شبکه‌های اجتماعی</h4>
                 <div class="social-links">
@@ -252,8 +393,9 @@
                     </a>
                 </div>
             </div>
+
         </div>
-        <div class="footer-bottom">
+<div class="footer-bottom">
             <div class="container">
                 <p>© ۱۴۰۵ انجمن غلات ایران | تمامی حقوق محفوظ است.</p>
             </div>
@@ -264,6 +406,9 @@
         <span aria-hidden="true">↑</span>
     </button>
 
+    <script src="assets/js/site-motion.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/meetings-ui.js"></script>
+<script src="assets/js/site-additions.js"></script>
 </body>
 </html>

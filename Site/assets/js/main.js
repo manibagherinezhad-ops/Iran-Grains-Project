@@ -6,6 +6,7 @@
 
     const $ = (sel, ctx = document) => ctx.querySelector(sel);
     const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+    const asset = (path) => (window.IranGrains?.assetBase || '') + path;
 
     // ---------- تبدیل عدد لاتین به فارسی ----------
     const FA_DIGITS = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
@@ -16,12 +17,6 @@
        ============================================ */
     const navbar = $('#navbar');
     const navLinks = $$('.nav-link');
-    const sections = navLinks
-        .map((link) => {
-            const id = link.getAttribute('href');
-            return id && id.startsWith('#') ? document.querySelector(id) : null;
-        })
-        .filter(Boolean);
 
     let ticking = false;
     function onScroll() {
@@ -43,14 +38,7 @@
             const backTop = $('#backToTop');
             if (backTop) backTop.classList.toggle('show', y > 500);
 
-            // لینک فعال بر اساس بخشی که در دید است
-            const mid = y + window.innerHeight * 0.35;
-            let activeIndex = -1;
-            for (let i = 0; i < sections.length; i++) {
-                const sec = sections[i];
-                if (sec && sec.offsetTop <= mid) activeIndex = i;
-            }
-            navLinks.forEach((link, i) => link.classList.toggle('active', i === activeIndex));
+            // حالت فعال منو بر اساس صفحهٔ جاری در HTML ثابت است.
 
             ticking = false;
         });
@@ -197,6 +185,7 @@
     const formStatus = $('#formStatus');
     if (form) {
         form.addEventListener('submit', (e) => {
+            if (window.IranGrains?.contact) return;
             e.preventDefault();
 
             // اعتبارسنجی ساده
@@ -237,60 +226,6 @@
     onScroll();
 
     /* ============================================
-       ۷) کرسر سفارشی دایره‌ای (فقط دسکتاپ)
-       ============================================ */
-    const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    if (isFinePointer) {
-        const dot = $('#cursorDot');
-        const ring = $('#cursorRing');
-        let mouseX = 0, mouseY = 0;
-        let ringX = 0, ringY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            // نقطه‌ی وسط بی‌درنگ دنبال موس
-            dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
-            dot.classList.remove('cursor-hidden');
-            ring.classList.remove('cursor-hidden');
-        });
-
-        // حلقه با کمی تأخیر نرم دنبال موس می‌چرخه
-        function animateRing() {
-            ringX += (mouseX - ringX) * 0.18;
-            ringY += (mouseY - ringY) * 0.18;
-            ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
-            requestAnimationFrame(animateRing);
-        }
-        animateRing();
-
-        // موقع خروج موس از صفحه
-        document.addEventListener('mouseleave', () => {
-            dot.classList.add('cursor-hidden');
-            ring.classList.add('cursor-hidden');
-        });
-
-        // بزرگ شدن حلقه روی عناصر تعاملی
-        const interactiveSelector = 'a, button, input, textarea, select, label, [role="button"]';
-        document.addEventListener('mouseover', (e) => {
-            if (e.target.closest(interactiveSelector)) {
-                dot.classList.add('is-active');
-                ring.classList.add('is-active');
-            }
-        });
-        document.addEventListener('mouseout', (e) => {
-            if (e.target.closest(interactiveSelector)) {
-                dot.classList.remove('is-active');
-                ring.classList.remove('is-active');
-            }
-        });
-
-        // مخفی کردن کرسر موقع کلیک و دراپ‌داون (موارد لبه‌ای)
-        document.addEventListener('mousedown', () => ring.classList.add('is-active'));
-        document.addEventListener('mouseup', () => ring.classList.remove('is-active'));
-    }
-
-    /* ============================================
        ۸) افکت کلمه‌به‌کلمه پررنگ شدن متن درباره انجمن
        (دوطرفه: اسکرول پایین = پررنگ، اسکرول بالا = کمرنگ)
        ============================================ */
@@ -324,50 +259,104 @@
 
     /* ============================================
        ۹) اسلایدر خبری هیرو — داده‌محور
-       برای اتصال آینده به پیج اخبار، فقط همین آرایه رو
-       از منبع اخبار (۵ خبر آخر) پر کنید.
+       ده خبر آخر از همان فهرست صفحهٔ اخبار خوانده می‌شوند.
        ============================================ */
-    const heroNewsData = [
-        { img: 'assets/img/photo-1464226184884-fa280b87c399.avif', kicker: 'بازار جهانی', title: 'افزایش تولید جهانی گندم در سال جاری بر اساس گزارش فائو', date: '۱۲ مرداد ۱۴۰۴' },
-        { img: 'assets/img/photo-1574323347407-f5e1ad6d020b.avif', kicker: 'گزارش روز', title: 'چشم‌انداز مثبت بازار جهانی غلات در نیمه‌ی دوم سال', date: '۱۰ مرداد ۱۴۰۴' },
-        { img: 'assets/img/photo-1625246333195-78d9c38ad449.avif', kicker: 'تولید داخلی', title: 'رکورد جدید برداشت گندم در استان‌های اصلی کشور', date: '۸ مرداد ۱۴۰۴' },
-        { img: 'assets/img/photo-1500382017468-9049fed747ef.avif', kicker: 'قیمت‌ها', title: 'تثبیت قیمت نهاده‌های دامی در بازار داخلی', date: '۵ مرداد ۱۴۰۴' },
-        { img: 'assets/img/photo-1437252611977-07f74518abd7.avif', kicker: 'زراعت مدرن', title: 'توسعه‌ی کشاورزی مکانیزه در اراضی گندم‌کاری کشور', date: '۲ مرداد ۱۴۰۴' },
-    ];
+    const newsFeed = [...(window.NewsItems || [])].sort((a, b) =>
+        (b.publishedAt || b.date).localeCompare(a.publishedAt || a.date) || b.id - a.id);
+    const newsCategories = window.IranGrains?.categories?.news || window.NewsCategories || {};
+    const newsDate = (value) => new Intl.DateTimeFormat('fa-IR', {timeZone: 'Asia/Tehran', year: 'numeric', month: 'long', day: 'numeric'}).format(new Date(value + 'T12:00:00Z'));
+    const heroNewsData = newsFeed.slice(0, 10).map((item) => ({
+        img: item.image, title: item.title, kicker: newsCategories[item.category] || '', date: newsDate(item.date)
+    }));
+    $$('#news .news-card').forEach((card, index) => {
+        const item = newsFeed[index];
+        if (!item) {card.hidden = true; return;}
+        card.querySelector('h3').textContent = item.title;
+        card.querySelector('.news-body p').textContent = item.description;
+        card.querySelector('.news-cat').textContent = newsCategories[item.category] || '';
+        card.querySelector('.news-date').textContent = newsDate(item.date);
+        card.querySelector('.news-img img').src = item.image;
+        card.querySelector('.news-img img').alt = item.title;
+        card.querySelector('.news-link').href = item.url || ('news-article.html?id=' + item.id);
+    });
 
     const heroSlider = $('#heroSlider');
-    if (heroSlider && heroNewsData.length) {
+    if (heroSlider) {
         // اسلاید ۰ = معرفی انجمن (فقط بار اول)، بعدش اخبار
-        const introSlide = document.createElement('div');
-        introSlide.className = 'hero-slide active';
-        introSlide.innerHTML =
-            '<div class="slide-bg" style="background-image: url(\'assets/img/photo-1437252611977-07f74518abd7.avif\')"></div>' +
-            '<div class="slide-shade intro-shade"></div>' +
-            '<div class="slide-intro"><div class="container">' +
-                '<span class="hero-badge">🌱 مرجع تخصصی صنعت غلات ایران</span>' +
-                '<h1 class="hero-title">آینده‌ی <span class="text-gold">غلات</span> را<br>با هم می‌سازیم</h1>' +
-                '<p class="hero-subtitle">انجمن غلات ایران با بیش از دو دهه تجربه، پل ارتباطی میان تولیدکنندگان، واردکنندگان و نهادهای دولتی برای توسعه‌ی پایدار صنعت غلات و تأمین امنیت غذایی کشور است.</p>' +
-                '<div class="hero-actions">' +
-                    '<a href="#about" class="btn btn-gold">درباره انجمن <span aria-hidden="true">←</span></a>' +
-                    '<a href="#contact" class="btn btn-outline">درخواست عضویت</a>' +
-                '</div>' +
-            '</div></div>';
-        heroSlider.appendChild(introSlide);
+        const serverIntro = heroSlider.querySelector('.hero-intro-stage');
+        const introSlide = serverIntro || document.createElement('div');
+        introSlide.className = 'hero-slide hero-intro-stage active';
+        if (!serverIntro) introSlide.innerHTML = `<div class="intro-ambient" aria-hidden="true"></div>
+<div class="intro-gridlines" aria-hidden="true"></div>
+<div class="slide-intro"><div class="container intro-layout">
+    <div class="intro-copy">
+        <img class="intro-brand" src="${asset('assets/img/logo.png')}" width="62" height="78" alt="" aria-hidden="true">
+        <span class="hero-badge">🌱 مرجع تخصصی صنعت غلات ایران</span>
+        <h1 class="hero-title"><span class="intro-title-line">آینده‌ی <span class="text-gold">غلات</span> را</span><br><span class="intro-title-line">با هم می‌سازیم</span></h1>
+        <p class="hero-subtitle">انجمن غلات ایران با بیش از دو دهه تجربه، پل ارتباطی میان تولیدکنندگان، واردکنندگان و نهادهای دولتی برای توسعه‌ی پایدار صنعت غلات و تأمین امنیت غذایی کشور است.</p>
+        <div class="hero-actions">
+            <a href="#about" class="btn btn-gold">درباره انجمن <span aria-hidden="true">←</span></a>
+            <a href="#contact" class="btn btn-outline">درخواست عضویت</a>
+        </div>
+    </div>
+    <div class="intro-art" aria-hidden="true">
+        <div class="intro-orbit orbit-outer"></div><div class="intro-orbit orbit-inner"></div>
+        <div class="intro-photo-frame"><div class="intro-photo"><img src="${asset('assets/img/photo-1437252611977-07f74518abd7.avif')}" alt="" fetchpriority="high"></div></div>
+        <svg class="intro-wheat" viewBox="0 0 180 370" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M82 353C99 275 99 169 87 44" stroke="currentColor" stroke-width="2"/><g fill="currentColor"><path d="M88 77C61 63 62 32 80 9c17 23 22 48 8 68ZM90 121C61 112 43 88 47 62c32 6 51 28 43 59ZM93 162C64 154 43 133 44 106c31 5 55 29 49 56ZM95 205C63 199 42 177 42 150c35 7 58 30 53 55ZM95 248C64 244 40 225 39 197c34 3 59 25 56 51ZM95 291C62 289 36 268 34 242c36 3 62 24 61 49ZM91 121c28-12 42-38 35-64-31 10-47 34-35 64ZM94 162c29-10 45-35 39-62-32 8-51 32-39 62ZM96 205c31-9 48-33 44-61-34 7-55 31-44 61ZM97 248c33-6 52-29 50-57-34 4-57 27-50 57ZM96 291c34-3 56-26 57-54-35 2-61 22-57 54Z"/></g></svg>
+        <div class="intro-coordinate coordinate-top"></div><div class="intro-coordinate coordinate-bottom"></div>
+        <div class="intro-grain grain-one"></div><div class="intro-grain grain-two"></div><div class="intro-grain grain-three"></div>
+    </div>
+</div></div>`;
+        const intro = window.IranGrains?.intro;
+        if (intro && !serverIntro) {
+            const first = introSlide.querySelector('.intro-title-line');
+            if (intro.home_intro_prefix) first.firstChild.textContent = intro.home_intro_prefix + ' ';
+            if (intro.home_intro_highlight) first.querySelector('.text-gold').textContent = intro.home_intro_highlight;
+            if (intro.home_intro_suffix) first.lastChild.textContent = ' ' + intro.home_intro_suffix;
+            if (intro.home_intro_line2) introSlide.querySelectorAll('.intro-title-line')[1].textContent = intro.home_intro_line2;
+            if (intro.home_intro_subtitle) introSlide.querySelector('.hero-subtitle').textContent = intro.home_intro_subtitle;
+            if (intro.home_intro_badge) introSlide.querySelector('.hero-badge').textContent = intro.home_intro_badge;
+        }
+        if (!serverIntro) heroSlider.appendChild(introSlide);
+        // Subtle pointer depth applies only while the one-time intro is active.
+        if (matchMedia('(hover: hover) and (pointer: fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            let pointerFrame = 0;
+            introSlide.addEventListener('pointermove', (event) => {
+                if (!introSlide.classList.contains('active') || introSlide.classList.contains('leaving')) return;
+                const x = event.clientX, y = event.clientY;
+                cancelAnimationFrame(pointerFrame);
+                pointerFrame = requestAnimationFrame(() => {
+                    const bounds = introSlide.getBoundingClientRect();
+                    introSlide.style.setProperty('--intro-x', ((x - bounds.left) / bounds.width - .5) * 16 + 'px');
+                    introSlide.style.setProperty('--intro-y', ((y - bounds.top) / bounds.height - .5) * 12 + 'px');
+                });
+            });
+            introSlide.addEventListener('pointerleave', () => {
+                cancelAnimationFrame(pointerFrame);
+                introSlide.style.setProperty('--intro-x', '0px');
+                introSlide.style.setProperty('--intro-y', '0px');
+            });
+        }
+
 
         // اسلایدهای خبری
         heroNewsData.forEach((n) => {
             const slide = document.createElement('div');
             slide.className = 'hero-slide';
             slide.innerHTML =
-                '<div class="slide-bg" style="background-image: url(\'' + n.img + '\')"></div>' +
+                '<div class="slide-bg"></div>' +
                 '<div class="slide-shade"></div>' +
                 '<div class="slide-info">' +
                     '<div class="slide-title-wrap">' +
-                        '<span class="slide-title-kicker">' + n.kicker + '</span>' +
-                        '<h2 class="slide-title">' + n.title + '</h2>' +
+                        '<span class="slide-title-kicker"></span>' +
+                        '<h2 class="slide-title"></h2>' +
                     '</div>' +
-                    '<span class="slide-date">' + n.date + '</span>' +
+                    '<span class="slide-date"></span>' +
                 '</div>';
+            slide.querySelector('.slide-bg').dataset.image = n.img;
+            slide.querySelector('.slide-title-kicker').textContent = n.kicker;
+            slide.querySelector('.slide-title').textContent = n.title;
+            slide.querySelector('.slide-date').textContent = n.date;
             heroSlider.appendChild(slide);
         });
 
@@ -377,12 +366,22 @@
         let heroIdx = 0;
         const SLIDE_MS = 5000;
         const ANIM_MS = 900;
+        function prepareSlide(index) {
+            const background = slides[index]?.querySelector('.slide-bg');
+            if (!background?.dataset.image) return;
+            background.style.backgroundImage = `url(${JSON.stringify(background.dataset.image)})`;
+            delete background.dataset.image;
+        }
+        if (slides.length > 1) setTimeout(() => prepareSlide(1), 1200);
 
         function heroNext() {
+            if (document.hidden) return;
             const current = slides[heroIdx];
             let nextIdx = heroIdx + 1;
             if (nextIdx >= slides.length) nextIdx = 1; /* برگشت به اولین خبر، نه معرفی */
             const next = slides[nextIdx];
+            prepareSlide(nextIdx);
+            setTimeout(() => prepareSlide(nextIdx + 1 >= slides.length ? 1 : nextIdx + 1), ANIM_MS);
 
             current.classList.add('leaving');
             next.classList.add('active');
@@ -401,32 +400,18 @@
     }
 
     /* ============================================
-       ۱۰) تاریخ شمسی خودکار برای باکس نرخ ارز
-       (هر روز بر اساس تاریخ امروز سیستم آپدیت میشه)
+       ۱۰) تاریخ روز در باکس نرخ ارز
        ============================================ */
     const exDateEl = $('#exchangeDate');
     if (exDateEl) {
-        function gregorianToJalali(gy, gm, gd) {
-            const gdm = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
-            let jy = gy <= 1600 ? 0 : 979;
-            gy -= gy <= 1600 ? 621 : 1600;
-            const gy2 = gm > 2 ? gy + 1 : gy;
-            let days = 365 * gy + Math.floor((gy2 + 3) / 4) - Math.floor((gy2 + 99) / 100)
-                     + Math.floor((gy2 + 399) / 400) - 80 + gd + gdm[gm - 1];
-            jy += 33 * Math.floor(days / 12053);
-            days %= 12053;
-            jy += 4 * Math.floor(days / 1461);
-            days %= 1461;
-            jy += Math.floor((days - 1) / 365);
-            if (days > 365) days = (days - 1) % 365;
-            const jm = days < 186 ? 1 + Math.floor(days / 31) : 7 + Math.floor((days - 186) / 30);
-            const jd = 1 + (days < 186 ? days % 31 : (days - 186) % 30);
-            return [jy, jm, jd];
+        const formatter = new Intl.DateTimeFormat('fa-IR-u-ca-persian', {
+            timeZone: 'Asia/Tehran', year: 'numeric', month: '2-digit', day: '2-digit'
+        });
+        // Display the recorded rate date; a stale quote must not look freshly updated.
+        const rateDate = window.IranGrains?.ratesUpdated;
+        if (rateDate && /^\d{4}-\d{2}-\d{2}$/.test(rateDate)) {
+            exDateEl.textContent = 'مورخ ' + formatter.format(new Date(rateDate + 'T12:00:00+03:30'));
         }
-        const now = new Date();
-        const [jy, jm, jd] = gregorianToJalali(now.getFullYear(), now.getMonth() + 1, now.getDate());
-        const pad = (n) => (n < 10 ? '0' + n : String(n));
-        exDateEl.textContent = 'مورخ ' + toFa(jy) + '/' + toFa(pad(jm)) + '/' + toFa(pad(jd));
     }
 
     /* ============================================
@@ -443,21 +428,60 @@
     });
 
     /* ============================================
-       ۱۲) فیلتر جلسات (meetings.html)
+       ۱۲) فیلتر و صفحه‌بندی جلسات (meetings.html)
        ============================================ */
     const mFilters = $$('.mfilter');
     if (mFilters.length) {
         const mCards = $$('.meet-card');
+        const pagination = $('#meetPagination');
+        const pageNumbers = $('#meetPageNumbers');
+        const pageSize = 5;
+        let currentFilter = 'all';
+        let currentPage = 1;
+
+        function renderMeetings() {
+            const filtered = mCards.filter((card) => currentFilter === 'all' || card.dataset.status === currentFilter);
+            const pageCount = Math.ceil(filtered.length / pageSize);
+            currentPage = Math.min(currentPage, Math.max(pageCount, 1));
+            mCards.forEach((card) => {
+                const index = filtered.indexOf(card);
+                card.classList.toggle('hidden', index < 0 || Math.floor(index / pageSize) + 1 !== currentPage);
+            });
+
+            pageNumbers.replaceChildren();
+            for (let page = 1; page <= pageCount; page++) {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.textContent = toFa(page);
+                button.setAttribute('aria-label', `صفحهٔ ${toFa(page)}`);
+                if (page === currentPage) button.setAttribute('aria-current', 'page');
+                button.addEventListener('click', () => changeMeetingPage(page));
+                pageNumbers.appendChild(button);
+            }
+            pagination.querySelector('[data-page-direction="prev"]').disabled = currentPage === 1;
+            pagination.querySelector('[data-page-direction="next"]').disabled = currentPage === pageCount;
+        }
+
+        function changeMeetingPage(page) {
+            currentPage = page;
+            renderMeetings();
+            window.SiteMotion?.reveal(mCards.filter((card) => !card.classList.contains('hidden')));
+            $('#meetGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
         mFilters.forEach((btn) => {
             btn.addEventListener('click', () => {
                 mFilters.forEach((b) => b.classList.remove('on'));
                 btn.classList.add('on');
-                const f = btn.dataset.filter;
-                mCards.forEach((card) => {
-                    card.classList.toggle('hidden', f !== 'all' && card.dataset.status !== f);
-                });
+                currentFilter = btn.dataset.filter;
+                currentPage = 1;
+                renderMeetings();
+                window.SiteMotion?.reveal(mCards.filter((card) => !card.classList.contains('hidden')));
             });
         });
+        pagination.querySelector('[data-page-direction="prev"]').addEventListener('click', () => changeMeetingPage(currentPage - 1));
+        pagination.querySelector('[data-page-direction="next"]').addEventListener('click', () => changeMeetingPage(currentPage + 1));
+        renderMeetings();
     }
 
     /* ============================================
@@ -476,13 +500,14 @@
         if (bDots) {
             cards.forEach((_, i) => {
                 const dot = document.createElement('button');
+                dot.type = 'button';
                 dot.className = 'bdot';
                 dot.setAttribute('aria-label', 'عضو ' + (i + 1));
                 dot.addEventListener('click', () => { bActive = i; layout(); syncDots(); restart(); });
                 bDots.appendChild(dot);
             });
         }
-        const dots = $$('.bdot');
+        const dots = $$('.bdot', bDots);
 
         /* چیدمان: عضو فعال وسط (بزرگ)، همسایه‌ها کوچیک‌تر، بقیه مخفی */
         function layout(dragX) {
@@ -500,7 +525,11 @@
                 card.classList.toggle('is-active', d === 0);
             });
         }
-        function syncDots() { dots.forEach((dt, i) => dt.classList.toggle('on', i === bActive)); }
+        function syncDots() { dots.forEach((dt, i) => {
+            dt.classList.toggle('on', i === bActive);
+            if (i === bActive) dt.setAttribute('aria-current', 'page');
+            else dt.removeAttribute('aria-current');
+        }); }
         function next() { bActive = (bActive + 1) % n; layout(); syncDots(); }
         function prev() { bActive = (bActive - 1 + n) % n; layout(); syncDots(); }
 
